@@ -225,7 +225,7 @@ return [
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
-    'sidebar_nav_animation_speed' => 300,
+    'sidebar_nav_animation_speed' => 250,
 
     /*
     |--------------------------------------------------------------------------
@@ -301,7 +301,7 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
@@ -322,51 +322,10 @@ return [
         [
             'icon' => 'far fa-fw fas fa-chart-pie',
             'text' => 'Dashboard',
-            'route' => 'dashboard'
-        ],
-        ['header' => 'MANTENIMIENTO'],
-        [
-            'text'    => 'Registrar',
-            'icon'    => 'fas fa-fw fa-plus',
-            'label'       => 7,
-            'label_color' => 'success',
-            'submenu' => [
-                [
-                    'icon' => 'fas fa-fw fa-box-open',
-                    'text' => 'Productos',
-                    'url'  => 'producto',
-                ],
-                [
-                    'icon' => 'fas fa-fw fa-users',
-                    'text' => 'Clientes',
-                    'url'  => 'cliente',
-                ],
-                [
-                    'icon' => 'fas fa-fw fa-address-card',
-                    'text' => 'Empleados',
-                    'url'  => 'empleado',
-                ],
-                [
-                    'icon' => 'fas fa-fw fa-truck',
-                    'text' => 'Proveedores',
-                    'url'  => 'proveedor',
-                ],
-                [
-                    'icon' => 'fas fa-fw fa-capsules',
-                    'text' => 'Presentación',
-                    'url'  => 'presentacion',
-                ],
-                [
-                    'icon' => 'fas fa-fw fa-flask',
-                    'text' => 'Laboratorios',
-                    'url'  => 'laboratorio',
-                ],
-                [
-                    'icon' => 'fas fa-fw fa-file',
-                    'text' => 'Comprobantes',
-                    'url'  => 'comprobante',
-                ],
-            ],
+            'route' => 'dashboard',
+            'label' => 'Nuevo',
+            'label_color' => 'primary'
+
         ],
         ['header' => 'MOVIMIENTOS'],
         [
@@ -383,12 +342,50 @@ return [
             'icon' => 'fas fa-fw fa-cash-register',
             'text' => 'Caja',
             'url'  => 'caja',
+            'label' => 'Nuevo',
+            'label_color' => 'primary'
+        ],
+        ['header' => 'MANTENIMIENTO'],
+        [
+            'icon' => 'fas fa-fw fa-box-open',
+            'text' => 'Productos',
+            'url'  => 'producto',
+        ],
+        [
+            'icon' => 'fas fa-fw fa-users',
+            'text' => 'Clientes',
+            'url'  => 'cliente',
+        ],
+        [
+            'icon' => 'fas fa-fw fa-address-card',
+            'text' => 'Empleados',
+            'url'  => 'empleado',
+        ],
+        [
+            'icon' => 'fas fa-fw fa-truck',
+            'text' => 'Proveedores',
+            'url'  => 'proveedor',
+        ],
+        [
+            'icon' => 'fas fa-fw fa-capsules',
+            'text' => 'Presentación',
+            'url'  => 'presentacion',
+        ],
+        [
+            'icon' => 'fas fa-fw fa-flask',
+            'text' => 'Laboratorios',
+            'url'  => 'laboratorio',
+        ],
+        [
+            'icon' => 'fas fa-fw fa-file',
+            'text' => 'Comprobantes',
+            'url'  => 'comprobante',
         ],
         ['header' => 'GESTIÓN'],
         [
             'text'    => 'Consultar',
             'icon'    => 'fas fa-fw fa-search',
-            'submenu' => [                               
+            'submenu' => [
                 [
                     'text'       => 'Ventas',
                     'icon_color' => 'cyan',
@@ -398,7 +395,7 @@ return [
                     'text'       => 'Compras',
                     'icon_color' => 'cyan',
                     'url'        => '#',
-                ], 
+                ],
                 [
                     'text'       => 'Productos',
                     'icon_color' => 'cyan',
@@ -426,7 +423,7 @@ return [
         [
             'text'    => 'Reportes',
             'icon'    => 'fas fa-fw fa-print',
-            'submenu' => [                               
+            'submenu' => [
                 [
                     'text'       => 'Clientes',
                     'icon_color' => 'blue',
@@ -436,7 +433,7 @@ return [
                     'text'       => 'Productos',
                     'icon_color' => 'blue',
                     'url'        => '#',
-                ], 
+                ],
                 [
                     'text'       => 'Proveedores',
                     'icon_color' => 'blue',
@@ -545,13 +542,23 @@ return [
                 ],
             ],
         ],
+        // 'Sweetalert2' => [
+        //     'active' => true,
+        //     'files' => [
+        //         [
+        //             'type' => 'js',
+        //             'asset' => false,
+        //             'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+        //         ],
+        //     ],
+        // ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true,
+                    'location' => 'vendor/sweetalert2/sweetalert2.all.min.js',
                 ],
             ],
         ],
