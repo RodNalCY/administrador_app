@@ -533,7 +533,7 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -562,6 +562,16 @@ return [
                 ],
             ],
         ],
+        // 'FontAwesome' => [
+        //     'active' => true,
+        //     'files' => [
+        //         [
+        //             'type' => 'css',
+        //             'asset' => true,
+        //             'location' => 'vendor/fontawesome-free/css/fontawesome.min.css',
+        //         ],
+        //     ],
+        // ],
         'Pace' => [
             'active' => false,
             'files' => [
