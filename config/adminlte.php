@@ -15,7 +15,7 @@ return [
     */
 
     'title' => 'AdminLTE 3',
-    'title_prefix' => '',
+    'title_prefix' => 'Farma | ',
     'title_postfix' => '',
 
     /*
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -63,11 +63,11 @@ return [
     |
     */
 
-    'logo' => '<b>Tiendita</b> LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Farma</b>',
+    'logo_img' => '/img/icons/pildora1.png',
+    'logo_img_class' => 'brand-image img-circle elevation-0',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
+    'logo_img_xl_class' => 'brand-image-lg',
     'logo_img_alt' => 'Admin Logo',
 
     /*
@@ -84,9 +84,9 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => '/img/icons/loading.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,11 +109,11 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => '/img/icons/loading.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 60,
-            'height' => 60,
+            'width' => 200,
+            'height' => 200,
         ],
     ],
 
@@ -130,11 +130,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-info',
+    'usermenu_image' => true,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -150,8 +150,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -167,12 +167,19 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
-    'classes_auth_header' => '',
+    'classes_auth_card' => '',
+    'classes_auth_header' => 'bg-gradient-info',
     'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
+    'classes_auth_footer' => 'd-none',
+    'classes_auth_icon' => 'fa-lg text-info',
     'classes_auth_btn' => 'btn-flat btn-primary',
+
+    // 'classes_auth_card' => 'card-outline card-info',
+    // 'classes_auth_header' => '',
+    // 'classes_auth_body' => '',
+    // 'classes_auth_footer' => 'd-none',
+    // 'classes_auth_icon' => '',
+    // 'classes_auth_btn' => 'btn-flat btn-info',
 
     /*
     |--------------------------------------------------------------------------
@@ -187,14 +194,14 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
+    'classes_brand' => 'bg-dark',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-info elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar navbar-dark bg-info',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -253,7 +260,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -311,78 +318,151 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        // Aqui añadir tus rutas para tu navbar
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            'icon' => 'far fa-fw fas fa-chart-pie',
+            'text' => 'Dashboard',
+            'route' => 'dashboard'
+        ],
+        ['header' => 'MANTENIMIENTO'],
+        [
+            'text'    => 'Registrar',
+            'icon'    => 'fas fa-fw fa-plus',
+            'label'       => 7,
             'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-box-open',
+                    'text' => 'Productos',
+                    'url'  => 'producto',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'icon' => 'fas fa-fw fa-users',
+                    'text' => 'Clientes',
+                    'url'  => 'cliente',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'icon' => 'fas fa-fw fa-address-card',
+                    'text' => 'Empleados',
+                    'url'  => 'empleado',
+                ],
+                [
+                    'icon' => 'fas fa-fw fa-truck',
+                    'text' => 'Proveedores',
+                    'url'  => 'proveedor',
+                ],
+                [
+                    'icon' => 'fas fa-fw fa-capsules',
+                    'text' => 'Presentación',
+                    'url'  => 'presentacion',
+                ],
+                [
+                    'icon' => 'fas fa-fw fa-flask',
+                    'text' => 'Laboratorios',
+                    'url'  => 'laboratorio',
+                ],
+                [
+                    'icon' => 'fas fa-fw fa-file',
+                    'text' => 'Comprobantes',
+                    'url'  => 'comprobante',
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'MOVIMIENTOS'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'icon' => 'fas fa-fw fa-cart-plus',
+            'text' => 'Compras',
+            'url'  => 'compras',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'icon' => 'fas fa-fw fa-handshake',
+            'text' => 'Ventas',
+            'url'  => 'ventas',
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'icon' => 'fas fa-fw fa-cash-register',
+            'text' => 'Caja',
+            'url'  => 'caja',
         ],
+        ['header' => 'GESTIÓN'],
+        [
+            'text'    => 'Consultar',
+            'icon'    => 'fas fa-fw fa-search',
+            'submenu' => [                               
+                [
+                    'text'       => 'Ventas',
+                    'icon_color' => 'cyan',
+                    'url'        => '#',
+                ],
+                [
+                    'text'       => 'Compras',
+                    'icon_color' => 'cyan',
+                    'url'        => '#',
+                ], 
+                [
+                    'text'       => 'Productos',
+                    'icon_color' => 'cyan',
+                    'url'        => '#',
+                ],
+                [
+                    'text'       => 'Clientes',
+                    'icon_color' => 'cyan',
+                    'url'        => '#',
+                ],
+                [
+                    'text'       => 'Empleados',
+                    'icon_color' => 'cyan',
+                    'url'        => '#',
+                ],
+                [
+                    'text'       => 'Proveedores',
+                    'icon_color' => 'cyan',
+                    'url'        => '#',
+                ],
+            ],
+        ],
+
+        ['header' => 'DATOS'],
+        [
+            'text'    => 'Reportes',
+            'icon'    => 'fas fa-fw fa-print',
+            'submenu' => [                               
+                [
+                    'text'       => 'Clientes',
+                    'icon_color' => 'blue',
+                    'url'        => '#',
+                ],
+                [
+                    'text'       => 'Productos',
+                    'icon_color' => 'blue',
+                    'url'        => '#',
+                ], 
+                [
+                    'text'       => 'Proveedores',
+                    'icon_color' => 'blue',
+                    'url'        => '#',
+                ],
+                [
+                    'text'       => 'Empleados',
+                    'icon_color' => 'blue',
+                    'url'        => '#',
+                ],
+            ],
+        ],
+
+        // ['header' => 'account_settings'],
+        // [
+        //     'text' => 'profile',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
+
+
     ],
 
     /*

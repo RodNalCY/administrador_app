@@ -8,6 +8,28 @@
 
 @section('content')
     <p>Welcome to this beautiful admin panel.</p>
+    <br>
+    <br>
+    <br>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, corrupti. Cupiditate officia veritatis rem possimus voluptatibus quibusdam omnis reprehenderit soluta maxime quasi iste necessitatibus magnam ad, sint vel aliquam aperiam!</p>
+    <br>
+    <br>
+    <br>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, corrupti. Cupiditate officia veritatis rem possimus voluptatibus quibusdam omnis reprehenderit soluta maxime quasi iste necessitatibus magnam ad, sint vel aliquam aperiam!</p>
+
+    <br>
+    <br>
+    <br>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, corrupti. Cupiditate officia veritatis rem possimus voluptatibus quibusdam omnis reprehenderit soluta maxime quasi iste necessitatibus magnam ad, sint vel aliquam aperiam!</p>
+    <br>
+    <br>
+    <br>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, corrupti. Cupiditate officia veritatis rem possimus voluptatibus quibusdam omnis reprehenderit soluta maxime quasi iste necessitatibus magnam ad, sint vel aliquam aperiam!</p>
+    <br>
+    <br>
+    <br>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, corrupti. Cupiditate officia veritatis rem possimus voluptatibus quibusdam omnis reprehenderit soluta maxime quasi iste necessitatibus magnam ad, sint vel aliquam aperiam!</p>
+    
 @stop
 
 @section('css')

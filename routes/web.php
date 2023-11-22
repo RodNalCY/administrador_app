@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MantenimientoController;
+use App\Http\Controllers\MovimientosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +23,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('dashboard');
+});
+
+
+Route::controller(MantenimientoController::class)->group(function () {
+    Route::get('/producto', 'list_productos')->name('producto');
+    Route::get('/cliente', 'list_clientes')->name('cliente');
+    Route::get('/empleado', 'list_empleados')->name('empleado');
+    Route::get('/proveedor', 'list_proveedores')->name('proveedor');
+    Route::get('/presentacion', 'list_presentaciones')->name('presentacion');
+    Route::get('/laboratorio', 'list_laboratorios')->name('laboratorio');
+    Route::get('/comprobante', 'list_comprobantes')->name('comprobante');
+
+});
+
+Route::controller(MovimientosController::class)->group(function () {
+    Route::get('/compras', 'list_compras')->name('compras');
+    Route::get('/ventas', 'list_ventas')->name('ventas');
+    Route::get('/caja', 'list_caja')->name('caja');
+
+});

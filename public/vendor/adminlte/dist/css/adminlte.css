@@ -12512,8 +12512,9 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   margin-right: .5rem;
   margin-top: -3px;
   max-height: 33px;
-  width: auto;
+  width: auto;  
 }
+
 
 .brand-link .brand-image-xs {
   float: left;
