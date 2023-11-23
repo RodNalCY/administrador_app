@@ -1,0 +1,16 @@
+.header-card-custom {
+    border-top: outset;
+    border-left: outset;
+    position: absolute;
+    top: -30px;
+    left: -2.1px;
+    padding: 10px 25px 0px 25px;
+    border-bottom: aliceblue;
+    border-radius: 8px 8px 0px 0px;
+    font-weight: 300;
+}
+
+.header-table{
+    background-color: #17a2b8!important;
+    color: #fff;
+}
