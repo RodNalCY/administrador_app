@@ -34981,7 +34981,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   flex-direction: column;
   height: 100vh;
   -ms-flex-pack: center;
-  justify-content: center;
+  justify-content: center;  
 }
 
 .login-box,

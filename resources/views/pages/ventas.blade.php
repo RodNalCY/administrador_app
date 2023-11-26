@@ -30,11 +30,16 @@
                         <input type="text" class="form-control form-control-sm">
                     </div>
 
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-4">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
                             <button type="button" class="btn btn-secondary mr-2 btn-sm"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-2 mb-2">
+                        <label class="col-form-label">FECHA:</label>
+                        <input type="text" class="form-control form-control-sm">
                     </div>
                 </div>
             </div>

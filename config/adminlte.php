@@ -170,7 +170,7 @@ return [
     'classes_auth_card' => '',
     'classes_auth_header' => 'bg-gradient-info',
     'classes_auth_body' => '',
-    'classes_auth_footer' => 'd-none',
+    'classes_auth_footer' => '',
     'classes_auth_icon' => 'fa-lg text-info',
     'classes_auth_btn' => 'btn-flat btn-primary',
 
@@ -497,22 +497,49 @@ return [
     */
 
     'plugins' => [
-        'Datatables' => [
-            'active' => false,
+        'Bootstrap5' => [
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
+                    'location' => 'vendor/bootstrap5/js/bootstrap.bundle.min.js',
+                ],
+                // [
+                //     'type' => 'css',
+                //     'asset' => true,
+                //     'location' => 'vendor/bootstrap5/css/bootstrap.min.css',
+                // ],                
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'vendor/bootstrap5/js/bootstrap.min.js',
+                // ],
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'vendor/bootstrap5/js/popper.min.js',
+                // ],
+            ],
+        ],
+
+
+        'Datatables' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
