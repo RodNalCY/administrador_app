@@ -14,10 +14,15 @@
 @stop
 
 @section('content')
-<div class="row mt-3">
+<input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
+<div class="row mt-2">
     <div class="col-md-12">
         <div class="card">
-            <h5 class="card-header bg-white header-card-custom"> <strong>DATOS DE LA CLIENTE</strong></h5>
+            <!-- <h5 class="card-header bg-white header-card-custom"> <strong>DATOS DE LA CLIENTE</strong></h5> -->
+            <div class="card-header bg-info">
+                DATOS DE LA CLIENTE
+                <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
@@ -33,7 +38,7 @@
                     <div class="col-sm-12 col-md-4">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-secondary mr-2 btn-sm"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-secondary mr-2 btn-sm" id="btnBuscarClientes"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
 
@@ -47,11 +52,13 @@
     </div>
 </div>
 <br>
-<br>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <h5 class="card-header bg-white header-card-custom"> <strong>DATOS DEL PRODUCTO</strong></h5>
+            <div class="card-header bg-info">
+                DATOS DEL PRODUCTO
+                <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
@@ -62,7 +69,7 @@
                     <div class="col-sm-12 col-md-9">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-secondary mr-2 btn-sm"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-secondary mr-2 btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
 
@@ -83,13 +90,14 @@
         </div>
     </div>
 </div>
-
-<br>
 <br>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <h5 class="card-header bg-white header-card-custom"> <strong>COMPROBANTE</strong></h5>
+            <div class="card-header bg-info">
+                COMPROBANTE
+                <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
@@ -105,7 +113,7 @@
                     <div class="col-sm-12 col-md-6">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-secondary btn-sm mr-2"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-secondary btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                     <hr>
@@ -130,8 +138,8 @@
         </div>
     </div>
 </div>
-
-<div class="card">
+<hr>
+<div class="card mt-4">
     <div class="car-body">
         <div class="row m-2">
             <table class="table table-hover table-bordered">
@@ -226,6 +234,105 @@
 </div>
 <br>
 <br>
+
+<!----------------------------------------------------------------------------------------------->
+<div class="modal fade" id="mdListClientes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListClientesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdListClientesLabel">Lista de sus Proveedores</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row m-2">
+                    <table class="table table-hover table-bordered">
+                        <thead class="header-table">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">DNI</th>
+                                <th scope="col">RUC</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_row_clientes">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Cliente</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------------------------------------------------------------------------------------->
+<div class="modal fade" id="mdListComprobante" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListComprobanteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdListComprobanteLabel">Lista de Comprobantes</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row m-2">
+                    <table class="table table-hover table-bordered">
+                        <thead class="header-table">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_row_comprobantes">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------------------------------------------------------------------------------------->
+<div class="modal fade" id="mdListProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProductoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdListProductoLabel">Lista de Productos</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row m-2">
+                    <table class="table table-hover table-bordered">
+                        <thead class="header-table">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Descripción</th>                               
+                                <th scope="col">Laboratorio</th>
+                                <th scope="col">Presentación</th>
+                                <th scope="col">Concentración</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Costo</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbl_row_productos">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Producto</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @stop
 
 @section('css')
@@ -233,7 +340,5 @@
 @stop
 
 @section('js')
-<script>
-    console.log('Hi!');
-</script>
+<script src="{{ asset('js/ventas.js') }}"></script>
 @stop

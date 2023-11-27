@@ -10,7 +10,13 @@
     font-weight: 300;
 }
 
-.header-table{
-    background-color: #17a2b8!important;
+.header-table {
+    background-color: #17a2b8 !important;
     color: #fff;
+}
+
+.icon_obligatorio {
+    text-decoration: none;
+    color: red;
+    margin-left: 3px;
 }

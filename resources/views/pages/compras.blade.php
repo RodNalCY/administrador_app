@@ -213,7 +213,6 @@
 <br>
 
 <!----------------------------------------------------------------------------------------------->
-
 <div class="modal fade" id="mdListProveedores" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProveedoresLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

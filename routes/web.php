@@ -41,8 +41,12 @@ Route::controller(MantenimientoController::class)->group(function () {
 });
 
 Route::controller(MovimientosController::class)->group(function () {
-    Route::get('/compras', 'list_compras')->name('compras');
-    Route::get('/ventas', 'list_ventas')->name('ventas');
-    Route::get('/caja', 'list_caja')->name('caja');
+    Route::get('/compras', 'index_compras')->name('compras');
+    Route::get('/ventas', 'index_ventas')->name('ventas');
+    Route::get('/caja', 'index_caja')->name('caja');
+
+    Route::get('/list/clientes', 'listClientes')->name('/list/clientes');
+    Route::get('/list/productos', 'listProductos')->name('/list/productos');
+    Route::get('/list/comprobantes', 'listComprobantes')->name('/list/comprobantes');
 
 });
