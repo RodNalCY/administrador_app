@@ -58,8 +58,7 @@ class MovimientosController extends Controller
     public function listProductos()
     {
         try {
-            // $productos = Producto::all();
-
+            
             $productos = Producto::with(['presentacion', 'laboratorio'])->get();
 
             return response()->json([
