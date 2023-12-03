@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Farma</b>',
+    'logo' => '',
     'logo_img' => '/img/icons/pildora1.png',
     'logo_img_class' => 'brand-image img-circle elevation-0',
     'logo_img_xl' => null,
@@ -167,12 +167,12 @@ return [
     |
     */
 
-    'classes_auth_card' => '',
-    'classes_auth_header' => 'bg-gradient-info',
-    'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => 'fa-lg text-info',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    // 'classes_auth_card' => '',
+    // 'classes_auth_header' => 'bg-gradient-info',
+    // 'classes_auth_body' => '',
+    // 'classes_auth_footer' => '',
+    // 'classes_auth_icon' => 'fa-lg text-info',
+    // 'classes_auth_btn' => 'btn-flat btn-primary',
 
     // 'classes_auth_card' => 'card-outline card-info',
     // 'classes_auth_header' => '',
@@ -180,6 +180,12 @@ return [
     // 'classes_auth_footer' => 'd-none',
     // 'classes_auth_icon' => '',
     // 'classes_auth_btn' => 'btn-flat btn-info',
+    'classes_auth_card' => 'bg-gradient-dark',
+    'classes_auth_header' => '',
+    'classes_auth_body' => 'bg-gradient-dark',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'fa-fw text-light',
+    'classes_auth_btn' => 'btn-flat btn-danger',
 
     /*
     |--------------------------------------------------------------------------
@@ -201,7 +207,7 @@ return [
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-info elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar navbar-dark bg-info',
+    'classes_topnav' => 'navbar navbar-dark bg-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 

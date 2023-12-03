@@ -3,6 +3,8 @@ var _globa_token_crf = "";
 $(document).ready(function () {
     _globa_token_crf = document.getElementById("_token").value;
     console.log("_globa_token_crf > ", _globa_token_crf);
+
+    setInterval(fechaAndHora, 1000);
 });
 
 $("#btnBuscarClientes").click(function () {
@@ -40,12 +42,24 @@ function listClientes() {
                 html_tabla_clientes =
                     html_tabla_clientes +
                     "<tr>" +
-                    "<th scope='row'>"+cliente.idCliente+"</th>" +
-                    "<td>"+cliente.Nombres+"</td>" +
-                    "<td>"+cliente.Apellidos+"</td>" +
-                    "<td>"+cliente.Dni+"</td>" +
-                    "<td>"+cliente.Ruc+"</td>" +
-                    "<td>"+cliente.Direccion+"</td>" +
+                    "<th scope='row'>" +
+                    cliente.idCliente +
+                    "</th>" +
+                    "<td>" +
+                    cliente.Nombres +
+                    "</td>" +
+                    "<td>" +
+                    cliente.Apellidos +
+                    "</td>" +
+                    "<td>" +
+                    cliente.Dni +
+                    "</td>" +
+                    "<td>" +
+                    cliente.Ruc +
+                    "</td>" +
+                    "<td>" +
+                    cliente.Direccion +
+                    "</td>" +
                     "<td>" +
                     "   <center>" +
                     "      <button type='button' class='btn btn-primary btn-sm'><i class='fas fa-check'></i></button>" +
@@ -78,17 +92,31 @@ function listProductos() {
         success: function (response) {
             console.log("RDX> ", response);
 
-            response.data.forEach(function (producto) {                
+            response.data.forEach(function (producto) {
                 html_tabla_productos =
                     html_tabla_productos +
                     "<tr>" +
-                    "<th scope='row'>"+producto.idProducto+"</th>" +
-                    "<td>"+producto.Descripcion+"</td>" +        
-                    "<td>"+producto.laboratorio.Nombre+"</td>" +              
-                    "<td>"+producto.presentacion.Descripcion+"</td>" +                                    
-                    "<td>"+producto.Concentracion+"</td>" +
-                    "<td>"+producto.Stock+"</td>" +
-                    "<td>"+producto.Costo+"</td>" +
+                    "<th scope='row'>" +
+                    producto.idProducto +
+                    "</th>" +
+                    "<td>" +
+                    producto.Descripcion +
+                    "</td>" +
+                    "<td>" +
+                    producto.laboratorio.Nombre +
+                    "</td>" +
+                    "<td>" +
+                    producto.presentacion.Descripcion +
+                    "</td>" +
+                    "<td>" +
+                    producto.Concentracion +
+                    "</td>" +
+                    "<td>" +
+                    producto.Stock +
+                    "</td>" +
+                    "<td>" +
+                    producto.Costo +
+                    "</td>" +
                     "<td>" +
                     "   <center>" +
                     "      <button type='button' class='btn btn-primary btn-sm'><i class='fas fa-check'></i></button>" +
@@ -106,7 +134,6 @@ function listProductos() {
     });
 }
 
-
 function listComprobantes() {
     var html_tabla_comprobantes = "";
     $.ajax({
@@ -122,13 +149,19 @@ function listComprobantes() {
         success: function (response) {
             console.log("RDX> ", response);
 
-            response.data.forEach(function (comprobante) {                
+            response.data.forEach(function (comprobante) {
                 html_tabla_comprobantes =
                     html_tabla_comprobantes +
                     "<tr>" +
-                    "<th scope='row'>"+comprobante.idTipoComprobante+"</th>" +
-                    "<td>"+comprobante.Descripcion+"</td>" +        
-                    "<td>"+comprobante.Estado+"</td>" +
+                    "<th scope='row'>" +
+                    comprobante.idTipoComprobante +
+                    "</th>" +
+                    "<td>" +
+                    comprobante.Descripcion +
+                    "</td>" +
+                    "<td>" +
+                    comprobante.Estado +
+                    "</td>" +
                     "<td>" +
                     "   <center>" +
                     "      <button type='button' class='btn btn-primary btn-sm'><i class='fas fa-check'></i></button>" +
@@ -144,4 +177,28 @@ function listComprobantes() {
             console.log("Error", response);
         },
     });
+}
+
+function fechaAndHora() {
+    // Obtener la fecha y hora actual
+    const fechaHoraActual = new Date();
+
+    // Formatear la fecha y hora sin el indicador de la zona horaria
+    const opciones = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+    };
+    const fechaHoraFormateada = fechaHoraActual.toLocaleDateString(
+        "es-ES",
+        opciones
+    );
+
+    // Mostrar la fecha y hora en el elemento de span
+    const spanFechaHora = document.getElementById("fechaHora");
+    spanFechaHora.textContent = fechaHoraFormateada;
 }
