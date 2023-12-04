@@ -119,57 +119,59 @@
 <div class="card">
     <div class="car-body">
         <div class="row m-2">
-            <table class="table table-hover table-bordered">
-                <thead class="header-table">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Presentación</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>Producto descripcion</td>
-                        <td>Categoria </td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>Producto descripcion</td>
-                        <td>Categoria </td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>Producto descripcion</td>
-                        <td>Categoria </td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>Producto descripcion</td>
-                        <td>Categoria </td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>10</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="header-table">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Presentación</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>Producto descripcion</td>
+                            <td>Categoria </td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>Producto descripcion</td>
+                            <td>Categoria </td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>Producto descripcion</td>
+                            <td>Categoria </td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>Producto descripcion</td>
+                            <td>Categoria </td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

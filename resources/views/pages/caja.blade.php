@@ -83,68 +83,70 @@
 <div class="card">
     <div class="car-body">
         <div class="row m-2">
-            <table class="table table-hover table-bordered">
-                <thead class="header-table">
-                    <tr>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Importe</th>
-                        <th scope="col">Ganancia</th>
-                        <th scope="col">Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>2.20</td>
-                        <td>16.00</td>
-                        <td>2.20</td>
-                        <td>2023-11-12</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>2.20</td>
-                        <td>16.00</td>
-                        <td>2.20</td>
-                        <td>2023-11-12</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>2.20</td>
-                        <td>16.00</td>
-                        <td>2.20</td>
-                        <td>2023-11-12</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>2.20</td>
-                        <td>16.00</td>
-                        <td>2.20</td>
-                        <td>2023-11-12</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>2.20</td>
-                        <td>16.00</td>
-                        <td>2.20</td>
-                        <td>2023-11-12</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>2.20</td>
-                        <td>16.00</td>
-                        <td>2.20</td>
-                        <td>2023-11-12</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="header-table">
+                        <tr>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Importe</th>
+                            <th scope="col">Ganancia</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>2.20</td>
+                            <td>16.00</td>
+                            <td>2.20</td>
+                            <td>2023-11-12</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>2.20</td>
+                            <td>16.00</td>
+                            <td>2.20</td>
+                            <td>2023-11-12</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>2.20</td>
+                            <td>16.00</td>
+                            <td>2.20</td>
+                            <td>2023-11-12</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>2.20</td>
+                            <td>16.00</td>
+                            <td>2.20</td>
+                            <td>2023-11-12</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>2.20</td>
+                            <td>16.00</td>
+                            <td>2.20</td>
+                            <td>2023-11-12</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Panadol</td>
+                            <td>2.20</td>
+                            <td>16.00</td>
+                            <td>2.20</td>
+                            <td>2023-11-12</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

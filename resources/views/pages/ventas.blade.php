@@ -15,9 +15,9 @@
 
 @section('content')
 <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
-<div class="row mt-2">
+<div class="row">
     <div class="col-md-12 d-flex justify-content-end">
-        <p class="mr-2"> </i><strong> <span id="fechaHora"></span></strong> <i class="fas fa-fw fa-calendar"></i> <input type="date"></p>
+        <p class="mr-2"> </i><strong> <span id="fechaHora"></span></strong> <i class="fas fa-fw fa-calendar"></i></p>
     </div>
     <div class="col-md-12">
         <div class="card">
@@ -31,12 +31,12 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">CLIENTE: </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtCliente" readonly>
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">RUC: </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtRUC" readonly>
                     </div>
 
                     <div class="col-sm-12 col-md-3">
@@ -55,7 +55,7 @@
         </div>
     </div>
 </div>
-<br>
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">PRODUCTO: </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtNombreProducto" readonly>
                     </div>
 
                     <div class="col-sm-12 col-md-9">
@@ -79,22 +79,22 @@
 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">STOCK: </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtStock" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">PRECIO: </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtPrecio" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">CONCETRACIÓN: </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtConcentracion" readonly>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br>
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -106,12 +106,12 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">TIPO DE COMPROBANTE: </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtTipoComprobante" readonly>
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NÚMERO DE COMPROBANTE (N°): </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtNumComprobante" readonly>
                     </div>
 
                     <div class="col-sm-12 col-md-6">
@@ -123,18 +123,18 @@
                     <hr>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">CANTIDAD: </label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="txtCantidad">
                     </div>
 
                     <div class="col-sm-12 col-md-3 mb-2">
                         <label class="col-form-label">TOTAL : </label>
-                        <input type="text" class="form-control" style="background-color: lightyellow;">
+                        <input type="text" class="form-control" id="txtTotal" style="background-color: lightyellow;" readonly>
                     </div>
 
                     <div class="col-sm-12 col-md-3">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-dark"><i class="fas fa-fw fa-plus"></i> Agregar </button>
+                            <button type="button" class="btn btn-success" id="btnAgregarVenta"><i class="fas fa-fw fa-plus"></i> Agregar </button>
                         </div>
                     </div>
                 </div>
@@ -142,61 +142,27 @@
         </div>
     </div>
 </div>
-<hr>
+
 <div class="card mt-4">
     <div class="car-body">
         <div class="row m-2">
-            <table class="table table-hover table-bordered">
-                <thead class="header-table">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>Producto descripcion</td>
-                        <td>Categoria </td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>Producto descripcion</td>
-                        <td>Categoria </td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>Producto descripcion</td>
-                        <td>Categoria </td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Panadol</td>
-                        <td>Producto descripcion</td>
-                        <td>Categoria </td>
-                        <td>2</td>
-                        <td>5</td>
-                        <td>10</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="tableCompras">
+                    <thead class="header-table">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableListVentas">                                          
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -206,30 +172,30 @@
         <div class="row d-flex justify-content-end">
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">VALOR DE VENTA: </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;">
+                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorVenta" readonly>
             </div>
 
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">DESCUENTO : </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;">
+                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorDescuento">
             </div>
 
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">SUB TOTAL: </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;">
+                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorSubtotal" readonly>
             </div>
 
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">I.G.V (18 %) : </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;">
+                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorIGV" readonly>
             </div>
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">TOTAL A PAGAR : </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: cyan;">
+                <input type="text" class="form-control form-control-lg" style="background-color: cyan;" id="txtTotalPagar" readonly>
             </div>
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
-                <button type="button" class="btn btn-dark btn-lg"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
+                <button type="button" class="btn btn-success btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
             </div>
         </div>
 
@@ -244,30 +210,32 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdListClientesLabel">Lista de sus Proveedores</h5>
+                <h5 class="modal-title" id="mdListClientesLabel">Mis de Clientes</h5>
             </div>
             <div class="modal-body">
                 <div class="row m-2">
-                    <table class="table table-hover table-bordered">
-                        <thead class="header-table">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombres</th>
-                                <th scope="col">Apellidos</th>
-                                <th scope="col">DNI</th>
-                                <th scope="col">RUC</th>
-                                <th scope="col">Dirección</th>
-                                <th scope="col">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbl_row_clientes">
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-sm" id="tableClientes">
+                            <thead class="header-table">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombres</th>
+                                    <th scope="col">Apellidos</th>
+                                    <th scope="col">DNI</th>
+                                    <th scope="col">RUC</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_row_clientes">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Cliente</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Cliente</button>
             </div>
         </div>
     </div>
@@ -281,23 +249,25 @@
             </div>
             <div class="modal-body">
                 <div class="row m-2">
-                    <table class="table table-hover table-bordered">
-                        <thead class="header-table">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbl_row_comprobantes">
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-sm" id="tableComprobantes">
+                            <thead class="header-table">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_row_comprobantes">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
             </div>
         </div>
     </div>
@@ -307,31 +277,33 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdListProductoLabel">Lista de Productos</h5>
+                <h5 class="modal-title" id="mdListProductoLabel">Mis Productos</h5>
             </div>
             <div class="modal-body">
                 <div class="row m-2">
-                    <table class="table table-hover table-bordered">
-                        <thead class="header-table">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Laboratorio</th>
-                                <th scope="col">Presentación</th>
-                                <th scope="col">Concentración</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Costo</th>
-                                <th scope="col">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbl_row_productos">
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-sm" id="tableProductos">
+                            <thead class="header-table">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Laboratorio</th>
+                                    <th scope="col">Presentación</th>
+                                    <th scope="col">Concentración</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Costo</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_row_productos">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Producto</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Producto</button>
             </div>
         </div>
     </div>
@@ -345,4 +317,5 @@
 
 @section('js')
 <script src="{{ asset('js/ventas.js') }}"></script>
+
 @stop

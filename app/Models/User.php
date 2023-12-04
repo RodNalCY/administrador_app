@@ -44,8 +44,8 @@ class User extends Authenticatable
     ];
 
     public function adminlte_image(){
-        // return 'https://cdn.icon-icons.com/icons2/582/PNG/512/asistante_icon-icons.com_55049.png';
-        return 'https://cdn1.iconfinder.com/data/icons/avatar-3/512/Doctor-512.png';
+        return 'https://cdn.icon-icons.com/icons2/582/PNG/512/asistante_icon-icons.com_55049.png';
+        // return 'https://cdn1.iconfinder.com/data/icons/avatar-3/512/Doctor-512.png';
     }
 
     public function adminlte_desc(){

@@ -24,7 +24,7 @@
                 <div class="icon">
                     <i class="fas fa-fw fa-handshake"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                 <div class="icon">
                     <i class="fas fa-fw fa-cart-plus"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
                 <div class="icon">
                 <i class="fas fa-fw fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -66,7 +66,7 @@
                 <div class="icon">
                 <i class="fas fa-fw fa-capsules"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
