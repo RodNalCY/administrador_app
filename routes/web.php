@@ -37,7 +37,6 @@ Route::controller(MantenimientoController::class)->group(function () {
     Route::get('/presentacion', 'list_presentaciones')->name('presentacion');
     Route::get('/laboratorio', 'list_laboratorios')->name('laboratorio');
     Route::get('/comprobante', 'list_comprobantes')->name('comprobante');
-
 });
 
 Route::controller(MovimientosController::class)->group(function () {
@@ -45,8 +44,15 @@ Route::controller(MovimientosController::class)->group(function () {
     Route::get('/ventas', 'index_ventas')->name('ventas');
     Route::get('/caja', 'index_caja')->name('caja');
 
-    Route::get('/list/clientes', 'listClientes')->name('/list/clientes');
+    // ROUTES VENTAS
+    Route::get('/list/clientes', 'listClientes')->name('/list/clientes'); 
+    
+    // ROUTES COMPRAS
+    Route::get('/list/proveedores', 'listProveedores')->name('/list/proveedores');
+
+    // ROUTES COMPARTIDAS
     Route::get('/list/productos', 'listProductos')->name('/list/productos');
     Route::get('/list/comprobantes', 'listComprobantes')->name('/list/comprobantes');
 
+   
 });

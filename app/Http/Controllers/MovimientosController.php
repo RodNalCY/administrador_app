@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Comprobante;
 use App\Models\Producto;
+use App\Models\Proveedor;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -82,6 +83,24 @@ class MovimientosController extends Controller
                 'message' => 'lista de comprobantes',
                 'status' => true,
                 'data' => $comprobantes
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function listProveedores()
+    {
+        try {
+            $proveedores = Proveedor::all();
+
+            return response()->json([
+                'message' => 'lista de proveedores',
+                'status' => true,
+                'data' => $proveedores
             ]);
         } catch (\Exception $ex) {
             return response()->json([

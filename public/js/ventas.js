@@ -106,7 +106,7 @@ function listClientes() {
                     cliente.Direccion +
                     "</td>" +
                     "<td><center><button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button></center></td>" +
-                    "</trdata-id=>";
+                    "</tr>";
             });
 
             // Actualizar el contenido de la tabla

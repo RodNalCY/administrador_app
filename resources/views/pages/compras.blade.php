@@ -22,12 +22,12 @@
                 <div class="row">
                     <div class="col-sm-4 col-md-4 mb-2">
                         <label class="col-form-label">CLIENTE:</label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" readonly>
                     </div>
 
                     <div class="col-sm-4 col-md-4 mb-2">
                         <label class="col-form-label">RUC:</label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" readonly>
                     </div>
 
                     <div class="col-sm-4 col-md-4">
@@ -47,10 +47,10 @@
                 <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
             </div>
             <div class="card-body">
-                <div class="row">      
+                <div class="row">
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">COMPROBANTE:</label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" readonly>
                     </div>
 
                     <div class="col-sm-6 col-md-6">
@@ -77,7 +77,7 @@
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">PRODUCTO: </label>
                         <input type="text" class="form-control form-control-sm" id="txtNombreProducto" readonly>
-                    </div>                    
+                    </div>
                     <div class="col-sm-6 col-md-3 mb-2" style="display: none;">
                         <label class="col-form-label">Presentación: </label>
                         <input type="text" class="form-control form-control-sm" id="txtPresentacion" readonly>
@@ -94,7 +94,7 @@
                         <label class="col-form-label">COSTO: </label>
                         <input type="text" class="form-control form-control-sm" id="txtPrecio" readonly>
                     </div>
-                 
+
                     <div class="col-sm-6 col-md-12">
                         <div class="d-flex ">
                             <button type="button" class="btn btn-primary btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
@@ -138,55 +138,19 @@
     <div class="car-body">
         <div class="row m-2">
             <div class="table-responsive">
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered" id="tableCompras">
                     <thead class="header-table">
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">Opciones</th>
                             <th scope="col">Producto</th>
-                            <th scope="col">Presentación</th>
                             <th scope="col">Descripción</th>
+                            <th scope="col">Categoría</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Total</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Panadol</td>
-                            <td>Producto descripcion</td>
-                            <td>Categoria </td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Panadol</td>
-                            <td>Producto descripcion</td>
-                            <td>Categoria </td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Panadol</td>
-                            <td>Producto descripcion</td>
-                            <td>Categoria </td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Panadol</td>
-                            <td>Producto descripcion</td>
-                            <td>Categoria </td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>10</td>
-                        </tr>
+                    <tbody id="tableListCompras">
                     </tbody>
                 </table>
             </div>
@@ -237,71 +201,30 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdListProveedoresLabel">Lista de sus Proveedores</h5>
+                <h5 class="modal-title" id="mdListProveedoresLabel">Lista de Proveedores</h5>
             </div>
             <div class="modal-body">
                 <div class="row m-2">
-                    <table class="table table-hover table-bordered">
-                        <thead class="header-table">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">RUC</th>
-                                <th scope="col">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="tableProveedores">
+                            <thead class="header-table">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">RUC</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_row_proveedores">
 
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Proveedor</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Proveedor</button>
             </div>
         </div>
     </div>
@@ -315,67 +238,25 @@
             </div>
             <div class="modal-body">
                 <div class="row m-2">
-                    <table class="table table-hover table-bordered">
-                        <thead class="header-table">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-sm" id="tableComprobantes">
+                            <thead class="header-table">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_row_comprobantes">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
             </div>
         </div>
     </div>
@@ -389,81 +270,29 @@
             </div>
             <div class="modal-body">
                 <div class="row m-2">
-                    <table class="table table-hover table-bordered">
-                        <thead class="header-table">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Presentación</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Concentración</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Costo</th>
-                                <th scope="col">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>Panadol</td>
-                                <td>Producto descripcion</td>
-                                <td>Producto descripcion</td>
-                                <td>
-                                    <center>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-
-                                    </center>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-sm" id="tableProductos">
+                            <thead class="header-table">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Laboratorio</th>
+                                    <th scope="col">Presentación</th>
+                                    <th scope="col">Concentración</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Costo</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_row_productos">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
             </div>
         </div>
     </div>
