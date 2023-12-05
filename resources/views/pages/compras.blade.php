@@ -12,7 +12,7 @@
     <div class="col-md-12 d-flex justify-content-end">
         <p class="mr-2"> </i><strong> <span id="fechaHora"></span></strong> <i class="fas fa-fw fa-calendar"></i></p>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-header bg-header-purple">
                 DATOS DE LA COMPRA
@@ -20,29 +20,40 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6 col-md-2 mb-2">
+                    <div class="col-sm-4 col-md-4 mb-2">
                         <label class="col-form-label">CLIENTE:</label>
                         <input type="text" class="form-control form-control-sm">
                     </div>
 
-                    <div class="col-sm-6 col-md-2 mb-2">
+                    <div class="col-sm-4 col-md-4 mb-2">
                         <label class="col-form-label">RUC:</label>
                         <input type="text" class="form-control form-control-sm">
                     </div>
 
-                    <div class="col-sm-12 col-md-2">
+                    <div class="col-sm-4 col-md-4">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
                             <button type="button" class="btn btn-primary mr-2 btn-sm" id="btnBuscarProveedores"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
-
-                    <div class="col-sm-6 col-md-2 mb-2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-header-purple">
+                COMPROBANTE
+                <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
+            </div>
+            <div class="card-body">
+                <div class="row">      
+                    <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">COMPROBANTE:</label>
                         <input type="text" class="form-control form-control-sm">
                     </div>
 
-                    <div class="col-sm-12 col-md-2">
+                    <div class="col-sm-6 col-md-6">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
                             <button type="button" class="btn btn-primary btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
@@ -55,7 +66,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-header bg-header-purple">
                 DATOS DEL PRODUCTO
@@ -63,56 +74,57 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-12 col-md-2 mb-2">
-                        <label class="col-form-label">CÓDIGO:</label>
-                        <input type="text" class="form-control form-control-sm">
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">PRODUCTO: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtNombreProducto" readonly>
+                    </div>                    
+                    <div class="col-sm-6 col-md-3 mb-2" style="display: none;">
+                        <label class="col-form-label">Presentación: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtPresentacion" readonly>
                     </div>
-                    <div class="col-sm-12 col-md-2">
-                        <label class="col-form-label"><br></label>
-                        <div class="d-flex">
-                            <button type="button" class="btn btn-primary mr-2 btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">CONCETRACIÓN: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtConcentracion" readonly>
+                    </div>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">STOCK: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtStock" readonly>
+                    </div>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">COSTO: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtPrecio" readonly>
+                    </div>
+                 
+                    <div class="col-sm-6 col-md-12">
+                        <div class="d-flex ">
+                            <button type="button" class="btn btn-primary btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-header-purple">
+                CALCULAR
+                <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
+            </div>
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">PRODUCTO:</label>
-                        <input type="text" class="form-control form-control-sm">
-                    </div>
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label"> PRESENTACIÓN:</label>
-                        <input type="text" class="form-control form-control-sm">
-                    </div>
-
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">CONCENTRACIÓN:</label>
-                        <input type="text" class="form-control form-control-sm">
-                    </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">STOCK:</label>
-                        <input type="text" class="form-control form-control-sm">
-                    </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">COSTO (C/U):</label>
-                        <input type="text" class="form-control form-control-sm">
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-6 col-md-3 mb-2">
+                    <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">CANTIDAD: </label>
-                        <input type="text" class="form-control">
+                        <input type="number" class="form-control form-control-sm" id="txtCantidad">
                     </div>
 
-                    <div class="col-sm-6 col-md-3 mb-2">
+                    <div class="col-sm-12 col-md-4 mb-2">
                         <label class="col-form-label">TOTAL : </label>
-                        <input type="text" class="form-control" style="background-color: lightyellow;">
+                        <input type="text" class="form-control form-control-sm" id="txtTotal" style="background-color: lightyellow;" readonly>
                     </div>
 
-                    <div class="col-sm-12 col-md-6">
-                        <label class="col-form-label"><br></label>
+                    <div class="col-sm-12 col-md-12">
                         <div class="d-flex">
-                            <button type="button" class="btn btn-primary"><i class="fas fa-fw fa-plus"></i> Agregar </button>
+                            <button type="button" class="btn btn-success btn-sm" id="btnAgregarVenta"><i class="fas fa-fw fa-plus"></i> Agregar </button>
                         </div>
                     </div>
                 </div>
@@ -120,6 +132,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="card">
     <div class="car-body">

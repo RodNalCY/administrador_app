@@ -84,8 +84,8 @@ function listClientes() {
                     cliente.idCliente +
                     "' data-name='" +
                     cliente.Nombres +
-                    "' data-ruc='" +
-                    cliente.Ruc +
+                    "' data-dni='" +
+                    cliente.Dni +
                     "'>" +
                     "<th scope='row'>" +
                     cliente.idCliente +
@@ -152,7 +152,7 @@ function listProductos() {
                     "' data-stock='" +
                     producto.Stock +
                     "' data-precio='" +
-                    producto.Costo +
+                    producto.Precio_Venta +
                     "' data-concent='" +
                     producto.Concentracion +
                     "' data-present='" +
@@ -177,7 +177,7 @@ function listProductos() {
                     producto.Stock +
                     "</td>" +
                     "<td>" +
-                    producto.Costo +
+                    producto.Precio_Venta +
                     "</td>" +
                     "<td>" +
                     "   <center>" +
@@ -274,12 +274,12 @@ $("#tableComprobantes tbody").on("click", "tr", function () {
 $("#tableClientes tbody").on("click", "tr", function () {
     var id = $(this).data("id");
     var name = $(this).data("name");
-    var ruc = $(this).data("ruc");
+    var dni = $(this).data("dni");
     // Ver los detalles en consola
-    console.log("id > " + id + " name > " + name + " ruc > " + ruc);
+    console.log("id > " + id + " name > " + name + " dni > " + dni);
     // Pintar en los inputs
     $("#txtCliente").val(name);
-    $("#txtRUC").val(ruc);
+    $("#txtDNI").val(dni);
     // Cerrar Modal
     $("#mdListClientes").modal("hide");
 });

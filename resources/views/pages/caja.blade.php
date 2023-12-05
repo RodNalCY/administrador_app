@@ -35,7 +35,7 @@
                         <div class="mb-3 row">
                             <label class="col-sm-6 col-form-label text-right">FECHA :</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-sm">
+                                <input type="date" class="form-control form-control-sm">
                             </div>
                         </div>
                         <div class="mb-3 row">

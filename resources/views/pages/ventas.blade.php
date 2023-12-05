@@ -35,8 +35,8 @@
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">RUC: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtRUC" readonly>
+                        <label class="col-form-label">DNI: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtDNI" readonly>
                     </div>
 
                     <div class="col-sm-12 col-md-4">
@@ -297,7 +297,7 @@
                                     <th scope="col">Presentación</th>
                                     <th scope="col">Concentración</th>
                                     <th scope="col">Stock</th>
-                                    <th scope="col">Costo</th>
+                                    <th scope="col">Precio</th>
                                     <th scope="col">Opciones</th>
                                 </tr>
                             </thead>
