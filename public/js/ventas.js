@@ -1,5 +1,6 @@
 var _globa_token_crf = "";
 var global_ventas_lista = [];
+var global_index_ventas = 0;
 
 var global_sumatoria_total = 0;
 var global_valor_ventas = "";
@@ -12,13 +13,14 @@ $(document).ready(function () {
     _globa_token_crf = document.getElementById("_token").value;
     console.log("_globa_token_crf > ", _globa_token_crf);
     setInterval(fechaAndHora, 1000);
- 
+
     listComprobantes();
     listClientes();
     listProductos();
 
-    $("#tableListVentas").html("<tr><td colspan='7' class='text-center'>Por favor, ingrese las ventas</td></tr>");
-
+    $("#tableListVentas").html(
+        "<tr><td colspan='7' class='text-center'>Por favor, ingrese las ventas</td></tr>"
+    );
 });
 
 function fechaAndHora() {
@@ -153,6 +155,8 @@ function listProductos() {
                     producto.Costo +
                     "' data-concent='" +
                     producto.Concentracion +
+                    "' data-present='" +
+                    producto.presentacion.Descripcion +
                     "'>" +
                     "<th scope='row'>" +
                     producto.idProducto +
@@ -286,6 +290,7 @@ $("#tableProductos tbody").on("click", "tr", function () {
     var stock = $(this).data("stock");
     var precio = $(this).data("precio");
     var concent = $(this).data("concent");
+    var present = $(this).data("present");
     // Ver los detalles en consola
     console.log(
         "id > " +
@@ -304,6 +309,7 @@ $("#tableProductos tbody").on("click", "tr", function () {
     $("#txtStock").val(stock);
     $("#txtPrecio").val(precio);
     $("#txtConcentracion").val(concent);
+    $("#txtPresentacion").val(present);
 
     $("#txtCantidad").val("");
     $("#txtTotal").val("");
@@ -320,26 +326,46 @@ $("#txtCantidad").on("change", function () {
 });
 
 $("#btnAgregarVenta").on("click", function () {
-    var miLista = {};
-    var id = global_ventas_lista.length + 1;
-    var producto = $("#txtNombreProducto").val();
-    var decripcion = "-";
-    var categoria = "-";
-    var cantidad = $("#txtCantidad").val();
-    var precio = $("#txtPrecio").val();
-    var total = $("#txtTotal").val();
+    var producto = $("#txtNombreProducto").val().trim();
+    var descripcion = $("#txtConcentracion").val().trim();
+    var categoria = $("#txtPresentacion").val().trim();
+    var cantidad = $("#txtCantidad").val().trim();
+    var precio = $("#txtPrecio").val().trim();
+    var total = $("#txtTotal").val().trim();
+    // Validar si los campos tienen texto
+    if (
+        producto === "" ||
+        descripcion === "" ||
+        categoria === "" ||
+        cantidad === "" ||
+        precio === "" ||
+        total === ""
+    ) {
+        // Al menos uno de los campos está vacío, realiza la lógica de manejo de errores
+        Swal.fire({
+            icon: "warning",
+            title: "Advertencia!",
+            text: "Por favor, complete todos los campos!",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    } else {
+        // Todos los campos tienen texto, puedes continuar con la lógica principal
+        var miLista = {};
+        global_index_ventas = global_index_ventas + 1;
 
-    miLista["id"] = id;
-    miLista["producto"] = producto;
-    miLista["descripcion"] = decripcion;
-    miLista["categoria"] = categoria;
-    miLista["cantidad"] = cantidad;
-    miLista["precio"] = precio;
-    miLista["total"] = total;
+        miLista["id"] = global_index_ventas;
+        miLista["producto"] = producto;
+        miLista["descripcion"] = descripcion;
+        miLista["categoria"] = categoria;
+        miLista["cantidad"] = cantidad;
+        miLista["precio"] = precio;
+        miLista["total"] = total;
 
-    global_ventas_lista.push(miLista);
-    global_sumatoria_total = global_sumatoria_total + parseFloat(total);
-    listaVentas();
+        global_ventas_lista.push(miLista);
+        global_sumatoria_total = global_sumatoria_total + parseFloat(total);
+        listaVentas();
+    }
 });
 
 function listaVentas() {
@@ -349,7 +375,9 @@ function listaVentas() {
             html_tabla_ventas +
             "<tr>" +
             "<td>" +
+            "<button class='btn btn-danger btn-sm delete-btn' data-id='" +
             venta.id +
+            "'><i class='fas fa-fw fa-trash'></i></button>" +
             "</td>" +
             "<td>" +
             venta.producto +
@@ -372,15 +400,35 @@ function listaVentas() {
             "</tr>";
     });
     $("#tableListVentas").html(html_tabla_ventas);
- 
     setValores();
     clearForm();
+    console.log("global_ventas_lista > ", global_ventas_lista);
 }
+// Agrega el evento de clic para la clase .delete-btn
+$(document).on("click", ".delete-btn", function () {
+    var ventaId = $(this).data("id");
+    // Encontrar el índice del objeto en la lista con el ID correspondiente
+    var index = global_ventas_lista.findIndex(function (venta) {
+        // console.log("costo > ", venta.total);
+        if (venta.id === ventaId) {
+            global_sumatoria_total =
+                global_sumatoria_total - parseFloat(venta.total);
+        }
+        return venta.id === ventaId;
+    });
+    // Eliminar el objeto de la lista usando el índice
+    if (index !== -1) {
+        global_ventas_lista.splice(index, 1);
+    }
+    // Volver a renderizar la tabla con la lista actualizada
+    listaVentas();
+});
 
 function clearForm() {
     $("#txtNombreProducto").val("");
     $("#txtStock").val("");
     $("#txtPrecio").val("");
+    $("#txtPresentacion").val("");
     $("#txtConcentracion").val("");
     $("#txtCantidad").val("");
     $("#txtTotal").val("");

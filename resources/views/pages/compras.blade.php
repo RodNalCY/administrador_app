@@ -7,11 +7,17 @@
 @stop
 
 @section('content')
-
-<div class="row mt-3">
+<input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-end">
+        <p class="mr-2"> </i><strong> <span id="fechaHora"></span></strong> <i class="fas fa-fw fa-calendar"></i></p>
+    </div>
     <div class="col-md-12">
         <div class="card">
-            <h5 class="card-header bg-white header-card-custom"> <strong>DATOS DE LA COMPRA</strong></h5>
+            <div class="card-header bg-header-purple">
+                DATOS DE LA COMPRA
+                <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-2 mb-2">
@@ -27,7 +33,7 @@
                     <div class="col-sm-12 col-md-2">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-secondary mr-2 btn-sm" id="btnBuscarProveedores"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-primary mr-2 btn-sm" id="btnBuscarProveedores"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
 
@@ -39,23 +45,22 @@
                     <div class="col-sm-12 col-md-2">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-secondary btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-primary btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">FECHA:</label>
-                        <input type="text" class="form-control form-control-sm">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br><br>
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <h5 class="card-header bg-white header-card-custom"> <strong>DATOS DEL PRODUCTO</strong></h5>
+            <div class="card-header bg-header-purple">
+                DATOS DEL PRODUCTO
+                <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12 col-md-2 mb-2">
@@ -65,7 +70,7 @@
                     <div class="col-sm-12 col-md-2">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-secondary mr-2 btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-primary mr-2 btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -282,7 +287,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
                 <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Proveedor</button>
             </div>
         </div>
@@ -356,7 +361,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
                 <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
             </div>
         </div>
@@ -444,7 +449,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
                 <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
             </div>
         </div>
