@@ -151,7 +151,7 @@ function listProductos() {
                     producto.Descripcion +
                     "' data-stock='" +
                     producto.Stock +
-                    "' data-precio='" +
+                    "' data-precioventa='" +
                     producto.Precio_Venta +
                     "' data-concent='" +
                     producto.Concentracion +
@@ -288,7 +288,7 @@ $("#tableProductos tbody").on("click", "tr", function () {
     var id = $(this).data("id");
     var name = $(this).data("name");
     var stock = $(this).data("stock");
-    var precio = $(this).data("precio");
+    var precio_venta = $(this).data("precioventa");
     var concent = $(this).data("concent");
     var present = $(this).data("present");
     // Ver los detalles en consola
@@ -299,15 +299,15 @@ $("#tableProductos tbody").on("click", "tr", function () {
             name +
             " stock > " +
             stock +
-            " precio > " +
-            precio +
+            " precio_venta > " +
+            precio_venta +
             " concent > " +
             concent
     );
     // Pintar en los inputs
     $("#txtNombreProducto").val(name);
     $("#txtStock").val(stock);
-    $("#txtPrecio").val(precio);
+    $("#txtPrecio").val(precio_venta);
     $("#txtConcentracion").val(concent);
     $("#txtPresentacion").val(present);
 

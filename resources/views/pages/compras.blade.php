@@ -15,19 +15,19 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header bg-header-purple">
-                DATOS DE LA COMPRA
+                DATOS DEL PROVEEDOR
                 <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4 col-md-4 mb-2">
-                        <label class="col-form-label">CLIENTE:</label>
-                        <input type="text" class="form-control form-control-sm" readonly>
+                        <label class="col-form-label">PROVEEDOR:</label>
+                        <input type="text" class="form-control form-control-sm" id="txtProveedor" readonly>
                     </div>
 
                     <div class="col-sm-4 col-md-4 mb-2">
                         <label class="col-form-label">RUC:</label>
-                        <input type="text" class="form-control form-control-sm" readonly>
+                        <input type="text" class="form-control form-control-sm" id="txtRUC" readonly>
                     </div>
 
                     <div class="col-sm-4 col-md-4">
@@ -48,12 +48,17 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">COMPROBANTE:</label>
-                        <input type="text" class="form-control form-control-sm" readonly>
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">TIPO : </label>
+                        <input type="text" class="form-control form-control-sm" id="txtTipoComprobante" readonly>
                     </div>
 
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">N° COMPRA : </label>
+                        <input type="text" class="form-control form-control-sm" id="txtNumCompra" readonly>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
                             <button type="button" class="btn btn-primary btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
@@ -161,32 +166,23 @@
 <div class="card">
     <div class="card-body">
         <div class="row d-flex justify-content-end">
-            <div class="col-sm-6 col-md-2 mb-2">
-                <label class="col-form-label">VALOR DE VENTA: </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;">
-            </div>
-
-            <div class="col-sm-6 col-md-2 mb-2">
-                <label class="col-form-label">DESCUENTO : </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;">
-            </div>
 
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">SUB TOTAL: </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;">
+                <input type="text" class="form-control form-control-lg" id="txtValorSubtotal" style="background-color: lightyellow;">
             </div>
 
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">I.G.V (18 %) : </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;">
+                <input type="text" class="form-control form-control-lg" id="txtValorIGV" style="background-color: lightyellow;">
             </div>
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">TOTAL A PAGAR : </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: cyan;">
+                <input type="text" class="form-control form-control-lg" id="txtTotalPagar" style="background-color: cyan;">
             </div>
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
-                <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
+                <button type="button" class="btn btn-success btn-lg"><i class="fas fa-fw fa-plus"></i> Registrar Compra</button>
             </div>
         </div>
 

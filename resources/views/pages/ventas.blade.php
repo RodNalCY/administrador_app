@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">N° COMPROBANTE : </label>
+                        <label class="col-form-label">N° VENTA : </label>
                         <input type="text" class="form-control form-control-sm" id="txtNumComprobante" readonly>
                     </div>
 

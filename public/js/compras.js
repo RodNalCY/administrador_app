@@ -1,4 +1,8 @@
 var _globa_token_crf = "";
+var global_compras_lista = [];
+var global_index_ventas = 0;
+
+var global_sumatoria_total = 0;
 
 $(document).ready(function () {
     _globa_token_crf = document.getElementById("_token").value;
@@ -63,16 +67,16 @@ function listProveedores() {
             console.log("RDX> ", response);
 
             // Construir el contenido de la tabla
-            var html_tabla_clientes = "";
+            var html_tabla_proveedores = "";
             response.data.forEach(function (proveedor) {
                 // console.log(cliente.Email);
-                html_tabla_clientes +=
+                html_tabla_proveedores +=
                     "<tr " +
                     "data-id='" +
                     proveedor.IdProveedor +
                     "' data-name='" +
                     proveedor.Nombre +
-                    "' data-dni='" +
+                    "' data-ruc='" +
                     proveedor.Ruc +
                     "'>" +
                     "<th scope='row'>" +
@@ -93,7 +97,7 @@ function listProveedores() {
             });
 
             // Actualizar el contenido de la tabla
-            $("#tbl_row_proveedores").html(html_tabla_clientes);
+            $("#tbl_row_proveedores").html(html_tabla_proveedores);
 
             // Reinicializar DataTables
             $("#tableProveedores").DataTable({
@@ -165,6 +169,7 @@ function listComprobantes() {
         },
     });
 }
+
 function listProductos() {
     $.ajax({
         type: "GET",
@@ -189,7 +194,7 @@ function listProductos() {
                     producto.Descripcion +
                     "' data-stock='" +
                     producto.Stock +
-                    "' data-precio='" +
+                    "' data-preciocosto='" +
                     producto.Costo +
                     "' data-concent='" +
                     producto.Concentracion +
@@ -240,3 +245,195 @@ function listProductos() {
         },
     });
 }
+// Agregar evento de clic a las filas
+$("#tableProveedores tbody").on("click", "tr", function () {
+    var id = $(this).data("id");
+    var name = $(this).data("name");
+    var ruc = $(this).data("ruc");
+    // Ver los detalles en consola
+    console.log("id > " + id + " name > " + name + " ruc > "+ruc);
+    // Pintar en los inputs
+    $("#txtProveedor").val(name);
+    $("#txtRUC").val(ruc);
+
+    // Cerrar Modal
+    $("#mdListProveedores").modal("hide");
+});
+
+$("#tableComprobantes tbody").on("click", "tr", function () {
+    var id = $(this).data("id");
+    var name = $(this).data("name");
+    // Ver los detalles en consola
+    console.log("id > " + id + " name > " + name);
+    // Pintar en los inputs
+    $("#txtTipoComprobante").val(name);
+    $("#txtNumCompra").val("G000010");
+    // Cerrar Modal
+    $("#mdListComprobante").modal("hide");
+});
+
+$("#tableProductos tbody").on("click", "tr", function () {
+    var id = $(this).data("id");
+    var name = $(this).data("name");
+    var stock = $(this).data("stock");
+    var precio_costo = $(this).data("preciocosto");
+    var concent = $(this).data("concent");
+    var present = $(this).data("present");
+    // Ver los detalles en consola
+    console.log(
+        "id > " +
+            id +
+            " name > " +
+            name +
+            " stock > " +
+            stock +
+            " precio_costo > " +
+            precio_costo +
+            " concent > " +
+            concent
+    );
+    // Pintar en los inputs
+    $("#txtNombreProducto").val(name);
+    $("#txtStock").val(stock);
+    $("#txtPrecio").val(precio_costo);
+    $("#txtConcentracion").val(concent);
+    $("#txtPresentacion").val(present);
+
+    $("#txtCantidad").val("");
+    $("#txtTotal").val("");
+    // Cerrar Modal
+    $("#mdListProducto").modal("hide");
+});
+
+$("#txtCantidad").on("change", function () {
+    var cantidad = $("#txtCantidad").val();
+    var precio = $("#txtPrecio").val();
+
+    var calcular = cantidad * precio;
+    $("#txtTotal").val(calcular.toFixed(2));
+});
+
+$("#btnAgregarVenta").on("click", function () {
+    var producto = $("#txtNombreProducto").val().trim();
+    var descripcion = $("#txtConcentracion").val().trim();
+    var categoria = $("#txtPresentacion").val().trim();
+    var cantidad = $("#txtCantidad").val().trim();
+    var precio = $("#txtPrecio").val().trim();
+    var total = $("#txtTotal").val().trim();
+    // Validar si los campos tienen texto
+    if (
+        producto === "" ||
+        descripcion === "" ||
+        categoria === "" ||
+        cantidad === "" ||
+        precio === "" ||
+        total === ""
+    ) {
+        // Al menos uno de los campos está vacío, realiza la lógica de manejo de errores
+        Swal.fire({
+            icon: "warning",
+            title: "Advertencia!",
+            text: "Por favor, complete todos los campos!",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    } else {
+        // Todos los campos tienen texto, puedes continuar con la lógica principal
+        var miLista = {};
+        global_index_ventas = global_index_ventas + 1;
+
+        miLista["id"] = global_index_ventas;
+        miLista["producto"] = producto;
+        miLista["descripcion"] = descripcion;
+        miLista["categoria"] = categoria;
+        miLista["cantidad"] = cantidad;
+        miLista["precio"] = precio;
+        miLista["total"] = total;
+
+        global_compras_lista.push(miLista);
+        global_sumatoria_total = global_sumatoria_total + parseFloat(total);
+        listaVentas();
+        // console.log("miLista > ", miLista);
+        // console.log("global_sumatoria_total > ", global_sumatoria_total);
+    }
+});
+
+function listaVentas() {
+    var html_tabla_ventas = "";
+    global_compras_lista.forEach(function (venta) {
+        html_tabla_ventas =
+            html_tabla_ventas +
+            "<tr>" +
+            "<td>" +
+            "<button class='btn btn-danger btn-sm delete-btn' data-id='" +
+            venta.id +
+            "'><i class='fas fa-fw fa-trash'></i></button>" +
+            "</td>" +
+            "<td>" +
+            venta.producto +
+            "</td>" +
+            "<td>" +
+            venta.descripcion +
+            "</td>" +
+            "<td>" +
+            venta.categoria +
+            "</td>" +
+            "<td>" +
+            venta.cantidad +
+            "</td>" +
+            "<td>" +
+            venta.precio +
+            "</td>" +
+            "<td>" +
+            venta.total +
+            "</td>" +
+            "</tr>";
+    });
+    $("#tableListCompras").html(html_tabla_ventas);
+    setValores();
+    clearForm();
+    console.log("global_compras_lista > ", global_compras_lista);
+}
+
+function clearForm() {
+    $("#txtNombreProducto").val("");
+    $("#txtStock").val("");
+    $("#txtPrecio").val("");
+    $("#txtPresentacion").val("");
+    $("#txtConcentracion").val("");
+    $("#txtCantidad").val("");
+    $("#txtTotal").val("");
+}
+
+function setValores() {
+    console.log("global_sumatoria_total > ", global_sumatoria_total);
+
+    var sub_total = global_sumatoria_total - global_sumatoria_total * 0.18;
+    var igv = global_sumatoria_total * 0.18;
+    var total = sub_total + igv;
+
+   
+    $("#txtValorSubtotal").val(sub_total.toFixed(2));
+    $("#txtValorIGV").val(igv.toFixed(2));
+    $("#txtTotalPagar").val(total.toFixed(2));
+}
+
+// Agrega el evento de clic para la clase .delete-btn
+$(document).on("click", ".delete-btn", function () {
+    var compraId = $(this).data("id");
+    // Encontrar el índice del objeto en la lista con el ID correspondiente
+    var index = global_compras_lista.findIndex(function (compra) {
+        // console.log("costo > ", venta.total);
+        if (compra.id === compraId) {
+            global_sumatoria_total =
+                global_sumatoria_total - parseFloat(compra.total);
+        }
+        return compra.id === compraId;
+    });
+    // Eliminar el objeto de la lista usando el índice
+    if (index !== -1) {
+        global_compras_lista.splice(index, 1);
+    }
+    // Volver a renderizar la tabla con la lista actualizada
+    listaVentas();
+});
