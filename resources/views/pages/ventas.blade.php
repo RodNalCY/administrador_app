@@ -150,12 +150,12 @@
 
 
 <div class="card mt-4">
-    <div class="car-body">
-        <div class="row m-2">
+    <div class="card-body">
+        <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableCompras">
-                    <thead class="header-table">
-                        <tr>
+                    <thead class="header-table text-center">
+                        <tr class='text-center'>
                             <th scope="col">Opciones</th>
                             <th scope="col">Producto</th>
                             <th scope="col">Descripción</th>
@@ -222,7 +222,7 @@
                 <div class="row m-2">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-sm" id="tableClientes">
-                            <thead class="header-table">
+                            <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Nombres</th>
@@ -257,7 +257,7 @@
                 <div class="row m-2">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-sm" id="tableComprobantes">
-                            <thead class="header-table">
+                            <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Descripción</th>
@@ -289,7 +289,7 @@
                 <div class="row m-2">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-sm" id="tableProductos">
-                            <thead class="header-table">
+                            <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Descripción</th>

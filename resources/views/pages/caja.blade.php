@@ -84,11 +84,11 @@
 </div>
 
 <div class="card">
-    <div class="car-body">
-        <div class="row m-2">
+    <div class="card-body">
+        <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
-                    <thead class="header-table">
+                    <thead class="header-table text-center">
                         <tr>
                             <th scope="col">Producto</th>
                             <th scope="col">Cantidad</th>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="row m-2">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered text-center">
                             <thead class="header-table">
                                 <tr>
                                     <th scope="col">Código</th>

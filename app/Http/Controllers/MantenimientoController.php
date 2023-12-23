@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class MantenimientoController extends Controller
@@ -20,43 +21,20 @@ class MantenimientoController extends Controller
      */
     public function index()
     {
-        //
-    }
+        try {
 
-    public function list_productos()
-    {
-        return view('pages.producto');
-    }
+            $productos = Producto::with(['presentacion', 'laboratorio'])->get();
 
-    public function list_clientes()
-    {
-        return view('pages.cliente');
+            return response()->json([
+                'message' => 'lista de productos',
+                'status' => true,
+                'data' => $productos
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
     }
-
-    public function list_empleados()
-    {
-        return view('pages.empleado');
-    }
-
-    public function list_proveedores()
-    {
-        return view('pages.proveedor');
-    }
-
-    public function list_presentaciones()
-    {
-        return view('pages.presentacion');
-    }
-
-    public function list_laboratorios()
-    {
-        return view('pages.laboratorio');
-    }
-
-    public function list_comprobantes()
-    {
-        return view('pages.comprobante');
-    }
-
-    
 }

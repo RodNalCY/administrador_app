@@ -87,7 +87,7 @@ function listClientes() {
                     "' data-dni='" +
                     cliente.Dni +
                     "'>" +
-                    "<th scope='row'>" +
+                    "<th class='text-center' scope='row'>" +
                     cliente.idCliente +
                     "</th>" +
                     "<td>" +
@@ -158,7 +158,7 @@ function listProductos() {
                     "' data-present='" +
                     producto.presentacion.Descripcion +
                     "'>" +
-                    "<th scope='row'>" +
+                    "<th class='text-center' scope='row'>" +
                     producto.idProducto +
                     "</th>" +
                     "<td>" +
@@ -226,7 +226,7 @@ function listComprobantes() {
                     "' data-name='" +
                     comprobante.Descripcion +
                     "'>" +
-                    "<th scope='row'>" +
+                    "<th class='text-center' scope='row'>" +
                     comprobante.idTipoComprobante +
                     "</th>" +
                     "<td>" +

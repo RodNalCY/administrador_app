@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MantenimientoController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MovimientosController;
 
 /*
@@ -29,7 +30,7 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 
-Route::controller(MantenimientoController::class)->group(function () {
+Route::controller(MenuController::class)->group(function () {
     Route::get('/producto', 'list_productos')->name('producto');
     Route::get('/cliente', 'list_clientes')->name('cliente');
     Route::get('/empleado', 'list_empleados')->name('empleado');
