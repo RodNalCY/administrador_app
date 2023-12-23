@@ -54,5 +54,7 @@ Route::controller(MovimientosController::class)->group(function () {
     Route::get('/list/productos', 'listProductos')->name('/list/productos');
     Route::get('/list/comprobantes', 'listComprobantes')->name('/list/comprobantes');
 
-   
+    // ROUTES CAJA
+    Route::post('/list/resumen/diario', 'listResumenDiario')->name('/list/resumen/diario');
+    Route::post('/list/resumen/detalle', 'listResumenDetalle')->name('/list/resumen/detalle');
 });

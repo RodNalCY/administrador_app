@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Login',
     'title_prefix' => 'Farma | ',
     'title_postfix' => '',
 
@@ -180,12 +180,13 @@ return [
     // 'classes_auth_footer' => 'd-none',
     // 'classes_auth_icon' => '',
     // 'classes_auth_btn' => 'btn-flat btn-info',
+    
     'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
-    'classes_auth_body' => 'bg-gradient-dark',
+    'classes_auth_body' => 'bg-gradient-light',
     'classes_auth_footer' => 'text-center',
     'classes_auth_icon' => 'fa-fw text-light',
-    'classes_auth_btn' => 'btn-flat btn-danger',
+    'classes_auth_btn' => 'btn-flat btn-dark',
 
     /*
     |--------------------------------------------------------------------------
