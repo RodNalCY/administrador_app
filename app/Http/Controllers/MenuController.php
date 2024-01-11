@@ -23,40 +23,6 @@ class MenuController extends Controller
         //
     }
 
-    public function list_productos()
-    {
-        return view('pages.producto');
-    }
-
-    public function list_clientes()
-    {
-        return view('pages.cliente');
-    }
-
-    public function list_empleados()
-    {
-        return view('pages.empleado');
-    }
-
-    public function list_proveedores()
-    {
-        return view('pages.proveedor');
-    }
-
-    public function list_presentaciones()
-    {
-        return view('pages.presentacion');
-    }
-
-    public function list_laboratorios()
-    {
-        return view('pages.laboratorio');
-    }
-
-    public function list_comprobantes()
-    {
-        return view('pages.comprobante');
-    }
-
+    
     
 }

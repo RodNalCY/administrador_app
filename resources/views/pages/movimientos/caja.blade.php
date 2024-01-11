@@ -14,7 +14,11 @@
 @stop
 
 @section('content')
-<input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
+<input type="hidden" name="_token" id="_token" value="<?php
+
+                                                        use Illuminate\Support\Facades\Auth;
+
+                                                        echo csrf_token(); ?>">
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -68,12 +72,15 @@
                             </div>
                         </div>
                         <div class="mb-3 row text-right">
+                         
                             <div class="col-sm-12 col-md-12">
                                 <button class="btn btn-success btn-sm" type="button" id="btnCalcularIngresos"> <i class="fas fa-hand-holding-usd"></i> Calcular Ingresos</button>
                             </div>
+
                             <div class="col-sm-12 col-md-12 mt-3">
                                 <button class="btn btn-secondary btn-sm" type="button" id="btnVisualizarVentas"> <i class="fas fa-fw fa-cash-register"></i> Visualizar Ventas </button>
                             </div>
+                        
                         </div>
                     </div>
 

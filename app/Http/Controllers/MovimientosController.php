@@ -20,23 +20,24 @@ class MovimientosController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:movimientos.caja')->only('index_caja');
     }
     /**
      * Display a listing of the resource.
      */
     public function index_compras()
     {
-        return view('pages.compras');
+        return view('pages.movimientos.compras');
     }
 
     public function index_ventas()
     {
-        return view('pages.ventas');
+        return view('pages.movimientos.ventas');
     }
 
     public function index_caja()
     {
-        return view('pages.caja');
+        return view('pages.movimientos.caja');
     }
 
     public function listClientes()

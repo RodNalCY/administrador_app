@@ -19,22 +19,40 @@ class MantenimientoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    
+
+    public function index_productos()
     {
-        try {
+        return view('pages.mantenimiento.productos');
+    }
 
-            $productos = Producto::with(['presentacion', 'laboratorio'])->get();
+    public function index_clientes()
+    {
+        return view('pages.mantenimiento.clientes');
+    }
 
-            return response()->json([
-                'message' => 'lista de productos',
-                'status' => true,
-                'data' => $productos
-            ]);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
+    public function index_empleados()
+    {
+        return view('pages.mantenimiento.empleados');
+    }
+
+    public function index_proveedores()
+    {
+        return view('pages.mantenimiento.proveedores');
+    }
+
+    public function index_presentaciones()
+    {
+        return view('pages.mantenimiento.presentaciones');
+    }
+
+    public function index_laboratorios()
+    {
+        return view('pages.mantenimiento.laboratorios');
+    }
+
+    public function index_comprobantes()
+    {
+        return view('pages.mantenimiento.comprobantes');
     }
 }

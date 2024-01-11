@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -30,24 +31,14 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 
-Route::controller(MenuController::class)->group(function () {
-    Route::get('/producto', 'list_productos')->name('producto');
-    Route::get('/cliente', 'list_clientes')->name('cliente');
-    Route::get('/empleado', 'list_empleados')->name('empleado');
-    Route::get('/proveedor', 'list_proveedores')->name('proveedor');
-    Route::get('/presentacion', 'list_presentaciones')->name('presentacion');
-    Route::get('/laboratorio', 'list_laboratorios')->name('laboratorio');
-    Route::get('/comprobante', 'list_comprobantes')->name('comprobante');
-});
-
 Route::controller(MovimientosController::class)->group(function () {
-    Route::get('/compras', 'index_compras')->name('compras');
-    Route::get('/ventas', 'index_ventas')->name('ventas');
-    Route::get('/caja', 'index_caja')->name('caja');
+    Route::get('/movimientos/compras', 'index_compras')->name('compras');
+    Route::get('/movimientos/ventas', 'index_ventas')->name('ventas');
+    Route::get('/movimientos/caja', 'index_caja')->name('caja');
 
     // ROUTES VENTAS
-    Route::get('/list/clientes', 'listClientes')->name('/list/clientes'); 
-    
+    Route::get('/list/clientes', 'listClientes')->name('/list/clientes');
+
     // ROUTES COMPRAS
     Route::get('/list/proveedores', 'listProveedores')->name('/list/proveedores');
 
@@ -58,4 +49,20 @@ Route::controller(MovimientosController::class)->group(function () {
     // ROUTES CAJA
     Route::post('/list/resumen/diario', 'listResumenDiario')->name('/list/resumen/diario');
     Route::post('/list/resumen/detalle', 'listResumenDetalle')->name('/list/resumen/detalle');
+});
+
+Route::controller(MantenimientoController::class)->group(function () {
+    Route::get('/mantenimiento/productos', 'index_productos')->name('productos');
+    Route::get('/mantenimiento/clientes', 'index_clientes')->name('clientes');
+    Route::get('/mantenimiento/empleados', 'index_empleados')->name('empleados');
+    Route::get('/mantenimiento/proveedores', 'index_proveedores')->name('proveedores');
+    Route::get('/mantenimiento/presentacion', 'index_presentaciones')->name('presentacion');
+    Route::get('/mantenimiento/laboratorios', 'index_laboratorios')->name('laboratorios');
+    Route::get('/mantenimiento/comprobantes', 'index_comprobantes')->name('comprobantes');
+});
+
+Route::controller(AdministradorController::class)->group(function () {
+    Route::get('/administrador/usuarios', 'index_usuarios')->name('usuarios');
+    Route::get('/administrador/roles', 'index_roles')->name('roles');
+    Route::get('/administrador/permisos', 'index_permisos')->name('permisos');
 });

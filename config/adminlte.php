@@ -180,7 +180,7 @@ return [
     // 'classes_auth_footer' => 'd-none',
     // 'classes_auth_icon' => '',
     // 'classes_auth_btn' => 'btn-flat btn-info',
-    
+
     'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
     'classes_auth_body' => 'bg-gradient-light',
@@ -320,78 +320,128 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
         // Aqui añadir tus rutas para tu navbar
         [
             'icon' => 'far fa-fw fas fa-chart-pie',
             'text' => 'Dashboard',
             'route' => 'dashboard',
             'label' => 'Nuevo',
-            'label_color' => 'primary'
+            'label_color' => 'primary',
+            'can'  => 'dashboard',
 
         ],
-        ['header' => 'MOVIMIENTOS'],
+        // ['header' => 'ADMINISTRADOR'],  
+        [
+            'icon'=>'',
+            'text' => 'ADMINISTRADOR',
+            'url'  => '#',
+            'can'  => 'administrador',
+        ],     
+        [
+            'icon' => 'fas fa-fw fa-user-tie',
+            'text' => 'Usuarios',
+            'url'  => '/administrador/usuarios',
+            'can'  => 'administrador.usuarios',
+        ],
+        [
+            'icon' => 'fas fa-fw fa-user-cog',
+            'text' => 'Roles',
+            'url'  => '/administrador/roles',
+            'can'  => 'administrador.roles',
+        ],
+        [
+            'icon' => 'fas fa-fw fa-user-shield',
+            'text' => 'Permisos',
+            'url'  => '/administrador/permisos',
+            'can'  => 'administrador.permisos',
+        ],
+        // ['header' => 'MOVIMIENTOS'],
+        [
+            'icon'=>'',
+            'text' => 'MOVIMIENTOS',
+            'url'  => '#',
+            'can'  => 'movimientos',
+        ], 
         [
             'icon' => 'fas fa-fw fa-cart-plus',
             'text' => 'Compras',
-            'url'  => 'compras',
+            'url'  => 'movimientos/compras',
+            'can' => 'movimientos.compras',
         ],
         [
             'icon' => 'fas fa-fw fa-handshake',
             'text' => 'Ventas',
-            'url'  => 'ventas',
+            'url'  => 'movimientos/ventas',
+            'can' => 'movimientos.ventas',
         ],
         [
             'icon' => 'fas fa-fw fa-cash-register',
             'text' => 'Caja',
-            'url'  => 'caja',
+            'url'  => 'movimientos/caja',
             'label' => 'Nuevo',
-            'label_color' => 'primary'
+            'label_color' => 'primary',
+            'can' => 'movimientos.caja',
         ],
-        ['header' => 'MANTENIMIENTO'],
+        // ['header' => 'MANTENIMIENTO'],
+        [
+            'icon'=>'',
+            'text' => 'MANTENIMIENTO',
+            'url'  => '#',
+            'can'  => 'mantenimiento',
+        ], 
         [
             'icon' => 'fas fa-fw fa-box-open',
             'text' => 'Productos',
-            'url'  => 'producto',
+            'url'  => 'mantenimiento/productos',
+            'can'  => 'mantenimiento.productos',
         ],
         [
             'icon' => 'fas fa-fw fa-users',
             'text' => 'Clientes',
-            'url'  => 'cliente',
+            'url'  => 'mantenimiento/clientes',
+            'can'  => 'mantenimiento.clientes',
         ],
         [
             'icon' => 'fas fa-fw fa-address-card',
             'text' => 'Empleados',
-            'url'  => 'empleado',
+            'url'  => 'mantenimiento/empleados',
+            'can'  => 'mantenimiento.empleados',
         ],
         [
             'icon' => 'fas fa-fw fa-truck',
             'text' => 'Proveedores',
-            'url'  => 'proveedor',
+            'url'  => 'mantenimiento/proveedores',
+            'can'  => 'mantenimiento.proveedores',
         ],
         [
             'icon' => 'fas fa-fw fa-capsules',
             'text' => 'Presentación',
-            'url'  => 'presentacion',
+            'url'  => 'mantenimiento/presentacion',
+            'can'  => 'mantenimiento.presentacion',
         ],
         [
             'icon' => 'fas fa-fw fa-flask',
             'text' => 'Laboratorios',
-            'url'  => 'laboratorio',
+            'url'  => 'mantenimiento/laboratorios',
+            'can'  => 'mantenimiento.laboratorios',
         ],
         [
             'icon' => 'fas fa-fw fa-file',
             'text' => 'Comprobantes',
-            'url'  => 'comprobante',
+            'url'  => 'mantenimiento/comprobantes',
+            'can'  => 'mantenimiento.comprobantes',
         ],
-        ['header' => 'GESTIÓN'],
+        // ['header' => 'GESTIÓN'],
+        [
+            'icon'=>'',
+            'text' => 'GESTIÓN',
+            'url'  => '#',
+            'can'  => 'gestion',
+        ],    
         [
             'text'    => 'Consultar',
             'icon'    => 'fas fa-fw fa-search',
+            'can'  => 'gestion',
             'submenu' => [
                 [
                     'text'       => 'Ventas',
@@ -426,7 +476,13 @@ return [
             ],
         ],
 
-        ['header' => 'DATOS'],
+        // ['header' => 'DATOS'],
+        [
+            'icon'=>'',
+            'text' => 'DATOS',
+            'url'  => '#',
+            'can'  => 'datos',
+        ],  
         [
             'text'    => 'Reportes',
             'icon'    => 'fas fa-fw fa-print',
