@@ -65,4 +65,13 @@ Route::controller(AdministradorController::class)->group(function () {
     Route::get('/administrador/usuarios', 'index_usuarios')->name('usuarios');
     Route::get('/administrador/roles', 'index_roles')->name('roles');
     Route::get('/administrador/permisos', 'index_permisos')->name('permisos');
+
+    // ROUTES USUARIOS
+    Route::get('/list/usuarios', 'list_usuarios')->name('/list/usuarios');
+
+    // ROUTES ROLES
+    Route::get('/list/roles', 'list_roles')->name('/list/roles');
+
+    // ROUTES PERMISOS
+    Route::get('/list/permisos', 'list_permisos')->name('/list/permisos');
 });

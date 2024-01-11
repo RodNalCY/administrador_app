@@ -5,13 +5,10 @@
 <!-- @section('plugins.Sweetalert2', true) -->
 
 @section('content_header')
-<h1>Dashboard</h1>
+<!-- <h1>Dashboard</h1> -->
 @stop
 
 @section('content')
-<p>Welcome to this beautiful admin panel.</p>
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3 col-6">
