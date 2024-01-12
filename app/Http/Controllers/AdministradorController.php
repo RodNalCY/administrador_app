@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empleado;
 use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class AdministradorController extends Controller
 {
@@ -77,7 +79,6 @@ class AdministradorController extends Controller
         }
     }
 
-    
     public function list_permisos()
     {
         try {
@@ -87,6 +88,58 @@ class AdministradorController extends Controller
                 'message' => 'lista de permisos',
                 'status' => true,
                 'data' => $permisos
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function list_empleados()
+    {
+        try {
+            $empleados = Empleado::all();
+
+            return response()->json([
+                'message' => 'lista de empleados',
+                'status' => true,
+                'data' => $empleados
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function save_usuario(Request $request)
+    {
+        try {
+
+            $role = Role::find($request->_roleId);
+            $empleado = Empleado::where('idEmpleado',$request->_userId)->first();
+         
+            $user = new User;
+            $user->name = $request->_userName;
+            $user->email = $request->_userEmail;
+            $user->password = Hash::make($request->_userPassword);
+
+            $status = false;
+            if ($user->save()) {
+                $empleado->idUsuario = $user->id;
+                if ($empleado->save()) {
+                    $user->assignRole($role);
+                    $status = true;
+                }
+            }
+
+            return response()->json([
+                'message' => 'Usuario registrado',
+                'status' => $status,
+                'data' => $user
             ]);
         } catch (\Exception $ex) {
             return response()->json([
