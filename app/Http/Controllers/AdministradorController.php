@@ -120,8 +120,8 @@ class AdministradorController extends Controller
         try {
 
             $role = Role::find($request->_roleId);
-            $empleado = Empleado::where('idEmpleado',$request->_userId)->first();
-         
+            $empleado = Empleado::where('idEmpleado', $request->_userId)->first();
+
             $user = new User;
             $user->name = $request->_userName;
             $user->email = $request->_userEmail;
@@ -135,6 +135,36 @@ class AdministradorController extends Controller
                     $status = true;
                 }
             }
+
+            return response()->json([
+                'message' => 'Usuario registrado',
+                'status' => $status,
+                'data' => $user
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+    public function edit_usuario(Request $request)
+    {
+        try {        
+            $user = User::find($request->_userId);
+            $status = false;
+
+            if ($request->_password != null) {
+                $user->password = Hash::make($request->_password);
+                if ($user->save()) {
+                    $user->syncRoles([intval($request->_roleId)]);
+                    $status = true;
+                }
+            } else {
+                $user->syncRoles([intval($request->_roleId)]);
+                $status = true;
+            }
+
 
             return response()->json([
                 'message' => 'Usuario registrado',

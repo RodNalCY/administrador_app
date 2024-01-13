@@ -143,6 +143,51 @@
         </div>
     </div>
 </div>
+
+<!------------------------------------------------------------------------------------------------------------------------------>
+<div class="modal fade" id="mdEditUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListRolesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdEditUserLabel">Editar Usuario</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row m-2">
+                    <div class="col-sm-12 col-md-6 mb-2">
+                        <label class="col-form-label">NOMBRES APELLIDOS: </label>
+                        <input type="hidden" id="txtEditUserId" readonly>
+                        <input type="text" class="form-control form-control-sm" id="txtEditNombresApellidos" readonly>
+                    </div>
+                    <div class="col-sm-12 col-md-6 mb-2">
+                        <label class="col-form-label">EMAIL: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtEditEmail" readonly>
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-sm-12 col-md-6 mb-2">
+                        <label class="col-form-label">CONTRASEÑA: </label>
+                        <input type="password" class="form-control form-control-sm" id="txtEditPassword">
+                    </div>
+                    <div class="col-sm-12 col-md-6 mb-2">
+                        <label class="col-form-label">VERIFICAR CONTRASEÑA: </label>
+                        <input type="password" class="form-control form-control-sm" id="txtEditVerificarPassword">
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label" style="float: inline-end;"> ROLE (EDITAR)</label>
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2" id="selectRoles">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnEditarUsuario"><i class="fas fa-pen"></i> Editar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('css')

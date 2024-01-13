@@ -51,8 +51,22 @@ function listUsuariosAll() {
                     "</td>" +
                     "<td>" +
                     "   <center>" +
-                    "      <button type='button' class='btn btn-primary btn-sm'><i class='fas fa-eye'></i></button>" +
-                    "      <button type='button' class='btn btn-warning btn-sm'><i class='fas fa-pen'></i></button>" +
+                    "<button type='button' class='btn btn-warning btn-sm btn-select-edit'" +
+                    " data-id='" +
+                    user.id +
+                    "' data-name='" +
+                    user.name +
+                    "'" +
+                    "' data-email='" +
+                    user.email +
+                    "'" +
+                    "' data-roleid='" +
+                    user.role_id +
+                    "'" +
+                    "' data-role='" +
+                    user.role +
+                    "'>" +
+                    "<i class='fas fa-pen'></i></button>" +
                     "      <button type='button' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button>" +
                     "    </center>" +
                     "</td>" +
@@ -188,6 +202,8 @@ function listRolesAll() {
         success: function (response) {
             console.log("RDX> ", response);
             var html_tabla_roles = "";
+            var html_select_options =
+                "<select class='form-control' id='selectIdRole'>";
 
             response.data.forEach(function (role) {
                 html_tabla_roles =
@@ -214,7 +230,17 @@ function listRolesAll() {
                     "</center>" +
                     "</td>" +
                     "</tr>";
+
+                html_select_options +=
+                    '<option value="' +
+                    role.id +
+                    '">' +
+                    role.name +
+                    "</option>";
             });
+
+            html_select_options += "</select>";
+            $("#selectRoles").html(html_select_options);
 
             $("#tbl_row_roles").html(html_tabla_roles);
             $("#tableRoles").DataTable({
@@ -257,6 +283,35 @@ $(document).on("click", ".btn-select-role", function () {
     $("#mdUserRoles").modal("hide");
 });
 
+$(document).on("click", ".btn-select-edit", function () {
+    var id = $(this).data("id");
+    var name = $(this).data("name");
+    var email = $(this).data("email");
+    var roleid = $(this).data("roleid");
+    var role = $(this).data("role");
+    console.log(
+        "id > " +
+            id +
+            " name > " +
+            name +
+            " email > " +
+            email +
+            " roleid > " +
+            roleid +
+            " role > " +
+            role
+    );
+    // Encontrar el índice del objeto en la lista con el ID correspondiente
+
+    // Pintar en los inputs
+    $("#txtEditUserId").val(id);
+    $("#txtEditNombresApellidos").val(name);
+    $("#txtEditEmail").val(email);
+    // $("#mdUserRoles").modal("hide");
+    $("#selectIdRole").val(roleid);
+    $("#mdEditUser").modal("show");
+});
+
 $("#btnRegistrarUsuario").click(function () {
     var userId = $("#txtUserId").val();
     var userName = $("#txtNombresApellidos").val();
@@ -284,25 +339,68 @@ $("#btnRegistrarUsuario").click(function () {
             roleName
     );
 
-    if (userPassword === userVerifPassword) {
-        var data = {
-            _token: _globa_token_crf,
-            _userId: userId,
-            _userName: userName,
-            _userEmail: userEmail,
-            _userPassword: userPassword,
-            _roleId: roleId,
-        };
+    if (
+        userName != "" &&
+        userEmail != "" &&
+        userPassword != "" &&
+        userVerifPassword != "" &&
+        roleName != ""
+    ) {
+        if (userPassword === userVerifPassword) {
+            var data = {
+                _token: _globa_token_crf,
+                _userId: userId,
+                _userName: userName,
+                _userEmail: userEmail,
+                _userPassword: userPassword,
+                _roleId: roleId,
+            };
 
-        saveUsuario(data);
+            saveUsuario(data);
+        } else {
+            Swal.fire({
+                title: "Upps!",
+                text: "Las contraseñas no conciden verificalo nuevamente !",
+                icon: "warning",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
     } else {
         Swal.fire({
             title: "Upps!",
-            text: "Las contraseñas no conciden verificalo nuevamente !",
-            icon: "warning",
+            text: "Algo paso, debe completar todos los campos !",
+            icon: "error",
             showConfirmButton: false,
             timer: 1500,
         });
+    }
+});
+
+$("#btnEditarUsuario").click(function () {
+    var userId = $("#txtEditUserId").val();
+    var roleId = $("#selectIdRole").val();
+    var password = $("#txtEditPassword").val();
+    var passwordVerified = $("#txtEditVerificarPassword").val();
+
+    var data = {
+        _token: _globa_token_crf,
+        _userId: userId,
+        _roleId: roleId,
+        _password: password,
+        _passwordVerified: passwordVerified,
+    };
+
+    if (password !== passwordVerified) {
+        Swal.fire({
+            title: "Upps!",
+            text: "Las contraseñas no coinciden. Por favor, verifica !",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    } else {
+        editUsuario(data);
     }
 });
 
@@ -330,6 +428,48 @@ function saveUsuario(data) {
                 Swal.fire({
                     title: "Upps!",
                     text: "Algo paso, no se creo correctamente el usuario !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function editUsuario(data) {
+    $.ajax({
+        type: "POST",
+        url: "/edit/usuario",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log("RDXXX> ", response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Correcto!",
+                    text: "Se actualizo correctamente el usuario !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se actualizo correctamente el usuario !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,
