@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRES APELLIDOS: </label>
-                        <input type="hidden" id="txtUserId" readonly>
+                        <input type="hidden" id="txtEmployeeId" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtNombresApellidos" readonly>
                         <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarEmpleados"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>

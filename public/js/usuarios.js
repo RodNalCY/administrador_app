@@ -50,25 +50,31 @@ function listUsuariosAll() {
                     user.fecha +
                     "</td>" +
                     "<td>" +
-                    "   <center>" +
+                    "<center>" +
                     "<button type='button' class='btn btn-warning btn-sm btn-select-edit'" +
                     " data-id='" +
                     user.id +
                     "' data-name='" +
                     user.name +
-                    "'" +
                     "' data-email='" +
                     user.email +
-                    "'" +
                     "' data-roleid='" +
                     user.role_id +
-                    "'" +
                     "' data-role='" +
                     user.role +
                     "'>" +
                     "<i class='fas fa-pen'></i></button>" +
-                    "      <button type='button' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button>" +
-                    "    </center>" +
+                    "<button type='button' class='btn btn-danger btn-sm btn-select-delete'" +
+                    " data-iduser='" +
+                    user.id +
+                    "' data-idempleado='" +
+                    user.idEmpleado +
+                    "' data-name='" +
+                    user.name +
+                    "' data-roleid='" +
+                    user.role_id +
+                    "'><i class='fas fa-trash'></i></button>" +
+                    "</center>" +
                     "</td>" +
                     "</tr>";
             });
@@ -129,7 +135,7 @@ function listEmpleadosAll() {
                         "<td>" +
                         "<center>" +
                         "<button type='button' class='btn btn-success btn-sm btn-select-empleado'" +
-                        " data-id='" +
+                        " data-idemployee='" +
                         empleado.idEmpleado +
                         "' data-name='" +
                         empleado.Nombres +
@@ -258,14 +264,14 @@ function listRolesAll() {
 }
 
 $(document).on("click", ".btn-select-empleado", function () {
-    var id = $(this).data("id");
+    var idemployee = $(this).data("idemployee");
     var name = $(this).data("name");
     var email = $(this).data("email");
-    console.log("id > " + id + " name > " + name + " email > " + email);
+    console.log("idemployee > " + idemployee + " name > " + name + " email > " + email);
     // Encontrar el índice del objeto en la lista con el ID correspondiente
 
     // Pintar en los inputs
-    $("#txtUserId").val(id);
+    $("#txtEmployeeId").val(idemployee);
     $("#txtNombresApellidos").val(name);
     $("#txtEmail").val(email);
     $("#mdUserEmpleados").modal("hide");
@@ -312,8 +318,47 @@ $(document).on("click", ".btn-select-edit", function () {
     $("#mdEditUser").modal("show");
 });
 
+$(document).on("click", ".btn-select-delete", function () {
+    var userId = $(this).data("iduser");
+    var name = $(this).data("name");
+    var roleId = $(this).data("roleid");
+    var empleadoId = $(this).data("idempleado");
+
+    Swal.fire({
+        title: "Eliminar",
+        text: "Desea eliminar al usuario " + name + " del sistema!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            console.log(
+                "userId > " +
+                    userId +
+                    " name > " +
+                    name +
+                    " roleId > " +
+                    roleId +
+                    " empleadoId > " +
+                    empleadoId
+            );
+            var data = {
+                _token: _globa_token_crf,
+                _userId: userId,
+                _roleId: roleId,
+                _employeId: empleadoId,
+            };
+
+            deleteUsuario(data);
+        }
+    });
+});
+
 $("#btnRegistrarUsuario").click(function () {
-    var userId = $("#txtUserId").val();
+    var employeeId = $("#txtEmployeeId").val();
     var userName = $("#txtNombresApellidos").val();
     var userEmail = $("#txtEmail").val();
     var userPassword = $("#txtPassword").val();
@@ -323,8 +368,8 @@ $("#btnRegistrarUsuario").click(function () {
     var roleName = $("#txtRole").val();
 
     console.log(
-        "userId > " +
-            userId +
+        "employeeId > " +
+            employeeId +
             " userName > " +
             userName +
             " userEmail > " +
@@ -349,7 +394,7 @@ $("#btnRegistrarUsuario").click(function () {
         if (userPassword === userVerifPassword) {
             var data = {
                 _token: _globa_token_crf,
-                _userId: userId,
+                _employeeId: employeeId,
                 _userName: userName,
                 _userEmail: userEmail,
                 _userPassword: userPassword,
@@ -470,6 +515,47 @@ function editUsuario(data) {
                 Swal.fire({
                     title: "Upps!",
                     text: "Algo paso, no se actualizo correctamente el usuario !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function deleteUsuario(data) {
+    $.ajax({
+        type: "POST",
+        url: "/delete/usuario",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Eliminado!",
+                    text: "El usuario fue eliminado !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se elimino correctamente el usuario !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,

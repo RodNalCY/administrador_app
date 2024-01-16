@@ -43,9 +43,10 @@ class AdministradorController extends Controller
     public function list_usuarios()
     {
         try {
-            $users = User::selectRaw('users.id, users.name, users.email, DATE_FORMAT(users.created_at, "%d-%m-%Y %H:%i:%s") as fecha, model_has_roles.role_id,roles.name AS role ')
+            $users = User::selectRaw('users.id, users.name, users.email, DATE_FORMAT(users.created_at, "%d-%m-%Y %H:%i:%s") as fecha, model_has_roles.role_id,roles.name AS role, empleado.idEmpleado')
                 ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
                 ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+                ->join('empleado', 'users.id', '=', 'empleado.idUsuario')
                 ->get();
 
             return response()->json([
@@ -120,26 +121,39 @@ class AdministradorController extends Controller
         try {
 
             $role = Role::find($request->_roleId);
-            $empleado = Empleado::where('idEmpleado', $request->_userId)->first();
-
-            $user = new User;
-            $user->name = $request->_userName;
-            $user->email = $request->_userEmail;
-            $user->password = Hash::make($request->_userPassword);
+            $empleado = Empleado::find($request->_employeeId);
+            $exist = User::where('email', $empleado->Email)->first();
 
             $status = false;
-            if ($user->save()) {
-                $empleado->idUsuario = $user->id;
-                if ($empleado->save()) {
-                    $user->assignRole($role);
-                    $status = true;
+
+            if ($exist) {
+                $update = User::find($exist->id);
+                $update->password = Hash::make($request->_userPassword);
+                if ($update->save()) {
+                    $empleado->idUsuario = $exist->id;
+                    if ($empleado->save()) {
+                        $update->assignRole($role);
+                        $status = true;
+                    }
+                }
+            } else {
+                $user = new User;
+                $user->name = $request->_userName;
+                $user->email = $request->_userEmail;
+                $user->password = Hash::make($request->_userPassword);
+
+                if ($user->save()) {
+                    $empleado->idUsuario = $user->id;
+                    if ($empleado->save()) {
+                        $user->assignRole($role);
+                        $status = true;
+                    }
                 }
             }
 
             return response()->json([
                 'message' => 'Usuario registrado',
-                'status' => $status,
-                'data' => $user
+                'status' =>   $status,
             ]);
         } catch (\Exception $ex) {
             return response()->json([
@@ -150,7 +164,7 @@ class AdministradorController extends Controller
     }
     public function edit_usuario(Request $request)
     {
-        try {        
+        try {
             $user = User::find($request->_userId);
             $status = false;
 
@@ -165,9 +179,39 @@ class AdministradorController extends Controller
                 $status = true;
             }
 
-
             return response()->json([
                 'message' => 'Usuario registrado',
+                'status' => $status,
+                'data' => $user
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function delete_usuario(Request $request)
+    {
+        try {
+            $user = User::find($request->_userId);
+            $employe = Empleado::find($request->_employeId);
+            $role = Role::find($request->_roleId);
+
+            $status = false;
+
+            $employe->idUsuario = 0;
+            if ($employe->save()) {
+                $user->password = "";
+                if ($user->save()) {
+                    $user->removeRole($role);
+                    $status = true;
+                }
+            }
+
+            return response()->json([
+                'message' => 'Usuario fue Eliminado',
                 'status' => $status,
                 'data' => $user
             ]);
