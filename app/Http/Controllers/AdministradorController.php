@@ -222,4 +222,58 @@ class AdministradorController extends Controller
             ], 500);
         }
     }
+
+    public function save_role(Request $request)
+    {
+        try {
+            $role = Role::create(['name' => $request->_roleName]);
+            $status = false;
+            if ($role) {
+                $status = true;
+            }
+
+            return response()->json([
+                'status' => $status,
+                'message' => 'Role creado correctamente!',
+                'data' => $role
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function delete_role(Request $request)
+    {
+        try {
+            $role = Role::find($request->_roleId);
+            $permisos = Role::selectRaw('roles.id')
+                ->join('role_has_permissions', 'roles.id', '=', 'role_has_permissions.role_id')
+                ->where('roles.id', $request->_roleId)
+                ->get();
+
+            $status = false;
+            $message = "Upps, algo paso con el servidor!";
+            if (count($permisos) > 0) {
+                $status = false;
+                $message = "Upps, este role tiene permisos no se puede eliminar!";
+            } else {
+                $status = true;
+                $message = "El role se elimino correctamente!";
+                $role->delete();
+            }
+
+            return response()->json([
+                'status' => $status,
+                'message' => $message,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 }

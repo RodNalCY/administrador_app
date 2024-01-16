@@ -68,18 +68,19 @@ Route::controller(AdministradorController::class)->group(function () {
 
     // ROUTES USUARIOS
     Route::get('/list/usuarios', 'list_usuarios')->name('/list/usuarios');
-
-    // ROUTES ROLES
-    Route::get('/list/roles', 'list_roles')->name('/list/roles');
     Route::post('/save/usuario', 'save_usuario')->name('/save/usuario');
     Route::post('/edit/usuario', 'edit_usuario')->name('/edit/usuario');
     Route::post('/delete/usuario', 'delete_usuario')->name('/delete/usuario');
 
+    // ROUTES ROLES
+    Route::get('/list/roles', 'list_roles')->name('/list/roles');
+    Route::post('/save/role', 'save_role')->name('/save/role');
+    Route::post('/delete/role', 'delete_role')->name('/delete/role');
+
     // ROUTES PERMISOS
     Route::get('/list/permisos', 'list_permisos')->name('/list/permisos');
 
+
     // ROUTES COMPARTIDAS
     Route::get('/list/empleados', 'list_empleados')->name('/list/empleados');
-  
-   
 });
