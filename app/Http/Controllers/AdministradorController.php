@@ -276,4 +276,32 @@ class AdministradorController extends Controller
             ], 500);
         }
     }
+
+    public function list_permisos_role(Request $request)
+    {
+        try {
+          
+            $data = Permission::leftJoin('role_has_permissions', function ($join) use ($request) {
+                $join->on('permissions.id', '=', 'role_has_permissions.permission_id')
+                    ->where('role_has_permissions.role_id', '=', $request->input('_roleId'));
+            })
+                ->select('role_has_permissions.permission_id', 'permissions.id', 'permissions.name')
+                ->orderBy('permissions.name', 'asc')
+                ->get();
+
+            $status = true;
+
+            return response()->json([
+                'status' => $status,
+                'message' => "Lista de permisos segun el role!",
+                'data' => $data
+
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 }

@@ -76,6 +76,7 @@ Route::controller(AdministradorController::class)->group(function () {
     Route::get('/list/roles', 'list_roles')->name('/list/roles');
     Route::post('/save/role', 'save_role')->name('/save/role');
     Route::post('/delete/role', 'delete_role')->name('/delete/role');
+    Route::post('/list/permisos/role', 'list_permisos_role')->name('/list/permisos/role');
 
     // ROUTES PERMISOS
     Route::get('/list/permisos', 'list_permisos')->name('/list/permisos');

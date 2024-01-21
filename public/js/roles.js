@@ -38,7 +38,12 @@ function listRolesAll() {
                     "</td>" +
                     "<td>" +
                     "<center>" +
-                    "<button type='button' class='btn btn-warning btn-sm'><i class='fas fa-pen'></i></button>" +
+                    "<button type='button' class='btn btn-warning btn-sm btn-edit-role'" +
+                    " data-id='" +
+                    role.id +
+                    "' data-name='" +
+                    role.name +
+                    "'><i class='fas fa-pen'></i></button>" +
                     "<button type='button' class='btn btn-danger btn-sm btn-delete-role'" +
                     " data-id='" +
                     role.id +
@@ -89,6 +94,7 @@ $("#btnRegistrarRole").click(function () {
     }
 });
 
+
 $(document).on("click", ".btn-delete-role", function () {
     var roleId = $(this).data("id");
     var roleName = $(this).data("name");
@@ -113,6 +119,20 @@ $(document).on("click", ".btn-delete-role", function () {
             deleteRole(data);
         }
     });
+});
+
+$(document).on("click", ".btn-edit-role", function () {
+    var roleId = $(this).data("id");
+    var roleName = $(this).data("name");
+
+    console.log("roleId > " + roleId + " roleName > " + roleName);
+    var data = {
+        _token: _globa_token_crf,
+        _roleId: roleId,
+        _roleName: roleName,
+    };
+    listaPermisosRole(data);
+    $("#mdEditPermisoRole").modal("show");
 });
 
 function registrarRole(data) {
@@ -191,6 +211,67 @@ function deleteRole(data) {
             setTimeout(() => {
                 location.reload();
             }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function listaPermisosRole(data) {
+    $.ajax({
+        type: "POST",
+        url: "/list/permisos/role",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            var html_tabla_roles_permisos = "";
+
+            response.data.forEach(function (rp) {
+                if (rp.permission_id != null) {
+                    html_tabla_roles_permisos =
+                        html_tabla_roles_permisos +
+                        "<tr>" +
+                        "<td scope='row'><center>" +
+                        rp.id +
+                        "</center></td>" +
+                        "<td>" +
+                        rp.name +
+                        "</td>" +
+                        "<td>" +
+                        "<center><input type='checkbox' checked/></center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
+                    html_tabla_roles_permisos =
+                        html_tabla_roles_permisos +
+                        "<tr>" +
+                        "<td scope='row'><center>" +
+                        rp.id +
+                        "</center></td>" +
+                        "<td>" +
+                        rp.name +
+                        "</td>" +
+                        "<td>" +
+                        "<center><input type='checkbox'/></center>" +
+                        "</td>" +
+                        "</tr>";
+                }
+            });
+
+            $("#table_permisos_roles").html(html_tabla_roles_permisos);
+            // $("#tablePermisosRoles").DataTable({
+            //     order: [[0, "asc"]],
+            //     language: {
+            //         url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+            //     },
+            // });
+        },
+        complete: function () {
+            console.log("complete()");
         },
         error: function (response) {
             console.log("Error", response);

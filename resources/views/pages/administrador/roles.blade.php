@@ -56,6 +56,39 @@
         </div>
     </div>
 </div>
+
+<!------------------------------------------------------------------------------------------------------------------------------>
+<div class="modal fade" id="mdEditPermisoRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListRolesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdEditPermisoRoleLabel">Actualizar Permisos segun el Role</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="row m-2">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="tablePermisosRoles">
+                            <thead class="header-table">
+                                <tr>
+                                    <th class="text-center" scope="col">Id</th>
+                                    <th class="text-center" scope="col">Nombre</th>
+                                    <th class="text-center" scope="col">Activo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table_permisos_roles">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnActualizarPermisos"><i class="fas fa-pen"></i> Editar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('css')
