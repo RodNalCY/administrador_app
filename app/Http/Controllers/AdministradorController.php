@@ -226,14 +226,20 @@ class AdministradorController extends Controller
     public function save_role(Request $request)
     {
         try {
-            $role = Role::create(['name' => $request->_roleName]);
-            $status = false;
-            if ($role) {
-                $status = true;
+            // Verificar si el role ya existe
+            $roleExistente = Role::where('name', $request->_roleName)->first();
+            if ($roleExistente) {
+                return response()->json([
+                    'status' => false,
+                    'message' => "El role '$request->_roleName' ya existe.",
+                ]);
             }
+            
+            // Crear un nuevo role
+            $role = Role::create(['name' => $request->_roleName]);           
 
             return response()->json([
-                'status' => $status,
+                'status' => true,
                 'message' => 'Role creado correctamente!',
                 'data' => $role
             ]);
@@ -311,7 +317,6 @@ class AdministradorController extends Controller
         try {
 
             $rol = Role::find($request->_roleId);
-
             // Transformar los datos de permisos
             $permisosIds = [];
             if (!empty($request->_permisos)) {
@@ -319,7 +324,6 @@ class AdministradorController extends Controller
                     $permisosIds[] = intval($permiso['id']);
                 }
             }
-
 
             if (count($permisosIds) > 0) {
                 // Sincronizar los permisos del rol con los nuevos permisos
@@ -333,6 +337,35 @@ class AdministradorController extends Controller
                 'status' => true,
                 'message' => $message,
 
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function save_permiso(Request $request)
+    {
+        try {
+            // Verificar si el permiso ya existe
+            $permisoExistente = Permission::where('name', $request->_permisoName)->first();
+
+            if ($permisoExistente) {
+                return response()->json([
+                    'status' => false,
+                    'message' => "El permiso '$request->_permisoName' ya existe.",
+                ]);
+            }
+
+            // Crear un nuevo permiso
+            $permiso = Permission::create(['name' =>  $request->_permisoName]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Permiso creado correctamente!',
+                'data' => $permiso
             ]);
         } catch (\Exception $ex) {
             return response()->json([

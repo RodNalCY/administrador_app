@@ -81,6 +81,7 @@ Route::controller(AdministradorController::class)->group(function () {
 
     // ROUTES PERMISOS
     Route::get('/list/permisos', 'list_permisos')->name('/list/permisos');
+    Route::post('/save/permiso', 'save_permiso')->name('/save/permiso');
 
 
     // ROUTES COMPARTIDAS

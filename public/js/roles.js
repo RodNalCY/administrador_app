@@ -41,13 +41,13 @@ function listRolesAll() {
                     "</td>" +
                     "<td>" +
                     "<center>" +
-                    "<button type='button' class='btn btn-warning btn-sm btn-edit-role'" +
+                    " <button type='button' class='btn btn-warning btn-sm btn-edit-role'" +
                     " data-id='" +
                     role.id +
                     "' data-name='" +
                     role.name +
                     "'><i class='fas fa-pen'></i></button>" +
-                    "<button type='button' class='btn btn-danger btn-sm btn-delete-role'" +
+                    " <button type='button' class='btn btn-danger btn-sm btn-delete-role'" +
                     " data-id='" +
                     role.id +
                     "' data-name='" +

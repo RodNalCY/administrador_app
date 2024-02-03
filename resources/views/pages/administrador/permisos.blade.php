@@ -18,16 +18,16 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" class="form-control form-control-sm" id="txtNombrePermiso">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">TIPO: </label>
-                        <input type="text" class="form-control form-control-sm" value="web" readonly>
+                        <input type="text" class="form-control form-control-sm" id="txtTipoPermiso" value="web" readonly>
                     </div>                
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-success"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
+                        <button type="button" class="btn btn-success" id="btnRegistrarPermiso"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
                     </div>
                 </div>
             </div>

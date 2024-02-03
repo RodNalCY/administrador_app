@@ -51,7 +51,7 @@ function listUsuariosAll() {
                     "</td>" +
                     "<td>" +
                     "<center>" +
-                    "<button type='button' class='btn btn-warning btn-sm btn-select-edit'" +
+                    " <button type='button' class='btn btn-warning btn-sm btn-select-edit'" +
                     " data-id='" +
                     user.id +
                     "' data-name='" +
@@ -64,7 +64,7 @@ function listUsuariosAll() {
                     user.role +
                     "'>" +
                     "<i class='fas fa-pen'></i></button>" +
-                    "<button type='button' class='btn btn-danger btn-sm btn-select-delete'" +
+                    " <button type='button' class='btn btn-danger btn-sm btn-select-delete'" +
                     " data-iduser='" +
                     user.id +
                     "' data-idempleado='" +
