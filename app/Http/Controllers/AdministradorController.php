@@ -280,7 +280,7 @@ class AdministradorController extends Controller
     public function list_permisos_role(Request $request)
     {
         try {
-          
+
             $data = Permission::leftJoin('role_has_permissions', function ($join) use ($request) {
                 $join->on('permissions.id', '=', 'role_has_permissions.permission_id')
                     ->where('role_has_permissions.role_id', '=', $request->input('_roleId'));
@@ -294,7 +294,44 @@ class AdministradorController extends Controller
             return response()->json([
                 'status' => $status,
                 'message' => "Lista de permisos segun el role!",
+                'roleId' => $request->_roleId,
                 'data' => $data
+
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function edit_role_permisos(Request $request)
+    {
+        try {
+
+            $rol = Role::find($request->_roleId);
+
+            // Transformar los datos de permisos
+            $permisosIds = [];
+            if (!empty($request->_permisos)) {
+                foreach ($request->_permisos as $permiso) {
+                    $permisosIds[] = intval($permiso['id']);
+                }
+            }
+
+
+            if (count($permisosIds) > 0) {
+                // Sincronizar los permisos del rol con los nuevos permisos
+                $rol->syncPermissions($permisosIds);
+                $message = "Permisos actualizados correctamente para el role asignado";
+            } else {
+                $message = "Upps algo paso !!";
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => $message,
 
             ]);
         } catch (\Exception $ex) {

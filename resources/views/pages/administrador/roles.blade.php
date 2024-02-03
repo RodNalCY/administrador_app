@@ -62,7 +62,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mdEditPermisoRoleLabel">Actualizar Permisos segun el Role</h5>
+                <h5 class="modal-title"><span id="txtTitleEditarPermisos"> </span> actualizar Permisos </h5>
             </div>
             <div class="modal-body">
 
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnActualizarPermisos"><i class="fas fa-pen"></i> Editar</button>
+                <button type="button" class="btn btn-success" id="btnActualizarRolePermisos"><i class="fas fa-pen"></i> Editar</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>

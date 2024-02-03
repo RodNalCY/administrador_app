@@ -1,3 +1,6 @@
+var datos_seleccionados = [];
+var global_role_id = "";
+
 $(document).ready(function () {
     _globa_token_crf = document.getElementById("_token").value;
     console.log("_globa_token_crf > ", _globa_token_crf);
@@ -94,6 +97,15 @@ $("#btnRegistrarRole").click(function () {
     }
 });
 
+$("#btnActualizarRolePermisos").click(function () {
+    console.log("btnActualizarRolePermisos()");
+    var data = {
+        _token: _globa_token_crf,
+        _roleId: global_role_id,
+        _permisos: datos_seleccionados,
+    };
+    editRolePermisos(data);
+});
 
 $(document).on("click", ".btn-delete-role", function () {
     var roleId = $(this).data("id");
@@ -124,6 +136,7 @@ $(document).on("click", ".btn-delete-role", function () {
 $(document).on("click", ".btn-edit-role", function () {
     var roleId = $(this).data("id");
     var roleName = $(this).data("name");
+    $("#txtTitleEditarPermisos").html("<strong><i class='fas fa-fw fa-user-cog'></i> " +roleName+"</strong>");
 
     console.log("roleId > " + roleId + " roleName > " + roleName);
     var data = {
@@ -224,54 +237,104 @@ function listaPermisosRole(data) {
         url: "/list/permisos/role",
         data: data,
         dataType: "json",
-        beforeSend: function () {},
+        beforeSend: function () {
+            datos_seleccionados = [];
+            global_role_id = "";
+        },
         success: function (response) {
             console.log("success()");
             console.log(response);
             var html_tabla_roles_permisos = "";
+            global_role_id = response.roleId;
 
             response.data.forEach(function (rp) {
+                var _checked = "";
+
                 if (rp.permission_id != null) {
-                    html_tabla_roles_permisos =
-                        html_tabla_roles_permisos +
-                        "<tr>" +
-                        "<td scope='row'><center>" +
-                        rp.id +
-                        "</center></td>" +
-                        "<td>" +
-                        rp.name +
-                        "</td>" +
-                        "<td>" +
-                        "<center><input type='checkbox' checked/></center>" +
-                        "</td>" +
-                        "</tr>";
-                } else {
-                    html_tabla_roles_permisos =
-                        html_tabla_roles_permisos +
-                        "<tr>" +
-                        "<td scope='row'><center>" +
-                        rp.id +
-                        "</center></td>" +
-                        "<td>" +
-                        rp.name +
-                        "</td>" +
-                        "<td>" +
-                        "<center><input type='checkbox'/></center>" +
-                        "</td>" +
-                        "</tr>";
+                    _checked = "checked";
+                    datos_seleccionados.push({ id: rp.id });
                 }
+
+                html_tabla_roles_permisos +=
+                    "<tr>" +
+                    "<td scope='row'><center>" +
+                    rp.id +
+                    "</center></td>" +
+                    "<td>" +
+                    rp.name +
+                    "</td>" +
+                    "<td>" +
+                    "<center><input type='checkbox' class='select_checkbox' " +
+                    _checked +
+                    " data-id='" +
+                    rp.id +
+                    "' data-name='" +
+                    rp.name +
+                    "' /></center>" +
+                    "</td>" +
+                    "</tr>";
             });
 
             $("#table_permisos_roles").html(html_tabla_roles_permisos);
-            // $("#tablePermisosRoles").DataTable({
-            //     order: [[0, "asc"]],
-            //     language: {
-            //         url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
-            //     },
-            // });
         },
         complete: function () {
             console.log("complete()");
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+$(document).on("click", ".select_checkbox", function () {
+    var permisoId = $(this).data("id");
+    // console.log("permisoId > " + permisoId);
+    if ($(this).prop("checked")) {
+        datos_seleccionados.push({ id: permisoId });
+    } else {
+        var index = datos_seleccionados.findIndex(function (permiso) {
+            return permiso.id === permisoId;
+        });
+        datos_seleccionados.splice(index, 1);
+    }
+
+    console.log("Permisos :", datos_seleccionados);
+});
+
+function editRolePermisos(data) {
+    $.ajax({
+        type: "POST",
+        url: "/edit/role/permisos",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            if (status) {
+                Swal.fire({
+                    title: "Correcto!",
+                    text: "Se actualizo correctamente los permisos !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se actualizo los permisos !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            // setTimeout(() => {
+            //     location.reload();
+            // }, 1500);
         },
         error: function (response) {
             console.log("Error", response);
