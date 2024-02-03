@@ -13,13 +13,44 @@ $("#btnRegistrarPermiso").click(function () {
     var permisoTipo = $("#txtTipoPermiso").val();
 
     if (permisoName != "") {
-        console.log("permisoName > " + permisoName + " permisoTipo > " + permisoTipo);
+        console.log(
+            "permisoName > " + permisoName + " permisoTipo > " + permisoTipo
+        );
         var data = {
             _token: _globa_token_crf,
             _permisoName: permisoName,
             _permisoType: permisoTipo,
         };
         registrarPermiso(data);
+    } else {
+        Swal.fire({
+            title: "Upps!",
+            text: "Algo paso, debe completar todos los campos !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
+
+$("#btnActualizarPermiso").click(function () {
+    console.log("btnActualizarPermiso()");
+    var permisoEditId = $("#txtEditIdPermiso").val();
+    var permisoEditName = $("#txtEditNombrePermiso").val();
+
+    if (permisoEditName != "") {
+        console.log(
+            "permisoEditId > " +
+                permisoEditId +
+                " permisoEditName > " +
+                permisoEditName
+        );
+        var data = {
+            _token: _globa_token_crf,
+            _permisoEditId: permisoEditId,
+            _permisoEditName: permisoEditName,
+        };
+        editarPermiso(data);
     } else {
         Swal.fire({
             title: "Upps!",
@@ -44,27 +75,37 @@ function listPermisosAll() {
             console.log("RDX> ", response);
             var html_tabla_permisos = "";
 
-            response.data.forEach(function (role) {
+            response.data.forEach(function (permiso) {
                 html_tabla_permisos =
                     html_tabla_permisos +
                     "<tr>" +
                     "<td class='text-center' scope='row'>" +
-                    role.id +
+                    permiso.id +
                     "</td>" +
                     "<th>" +
-                    role.name +
+                    permiso.name +
                     "</th>" +
                     "<td>" +
-                    role.guard_name +
+                    permiso.guard_name +
                     "</td>" +
                     "<td>" +
-                    role.fecha +
-                    "</td>" +                 
+                    permiso.fecha +
+                    "</td>" +
                     "<td>" +
-                    "   <center>" +
-                    "      <button type='button' class='btn btn-warning btn-sm'><i class='fas fa-pen'></i></button>" +
-                    "      <button type='button' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button>" +
-                    "    </center>" +
+                    "<center>" +
+                    " <button type='button' class='btn btn-warning btn-sm btn-edit-permiso'" +
+                    " data-id='" +
+                    permiso.id +
+                    "' data-name='" +
+                    permiso.name +
+                    "'><i class='fas fa-pen'></i></button>" +
+                    " <button type='button' class='btn btn-danger btn-sm btn-delete-permiso'" +
+                    " data-id='" +
+                    permiso.id +
+                    "' data-name='" +
+                    permiso.name +
+                    "'><i class='fas fa-trash'></i></button>" +
+                    "</center>" +
                     "</td>" +
                     "</tr>";
             });
@@ -118,6 +159,134 @@ function registrarPermiso(data) {
             setTimeout(() => {
                 location.reload();
             }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function editarPermiso(data) {
+    $.ajax({
+        type: "POST",
+        url: "/edit/permiso",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            if (status) {
+                Swal.fire({
+                    title: "Correcto!",
+                    text: "Se edito correctamente el permiso !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se edito correctamente el permiso !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+$(document).on("click", ".btn-edit-permiso", function () {
+    var permisoId = $(this).data("id");
+    var permisoName = $(this).data("name");
+    $("#txtTitleEditarPermiso").html(
+        "<strong><i class='fas fa-fw fa-user-shield'></i> " +
+            permisoName +
+            "</strong>"
+    );
+
+    $("#txtEditIdPermiso").val(permisoId);
+    $("#txtEditNombrePermiso").val(permisoName);
+
+    console.log("permisoId > " + permisoId + " permisoName > " + permisoName);
+
+    $("#mdEditPermiso").modal("show");
+});
+
+$(document).on("click", ".btn-delete-permiso", function () {
+    var permisoId = $(this).data("id");
+    var permisoName = $(this).data("name");
+
+    Swal.fire({
+        title: "Eliminar",
+        html:
+            "<p>Desea eliminar al permiso <strong>" +
+            permisoName +
+            "</strong> del sistema!</p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var data = {
+                _token: _globa_token_crf,
+                _permisoId: permisoId,
+                _permisoName: permisoName,
+            };
+            deletePermiso(data);
+        }
+    });
+});
+
+function deletePermiso(data) {
+    $.ajax({
+        type: "POST",
+        url: "/delete/permiso",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            let message = response.message;
+            if (status) {
+                Swal.fire({
+                    title: "Correcto!",
+                    text: message,
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: message,
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 2500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
         },
         error: function (response) {
             console.log("Error", response);

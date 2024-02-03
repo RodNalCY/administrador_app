@@ -234,9 +234,9 @@ class AdministradorController extends Controller
                     'message' => "El role '$request->_roleName' ya existe.",
                 ]);
             }
-            
+
             // Crear un nuevo role
-            $role = Role::create(['name' => $request->_roleName]);           
+            $role = Role::create(['name' => $request->_roleName]);
 
             return response()->json([
                 'status' => true,
@@ -367,6 +367,86 @@ class AdministradorController extends Controller
                 'message' => 'Permiso creado correctamente!',
                 'data' => $permiso
             ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function edit_permiso(Request $request)
+    {
+        try {
+            // Buscar el permiso por su ID
+            $permiso = Permission::find($request->_permisoEditId);
+
+            // Verificar si el permiso existe
+            if (!$permiso) {
+                return response()->json([
+                    'status' => false,
+                    'message' =>  "No se encontró el permiso con ID '$request->_permisoEditId'.",
+                ]);
+            }
+
+            // Verificar si ya existe un permiso con el nuevo nombre
+            $permisoExistente = Permission::where('name', $request->_permisoEditName)->first();
+            if ($permisoExistente) {
+
+                return response()->json([
+                    'status' => false,
+                    'message' => "Ya existe un permiso con el nombre '$request->_permisoEditName'.",
+                ]);
+            }
+
+            // Actualizar el nombre del permiso
+            $permiso->name = $request->_permisoEditName;
+            if ($permiso->save()) {
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Permiso creado correctamente!',
+                    'data' => $request->_permisoEditName
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function delete_permiso(Request $request)
+    {
+        try {
+
+            $role_permisos = Permission::selectRaw('role_has_permissions.permission_id, permissions.name, roles.name as role_name')
+                ->join('role_has_permissions', 'permissions.id', '=', 'role_has_permissions.permission_id')
+                ->join('roles', 'role_has_permissions.role_id', '=', 'roles.id')
+                ->where('permissions.id', $request->_permisoId)
+                ->get();
+
+
+
+            if (count($role_permisos) > 0) {
+                $rolesNames = $role_permisos->pluck('role_name')->toArray();
+                $roles_name = implode(', ', $rolesNames);
+
+                return response()->json([
+                    'message' => 'Este permiso esta siendo utilizado por : ' . $roles_name,
+                    'status' => false,
+                ]);
+            }
+
+            // Buscar el permiso por su ID
+            $permiso = Permission::find($request->_permisoId);
+            // Eliminar el permiso
+            if ($permiso->delete()) {
+                return response()->json([
+                    'message' => 'Permiso fue Eliminado',
+                    'status' => true,
+                ]);
+            }
         } catch (\Exception $ex) {
             return response()->json([
                 'status' => false,

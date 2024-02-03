@@ -23,7 +23,7 @@
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">TIPO: </label>
                         <input type="text" class="form-control form-control-sm" id="txtTipoPermiso" value="web" readonly>
-                    </div>                
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
@@ -52,6 +52,34 @@
                     <tbody id="tableListPermisos">
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------------------------------------------------------------------------------------------------------------------------>
+<div class="modal fade" id="mdEditPermiso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListRolesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span id="txtTitleEditarPermiso"> </span> </h5>
+            </div>
+            <div class="modal-body">
+                <div class="row m-2">
+                    <div class="col-sm-6 col-md-12 mb-2">
+                        <label class="col-form-label">NOMBRE : </label>
+                        <input type="hidden" id="txtEditIdPermiso">
+                        <input type="text" class="form-control form-control-sm" id="txtEditNombrePermiso">
+                    </div>
+                    <div class="col-sm-6 col-md-12 mb-2">
+                        <label class="col-form-label">TIPO: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtEditTipoPermiso" value="web" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnActualizarPermiso"><i class="fas fa-pen"></i> Editar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>
     </div>
