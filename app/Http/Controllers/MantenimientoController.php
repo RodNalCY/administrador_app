@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comprobante;
 use App\Models\Laboratorio;
+use App\Models\Presentacion;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -171,6 +172,67 @@ class MantenimientoController extends Controller
             if ($labs->update()) {
                 return response()->json([
                     'message' => 'Se edito el laboratorio correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function list_presentaciones()
+    {
+        try {
+            $presentaciones = Presentacion::all();
+
+            return response()->json([
+                'message' => 'lista de presentaciones',
+                'status' => true,
+                'data' => $presentaciones
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function save_presentacion(Request $request)
+    {
+        try {
+            $pre = new Presentacion;
+            $pre->Descripcion = $request->_preNombre;
+            $pre->Estado = 'Activo';
+
+            if ($pre->save()) {
+                return response()->json([
+                    'message' => 'Se creo el laboratorio correctamente',
+                    'status' => true,
+                    'data' => $pre
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function edit_presentacion(Request $request)
+    {
+        try {
+            $pre = Presentacion::find($request->_preId);
+            $pre->Descripcion = $request->_preName;
+            $pre->Estado = $request->_preState;
+
+            if ($pre->update()) {
+                return response()->json([
+                    'message' => 'Se edito la presentacion correctamente!',
                     'status' => true,
                 ]);
             }

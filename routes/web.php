@@ -44,7 +44,7 @@ Route::controller(MovimientosController::class)->group(function () {
 
     // ROUTES COMPARTIDAS
     Route::get('/list/productos', 'listProductos')->name('/list/productos');
-    
+
 
     // ROUTES CAJA
     Route::post('/list/resumen/diario', 'listResumenDiario')->name('/list/resumen/diario');
@@ -69,6 +69,11 @@ Route::controller(MantenimientoController::class)->group(function () {
     Route::post('/save/laboratorio', 'save_laboratorio')->name('/save/laboratorio');
     Route::post('/delete/laboratorio', 'delete_laboratorio')->name('/delete/laboratorio');
     Route::post('/edit/laboratorio', 'edit_laboratorio')->name('/edit/laboratorio');
+
+    // ROUTES PRESENTACION
+    Route::get('/list/presentaciones', 'list_presentaciones')->name('/list/presentaciones');
+    Route::post('/save/presentacion', 'save_presentacion')->name('/save/presentacion');
+    Route::post('/edit/presentacion', 'edit_presentacion')->name('/edit/presentacion');
 });
 
 Route::controller(AdministradorController::class)->group(function () {
