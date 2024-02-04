@@ -7,6 +7,39 @@ $(document).ready(function () {
     listaLaboratorios();
 });
 
+$("#btnRegistrarLabs").click(function () {
+    var labsNombre = $("#txtLabNombre").val();
+    var labsDireccion = $("#txtLabDireccion").val();
+    var labsTelefono = $("#txtLabTelefono").val();
+    if (labsNombre != "") {
+        console.log(
+            "labsNombre > " +
+                labsNombre +
+                " labsDireccion > " +
+                labsDireccion +
+                " labsTelefono > " +
+                labsTelefono
+        );
+        var data = {
+            _token: _globa_token_crf,
+            _labsNombre: labsNombre,
+            _labsDireccion: labsDireccion,
+            _labsTelefono: labsTelefono,
+        };
+
+        registrarLaboratorio(data);
+
+    } else {
+        Swal.fire({
+            title: "Upps!",
+            text: "Debe completar el nombre del laboratorio !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
+
 function listaLaboratorios() {
     $.ajax({
         type: "GET",
@@ -88,6 +121,90 @@ function listaLaboratorios() {
     });
 }
 
+function registrarLaboratorio(data){
+    $.ajax({
+        type: "POST",
+        url: "/save/laboratorio",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Registrado!",
+                    text: "El laboratorio fue registrado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se registro el laboratorio !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function deleteLaboratorio(data){
+    $.ajax({
+        type: "POST",
+        url: "/delete/laboratorio",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Desactivado!",
+                    text: "El laboratorio fue desactivado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se desactivo el laboratorio !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
 $(document).on("click", ".btn-edit-laboratorio", function () {
     var laboratorioId = $(this).data("id");
     var laboratorioName = $(this).data("name");
@@ -123,12 +240,29 @@ $(document).on("click", ".btn-edit-laboratorio", function () {
 
 $(document).on("click", ".btn-delete-laboratorio", function () {
     var laboratorioId = $(this).data("id");
-    var laboratorioName = $(this).data("name");
+    var laboratorioName = $(this).data("name");   
+   
 
-    console.log(
-        "laboratorioId > " +
-            laboratorioId +
-            " laboratorioName > " +
-            laboratorioName
-    );
+    Swal.fire({
+        title: "Desactivar",
+        html: "<p>Desea desactivar el laboratorio: <strong>"+laboratorioName+"</strong></p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, desactivar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            var data = {
+                _token: _globa_token_crf,
+                _laboratorioId: laboratorioId,
+            };
+
+            deleteLaboratorio(data);
+        }
+    });
+
+    
 });

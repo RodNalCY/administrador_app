@@ -115,4 +115,47 @@ class MantenimientoController extends Controller
         }
     }
 
+    public function save_laboratorio(Request $request)
+    {
+        try {
+            $lab = new Laboratorio;
+            $lab->Nombre = $request->_labsNombre;
+            $lab->Direccion = $request->_labsDireccion;
+            $lab->Telefono = $request->_labsTelefono;
+            $lab->Estado = 'Activo';
+
+            if ($lab->save()) {
+                return response()->json([
+                    'message' => 'Se creo el laboratorio correctamente',
+                    'status' => true,
+                    'data' => $lab
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function delete_laboratorio(Request $request)
+    {
+        try {
+            $labs = Laboratorio::find($request->_laboratorioId);
+            $labs->Estado = "Inactivo";
+
+            if ($labs->update()) {
+                return response()->json([
+                    'message' => 'Se elimino el laboratorio correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 }

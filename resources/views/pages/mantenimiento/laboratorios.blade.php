@@ -18,22 +18,22 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">NOMBRE: </label>
-                        <input type="text" class="form-control form-control-sm" id="" >
+                        <input type="text" class="form-control form-control-sm" id="txtLabNombre">
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">DIRECCIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" id="" >
+                        <input type="text" class="form-control form-control-sm" id="txtLabDireccion">
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">TELEFONO: </label>
-                        <input type="text" class="form-control form-control-sm" id="" >
+                        <input type="number" class="form-control form-control-sm" id="txtLabTelefono">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-success" id=""> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
+                        <button type="button" class="btn btn-success" id="btnRegistrarLabs"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,8 @@
         </div>
     </div>
 </div>
+
+
 
 @stop
 

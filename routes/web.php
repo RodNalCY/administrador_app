@@ -66,6 +66,8 @@ Route::controller(MantenimientoController::class)->group(function () {
 
     // ROUTES LABORATORIOS
     Route::get('/list/laboratorios', 'listLaboratorios')->name('/list/laboratorios');
+    Route::post('/save/laboratorio', 'save_laboratorio')->name('/save/laboratorio');
+    Route::post('/delete/laboratorio', 'delete_laboratorio')->name('/delete/laboratorio');
 });
 
 Route::controller(AdministradorController::class)->group(function () {
