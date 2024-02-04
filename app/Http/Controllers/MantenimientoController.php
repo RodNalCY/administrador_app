@@ -158,4 +158,27 @@ class MantenimientoController extends Controller
             ], 500);
         }
     }
+
+    public function edit_laboratorio(Request $request)
+    {
+        try {
+            $labs = Laboratorio::find($request->_labsId);
+            $labs->Nombre = $request->_labsName;
+            $labs->Direccion = $request->_labsDireccion;
+            $labs->Telefono = $request->_labsTelefono;
+            $labs->Estado = $request->_labsEstado;
+
+            if ($labs->update()) {
+                return response()->json([
+                    'message' => 'Se edito el laboratorio correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 }
