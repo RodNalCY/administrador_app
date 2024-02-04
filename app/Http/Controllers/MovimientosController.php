@@ -75,24 +75,7 @@ class MovimientosController extends Controller
                 'message' => $ex->getMessage(),
             ], 500);
         }
-    }
-    public function listComprobantes()
-    {
-        try {
-            $comprobantes = Comprobante::all();
-
-            return response()->json([
-                'message' => 'lista de comprobantes',
-                'status' => true,
-                'data' => $comprobantes
-            ]);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }
+    }    
 
     public function listProveedores()
     {

@@ -41,3 +41,7 @@
    /* transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     background:  linear-gradient(45deg, rgb(55 98 255) 0%, rgb(94 54 255) 30%, rgb(145 0 255) 160%);*/
 }
+
+.os-content{
+    height: auto !important;
+}

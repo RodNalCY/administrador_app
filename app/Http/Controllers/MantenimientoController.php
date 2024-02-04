@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comprobante;
+use App\Models\Laboratorio;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -19,7 +21,7 @@ class MantenimientoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
+
 
     public function index_productos()
     {
@@ -55,4 +57,62 @@ class MantenimientoController extends Controller
     {
         return view('pages.mantenimiento.comprobantes');
     }
+
+    public function listComprobantes()
+    {
+        try {
+            $comprobantes = Comprobante::all();
+
+            return response()->json([
+                'message' => 'lista de comprobantes',
+                'status' => true,
+                'data' => $comprobantes
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function editComprobante(Request $request)
+    {
+        try {
+            $comprobante = Comprobante::find($request->_comprobanteId);
+            $comprobante->Estado = $request->_comprobanteState;
+
+            if ($comprobante->update()) {
+                return response()->json([
+                    'message' => 'Comprobante editado correctamente',
+                    'status' => true,
+                    'data' => $comprobante
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function listLaboratorios()
+    {
+        try {
+            $laboratorios = Laboratorio::all();
+
+            return response()->json([
+                'message' => 'lista de laboratorios',
+                'status' => true,
+                'data' => $laboratorios
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
 }
