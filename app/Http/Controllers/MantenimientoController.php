@@ -6,6 +6,7 @@ use App\Models\Comprobante;
 use App\Models\Laboratorio;
 use App\Models\Presentacion;
 use App\Models\Producto;
+use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
 class MantenimientoController extends Controller
@@ -243,4 +244,103 @@ class MantenimientoController extends Controller
             ], 500);
         }
     }
+
+    public function list_proveedores()
+    {
+        try {
+            $proveedores = Proveedor::all();
+
+            return response()->json([
+                'message' => 'lista de proveedores',
+                'status' => true,
+                'data' => $proveedores
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function save_proveedor(Request $request)
+    {
+        try {
+            $prov = new Proveedor;
+            $prov->Nombre = $request->_provNombre;
+            $prov->Dni = $request->_provDNI ?? "-";
+            $prov->Ruc = $request->_provRuc ?? "-";
+            $prov->Direccion = $request->_provDir ?? "-";
+            $prov->Email = $request->_provEmail ?? "-";
+            $prov->Telefono = $request->_provTelef ?? "-";
+            $prov->Banco = $request->_provBanco ?? "-";
+            $prov->Cuenta = $request->_provCuenta ?? "-";
+            $prov->Estado = 'Activo';
+
+            if ($prov->save()) {
+                return response()->json([
+                    'message' => 'Se creo el proveedor correctamente',
+                    'status' => true,
+                    'data' => $prov
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function edit_proveedor(Request $request)
+    {
+        try {
+            $prov = Proveedor::find($request->_provId);
+            $prov->Nombre = $request->_provNombre;
+            $prov->Dni = $request->_provDNI ?? "-";
+            $prov->Ruc = $request->_provRuc ?? "-";
+            $prov->Direccion = $request->_provDir ?? "-";
+            $prov->Email = $request->_provEmail ?? "-";
+            $prov->Telefono = $request->_provTelef ?? "-";
+            $prov->Banco = $request->_provBanco ?? "-";
+            $prov->Cuenta = $request->_provCuenta ?? "-";
+            $prov->Estado = $request->_provEstado ?? "-";
+
+            if ($prov->update()) {
+                return response()->json([
+                    'message' => 'Se actulizo el proveedor correctamente',
+                    'status' => true,
+                    'data' => $prov
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function delete_proveedor(Request $request)
+    {
+        try {
+            $prov = Proveedor::find($request->_proveedorId);
+            $prov->Estado = "Inactivo";
+
+            if ($prov->update()) {
+                return response()->json([
+                    'message' => 'Se desactivo el proveedor correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+
+
 }

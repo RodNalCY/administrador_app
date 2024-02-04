@@ -42,6 +42,7 @@
     background:  linear-gradient(45deg, rgb(55 98 255) 0%, rgb(94 54 255) 30%, rgb(145 0 255) 160%);*/
 }
 
-.os-content{
-    height: auto !important;
-}
+
+[class*="sidebar-dark-"] {
+    background-color: #080f22 !important;
+  }

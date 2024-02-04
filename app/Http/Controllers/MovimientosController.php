@@ -77,24 +77,6 @@ class MovimientosController extends Controller
         }
     }    
 
-    public function listProveedores()
-    {
-        try {
-            $proveedores = Proveedor::all();
-
-            return response()->json([
-                'message' => 'lista de proveedores',
-                'status' => true,
-                'data' => $proveedores
-            ]);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }
-
     public function listResumenDiario(Request $request)
     {
 

@@ -39,9 +39,6 @@ Route::controller(MovimientosController::class)->group(function () {
     // ROUTES VENTAS
     Route::get('/list/clientes', 'listClientes')->name('/list/clientes');
 
-    // ROUTES COMPRAS
-    Route::get('/list/proveedores', 'listProveedores')->name('/list/proveedores');
-
     // ROUTES COMPARTIDAS
     Route::get('/list/productos', 'listProductos')->name('/list/productos');
 
@@ -74,6 +71,12 @@ Route::controller(MantenimientoController::class)->group(function () {
     Route::get('/list/presentaciones', 'list_presentaciones')->name('/list/presentaciones');
     Route::post('/save/presentacion', 'save_presentacion')->name('/save/presentacion');
     Route::post('/edit/presentacion', 'edit_presentacion')->name('/edit/presentacion');
+
+    // ROUTES PROVEEDORES
+    Route::get('/list/proveedores', 'list_proveedores')->name('/list/proveedores');
+    Route::post('/save/proveedor', 'save_proveedor')->name('/save/proveedor');
+    Route::post('/edit/proveedor', 'edit_proveedor')->name('/edit/proveedor');
+    Route::post('/delete/proveedor', 'delete_proveedor')->name('/delete/proveedor');
 });
 
 Route::controller(AdministradorController::class)->group(function () {
