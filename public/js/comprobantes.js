@@ -77,7 +77,13 @@ function listaComprobantes() {
                     comprobante.Estado +
                     "' data-name='" +
                     comprobante.Descripcion +
-                    "'><i class='fas fa-pen'></i></button>" +                   
+                    "'><i class='fas fa-pen'></i></button>" +     
+                    " <button type='button' class='btn btn-danger btn-sm btn-delete-comprobante'" +
+                    " data-id='" +
+                    comprobante.idTipoComprobante +
+                    "' data-name='" +
+                    comprobante.Descripcion +
+                    "'><i class='fas fa-trash'></i></button>" +              
                     "</center>" +
                     "</td>" +
                     "</tr>";
@@ -99,23 +105,6 @@ function listaComprobantes() {
         },
     });
 }
-
-$(document).on("click", ".btn-edit-comprobante", function () {
-    var comprobanteId = $(this).data("id");
-    var comprobanteName = $(this).data("name");
-    var comprobanteEstado = $(this).data("state");
-    $("#txtTitleEditarComprobante").html(
-        "<strong><i class='fas fa-fw fa-file'></i> " + comprobanteName + "</strong>"
-    );
-
-    $("#txtEditIdComprobante").val(comprobanteId);
-    $("#txtEditNombreComprobante").val(comprobanteName);
-    $("#selectEstadoComprobante").val(comprobanteEstado);
-
-    console.log("comprobanteId > " + comprobanteId + " comprobanteName > " + comprobanteName+ " comprobanteEstado > " + comprobanteEstado);
-
-    $("#mdEditComprobante").modal("show");
-});
 
 function editarComprobante(data) {
     $.ajax({
@@ -158,3 +147,92 @@ function editarComprobante(data) {
         },
     });
 }
+
+function deleteComprobante(data) {
+    $.ajax({
+        type: "POST",
+        url: "/delete/comprobante",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Desactivado!",
+                    text: "El comprobante fue desactivado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se desactivo la comprobante !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+$(document).on("click", ".btn-edit-comprobante", function () {
+    var comprobanteId = $(this).data("id");
+    var comprobanteName = $(this).data("name");
+    var comprobanteEstado = $(this).data("state");
+    $("#txtTitleEditarComprobante").html(
+        "<strong><i class='fas fa-fw fa-file'></i> " + comprobanteName + "</strong>"
+    );
+
+    $("#txtEditIdComprobante").val(comprobanteId);
+    $("#txtEditNombreComprobante").val(comprobanteName);
+    $("#selectEstadoComprobante").val(comprobanteEstado);
+
+    console.log("comprobanteId > " + comprobanteId + " comprobanteName > " + comprobanteName+ " comprobanteEstado > " + comprobanteEstado);
+
+    $("#mdEditComprobante").modal("show");
+});
+
+
+
+$(document).on("click", ".btn-delete-comprobante", function () {
+    var dataId = $(this).data("id");
+    var dataName = $(this).data("name");
+
+    Swal.fire({
+        title: "Desactivar",
+        html:
+            "<p>Desea desactivar el comprobante : <strong>" +
+            dataName +
+            "</strong></p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, desactivar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var data = {
+                _token: _globa_token_crf,
+                _dataId: dataId,
+            };
+
+            deleteComprobante(data);
+        }
+    });
+});

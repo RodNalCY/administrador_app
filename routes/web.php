@@ -58,11 +58,12 @@ Route::controller(MantenimientoController::class)->group(function () {
     Route::get('/mantenimiento/comprobantes', 'index_comprobantes')->name('comprobantes');
 
     // ROUTES COMPROBANTES
-    Route::get('/list/comprobantes', 'listComprobantes')->name('/list/comprobantes');
-    Route::post('/edit/comprobante', 'editComprobante')->name('/edit/comprobante');
+    Route::get('/list/comprobantes', 'list_comprobantes')->name('/list/comprobantes');
+    Route::post('/edit/comprobante', 'edit_comprobante')->name('/edit/comprobante');
+    Route::post('/delete/comprobante', 'delete_comprobante')->name('/delete/comprobante');
 
     // ROUTES LABORATORIOS
-    Route::get('/list/laboratorios', 'listLaboratorios')->name('/list/laboratorios');
+    Route::get('/list/laboratorios', 'list_laboratorios')->name('/list/laboratorios');
     Route::post('/save/laboratorio', 'save_laboratorio')->name('/save/laboratorio');
     Route::post('/delete/laboratorio', 'delete_laboratorio')->name('/delete/laboratorio');
     Route::post('/edit/laboratorio', 'edit_laboratorio')->name('/edit/laboratorio');
@@ -71,12 +72,17 @@ Route::controller(MantenimientoController::class)->group(function () {
     Route::get('/list/presentaciones', 'list_presentaciones')->name('/list/presentaciones');
     Route::post('/save/presentacion', 'save_presentacion')->name('/save/presentacion');
     Route::post('/edit/presentacion', 'edit_presentacion')->name('/edit/presentacion');
+    Route::post('/delete/presentacion', 'delete_presentacion')->name('/delete/presentacion');
 
     // ROUTES PROVEEDORES
     Route::get('/list/proveedores', 'list_proveedores')->name('/list/proveedores');
     Route::post('/save/proveedor', 'save_proveedor')->name('/save/proveedor');
     Route::post('/edit/proveedor', 'edit_proveedor')->name('/edit/proveedor');
     Route::post('/delete/proveedor', 'delete_proveedor')->name('/delete/proveedor');
+
+    // ROUTES PROVEEDORES
+    Route::get('/list/empleados', 'list_empleados')->name('/list/empleados');
+    Route::post('/save/empleado', 'save_empleado')->name('/save/empleado');
 });
 
 Route::controller(AdministradorController::class)->group(function () {

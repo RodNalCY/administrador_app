@@ -106,11 +106,11 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DNI/Carnet : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditProvDNI">
+                        <input type="number" class="form-control form-control-sm" id="txtEditProvDNI">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">RUC : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditProvRUC">
+                        <input type="number" class="form-control form-control-sm" id="txtEditProvRUC">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Dirección : </label>
@@ -118,11 +118,11 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Email : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditProvEmail">
+                        <input type="email" class="form-control form-control-sm" id="txtEditProvEmail">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Teléfono : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditProvTele">
+                        <input type="number" class="form-control form-control-sm" id="txtEditProvTele">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Banco : </label>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Cuenta : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditProvCuenta">
+                        <input type="number" class="form-control form-control-sm" id="txtEditProvCuenta">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">ESTADO: </label>

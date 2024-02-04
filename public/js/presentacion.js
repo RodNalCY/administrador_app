@@ -96,6 +96,12 @@ function listaPresentaciones() {
                     "' data-name='" +
                     pre.Descripcion +
                     "'><i class='fas fa-pen'></i></button>" +
+                    " <button type='button' class='btn btn-danger btn-sm btn-delete-presentacion'" +
+                    " data-id='" +
+                    pre.idPresentacion +
+                    "' data-name='" +
+                    pre.Descripcion +
+                    "'><i class='fas fa-trash'></i></button>" +
                     "</center>" +
                     "</td>" +
                     "</tr>";
@@ -202,6 +208,49 @@ function editarPresentacion(data) {
     });
 }
 
+
+function deletePresentacion(data) {
+    $.ajax({
+        type: "POST",
+        url: "/delete/presentacion",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Desactivado!",
+                    text: "El presentación fue desactivado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se desactivo el presentación !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
 $(document).on("click", ".btn-edit-presentacion", function () {
     var presentacionId = $(this).data("id");
     var presentacionName = $(this).data("name");
@@ -218,4 +267,32 @@ $(document).on("click", ".btn-edit-presentacion", function () {
     );
 
     $("#mdEditPresentacion").modal("show");
+});
+
+$(document).on("click", ".btn-delete-presentacion", function () {
+    var dataId = $(this).data("id");
+    var dataName = $(this).data("name");
+
+    Swal.fire({
+        title: "Desactivar",
+        html:
+            "<p>Desea desactivar la Presentación : <strong>" +
+            dataName +
+            "</strong></p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, desactivar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var data = {
+                _token: _globa_token_crf,
+                _dataId: dataId,
+            };
+
+            deletePresentacion(data);
+        }
+    });
 });

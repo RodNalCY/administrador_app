@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comprobante;
+use App\Models\Empleado;
 use App\Models\Laboratorio;
 use App\Models\Presentacion;
 use App\Models\Producto;
@@ -60,7 +61,7 @@ class MantenimientoController extends Controller
         return view('pages.mantenimiento.comprobantes');
     }
 
-    public function listComprobantes()
+    public function list_comprobantes()
     {
         try {
             $comprobantes = Comprobante::all();
@@ -78,7 +79,7 @@ class MantenimientoController extends Controller
         }
     }
 
-    public function editComprobante(Request $request)
+    public function edit_comprobante(Request $request)
     {
         try {
             $comprobante = Comprobante::find($request->_comprobanteId);
@@ -99,7 +100,27 @@ class MantenimientoController extends Controller
         }
     }
 
-    public function listLaboratorios()
+    public function delete_comprobante(Request $request)
+    {
+        try {
+            $delete = Comprobante::find($request->_dataId);
+            $delete->Estado = "Inactivo";
+
+            if ($delete->update()) {
+                return response()->json([
+                    'message' => 'Se desactivo el Comprobante correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function list_laboratorios()
     {
         try {
             $laboratorios = Laboratorio::all();
@@ -245,6 +266,27 @@ class MantenimientoController extends Controller
         }
     }
 
+    public function delete_presentacion(Request $request)
+    {
+        try {
+            $delete = Presentacion::find($request->_dataId);
+            $delete->Estado = "Inactivo";
+
+            if ($delete->update()) {
+                return response()->json([
+                    'message' => 'Se desactivo el Presentación correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+
     public function list_proveedores()
     {
         try {
@@ -341,6 +383,55 @@ class MantenimientoController extends Controller
         }
     }
 
+    public function list_empleados()
+    {
+        try {
+            $lista = Empleado::all();
 
+            return response()->json([
+                'message' => 'lista de empleados',
+                'status' => true,
+                'data' => $lista
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function save_empleado(Request $request)
+    {
+        try {
+            $create = new Empleado;
+            $create->Nombres = $request->_empNombre;
+            $create->Apellidos = $request->_empApellidos ?? "-";
+            $create->Especialidad = $request->_empEspecial?? "-";
+            $create->Sexo = $request->_empSexo ?? "-";
+            $create->Dni = $request->_empDNI ?? 0;
+            $create->Email = $request->_empEmail ?? "-";
+            $create->Telefono = $request->_empTelef ?? 0;
+            $create->Direccion = $request->_empDirec ?? "-";
+            $create->HoraIngreso = $request->_empHIngreso ?? "-";
+            $create->HoraSalida = $request->_empHSalida ?? "-";
+            $create->Sueldo = $request->_empSueldo ?? 0;
+            $create->Estado = 'Activo';
+            $create->idUsuario = 0;
+
+            if ($create->save()) {
+                return response()->json([
+                    'message' => 'Se creo el empleado correctamente',
+                    'status' => true,
+                    'data' => $create
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 
 }
