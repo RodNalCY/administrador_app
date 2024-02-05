@@ -434,4 +434,57 @@ class MantenimientoController extends Controller
         }
     }
 
+    public function edit_empleado(Request $request)
+    {
+        try {
+            $edit = Empleado::find($request->_empId);
+            $edit->Nombres = $request->_empNombre;
+            $edit->Apellidos = $request->_empApellidos ?? "-";
+            $edit->Especialidad = $request->_empEspecial?? "-";
+            $edit->Sexo = $request->_empSexo ?? "-";
+            $edit->Dni = $request->_empDNI ?? 0;
+            $edit->Email = $request->_empEmail ?? "-";
+            $edit->Telefono = $request->_empTelef ?? 0;
+            $edit->Direccion = $request->_empDirec ?? "-";
+            $edit->HoraIngreso = $request->_empHIngreso ?? "-";
+            $edit->HoraSalida = $request->_empHSalida ?? "-";
+            $edit->Sueldo = $request->_empSueldo ?? 0;
+            $edit->Estado = $request->_empEstado ?? "-";
+            $edit->idUsuario = 0;
+
+            if ($edit->update()) {
+                return response()->json([
+                    'message' => 'Se edito el empleado correctamente',
+                    'status' => true,
+                    'data' => $edit
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function delete_empleado(Request $request)
+    {
+        try {
+            $delete = Empleado::find($request->_empleadoId);
+            $delete->Estado = "Inactivo";
+
+            if ($delete->update()) {
+                return response()->json([
+                    'message' => 'Se desactivo el empleado correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
 }

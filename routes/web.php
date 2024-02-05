@@ -83,6 +83,8 @@ Route::controller(MantenimientoController::class)->group(function () {
     // ROUTES PROVEEDORES
     Route::get('/list/empleados', 'list_empleados')->name('/list/empleados');
     Route::post('/save/empleado', 'save_empleado')->name('/save/empleado');
+    Route::post('/edit/empleado', 'edit_empleado')->name('/edit/empleado');
+    Route::post('/delete/empleado', 'delete_empleado')->name('/delete/empleado');
 });
 
 Route::controller(AdministradorController::class)->group(function () {

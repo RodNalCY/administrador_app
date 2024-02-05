@@ -73,6 +73,82 @@ $("#btnRegistrarEmpleado").click(function () {
     }
 });
 
+$("#btnActualizarEmpleado").click(function () {
+    var empId = $("#txtEditEmpId").val();
+    var empNombre = $("#txtEditEmpName").val();
+    var empApellidos = $("#txtEditEmpApellidos").val();
+    var empDNI = $("#txtEditEmpDNI").val();
+    var empSexo = $("#selectEditSexoEmpleado").val();
+    var empEspecial = $("#selectEditEspecialidadEmpleado").val();
+    var empEmail = $("#txtEditEmpEmail").val();
+    var empTelef = $("#txtEditEmpTelef").val();
+    var empDirec = $("#txtEditEmpDireccion").val();
+    var empHIngreso = $("#txtEditEmpHIngreso").val();
+    var empHSalida = $("#txtEditEmpHSalida").val();
+    var empSueldo = $("#txtEditEmpSueldo").val();
+    var empEstado = $("#selectEditEstadoEmpleado").val();
+
+
+    if (empNombre != "" && empApellidos != "" && empDNI != "") {
+        console.log(
+            "empId > " +
+            empId +
+            "empNombre > " +
+                empNombre +
+                "empApellidos > " +
+                empApellidos +
+                " empDNI > " +
+                empDNI +
+                " empSexo > " +
+                empSexo +
+                " empEspecial > " +
+                empEspecial +
+                " empEmail > " +
+                empEmail +
+                " empTelef > " +
+                empTelef +
+                " empDirec > " +
+                empDirec +
+                " empHIngreso > " +
+                empHIngreso +
+                " empHSalida > " +
+                empHSalida +
+                " empSueldo > " +
+                empSueldo +
+                " empEstado > " +
+                empEstado
+        );
+
+        var data = {
+            _token: _globa_token_crf,
+            _empId: empId,
+            _empNombre: empNombre,
+            _empApellidos: empApellidos,
+            _empDNI: empDNI,
+            _empSexo: empSexo,
+            _empEspecial: empEspecial,
+            _empEmail: empEmail,
+            _empTelef: empTelef,
+            _empDirec: empDirec,
+            _empHIngreso: empHIngreso,
+            _empHSalida: empHSalida,
+            _empSueldo: empSueldo,
+            _empEstado: empEstado,
+        };
+
+        editarEmpleado(data);
+    } else {
+        Swal.fire({
+            title: "Upps!",
+            text: "Debe completar los datos del empleado !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
+
+
 function listaEmpleados() {
     $.ajax({
         type: "GET",
@@ -274,6 +350,98 @@ function registrarEmpleado(data) {
     });
 }
 
+function editarEmpleado(data) {
+    $.ajax({
+        type: "POST",
+        url: "/edit/empleado",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Actualizado!",
+                    text: "El empleado fue actualizado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se actualizo el empleado !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+            Swal.fire({
+                title: "Error!",
+                text: "Algo paso, no se actualizo el empleado !",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+    });
+}
+
+function deleteEmpleado(data) {
+    $.ajax({
+        type: "POST",
+        url: "/delete/empleado",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Desactivado!",
+                    text: "El empleado fue desactivado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se desactivo el empleado !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+
 $(document).on("click", ".btn-edit-empleado", function () {
     var empId = $(this).data("id");
     var empName = $(this).data("name");
@@ -330,12 +498,13 @@ $(document).on("click", ".btn-delete-empleado", function () {
         cancelButtonText: "No, cancelar!",
     }).then((result) => {
         if (result.isConfirmed) {
+            
             var data = {
                 _token: _globa_token_crf,
                 _empleadoId: empleadoId,
             };
 
-            // deleteProveedor(data);
+            deleteEmpleado(data);
         }
     });
 });
