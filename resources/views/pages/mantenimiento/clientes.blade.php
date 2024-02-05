@@ -18,7 +18,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DNI: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtClienteDNI">
+                        <input type="number" class="form-control form-control-sm" id="txtClienteDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRES: </label>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">TELEFONO: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtClienteTelefono">
+                        <input type="number" class="form-control form-control-sm" id="txtClienteTelefono" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DIRECCIÓN: </label>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">RUC: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtClienteRUC">
+                        <input type="number" class="form-control form-control-sm" id="txtClienteRUC" min="0">
                     </div>
 
                 </div>
@@ -103,7 +103,7 @@
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DNI : </label>
                         <input type="hidden" id="txtEditCliId">
-                        <input type="number" class="form-control form-control-sm" id="txtEditCliDNI">
+                        <input type="number" class="form-control form-control-sm" id="txtEditCliDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRES : </label>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">TELÉFONO : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditCliTelef">
+                        <input type="number" class="form-control form-control-sm" id="txtEditCliTelef" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DIRECCIÓN : </label>
@@ -131,7 +131,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">RUC : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditCliRUC">
+                        <input type="number" class="form-control form-control-sm" id="txtEditCliRUC" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">ESTADO : </label>

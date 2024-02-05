@@ -29,17 +29,17 @@
 
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">STOCK <code>(cantidad)</code>: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProductoStock">
+                        <input type="number" class="form-control form-control-sm" id="txtProductoStock" min="0" max="1000">
                     </div>
 
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">COSTO <code>(Compra)</code> :</label>
-                        <input type="number" class="form-control form-control-sm" id="txtProductoCosto">
+                        <input type="number" class="form-control form-control-sm" id="txtProductoCosto" min="0" max="1000">
                     </div>
 
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">PRECIO <code>(Venta)</code> : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProductoPrecio">
+                        <input type="number" class="form-control form-control-sm" id="txtProductoPrecio" min="0" max="10000">
                     </div>
                 </div>
 

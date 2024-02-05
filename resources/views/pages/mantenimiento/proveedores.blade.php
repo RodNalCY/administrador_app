@@ -22,11 +22,11 @@
                     </div>   
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DNI / CARNET: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProvDNI">
+                        <input type="number" class="form-control form-control-sm" id="txtProvDNI" min="0">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">RUC: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProvRUC">
+                        <input type="number" class="form-control form-control-sm" id="txtProvRUC" min="0">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DIRECCIÓN: </label>
@@ -40,7 +40,7 @@
                     </div>   
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">TELÉFONO: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProvTelefono">
+                        <input type="number" class="form-control form-control-sm" id="txtProvTelefono" min="0">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">BANCO: </label>
@@ -48,7 +48,7 @@
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">CUENTA: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProvCuenta">
+                        <input type="number" class="form-control form-control-sm" id="txtProvCuenta" min="0">
                     </div>                                    
                 </div>
                 <div class="row">
@@ -106,11 +106,11 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DNI/Carnet : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditProvDNI">
+                        <input type="number" class="form-control form-control-sm" id="txtEditProvDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">RUC : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditProvRUC">
+                        <input type="number" class="form-control form-control-sm" id="txtEditProvRUC" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Dirección : </label>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Teléfono : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditProvTele">
+                        <input type="number" class="form-control form-control-sm" id="txtEditProvTele" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Banco : </label>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Cuenta : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditProvCuenta">
+                        <input type="number" class="form-control form-control-sm" id="txtEditProvCuenta" min="0">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">ESTADO: </label>

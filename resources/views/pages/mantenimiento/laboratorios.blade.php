@@ -28,7 +28,7 @@
 
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">TELEFONO: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtLabTelefono">
+                        <input type="number" class="form-control form-control-sm" id="txtLabTelefono" min="0">
                     </div>
                 </div>
                 <div class="row">
@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">TELÉFONO : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditTelefLab">
+                        <input type="number" class="form-control form-control-sm" id="txtEditTelefLab" min="0">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">ESTADO: </label>
