@@ -172,6 +172,68 @@
         </div>
     </div>
 </div>
+
+<!------------------------------------------------------------------------------------------------------------------------------>
+<div class="modal fade" id="mdEditProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListRolesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span id="txtTitleEditarProducto"> </span> </h5>
+            </div>
+            <div class="modal-body">
+                <div class="row m-2">
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">NOMBRES : </label>
+                        <input type="hidden" id="txtEditProdId">
+                        <input type="text" class="form-control form-control-sm" id="txtEditProdName">
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">CONCENTRACIÓN : </label>
+                        <input type="text" class="form-control form-control-sm" id="txtEditProdConcentracion">
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">LABORATORIO : </label>
+                        <div id="selectEditHTMLLaboratorio"></div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">PRESENTACIÓN : </label>
+                        <div id="selectEditHTMLPresentaciones"></div>
+                    </div>                    
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">STOCK <code>(cantidad)</code>: </label>
+                        <input type="number" class="form-control form-control-sm" id="txtEditProdStock" min="0" max="1000">                        
+                        <div class="form-text"><sup><code>Inventario: <span id="txtDescripcionStock"></span> productos registrados</code></sup></div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">COSTO <code>(compra)</code>: </label>
+                        <input type="number" class="form-control form-control-sm" id="txtEditProdCosto" min="0" max="10000">
+                        <div class="form-text"><sup><code>El costo actual del producto: <span id="txtDescripcionCosto"></span></code></sup></div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">PRECIO <code>(venta)</code>: </label>
+                        <input type="number" class="form-control form-control-sm" id="txtEditProdVenta" min="0" max="10000">
+                        <div class="form-text"><sup><code>El precio actual de venta: <span id="txtDescripcionPrecio"></span></code></sup></div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">REGISTRO SANITARIO : </label>
+                        <input type="text" class="form-control form-control-sm" id="txtEditProdRegistroSanitario">
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">VENCIMIENTO : </label>
+                        <input type="date" class="form-control form-control-sm" id="txtEditProdVencimiento">
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">ESTADO : </label>
+                        <div id="selectEditHTMLEstado"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnActualizarProducto"><i class="fas fa-pen"></i> Editar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')

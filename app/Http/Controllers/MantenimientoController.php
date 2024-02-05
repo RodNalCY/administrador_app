@@ -408,7 +408,7 @@ class MantenimientoController extends Controller
             $create = new Empleado;
             $create->Nombres = $request->_empNombre;
             $create->Apellidos = $request->_empApellidos ?? "-";
-            $create->Especialidad = $request->_empEspecial?? "-";
+            $create->Especialidad = $request->_empEspecial ?? "-";
             $create->Sexo = $request->_empSexo ?? "-";
             $create->Dni = $request->_empDNI ?? 0;
             $create->Email = $request->_empEmail ?? "-";
@@ -441,7 +441,7 @@ class MantenimientoController extends Controller
             $edit = Empleado::find($request->_empId);
             $edit->Nombres = $request->_empNombre;
             $edit->Apellidos = $request->_empApellidos ?? "-";
-            $edit->Especialidad = $request->_empEspecial?? "-";
+            $edit->Especialidad = $request->_empEspecial ?? "-";
             $edit->Sexo = $request->_empSexo ?? "-";
             $edit->Dni = $request->_empDNI ?? 0;
             $edit->Email = $request->_empEmail ?? "-";
@@ -516,9 +516,9 @@ class MantenimientoController extends Controller
             $create->Dni = $request->_cliDNI ?? 0;
             $create->Telefono = $request->_cliTelef ?? 0;
             $create->Ruc = $request->_cliRUC ?? 0;
-            $create->Email = $request->_cliEmail ?? "-";           
-            $create->Direccion = $request->_cliDirec ?? "-";            
-            $create->Estado = "Activo";    
+            $create->Email = $request->_cliEmail ?? "-";
+            $create->Direccion = $request->_cliDirec ?? "-";
+            $create->Estado = "Activo";
 
             if ($create->save()) {
                 return response()->json([
@@ -545,10 +545,10 @@ class MantenimientoController extends Controller
             $create->Dni = $request->_cliDNI ?? 0;
             $create->Telefono = $request->_cliTelef ?? 0;
             $create->Ruc = $request->_cliRUC ?? 0;
-            $create->Email = $request->_cliEmail ?? "-";           
-            $create->Direccion = $request->_cliDirec ?? "-";            
-            $create->Estado = $request->_cliEstado;         
-            
+            $create->Email = $request->_cliEmail ?? "-";
+            $create->Direccion = $request->_cliDirec ?? "-";
+            $create->Estado = $request->_cliEstado;
+
             if ($create->save()) {
                 return response()->json([
                     'message' => 'Se edito el cliente correctamente',
@@ -601,7 +601,7 @@ class MantenimientoController extends Controller
                 'message' => $ex->getMessage(),
             ], 500);
         }
-    }    
+    }
 
     public function list_activo_presentaciones()
     {
@@ -613,14 +613,13 @@ class MantenimientoController extends Controller
                 'status' => true,
                 'data' => $presentaciones
             ]);
-
         } catch (\Exception $ex) {
             return response()->json([
                 'status' => false,
                 'message' => $ex->getMessage(),
             ], 500);
         }
-    }    
+    }
 
     public function list_activo_laboratorios()
     {
@@ -632,13 +631,91 @@ class MantenimientoController extends Controller
                 'status' => true,
                 'data' => $laboratorios
             ]);
-           
         } catch (\Exception $ex) {
             return response()->json([
                 'status' => false,
                 'message' => $ex->getMessage(),
             ], 500);
         }
-    }    
+    }
 
+    public function save_producto(Request $request)
+    {
+        try {
+            $create = new Producto;
+            $create->Descripcion = $request->_prodNombre ?? "-";
+            $create->Concentracion = $request->_prodConcentacion ?? "-";
+            $create->Stock = $request->_prodStock ?? 0;
+            $create->Costo = intval($request->_prodCosto) ?? 0;
+            $create->Precio_Venta = $request->_prodPrecio ?? 0;
+            $create->RegistroSanitario = $request->_prodRegistroSanitario ?? "-";
+            $create->FechaVencimiento = $request->_prodVencimiento ?? 0;
+            $create->Estado = "Activo";
+            $create->idPresentacion =  intval($request->_prodIdPresentacion) ?? 0;
+            $create->idLaboratorio = intval($request->_prodIdLaboratorio) ?? 0;
+
+            if ($create->save()) {
+                return response()->json([
+                    'message' => 'Se creo el producto correctamente',
+                    'status' => true,
+                    'data' => $create
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function edit_producto(Request $request)
+    {
+        try {
+            $edit = Producto::find($request->_prodId);
+            $edit->Descripcion = $request->_prodNombre ?? "-";
+            $edit->Concentracion = $request->_prodConcentacion ?? "-";
+            $edit->Stock = $request->_prodStock ?? 0;
+            $edit->Costo = intval($request->_prodCosto) ?? 0;
+            $edit->Precio_Venta = $request->_prodPrecio ?? 0;
+            $edit->RegistroSanitario = $request->_prodRegistroSanitario ?? "-";
+            $edit->FechaVencimiento = $request->_prodVencimiento ?? 0;           
+            $edit->idPresentacion =  intval($request->_prodIdPresentacion) ?? 0;
+            $edit->idLaboratorio = intval($request->_prodIdLaboratorio) ?? 0;
+            $edit->Estado = $request->_prodEstado;
+
+            if ($edit->save()) {
+                return response()->json([
+                    'message' => 'Se edito el producto correctamente',
+                    'status' => true,
+                    'data' => $edit
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function delete_producto(Request $request)
+    {
+        try {
+            $delete = Producto::find($request->_productoId);
+            $delete->Estado = "Inactivo";
+
+            if ($delete->update()) {
+                return response()->json([
+                    'message' => 'Se desactivo el producto correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 }

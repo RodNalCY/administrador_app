@@ -94,6 +94,9 @@ Route::controller(MantenimientoController::class)->group(function () {
 
     // ROUTES PRODUCTOS
     Route::get('/list/productos', 'list_productos')->name('/list/productos');
+    Route::post('/save/producto', 'save_producto')->name('/save/producto');
+    Route::post('/edit/producto', 'edit_producto')->name('/edit/producto');
+    Route::post('/delete/producto', 'delete_producto')->name('/delete/producto');
 
     // ROUTES COMPARTIDOS
     Route::get('/list/activo/presentaciones', 'list_activo_presentaciones')->name('/list/activo/presentaciones');

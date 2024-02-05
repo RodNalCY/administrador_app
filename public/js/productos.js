@@ -16,6 +16,139 @@ $("#btnBuscarPresentacion").click(function () {
 $("#btnBuscarLaboratorio").click(function () {
     $("#mdListLaboratorios").modal("show");
 });
+$("#btnRegistrarProducto").click(function () {
+    var prodNombre = $("#txtProductoNombre").val();
+    var prodConcentacion = $("#txtProductoConcentracion").val();
+    var prodStock = $("#txtProductoStock").val();
+    var prodCosto = $("#txtProductoCosto").val();
+    var prodPrecio = $("#txtProductoPrecio").val();
+    var prodIdPresentacion = $("#txtProductoIdPresentacion").val();
+    var prodIdLaboratorio = $("#txtProductoIdLaboratorio").val();
+    var prodRegistroSanitario = $("#txtProductoRegistroSanitario").val();
+    var prodVencimiento = $("#txtProductoVencimiento").val();
+
+    console.log(
+        "Nombre:",
+        prodNombre,
+        "Concentración:",
+        prodConcentacion,
+        "Stock:",
+        prodStock,
+        "Costo:",
+        prodCosto,
+        "Precio:",
+        prodPrecio,
+        "prodIdPresentacion:",
+        prodIdPresentacion,
+        "prodIdLaboratorio:",
+        prodIdLaboratorio,
+        "Registro Sanitario:",
+        prodRegistroSanitario,
+        "Vencimiento:",
+        prodVencimiento
+    );
+
+    if (
+        prodNombre != "" &&
+        prodStock != "" &&
+        prodCosto != "" &&
+        prodPrecio != ""
+    ) {
+        var data = {
+            _token: _globa_token_crf,
+            _prodNombre: prodNombre,
+            _prodConcentacion: prodConcentacion,
+            _prodStock: prodStock,
+            _prodCosto: prodCosto,
+            _prodPrecio: prodPrecio,
+            _prodIdPresentacion: prodIdPresentacion,
+            _prodIdLaboratorio: prodIdLaboratorio,
+            _prodRegistroSanitario: prodRegistroSanitario,
+            _prodVencimiento: prodVencimiento,
+        };
+
+        registrarProducto(data);
+    } else {
+        Swal.fire({
+            title: "Upps!",
+            text: "Debe completar los datos del producto !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
+
+$("#btnActualizarProducto").click(function () {
+    var prodId = $("#txtEditProdId").val();
+    var prodNombre = $("#txtEditProdName").val();
+    var prodConcentacion = $("#txtEditProdConcentracion").val();
+    var prodStock = $("#txtEditProdStock").val();
+    var prodCosto = $("#txtEditProdCosto").val();
+    var prodPrecio = $("#txtEditProdVenta").val();
+    var prodIdPresentacion = $("#selectEditPresentacion").val();
+    var prodIdLaboratorio = $("#selectEditLaboratorio").val();
+    var prodRegistroSanitario = $("#txtEditProdRegistroSanitario").val();
+    var prodVencimiento = $("#txtEditProdVencimiento").val();
+    var prodEstado = $("#selectEditEstadoProducto").val();
+
+    console.log(
+        "prodId:",
+        prodId,
+        "Nombre:",
+        prodNombre,
+        "Concentración:",
+        prodConcentacion,
+        "Stock:",
+        prodStock,
+        "Costo:",
+        prodCosto,
+        "Precio:",
+        prodPrecio,
+        "prodIdPresentacion:",
+        prodIdPresentacion,
+        "prodIdLaboratorio:",
+        prodIdLaboratorio,
+        "Registro Sanitario:",
+        prodRegistroSanitario,
+        "Vencimiento:",
+        prodVencimiento,
+        "prodEstado:",
+        prodEstado
+    );
+
+    if (
+        prodNombre != "" &&
+        prodStock != "" &&
+        prodCosto != "" &&
+        prodPrecio != ""
+    ) {
+        var data = {
+            _token: _globa_token_crf,
+            _prodId: prodId,
+            _prodNombre: prodNombre,
+            _prodConcentacion: prodConcentacion,
+            _prodStock: prodStock,
+            _prodCosto: prodCosto,
+            _prodPrecio: prodPrecio,
+            _prodIdPresentacion: prodIdPresentacion,
+            _prodIdLaboratorio: prodIdLaboratorio,
+            _prodRegistroSanitario: prodRegistroSanitario,
+            _prodVencimiento: prodVencimiento,
+            _prodEstado: prodEstado,
+        };
+
+        editarProducto(data);
+    } else {
+        Swal.fire({
+            title: "Upps!",
+            text: "Debe completar los datos del producto !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
 
 function listVentasResumenDetalle() {
     $.ajax({
@@ -29,6 +162,12 @@ function listVentasResumenDetalle() {
         success: function (response) {
             console.log("RDX> ", response);
             var html_tabla_productos = "";
+
+            var html_select_edit_options =
+                "<select class='form-control' id='selectEditEstadoProducto'>" +
+                "<option value='Activo'>Activo</option>" +
+                "<option value='Inactivo'>Inactivo</option>" +
+                "</select>";
 
             response.data.forEach(function (venta) {
                 html_tabla_productos =
@@ -68,16 +207,49 @@ function listVentasResumenDetalle() {
                     venta.Estado +
                     "</td>" +
                     "<td>" +
-                    "   <center>" +
-                    "      <button type='button' class='btn btn-primary btn-sm'><i class='fas fa-eye'></i></button>" +
-                    "      <button type='button' class='btn btn-warning btn-sm'><i class='fas fa-pen'></i></button>" +
-                    "      <button type='button' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button>" +
-                    "    </center>" +
+                    "<center>" +
+                    " <button type='button' class='btn btn-warning btn-sm btn-edit-producto'" +
+                    " data-id='" +
+                    venta.idProducto +
+                    "' data-name='" +
+                    venta.Descripcion +
+                    "' data-idlaboratorio='" +
+                    venta.laboratorio.idLaboratorio +
+                    "' data-laboratorio='" +
+                    venta.laboratorio.Nombre +
+                    "' data-idpresentacion='" +
+                    venta.presentacion.idPresentacion +
+                    "' data-presentacion='" +
+                    venta.presentacion.Descripcion +
+                    "' data-concentracion='" +
+                    venta.Concentracion +
+                    "' data-stock='" +
+                    venta.Stock +
+                    "' data-costo='" +
+                    venta.Costo +
+                    "' data-venta='" +
+                    venta.Precio_Venta +
+                    "' data-sanitario='" +
+                    venta.RegistroSanitario +
+                    "' data-vencimiento='" +
+                    venta.FechaVencimiento +
+                    "' data-state='" +
+                    venta.Estado +
+                    "'><i class='fas fa-pen'></i></button>" +
+                    " <button type='button' class='btn btn-danger btn-sm btn-delete-producto'" +
+                    " data-id='" +
+                    venta.idProducto +
+                    "' data-name='" +
+                    venta.Descripcion +
+                    "'><i class='fas fa-trash'></i></button>" +
+                    "</center>" +
                     "</td>" +
                     "</tr>";
             });
 
             $("#tableListProductos").html(html_tabla_productos);
+            $("#selectEditHTMLEstado").html(html_select_edit_options);
+
             $("#tableProductos").DataTable({
                 order: [[0, "desc"]],
                 language: {
@@ -104,6 +276,7 @@ function listPresentacionesActivos() {
         success: function (response) {
             console.log("RDX> ", response);
             var html_tabla_presentaciones_activos = "";
+            var html_select_presentacion_options = "<select class='form-control' id='selectEditPresentacion'>";
 
             response.data.forEach(function (presentacion) {
                 html_tabla_presentaciones_activos =
@@ -125,7 +298,13 @@ function listPresentacionesActivos() {
                     "    </center>" +
                     "</td>" +
                     "</tr>";
+                
+                html_select_presentacion_options = html_select_presentacion_options +
+                    "<option value='"+presentacion.idPresentacion+"'>"+presentacion.Descripcion+"</option>";
             });
+
+            html_select_presentacion_options = html_select_presentacion_options + "</select>";
+            $("#selectEditHTMLPresentaciones").html(html_select_presentacion_options);
 
             $("#tbl_row_presentaciones").html(html_tabla_presentaciones_activos);
             $("#tablePresentaciones").DataTable({
@@ -153,17 +332,18 @@ function listLaboratoriosActivos() {
         beforeSend: function () {},
         success: function (response) {
             var html_tabla_laboratorios_activos = "";
+            var html_select_laboratorio_options = "<select class='form-control' id='selectEditLaboratorio'>";
 
-            response.data.forEach(function (laboratorio) {
+            response.data.forEach(function (laboratorio) {                
                 html_tabla_laboratorios_activos =
                     html_tabla_laboratorios_activos +
                     "<tr data-id='" +
-                    laboratorio.idLaboratorio  +
+                    laboratorio.idLaboratorio +
                     "' data-name='" +
                     laboratorio.Nombre +
                     "'>" +
                     "<th class='text-center' scope='row'>" +
-                    laboratorio.idLaboratorio  +
+                    laboratorio.idLaboratorio +
                     "</th>" +
                     "<td>" +
                     laboratorio.Nombre +
@@ -174,8 +354,14 @@ function listLaboratoriosActivos() {
                     "    </center>" +
                     "</td>" +
                     "</tr>";
-            });
 
+                    html_select_laboratorio_options = html_select_laboratorio_options +
+                    "<option value='"+laboratorio.idLaboratorio+"'>"+laboratorio.Nombre+"</option>";
+
+            });
+            html_select_laboratorio_options = html_select_laboratorio_options + "</select>";
+            $("#selectEditHTMLLaboratorio").html(html_select_laboratorio_options);
+            
             $("#tbl_row_laboratorios").html(html_tabla_laboratorios_activos);
             $("#tableLaboratorios").DataTable({
                 order: [[0, "desc"]],
@@ -185,6 +371,146 @@ function listLaboratoriosActivos() {
             });
         },
         complete: function () {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function registrarProducto(data) {
+    $.ajax({
+        type: "POST",
+        url: "/save/producto",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Registrado!",
+                    text: "El producto fue registrado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se registro el producto !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+            Swal.fire({
+                title: "Upps!",
+                text: "Algo paso, no se registro el producto !",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+    });
+}
+
+function editarProducto(data) {
+    $.ajax({
+        type: "POST",
+        url: "/edit/producto",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Actualizado!",
+                    text: "El producto fue actualizado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se actualizo el producto !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+            Swal.fire({
+                title: "Error!",
+                text: "Algo paso, no se actualizo el producto !",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+    });
+}
+
+function deleteProducto(data) {
+    $.ajax({
+        type: "POST",
+        url: "/delete/producto",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Desactivado!",
+                    text: "El producto fue desactivado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se desactivo el producto !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        },
         error: function (response) {
             console.log("Error", response);
         },
@@ -213,4 +539,72 @@ $("#tableLaboratorios tbody").on("click", "tr", function () {
     $("#txtProductoLaboratorio").val(name);
     // Cerrar Modal
     $("#mdListLaboratorios").modal("hide");
+});
+
+$(document).on("click", ".btn-edit-producto", function () {
+    var prodId = $(this).data("id");
+    var prodName = $(this).data("name");
+    var prodIdLab = $(this).data("idlaboratorio");
+    var prodNameLab = $(this).data("laboratorio");
+    var prodIdPres = $(this).data("idpresentacion");
+    var prodNamePres = $(this).data("presentacion");
+    var prodConcentracion = $(this).data("concentracion");
+    var prodStock = $(this).data("stock");
+    var prodCosto = $(this).data("costo");
+    var prodVenta = $(this).data("venta");
+    var prodSanitario = $(this).data("sanitario");
+    var prodVencimiento = $(this).data("vencimiento");
+    var prodEstado = $(this).data("state");
+
+    $("#txtEditProdId").val(prodId);
+    $("#txtEditProdName").val(prodName);
+    $("#selectEditLaboratorio").val(prodIdLab);
+    // $("#txtEditProdLaboratorio").val(prodNameLab);
+    $("#selectEditPresentacion").val(prodIdPres);
+    // $("#txtEditProdPresentacion").val(prodNamePres);
+    $("#txtEditProdConcentracion").val(prodConcentracion);
+    $("#txtEditProdStock").val(prodStock);
+    $("#txtEditProdCosto").val(prodCosto);
+    $("#txtEditProdVenta").val(prodVenta);
+    $("#txtEditProdRegistroSanitario").val(prodSanitario);
+    $("#txtEditProdVencimiento").val(prodVencimiento);
+    $("#selectEditEstadoProducto").val(prodEstado);
+
+    $("#txtDescripcionStock").html(prodStock);
+    $("#txtDescripcionCosto").html(prodCosto);
+    $("#txtDescripcionPrecio").html(prodVenta);
+
+    $("#txtTitleEditarProducto").html(
+        "<strong><i class='fas fa-fw fa-box-open '></i> " + prodName + "</strong>"
+    );
+
+    $("#mdEditProducto").modal("show");
+});
+
+$(document).on("click", ".btn-delete-producto", function () {
+    var productoId = $(this).data("id");
+    var productoName = $(this).data("name");
+
+    Swal.fire({
+        title: "Desactivar",
+        html:
+            "<p>Desea desactivar el producto: <strong>" +
+            productoName +
+            " !</strong></p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, desactivar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var data = {
+                _token: _globa_token_crf,
+                _productoId: productoId,
+            };
+
+            deleteProducto(data);
+        }
+    });
 });
