@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Comprobante;
 use App\Models\Empleado;
 use App\Models\Laboratorio;
@@ -476,6 +477,102 @@ class MantenimientoController extends Controller
             if ($delete->update()) {
                 return response()->json([
                     'message' => 'Se desactivo el empleado correctamente',
+                    'status' => true,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function list_clientes()
+    {
+        try {
+            $lista = Cliente::all();
+
+            return response()->json([
+                'message' => 'lista de clientes',
+                'status' => true,
+                'data' => $lista
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function save_cliente(Request $request)
+    {
+        try {
+            $create = new Cliente;
+            $create->Nombres = $request->_cliNombre;
+            $create->Apellidos = $request->_cliApellidos ?? "-";
+            $create->Sexo = $request->_cliSexo ?? "-";
+            $create->Dni = $request->_cliDNI ?? 0;
+            $create->Telefono = $request->_cliTelef ?? 0;
+            $create->Ruc = $request->_cliRUC ?? 0;
+            $create->Email = $request->_cliEmail ?? "-";           
+            $create->Direccion = $request->_cliDirec ?? "-";            
+            $create->Estado = "Activo";    
+
+            if ($create->save()) {
+                return response()->json([
+                    'message' => 'Se creo el cliente correctamente',
+                    'status' => true,
+                    'data' => $create
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function edit_cliente(Request $request)
+    {
+        try {
+            $create = Cliente::find($request->_cliId);
+            $create->Nombres = $request->_cliNombre;
+            $create->Apellidos = $request->_cliApellidos ?? "-";
+            $create->Sexo = $request->_cliSexo ?? "-";
+            $create->Dni = $request->_cliDNI ?? 0;
+            $create->Telefono = $request->_cliTelef ?? 0;
+            $create->Ruc = $request->_cliRUC ?? 0;
+            $create->Email = $request->_cliEmail ?? "-";           
+            $create->Direccion = $request->_cliDirec ?? "-";            
+            $create->Estado = $request->_cliEstado;         
+            
+            if ($create->save()) {
+                return response()->json([
+                    'message' => 'Se edito el cliente correctamente',
+                    'status' => true,
+                    'data' => $create
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function delete_cliente(Request $request)
+    {
+        try {
+            $delete = Cliente::find($request->_clienteId);
+            $delete->Estado = "Inactivo";
+
+            if ($delete->update()) {
+                return response()->json([
+                    'message' => 'Se desactivo el cliente correctamente',
                     'status' => true,
                 ]);
             }

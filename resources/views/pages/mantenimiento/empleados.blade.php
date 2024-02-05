@@ -16,6 +16,10 @@
             </div>
             <div class="card-body">
                 <div class="row mb-2">
+                    <div class="col-sm-6 col-md-2 mb-2">
+                        <label class="col-form-label">DNI: </label>
+                        <input type="number" class="form-control form-control-sm" id="txtEmpleadoDNI">
+                    </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRE: </label>
                         <input type="text" class="form-control form-control-sm" id="txtEmpleadoNombre">
@@ -23,10 +27,6 @@
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">APELLIDOS: </label>
                         <input type="text" class="form-control form-control-sm" id="txtEmpleadoApellidos">
-                    </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">DNI: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEmpleadoDNI">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">SEXO: </label>
@@ -115,6 +115,10 @@
             <div class="modal-body">
                 <div class="row m-2">
                     <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">DNI : </label>
+                        <input type="number" class="form-control form-control-sm" id="txtEditEmpDNI">
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRES : </label>
                         <input type="hidden" id="txtEditEmpId">
                         <input type="text" class="form-control form-control-sm" id="txtEditEmpName">
@@ -122,10 +126,6 @@
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">APELLIDOS : </label>
                         <input type="text" class="form-control form-control-sm" id="txtEditEmpApellidos">
-                    </div>
-                    <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">DNI : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditEmpDNI">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">SEXO : </label>
@@ -158,7 +158,7 @@
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">SUELDO : </label>
                         <input type="number" class="form-control form-control-sm" id="txtEditEmpSueldo">
-                    </div>                   
+                    </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">ESTADO: </label>
                         <div id="selectEditHTMLEstado"></div>
@@ -173,12 +173,12 @@
         </div>
     </div>
 
-@stop
+    @stop
 
-@section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+    @section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
 
-@section('js')
-<script src="{{ asset('js/empleados.js') }}"></script>
-@stop
+    @section('js')
+    <script src="{{ asset('js/empleados.js') }}"></script>
+    @stop

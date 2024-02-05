@@ -85,6 +85,12 @@ Route::controller(MantenimientoController::class)->group(function () {
     Route::post('/save/empleado', 'save_empleado')->name('/save/empleado');
     Route::post('/edit/empleado', 'edit_empleado')->name('/edit/empleado');
     Route::post('/delete/empleado', 'delete_empleado')->name('/delete/empleado');
+
+    // ROUTES PROVEEDORES
+    Route::get('/list/clientes', 'list_clientes')->name('/list/clientes');
+    Route::post('/save/cliente', 'save_cliente')->name('/save/cliente');
+    Route::post('/edit/cliente', 'edit_cliente')->name('/edit/cliente');
+    Route::post('/delete/cliente', 'delete_cliente')->name('/delete/cliente');
 });
 
 Route::controller(AdministradorController::class)->group(function () {

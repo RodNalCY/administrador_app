@@ -333,9 +333,9 @@ function registrarEmpleado(data) {
         },
         complete: function () {
             console.log("complete()");
-            // setTimeout(() => {
-            //     location.reload();
-            // }, 1500);
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
         },
         error: function (response) {
             console.log("Error", response);
