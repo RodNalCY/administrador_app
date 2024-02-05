@@ -5,6 +5,16 @@ $(document).ready(function () {
         "<tr><td colspan='12' class='text-center'>No hay productos disponibles.</td></tr>"
     );
     listVentasResumenDetalle();
+    listPresentacionesActivos();
+    listLaboratoriosActivos();
+});
+
+$("#btnBuscarPresentacion").click(function () {
+    $("#mdListPresentaciones").modal("show");
+});
+
+$("#btnBuscarLaboratorio").click(function () {
+    $("#mdListLaboratorios").modal("show");
 });
 
 function listVentasResumenDetalle() {
@@ -81,3 +91,126 @@ function listVentasResumenDetalle() {
         },
     });
 }
+
+function listPresentacionesActivos() {
+    $.ajax({
+        type: "GET",
+        url: "/list/activo/presentaciones",
+        data: {
+            _token: _globa_token_crf,
+        },
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("RDX> ", response);
+            var html_tabla_presentaciones_activos = "";
+
+            response.data.forEach(function (presentacion) {
+                html_tabla_presentaciones_activos =
+                    html_tabla_presentaciones_activos +
+                    "<tr data-id='" +
+                    presentacion.idPresentacion +
+                    "' data-name='" +
+                    presentacion.Descripcion +
+                    "'>" +
+                    "<th class='text-center' scope='row'>" +
+                    presentacion.idPresentacion +
+                    "</th>" +
+                    "<td>" +
+                    presentacion.Descripcion +
+                    "</td>" +
+                    "<td>" +
+                    "   <center>" +
+                    "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
+                    "    </center>" +
+                    "</td>" +
+                    "</tr>";
+            });
+
+            $("#tbl_row_presentaciones").html(html_tabla_presentaciones_activos);
+            $("#tablePresentaciones").DataTable({
+                order: [[0, "desc"]],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                },
+            });
+        },
+        complete: function () {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function listLaboratoriosActivos() {
+    $.ajax({
+        type: "GET",
+        url: "/list/activo/laboratorios",
+        data: {
+            _token: _globa_token_crf,
+        },
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            var html_tabla_laboratorios_activos = "";
+
+            response.data.forEach(function (laboratorio) {
+                html_tabla_laboratorios_activos =
+                    html_tabla_laboratorios_activos +
+                    "<tr data-id='" +
+                    laboratorio.idLaboratorio  +
+                    "' data-name='" +
+                    laboratorio.Nombre +
+                    "'>" +
+                    "<th class='text-center' scope='row'>" +
+                    laboratorio.idLaboratorio  +
+                    "</th>" +
+                    "<td>" +
+                    laboratorio.Nombre +
+                    "</td>" +
+                    "<td>" +
+                    "   <center>" +
+                    "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
+                    "    </center>" +
+                    "</td>" +
+                    "</tr>";
+            });
+
+            $("#tbl_row_laboratorios").html(html_tabla_laboratorios_activos);
+            $("#tableLaboratorios").DataTable({
+                order: [[0, "desc"]],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                },
+            });
+        },
+        complete: function () {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+$("#tablePresentaciones tbody").on("click", "tr", function () {
+    var id = $(this).data("id");
+    var name = $(this).data("name");
+    // Ver los detalles en consola
+    console.log("id > " + id + " name > " + name);
+    // Pintar en los inputs
+    $("#txtProductoIdPresentacion").val(id);
+    $("#txtProductoPresentacion").val(name);
+    // Cerrar Modal
+    $("#mdListPresentaciones").modal("hide");
+});
+
+$("#tableLaboratorios tbody").on("click", "tr", function () {
+    var id = $(this).data("id");
+    var name = $(this).data("name");
+    // Ver los detalles en consola
+    console.log("id > " + id + " name > " + name);
+    // Pintar en los inputs
+    $("#txtProductoIdLaboratorio").val(id);
+    $("#txtProductoLaboratorio").val(name);
+    // Cerrar Modal
+    $("#mdListLaboratorios").modal("hide");
+});

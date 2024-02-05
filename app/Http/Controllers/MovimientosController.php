@@ -57,26 +57,7 @@ class MovimientosController extends Controller
             ], 500);
         }
     }
-
-    public function listProductos()
-    {
-        try {
-
-            $productos = Producto::with(['presentacion', 'laboratorio'])->get();
-
-            return response()->json([
-                'message' => 'lista de productos',
-                'status' => true,
-                'data' => $productos
-            ]);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }    
-
+  
     public function listResumenDiario(Request $request)
     {
 

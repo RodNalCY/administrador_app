@@ -584,4 +584,61 @@ class MantenimientoController extends Controller
         }
     }
 
+    public function list_productos()
+    {
+        try {
+
+            $productos = Producto::with(['presentacion', 'laboratorio'])->get();
+
+            return response()->json([
+                'message' => 'lista de productos',
+                'status' => true,
+                'data' => $productos
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }    
+
+    public function list_activo_presentaciones()
+    {
+        try {
+            $presentaciones = Presentacion::where('Estado', 'Activo')->get();
+
+            return response()->json([
+                'message' => 'lista de presentaciones compartidas',
+                'status' => true,
+                'data' => $presentaciones
+            ]);
+
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }    
+
+    public function list_activo_laboratorios()
+    {
+        try {
+            $laboratorios = Laboratorio::where('Estado', 'Activo')->get();
+
+            return response()->json([
+                'message' => 'lista de laboratorios compartidas',
+                'status' => true,
+                'data' => $laboratorios
+            ]);
+           
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }    
+
 }

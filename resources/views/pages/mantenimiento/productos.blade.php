@@ -17,63 +17,62 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">DESCRIPCIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" id="">
+                        <label class="col-form-label">NOMBRE: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtProductoNombre">
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">CONCENTRACIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" id="">
+                        <input type="text" class="form-control form-control-sm" id="txtProductoConcentracion">
                     </div>
+
+
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">R. SANITARIO: </label>
-                        <input type="text" class="form-control form-control-sm" id="">
+                        <label class="col-form-label">STOCK <code>(cantidad)</code>: </label>
+                        <input type="number" class="form-control form-control-sm" id="txtProductoStock">
                     </div>
 
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">STOCK: </label>
-                        <input type="text" class="form-control form-control-sm" id="">
+                        <label class="col-form-label">COSTO <code>(Compra)</code> :</label>
+                        <input type="number" class="form-control form-control-sm" id="txtProductoCosto">
                     </div>
+
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">VENCIMIENTO: </label>
-                        <input type="date" class="form-control form-control-sm" id="">
+                        <label class="col-form-label">PRECIO <code>(Venta)</code> : </label>
+                        <input type="number" class="form-control form-control-sm" id="txtProductoPrecio">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">PRESENTACIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" readonly>
-                        <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarClientes"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                        <input type="hidden" id="txtProductoIdPresentacion" readonly>
+                        <input type="text" class="form-control form-control-sm" id="txtProductoPresentacion" readonly>
+                        <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarPresentacion"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">LABORATORIO: </label>
-                        <input type="text" class="form-control form-control-sm" readonly>
-                        <button type="button" class="btn btn-primary  btn-sm mt-2" id="btnBuscarClientes"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                        <input type="hidden" id="txtProductoIdLaboratorio" readonly>
+                        <input type="text" class="form-control form-control-sm" id="txtProductoLaboratorio" readonly>
+                        <button type="button" class="btn btn-primary  btn-sm mt-2" id="btnBuscarLaboratorio"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
 
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">COSTO: </label>
-                        <input type="number" class="form-control form-control-sm">
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">REGISTRO SANITARIO: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtProductoRegistroSanitario">
                     </div>
 
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">PRECIO: </label>
-                        <input type="number" class="form-control form-control-sm">
+
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">VENCIMIENTO: </label>
+                        <input type="date" class="form-control form-control-sm" id="txtProductoVencimiento">
                     </div>
 
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">ESTADO: </label>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1"><code style="color: blue;">Activo / Inactivo</code></label>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-success"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
+                        <button type="button" class="btn btn-success" id="btnRegistrarProducto"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
                     </div>
                 </div>
             </div>
@@ -89,22 +88,86 @@
                     <thead class="header-table">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Laboratorio</th>
-                            <th scope="col">Presentación</th>
-                            <th scope="col">Concentración</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Costo</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Registro Sanitario</th>
-                            <th scope="col">Vencimiento</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">DESCRIPCIÓN</th>
+                            <th scope="col">LABORATORIO</th>
+                            <th scope="col">PRESENTACIÓN</th>
+                            <th scope="col">CONCENTRACIÓN</th>
+                            <th scope="col">STOCK</th>
+                            <th scope="col">Costo (Compra)</th>
+                            <th scope="col">Precio (Venta)</th>
+                            <th scope="col">REGISTRO SANITARIO</th>
+                            <th scope="col">VENCIMIENTO</th>
+                            <th scope="col">ESTADO</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tableListProductos">
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------------------------------------------------------------------------------------------->
+<div class="modal fade" id="mdListPresentaciones" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProveedoresLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lista de Presentaciones</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row m-2">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="tablePresentaciones">
+                            <thead class="header-table text-center">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_row_presentaciones">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------------------------------------------------------------------------------------------->
+<div class="modal fade" id="mdListLaboratorios" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProveedoresLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lista de Laboratorios</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row m-2">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered" id="tableLaboratorios">
+                            <thead class="header-table text-center">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbl_row_laboratorios">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>
     </div>
