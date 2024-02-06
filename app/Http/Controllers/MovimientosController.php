@@ -40,13 +40,13 @@ class MovimientosController extends Controller
         return view('pages.movimientos.caja');
     }
 
-    public function listClientes()
+    public function list_activo_clientes()
     {
         try {
-            $clientes = Cliente::orderBy("idCliente", "DESC")->get();
+            $clientes = Cliente::orderBy("idCliente", "DESC")->where('Estado', 'Activo')->get();
 
             return response()->json([
-                'message' => 'lista de clientes',
+                'message' => 'lista de clientes activos',
                 'status' => true,
                 'data' => $clientes
             ]);
@@ -57,7 +57,45 @@ class MovimientosController extends Controller
             ], 500);
         }
     }
-  
+
+    public function list_activo_comprobantes()
+    {
+        try {
+            $comprobantes = Comprobante::where('Estado', 'Activo')->get();
+
+            return response()->json([
+                'message' => 'lista de comprobantes activos',
+                'status' => true,
+                'data' => $comprobantes
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function list_activo_productos()
+    {
+        try {
+            $productos = Producto::with(['presentacion', 'laboratorio'])->where('Estado', 'Activo')->get();
+
+            return response()->json([
+                'message' => 'lista de productos activos',
+                'status' => true,
+                'data' => $productos
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+
+    }
+
+
     public function listResumenDiario(Request $request)
     {
 

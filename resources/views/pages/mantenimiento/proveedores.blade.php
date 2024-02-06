@@ -18,37 +18,37 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRE: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtProvNombre">
+                        <input type="text" class="form-control" id="txtProvNombre">
                     </div>   
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DNI / CARNET: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProvDNI" min="0">
+                        <input type="number" class="form-control" id="txtProvDNI" min="0">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">RUC: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProvRUC" min="0">
+                        <input type="number" class="form-control" id="txtProvRUC" min="0">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DIRECCIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtProvDireccion">
+                        <input type="text" class="form-control" id="txtProvDireccion">
                     </div>                                    
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">EMAIL: </label>
-                        <input type="email" class="form-control form-control-sm" id="txtProvEmail">
+                        <input type="email" class="form-control" id="txtProvEmail">
                     </div>   
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">TELÉFONO: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProvTelefono" min="0">
+                        <input type="number" class="form-control" id="txtProvTelefono" min="0">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">BANCO: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtProvBanco">
+                        <input type="text" class="form-control" id="txtProvBanco">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">CUENTA: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtProvCuenta" min="0">
+                        <input type="number" class="form-control" id="txtProvCuenta" min="0">
                     </div>                                    
                 </div>
                 <div class="row">
@@ -102,35 +102,35 @@
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
                         <input type="hidden" id="txtEditProvId">
-                        <input type="text" class="form-control form-control-sm" id="txtEditProvName">
+                        <input type="text" class="form-control" id="txtEditProvName">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DNI/Carnet : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditProvDNI" min="0">
+                        <input type="number" class="form-control" id="txtEditProvDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">RUC : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditProvRUC" min="0">
+                        <input type="number" class="form-control" id="txtEditProvRUC" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Dirección : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditProvDirc">
+                        <input type="text" class="form-control" id="txtEditProvDirc">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Email : </label>
-                        <input type="email" class="form-control form-control-sm" id="txtEditProvEmail">
+                        <input type="email" class="form-control" id="txtEditProvEmail">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Teléfono : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditProvTele" min="0">
+                        <input type="number" class="form-control" id="txtEditProvTele" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Banco : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditProvBanco">
+                        <input type="text" class="form-control" id="txtEditProvBanco">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">Cuenta : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditProvCuenta" min="0">
+                        <input type="number" class="form-control" id="txtEditProvCuenta" min="0">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">ESTADO: </label>

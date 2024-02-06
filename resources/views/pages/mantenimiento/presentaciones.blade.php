@@ -18,7 +18,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRE: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtPresentacionNombre">
+                        <input type="text" class="form-control" id="txtPresentacionNombre">
                     </div>                  
                 </div>
                 <div class="row">
@@ -64,7 +64,7 @@
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
                         <input type="hidden" id="txtEditIdPre">
-                        <input type="text" class="form-control form-control-sm" id="txtEditNamePre">
+                        <input type="text" class="form-control" id="txtEditNamePre">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">ESTADO: </label>

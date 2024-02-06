@@ -36,16 +36,14 @@ Route::controller(MovimientosController::class)->group(function () {
     Route::get('/movimientos/ventas', 'index_ventas')->name('ventas');
     Route::get('/movimientos/caja', 'index_caja')->name('caja');
 
-    // ROUTES VENTAS
-    Route::get('/list/clientes', 'listClientes')->name('/list/clientes');
-
-    // ROUTES COMPARTIDAS
-   
-
-
     // ROUTES CAJA
     Route::post('/list/resumen/diario', 'listResumenDiario')->name('/list/resumen/diario');
     Route::post('/list/resumen/detalle', 'listResumenDetalle')->name('/list/resumen/detalle');
+
+    // ROUTES COMPARTIDAS
+    Route::get('/list/activo/clientes', 'list_activo_clientes')->name('/list/activo/clientes');
+    Route::get('/list/activo/comprobantes', 'list_activo_comprobantes')->name('/list/activo/comprobantes');
+    Route::get('/list/activo/productos', 'list_activo_productos')->name('/list/activo/productos');
 });
 
 Route::controller(MantenimientoController::class)->group(function () {
@@ -101,7 +99,6 @@ Route::controller(MantenimientoController::class)->group(function () {
     // ROUTES COMPARTIDOS
     Route::get('/list/activo/presentaciones', 'list_activo_presentaciones')->name('/list/activo/presentaciones');
     Route::get('/list/activo/laboratorios', 'list_activo_laboratorios')->name('/list/activo/laboratorios');
-
 });
 
 Route::controller(AdministradorController::class)->group(function () {

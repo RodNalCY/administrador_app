@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtNombreComprobante">
+                        <input type="text" class="form-control" id="txtNombreComprobante">
                     </div>
                 </div>
                 <div class="row">
@@ -70,7 +70,7 @@
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
                         <input type="hidden" id="txtEditIdComprobante">
-                        <input type="text" class="form-control form-control-sm" id="txtEditNombreComprobante" readonly>
+                        <input type="text" class="form-control" id="txtEditNombreComprobante" readonly>
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">ESTADO: </label>

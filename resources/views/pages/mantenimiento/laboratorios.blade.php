@@ -18,17 +18,17 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">NOMBRE: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtLabNombre">
+                        <input type="text" class="form-control" id="txtLabNombre">
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">DIRECCIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtLabDireccion">
+                        <input type="text" class="form-control" id="txtLabDireccion">
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">TELEFONO: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtLabTelefono" min="0">
+                        <input type="number" class="form-control" id="txtLabTelefono" min="0">
                     </div>
                 </div>
                 <div class="row">
@@ -76,15 +76,15 @@
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
                         <input type="hidden" id="txtEditIdLab">
-                        <input type="text" class="form-control form-control-sm" id="txtEditNameLab">
+                        <input type="text" class="form-control" id="txtEditNameLab">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">DIRECCIÓN : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditDirecLab">
+                        <input type="text" class="form-control" id="txtEditDirecLab">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">TELÉFONO : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditTelefLab" min="0">
+                        <input type="number" class="form-control" id="txtEditTelefLab" min="0">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">ESTADO: </label>

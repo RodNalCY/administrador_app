@@ -18,15 +18,15 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DNI: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtClienteDNI" min="0">
+                        <input type="number" class="form-control" id="txtClienteDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRES: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtClienteNombres">
+                        <input type="text" class="form-control" id="txtClienteNombres">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">APELLIDOS: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtClienteApellidos">
+                        <input type="text" class="form-control" id="txtClienteApellidos">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">SEXO: </label>
@@ -37,19 +37,19 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">EMAIL: </label>
-                        <input type="email" class="form-control form-control-sm" id="txtClienteEmail">
+                        <input type="email" class="form-control" id="txtClienteEmail">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">TELEFONO: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtClienteTelefono" min="0">
+                        <input type="number" class="form-control" id="txtClienteTelefono" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DIRECCIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtClienteDireccion">
+                        <input type="text" class="form-control" id="txtClienteDireccion">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">RUC: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtClienteRUC" min="0">
+                        <input type="number" class="form-control" id="txtClienteRUC" min="0">
                     </div>
 
                 </div>
@@ -103,15 +103,15 @@
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DNI : </label>
                         <input type="hidden" id="txtEditCliId">
-                        <input type="number" class="form-control form-control-sm" id="txtEditCliDNI" min="0">
+                        <input type="number" class="form-control" id="txtEditCliDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRES : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditCliName">
+                        <input type="text" class="form-control" id="txtEditCliName">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">APELLIDOS : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditCliApellidos">
+                        <input type="text" class="form-control" id="txtEditCliApellidos">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">SEXO : </label>
@@ -119,19 +119,19 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">EMAIL : </label>
-                        <input type="email" class="form-control form-control-sm" id="txtEditCliEmail">
+                        <input type="email" class="form-control" id="txtEditCliEmail">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">TELÉFONO : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditCliTelef" min="0">
+                        <input type="number" class="form-control" id="txtEditCliTelef" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DIRECCIÓN : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditCliDireccion">
+                        <input type="text" class="form-control" id="txtEditCliDireccion">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">RUC : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditCliRUC" min="0">
+                        <input type="number" class="form-control" id="txtEditCliRUC" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">ESTADO : </label>

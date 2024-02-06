@@ -62,7 +62,7 @@ $("#btnBuscarProducto").click(function () {
 function listClientes() {
     $.ajax({
         type: "GET",
-        url: "/list/clientes",
+        url: "/list/activo/clientes",
         data: {
             _token: _globa_token_crf,
         },
@@ -91,19 +91,19 @@ function listClientes() {
                     cliente.idCliente +
                     "</th>" +
                     "<td>" +
+                    cliente.Dni +
+                    "</td>" +
+                    "<td>" +
                     cliente.Nombres +
                     "</td>" +
                     "<td>" +
                     cliente.Apellidos +
                     "</td>" +
                     "<td>" +
-                    cliente.Dni +
+                    cliente.Sexo +
                     "</td>" +
                     "<td>" +
-                    cliente.Ruc +
-                    "</td>" +
-                    "<td>" +
-                    cliente.Direccion +
+                    cliente.Telefono +
                     "</td>" +
                     "<td><center><button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button></center></td>" +
                     "</tr>";
@@ -130,7 +130,7 @@ function listClientes() {
 function listProductos() {
     $.ajax({
         type: "GET",
-        url: "/list/productos",
+        url: "/list/activo/productos",
         data: {
             _token: _globa_token_crf,
         },
@@ -206,7 +206,7 @@ function listProductos() {
 function listComprobantes() {
     $.ajax({
         type: "GET",
-        url: "/list/comprobantes",
+        url: "/list/activo/comprobantes",
         data: {
             _token: _globa_token_crf,
         },
@@ -231,10 +231,7 @@ function listComprobantes() {
                     "</th>" +
                     "<td>" +
                     comprobante.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    comprobante.Estado +
-                    "</td>" +
+                    "</td>" +                   
                     "<td>" +
                     "   <center>" +
                     "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +

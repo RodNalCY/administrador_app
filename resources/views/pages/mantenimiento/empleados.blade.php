@@ -18,15 +18,15 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">DNI: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEmpleadoDNI" min="0">
+                        <input type="number" class="form-control" id="txtEmpleadoDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRE: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEmpleadoNombre">
+                        <input type="text" class="form-control" id="txtEmpleadoNombre">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">APELLIDOS: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEmpleadoApellidos">
+                        <input type="text" class="form-control" id="txtEmpleadoApellidos">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">SEXO: </label>
@@ -40,27 +40,27 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">EMAIL: </label>
-                        <input type="email" class="form-control form-control-sm" id="txtEmpleadoEmail">
+                        <input type="email" class="form-control" id="txtEmpleadoEmail">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">TELEFONO: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEmpleadoTelefono" min="0">
+                        <input type="number" class="form-control" id="txtEmpleadoTelefono" min="0">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">DIRECCIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEmpleadoDireccion">
+                        <input type="text" class="form-control" id="txtEmpleadoDireccion">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">HORA INGRESO: </label>
-                        <input type="time" class="form-control form-control-sm" id="txtEmpleadoHIngreso">
+                        <input type="time" class="form-control" id="txtEmpleadoHIngreso">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">HORA SALIDA: </label>
-                        <input type="time" class="form-control form-control-sm" id="txtEmpleadoHSalida">
+                        <input type="time" class="form-control" id="txtEmpleadoHSalida">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">SUELDO: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEmpleadoSueldo" min="0">
+                        <input type="number" class="form-control" id="txtEmpleadoSueldo" min="0">
                     </div>
 
                 </div>
@@ -116,16 +116,16 @@
                 <div class="row m-2">
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DNI : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditEmpDNI" min="0">
+                        <input type="number" class="form-control" id="txtEditEmpDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRES : </label>
                         <input type="hidden" id="txtEditEmpId">
-                        <input type="text" class="form-control form-control-sm" id="txtEditEmpName">
+                        <input type="text" class="form-control" id="txtEditEmpName">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">APELLIDOS : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditEmpApellidos">
+                        <input type="text" class="form-control" id="txtEditEmpApellidos">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">SEXO : </label>
@@ -137,27 +137,27 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">EMAIL : </label>
-                        <input type="email" class="form-control form-control-sm" id="txtEditEmpEmail">
+                        <input type="email" class="form-control" id="txtEditEmpEmail">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">TELÉFONO : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditEmpTelef" min="0">
+                        <input type="number" class="form-control" id="txtEditEmpTelef" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">DIRECCIÓN : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditEmpDireccion">
+                        <input type="text" class="form-control" id="txtEditEmpDireccion">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">HORA INGRESO : </label>
-                        <input type="time" class="form-control form-control-sm" id="txtEditEmpHIngreso">
+                        <input type="time" class="form-control" id="txtEditEmpHIngreso">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">HORA SALIDA : </label>
-                        <input type="time" class="form-control form-control-sm" id="txtEditEmpHSalida">
+                        <input type="time" class="form-control" id="txtEditEmpHSalida">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">SUELDO : </label>
-                        <input type="number" class="form-control form-control-sm" id="txtEditEmpSueldo" min="0">
+                        <input type="number" class="form-control" id="txtEditEmpSueldo" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">ESTADO: </label>

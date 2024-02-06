@@ -117,7 +117,7 @@ function listProveedores() {
 function listComprobantes() {
     $.ajax({
         type: "GET",
-        url: "/list/comprobantes",
+        url: "/list/activo/comprobantes",
         data: {
             _token: _globa_token_crf,
         },
@@ -173,7 +173,7 @@ function listComprobantes() {
 function listProductos() {
     $.ajax({
         type: "GET",
-        url: "/list/productos",
+        url: "/list/activo/productos",
         data: {
             _token: _globa_token_crf,
         },
