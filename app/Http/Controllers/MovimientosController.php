@@ -93,7 +93,6 @@ class MovimientosController extends Controller
                 'message' => $ex->getMessage(),
             ], 500);
         }
-
     }
 
 
@@ -152,18 +151,75 @@ class MovimientosController extends Controller
     public function number_ticket_venta()
     {
         try {
-            $ultimoId = Ventas::max('IdVenta');      
-            if($ultimoId !== null){
+            $ultimoId = Ventas::max('IdVenta');
+            if ($ultimoId !== null) {
                 $suma = $ultimoId + 1;
-                $ticket = "FARMA000".$suma;
-            }else{
+                $ticket = "FARMA000" . $suma;
+            } else {
                 $ticket = "FARMA0001";
-            }                 
+            }
 
             return response()->json([
                 'message' => 'GET - Voucher',
                 'status' => true,
                 'data' =>  $ticket
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function save_venta_productos(Request $request)
+    {
+        try {
+
+            $createVenta = new Ventas;
+            $createVenta->Serie = "10001";
+            $createVenta->Numero = $request->_list_details_productos[0]['comprobanteNumero'];
+            $createVenta->Fecha = $request->_list_details_productos[0]['fechaVenta'];
+            $createVenta->VentaTotal = $request->_list_details_productos[0]['ventaTotal'];
+            $createVenta->Descuento = $request->_list_details_productos[0]['descuento'];
+            $createVenta->SubTotal = $request->_list_details_productos[0]['subtotal'];
+            $createVenta->Igv = $request->_list_details_productos[0]['valorIGV'];
+            $createVenta->Total = $request->_list_details_productos[0]['valorTotal'];
+            $createVenta->Estado = $request->_list_details_productos[0]['estado'];
+            $createVenta->idCliente = intval($request->_list_details_productos[0]['clienteId']);
+            $createVenta->idEmpleado = intval($request->_list_details_productos[0]['empleadoId']);
+            $createVenta->idTipoComprobante = intval($request->_list_details_productos[0]['comprobanteId']);
+
+            $status = false;
+            $message = "upps, algo paso no se guardo !";
+            if($createVenta->save()){               
+                $idVenta = $createVenta->IdVenta;
+                
+                foreach ($request->_list_ventas_productos as $dv) {
+                    $detalle = new DetalleVenta;
+                    $detalle->IdVenta = intval($idVenta);
+                    $detalle->idProducto = intval($dv['productoId']);
+                    $detalle->Cantidad = intval($dv['cantidad']);
+                    $detalle->Costo = $dv['costo'];
+                    $detalle->Precio = $dv['precio'];
+                    $detalle->Importe = $dv['total'];
+                    if($detalle->save()){
+                        $producto = Producto::find(intval($dv['productoId']));
+                        $updateStock = $producto->Stock - intval($dv['cantidad']);
+                        $producto->Stock = intval($updateStock);
+                        $producto->update();
+                    }
+                }
+                $status = true;
+                $message = "Se registro correctamente las ventas";
+            }
+
+
+
+            return response()->json([
+                'message' => $message,
+                'status' => $status,
+                'data' => $createVenta,
             ]);
         } catch (\Exception $ex) {
             return response()->json([

@@ -11,7 +11,8 @@ class DetalleVenta extends Model
 
     protected $table = 'detalleventa';
     public $incrementing = false; // Indica que no se espera una clave primaria autoincremental
-
+    public $timestamps = false;
+    
     protected $fillable = [
         'IdVenta',
         'idProducto',

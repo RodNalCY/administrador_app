@@ -16,14 +16,14 @@ $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
     console.log("_global_token_crf > ", _global_token_crf);
     setInterval(fechaAndHora, 1000);
-    
+
     getIdEmpleado();
     getIdVoucher();
 
     listComprobantes();
     listClientes();
     listProductos();
-   
+
     $("#tableListVentas").html(
         "<tr><td colspan='7' class='text-center'>Por favor, ingrese las ventas</td></tr>"
     );
@@ -272,10 +272,9 @@ function getIdEmpleado() {
             _token: _global_token_crf,
         },
         dataType: "json",
-        beforeSend: function (response) {
-        },
+        beforeSend: function (response) {},
         success: function (response) {
-            console.log("RDX> ", response);       
+            console.log("RDX> ", response);
             _global_id_employed = response.data[0].idEmpleado;
         },
         complete: function (response) {},
@@ -293,11 +292,46 @@ function getIdVoucher() {
             _token: _global_token_crf,
         },
         dataType: "json",
-        beforeSend: function (response) {
-        },
+        beforeSend: function (response) {},
         success: function (response) {
-            console.log("RDX> ", response);    
+            console.log("RDX> ", response);
             $("#txtNumComprobante").val(response.data);
+        },
+        complete: function (response) {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function saveVentaProductos(data) {
+    $.ajax({
+        type: "POST",
+        url: "/save/venta/productos",
+        data: data,
+        dataType: "json",
+        beforeSend: function (response) {},
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            if (status) {
+                Swal.fire({
+                    title: "Registrado !",
+                    text: "La venta se realizo correctamente !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se pudo realizar la venta !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
         },
         complete: function (response) {},
         error: function (response) {
@@ -324,7 +358,7 @@ $("#tableClientes tbody").on("click", "tr", function () {
     var dni = $(this).data("dni");
     // Ver los detalles en consola
     console.log("id > " + id + " name > " + name + " dni > " + dni);
-    // Pintar en los inputs    
+    // Pintar en los inputs
     $("#txtIdCliente").val(id);
     $("#txtCliente").val(name);
     $("#txtDNI").val(dni);
@@ -340,7 +374,6 @@ $("#tableProductos tbody").on("click", "tr", function () {
     var concent = $(this).data("concent");
     var present = $(this).data("present");
     var costo = $(this).data("costo");
-    
 
     // Ver los detalles en consola
     console.log(
@@ -379,7 +412,6 @@ $("#txtCantidad").on("change", function () {
 });
 
 $("#btnAgregarVenta").on("click", function () {
-    
     var productoId = $("#txtIdProducto").val().trim();
     var producto = $("#txtNombreProducto").val().trim();
     var descripcion = $("#txtConcentracion").val().trim();
@@ -389,16 +421,15 @@ $("#btnAgregarVenta").on("click", function () {
     var costo = $("#txtCosto").val().trim();
     var total = $("#txtTotal").val().trim();
 
-    
-   
-    
     // Validar si los campos tienen texto
     if (
+        productoId === "" ||
         producto === "" ||
         descripcion === "" ||
         categoria === "" ||
         cantidad === "" ||
         precio === "" ||
+        costo === "" ||
         total === ""
     ) {
         // Al menos uno de los campos está vacío, realiza la lógica de manejo de errores
@@ -418,7 +449,7 @@ $("#btnAgregarVenta").on("click", function () {
         console.log("cantidad:", cantidad);
         console.log("precio:", precio);
         console.log("costo:", costo);
-        console.log("total:", total);       
+        console.log("total:", total);
 
         var miLista = {};
         global_index_ventas = global_index_ventas + 1;
@@ -432,9 +463,8 @@ $("#btnAgregarVenta").on("click", function () {
         miLista["precio"] = precio;
         miLista["costo"] = costo;
         miLista["total"] = total;
-       
-        
-        global_ventas_productos_lista.push(miLista);       
+
+        global_ventas_productos_lista.push(miLista);
         global_sumatoria_total = global_sumatoria_total + parseFloat(total);
         listaVentas();
     }
@@ -474,7 +504,10 @@ function listaVentas() {
     $("#tableListVentas").html(html_tabla_ventas);
     setValores();
     clearForm();
-    console.log("global_ventas_productos_lista > ", global_ventas_productos_lista);
+    console.log(
+        "global_ventas_productos_lista > ",
+        global_ventas_productos_lista
+    );
 }
 // Agrega el evento de clic para la clase .delete-btn
 $(document).on("click", ".delete-btn", function () {
@@ -526,54 +559,101 @@ $("#btnRegistrarVenta").on("click", function () {
     global_ventas_details_lista = [];
 
     var fechaActual = new Date();
-    var fechaFormateada = fechaActual.toISOString().split('T')[0];   
-    
+    var fechaFormateada = fechaActual.toISOString().split("T")[0];
+
     var comprobanteId = $("#txtIdTipoComprobante").val().trim();
     var clienteId = $("#txtIdCliente").val().trim();
     var valorVenta = $("#txtValorVenta").val().trim();
     var descuento = $("#txtValorDescuento").val().trim();
     var subtotal = $("#txtValorSubtotal").val().trim();
     var valorIGV = $("#txtValorIGV").val().trim();
-    var totalPagar = $("#txtTotalPagar").val().trim();
+    var valorTotal = $("#txtTotalPagar").val().trim();
     var ticket = $("#txtNumComprobante").val().trim();
-  
-    var miListaDetails = {};  
-    miListaDetails["clienteId"] = clienteId;
-    miListaDetails["empleadoId"] = _global_id_employed;
-    miListaDetails["comprobanteId"] = comprobanteId;
-    miListaDetails["comprobanteNumero"] = ticket;
-    miListaDetails["fechaVenta"] = fechaFormateada;
-    miListaDetails["ventaTotal"] = valorVenta;
-    miListaDetails["descuento"] = descuento;
-    miListaDetails["subtotal"] = subtotal;
-    miListaDetails["IGV"] = valorIGV;
-    miListaDetails["Total"] = totalPagar;
-    miListaDetails["Estado"] = "EMITIDO";
 
-    global_ventas_details_lista.push(miListaDetails);
+    var camposVacios = [];
 
-    console.log("global_ventas_productos_lista  > ", global_ventas_productos_lista);
-    console.log("global_ventas_details_lista  > ", global_ventas_details_lista);
-    // Swal.fire({
-    //     title: "Procesar Venta !",
-    //     text: "Estas segur@ de finalizar la venta !",
-    //     icon: "warning",
-    //     showCancelButton: true,
-    //     confirmButtonColor: "#3085d6",
-    //     cancelButtonColor: "#d33",
-    //     confirmButtonText: "Si, vender",
-    //     cancelButtonText: "Cancelar",
-    // }).then((result) => {
-    //     if (result.isConfirmed) {
-    //         Swal.fire({
-    //             title: "Venta realizada",
-    //             text: "La venta de realizo correctamente!",
-    //             icon: "success",
-    //             showConfirmButton: false,
-    //             timer: 1500,
-    //         });
+    // Verificar si algún campo está vacío
+    if (comprobanteId === "") {
+        camposVacios.push("Tipo de Comprobante");
+    }
+    if (clienteId === "") {
+        camposVacios.push("Cliente");
+    }
+    if (valorVenta === "") {
+        camposVacios.push("Valor de Venta");
+    }
+    if (descuento === "") {
+        camposVacios.push("Descuento");
+    }
+    if (subtotal === "") {
+        camposVacios.push("Subtotal");
+    }
+    if (valorIGV === "") {
+        camposVacios.push("Valor IGV");
+    }
+    if (valorTotal === "") {
+        camposVacios.push("Valor Total");
+    }
+    if (ticket === "") {
+        camposVacios.push("Número de Comprobante");
+    }
 
-    //         location.reload();
-    //     }
-    // });
+    if (camposVacios.length > 0) {
+        var mensaje =
+            "<span>Debe completar los siguientes campos: </span><br><strong>" + camposVacios.join(",  ")+"</strong>";
+        Swal.fire({
+            title: "Upps!",
+            html: mensaje,
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 3000,
+        });
+    } else {
+        Swal.fire({
+            title: "Registrar Venta !",
+            text: "Estas segur@ de realizar la venta !",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, vender",
+            cancelButtonText: "No, cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var miListaDetails = {};
+                miListaDetails["clienteId"] = clienteId;
+                miListaDetails["empleadoId"] = _global_id_employed;
+                miListaDetails["comprobanteId"] = comprobanteId;
+                miListaDetails["comprobanteNumero"] = ticket;
+                miListaDetails["fechaVenta"] = fechaFormateada;
+                miListaDetails["ventaTotal"] = valorVenta;
+                miListaDetails["descuento"] = descuento;
+                miListaDetails["subtotal"] = subtotal;
+                miListaDetails["valorIGV"] = valorIGV;
+                miListaDetails["valorTotal"] = valorTotal;
+                miListaDetails["estado"] = "EMITIDO";
+
+                global_ventas_details_lista.push(miListaDetails);
+
+                console.log(
+                    "global_ventas_productos_lista  > ",
+                    global_ventas_productos_lista
+                );
+                console.log(
+                    "global_ventas_details_lista  > ",
+                    global_ventas_details_lista
+                );
+
+                var data = {
+                    _token: _global_token_crf,
+                    _list_ventas_productos: global_ventas_productos_lista,
+                    _list_details_productos: global_ventas_details_lista,
+                };
+
+                saveVentaProductos(data);
+            }
+        });
+    }
 });
+
+
