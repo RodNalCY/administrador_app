@@ -7,6 +7,7 @@ use App\Models\Comprobante;
 use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\Proveedor;
+use App\Models\Ventas;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -139,6 +140,30 @@ class MovimientosController extends Controller
                 'message' => 'lista de proveedores',
                 'status' => true,
                 'data' => $ventas_general
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function number_ticket_venta()
+    {
+        try {
+            $ultimoId = Ventas::max('IdVenta');      
+            if($ultimoId !== null){
+                $suma = $ultimoId + 1;
+                $ticket = "FARMA000".$suma;
+            }else{
+                $ticket = "FARMA0001";
+            }                 
+
+            return response()->json([
+                'message' => 'GET - Voucher',
+                'status' => true,
+                'data' =>  $ticket
             ]);
         } catch (\Exception $ex) {
             return response()->json([

@@ -19,27 +19,27 @@
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRES APELLIDOS: </label>
                         <input type="hidden" id="txtEmployeeId" readonly>
-                        <input type="text" class="form-control form-control-sm" id="txtNombresApellidos" readonly>
+                        <input type="text" class="form-control" id="txtNombresApellidos" readonly>
                         <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarEmpleados"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
 
-                    <div class="col-sm-6 col-md-2 mb-2">
+                    <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">EMAIL: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEmail" readonly>
+                        <input type="text" class="form-control" id="txtEmail" readonly>
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">CONTRASEÑA: </label>
-                        <input type="password" class="form-control form-control-sm" id="txtPassword">
+                        <input type="password" class="form-control" id="txtPassword">
                     </div>
 
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">VERIFICAR CONTRASEÑA: </label>
-                        <input type="password" class="form-control form-control-sm" id="txtPasswordVerified">
+                        <input type="password" class="form-control" id="txtPasswordVerified">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">ROLE: </label>
                         <input type="hidden" id="txtRoleId" readonly>
-                        <input type="text" class="form-control form-control-sm" id="txtRole" readonly>
+                        <input type="text" class="form-control" id="txtRole" readonly>
                         <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarRoles"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
                 </div>
@@ -156,21 +156,21 @@
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRES APELLIDOS: </label>
                         <input type="hidden" id="txtEditUserId" readonly>
-                        <input type="text" class="form-control form-control-sm" id="txtEditNombresApellidos" readonly>
+                        <input type="text" class="form-control" id="txtEditNombresApellidos" readonly>
                     </div>
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label class="col-form-label">EMAIL: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditEmail" readonly>
+                        <input type="text" class="form-control" id="txtEditEmail" readonly>
                     </div>
                 </div>
                 <div class="row m-2">
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label class="col-form-label">CONTRASEÑA: </label>
-                        <input type="password" class="form-control form-control-sm" id="txtEditPassword">
+                        <input type="password" class="form-control" id="txtEditPassword">
                     </div>
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label class="col-form-label">VERIFICAR CONTRASEÑA: </label>
-                        <input type="password" class="form-control form-control-sm" id="txtEditVerificarPassword">
+                        <input type="password" class="form-control" id="txtEditVerificarPassword">
                     </div>
                 </div>
                 <div class="row m-2">

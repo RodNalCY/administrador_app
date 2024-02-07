@@ -18,11 +18,11 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtNombrePermiso">
+                        <input type="text" class="form-control" id="txtNombrePermiso">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">TIPO: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtTipoPermiso" value="web" readonly>
+                        <input type="text" class="form-control" id="txtTipoPermiso" value="web" readonly>
                     </div>
                 </div>
                 <div class="row">
@@ -69,11 +69,11 @@
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
                         <input type="hidden" id="txtEditIdPermiso">
-                        <input type="text" class="form-control form-control-sm" id="txtEditNombrePermiso">
+                        <input type="text" class="form-control" id="txtEditNombrePermiso">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">
                         <label class="col-form-label">TIPO: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtEditTipoPermiso" value="web" readonly>
+                        <input type="text" class="form-control" id="txtEditTipoPermiso" value="web" readonly>
                     </div>
                 </div>
             </div>

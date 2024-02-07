@@ -98,24 +98,6 @@ class AdministradorController extends Controller
         }
     }
 
-    public function list_empleados()
-    {
-        try {
-            $empleados = Empleado::all();
-
-            return response()->json([
-                'message' => 'lista de empleados',
-                'status' => true,
-                'data' => $empleados
-            ]);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }
-
     public function save_usuario(Request $request)
     {
         try {

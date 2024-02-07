@@ -1,5 +1,8 @@
-var _globa_token_crf = "";
-var global_ventas_lista = [];
+var _global_token_crf = "";
+var _global_id_employed = "";
+
+var global_ventas_productos_lista = [];
+var global_ventas_details_lista = [];
 var global_index_ventas = 0;
 
 var global_sumatoria_total = 0;
@@ -10,14 +13,17 @@ var global_valor_igv = "";
 var global_valor_total = "";
 
 $(document).ready(function () {
-    _globa_token_crf = document.getElementById("_token").value;
-    console.log("_globa_token_crf > ", _globa_token_crf);
+    _global_token_crf = document.getElementById("_token").value;
+    console.log("_global_token_crf > ", _global_token_crf);
     setInterval(fechaAndHora, 1000);
+    
+    getIdEmpleado();
+    getIdVoucher();
 
     listComprobantes();
     listClientes();
     listProductos();
-
+   
     $("#tableListVentas").html(
         "<tr><td colspan='7' class='text-center'>Por favor, ingrese las ventas</td></tr>"
     );
@@ -64,7 +70,7 @@ function listClientes() {
         type: "GET",
         url: "/list/activo/clientes",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function () {
@@ -132,7 +138,7 @@ function listProductos() {
         type: "GET",
         url: "/list/activo/productos",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function (response) {},
@@ -153,6 +159,8 @@ function listProductos() {
                     producto.Stock +
                     "' data-precioventa='" +
                     producto.Precio_Venta +
+                    "' data-costo='" +
+                    producto.Costo +
                     "' data-concent='" +
                     producto.Concentracion +
                     "' data-present='" +
@@ -208,7 +216,7 @@ function listComprobantes() {
         type: "GET",
         url: "/list/activo/comprobantes",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function (response) {
@@ -231,7 +239,7 @@ function listComprobantes() {
                     "</th>" +
                     "<td>" +
                     comprobante.Descripcion +
-                    "</td>" +                   
+                    "</td>" +
                     "<td>" +
                     "   <center>" +
                     "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
@@ -255,6 +263,48 @@ function listComprobantes() {
         },
     });
 }
+
+function getIdEmpleado() {
+    $.ajax({
+        type: "GET",
+        url: "/session/activo/empleado",
+        data: {
+            _token: _global_token_crf,
+        },
+        dataType: "json",
+        beforeSend: function (response) {
+        },
+        success: function (response) {
+            console.log("RDX> ", response);       
+            _global_id_employed = response.data[0].idEmpleado;
+        },
+        complete: function (response) {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function getIdVoucher() {
+    $.ajax({
+        type: "GET",
+        url: "/number/ticket/venta",
+        data: {
+            _token: _global_token_crf,
+        },
+        dataType: "json",
+        beforeSend: function (response) {
+        },
+        success: function (response) {
+            console.log("RDX> ", response);    
+            $("#txtNumComprobante").val(response.data);
+        },
+        complete: function (response) {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
 // Agregar evento de clic a las filas
 $("#tableComprobantes tbody").on("click", "tr", function () {
     var id = $(this).data("id");
@@ -262,8 +312,8 @@ $("#tableComprobantes tbody").on("click", "tr", function () {
     // Ver los detalles en consola
     console.log("id > " + id + " name > " + name);
     // Pintar en los inputs
+    $("#txtIdTipoComprobante").val(id);
     $("#txtTipoComprobante").val(name);
-    $("#txtNumComprobante").val("G000010");
     // Cerrar Modal
     $("#mdListComprobante").modal("hide");
 });
@@ -274,7 +324,8 @@ $("#tableClientes tbody").on("click", "tr", function () {
     var dni = $(this).data("dni");
     // Ver los detalles en consola
     console.log("id > " + id + " name > " + name + " dni > " + dni);
-    // Pintar en los inputs
+    // Pintar en los inputs    
+    $("#txtIdCliente").val(id);
     $("#txtCliente").val(name);
     $("#txtDNI").val(dni);
     // Cerrar Modal
@@ -288,6 +339,9 @@ $("#tableProductos tbody").on("click", "tr", function () {
     var precio_venta = $(this).data("precioventa");
     var concent = $(this).data("concent");
     var present = $(this).data("present");
+    var costo = $(this).data("costo");
+    
+
     // Ver los detalles en consola
     console.log(
         "id > " +
@@ -302,9 +356,11 @@ $("#tableProductos tbody").on("click", "tr", function () {
             concent
     );
     // Pintar en los inputs
+    $("#txtIdProducto").val(id);
     $("#txtNombreProducto").val(name);
     $("#txtStock").val(stock);
     $("#txtPrecio").val(precio_venta);
+    $("#txtCosto").val(costo);
     $("#txtConcentracion").val(concent);
     $("#txtPresentacion").val(present);
 
@@ -323,12 +379,19 @@ $("#txtCantidad").on("change", function () {
 });
 
 $("#btnAgregarVenta").on("click", function () {
+    
+    var productoId = $("#txtIdProducto").val().trim();
     var producto = $("#txtNombreProducto").val().trim();
     var descripcion = $("#txtConcentracion").val().trim();
     var categoria = $("#txtPresentacion").val().trim();
     var cantidad = $("#txtCantidad").val().trim();
     var precio = $("#txtPrecio").val().trim();
+    var costo = $("#txtCosto").val().trim();
     var total = $("#txtTotal").val().trim();
+
+    
+   
+    
     // Validar si los campos tienen texto
     if (
         producto === "" ||
@@ -348,18 +411,30 @@ $("#btnAgregarVenta").on("click", function () {
         });
     } else {
         // Todos los campos tienen texto, puedes continuar con la lógica principal
+        console.log("productoId:", productoId);
+        console.log("producto:", producto);
+        console.log("descripcion:", descripcion);
+        console.log("categoria:", categoria);
+        console.log("cantidad:", cantidad);
+        console.log("precio:", precio);
+        console.log("costo:", costo);
+        console.log("total:", total);       
+
         var miLista = {};
         global_index_ventas = global_index_ventas + 1;
 
         miLista["id"] = global_index_ventas;
+        miLista["productoId"] = productoId;
         miLista["producto"] = producto;
         miLista["descripcion"] = descripcion;
         miLista["categoria"] = categoria;
         miLista["cantidad"] = cantidad;
         miLista["precio"] = precio;
+        miLista["costo"] = costo;
         miLista["total"] = total;
-
-        global_ventas_lista.push(miLista);
+       
+        
+        global_ventas_productos_lista.push(miLista);       
         global_sumatoria_total = global_sumatoria_total + parseFloat(total);
         listaVentas();
     }
@@ -367,7 +442,7 @@ $("#btnAgregarVenta").on("click", function () {
 
 function listaVentas() {
     var html_tabla_ventas = "";
-    global_ventas_lista.forEach(function (venta) {
+    global_ventas_productos_lista.forEach(function (venta) {
         html_tabla_ventas =
             html_tabla_ventas +
             "<tr>" +
@@ -399,13 +474,13 @@ function listaVentas() {
     $("#tableListVentas").html(html_tabla_ventas);
     setValores();
     clearForm();
-    console.log("global_ventas_lista > ", global_ventas_lista);
+    console.log("global_ventas_productos_lista > ", global_ventas_productos_lista);
 }
 // Agrega el evento de clic para la clase .delete-btn
 $(document).on("click", ".delete-btn", function () {
     var ventaId = $(this).data("id");
     // Encontrar el índice del objeto en la lista con el ID correspondiente
-    var index = global_ventas_lista.findIndex(function (venta) {
+    var index = global_ventas_productos_lista.findIndex(function (venta) {
         // console.log("costo > ", venta.total);
         if (venta.id === ventaId) {
             global_sumatoria_total =
@@ -415,7 +490,7 @@ $(document).on("click", ".delete-btn", function () {
     });
     // Eliminar el objeto de la lista usando el índice
     if (index !== -1) {
-        global_ventas_lista.splice(index, 1);
+        global_ventas_productos_lista.splice(index, 1);
     }
     // Volver a renderizar la tabla con la lista actualizada
     listaVentas();
@@ -425,6 +500,7 @@ function clearForm() {
     $("#txtNombreProducto").val("");
     $("#txtStock").val("");
     $("#txtPrecio").val("");
+    $("#txtCosto").val("");
     $("#txtPresentacion").val("");
     $("#txtConcentracion").val("");
     $("#txtCantidad").val("");
@@ -444,27 +520,60 @@ function setValores() {
     $("#txtValorIGV").val(igv.toFixed(2));
     $("#txtTotalPagar").val(total.toFixed(2));
 }
-$("#btnRegistrarVenta").on("click", function () {
-    Swal.fire({
-        title: "Procesar Venta !",
-        text: "Estas segur@ de finalizar la venta !",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, vender",
-        cancelButtonText: "Cancelar",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                title: "Venta realizada",
-                text: "La venta de realizo correctamente!",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500,
-            });
 
-            location.reload();
-        }
-    });
+$("#btnRegistrarVenta").on("click", function () {
+    console.log("btnRegistrarVenta()");
+    global_ventas_details_lista = [];
+
+    var fechaActual = new Date();
+    var fechaFormateada = fechaActual.toISOString().split('T')[0];   
+    
+    var comprobanteId = $("#txtIdTipoComprobante").val().trim();
+    var clienteId = $("#txtIdCliente").val().trim();
+    var valorVenta = $("#txtValorVenta").val().trim();
+    var descuento = $("#txtValorDescuento").val().trim();
+    var subtotal = $("#txtValorSubtotal").val().trim();
+    var valorIGV = $("#txtValorIGV").val().trim();
+    var totalPagar = $("#txtTotalPagar").val().trim();
+    var ticket = $("#txtNumComprobante").val().trim();
+  
+    var miListaDetails = {};  
+    miListaDetails["clienteId"] = clienteId;
+    miListaDetails["empleadoId"] = _global_id_employed;
+    miListaDetails["comprobanteId"] = comprobanteId;
+    miListaDetails["comprobanteNumero"] = ticket;
+    miListaDetails["fechaVenta"] = fechaFormateada;
+    miListaDetails["ventaTotal"] = valorVenta;
+    miListaDetails["descuento"] = descuento;
+    miListaDetails["subtotal"] = subtotal;
+    miListaDetails["IGV"] = valorIGV;
+    miListaDetails["Total"] = totalPagar;
+    miListaDetails["Estado"] = "EMITIDO";
+
+    global_ventas_details_lista.push(miListaDetails);
+
+    console.log("global_ventas_productos_lista  > ", global_ventas_productos_lista);
+    console.log("global_ventas_details_lista  > ", global_ventas_details_lista);
+    // Swal.fire({
+    //     title: "Procesar Venta !",
+    //     text: "Estas segur@ de finalizar la venta !",
+    //     icon: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#3085d6",
+    //     cancelButtonColor: "#d33",
+    //     confirmButtonText: "Si, vender",
+    //     cancelButtonText: "Cancelar",
+    // }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         Swal.fire({
+    //             title: "Venta realizada",
+    //             text: "La venta de realizo correctamente!",
+    //             icon: "success",
+    //             showConfirmButton: false,
+    //             timer: 1500,
+    //         });
+
+    //         location.reload();
+    //     }
+    // });
 });

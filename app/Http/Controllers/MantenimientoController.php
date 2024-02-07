@@ -10,6 +10,7 @@ use App\Models\Presentacion;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MantenimientoController extends Controller
 {
@@ -679,7 +680,7 @@ class MantenimientoController extends Controller
             $edit->Costo = intval($request->_prodCosto) ?? 0;
             $edit->Precio_Venta = $request->_prodPrecio ?? 0;
             $edit->RegistroSanitario = $request->_prodRegistroSanitario ?? "-";
-            $edit->FechaVencimiento = $request->_prodVencimiento ?? 0;           
+            $edit->FechaVencimiento = $request->_prodVencimiento ?? 0;
             $edit->idPresentacion =  intval($request->_prodIdPresentacion) ?? 0;
             $edit->idLaboratorio = intval($request->_prodIdLaboratorio) ?? 0;
             $edit->Estado = $request->_prodEstado;
@@ -718,4 +719,41 @@ class MantenimientoController extends Controller
             ], 500);
         }
     }
+
+    public function list_activo_empleados()
+    {
+        try {
+            $lista = Empleado::where('Estado', 'Activo')->get();
+
+            return response()->json([
+                'message' => 'lista de empleados activos',
+                'status' => true,
+                'data' => $lista
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function session_activo_empleado()
+    {
+        try {
+            $auth = Auth::user();
+            $employed = Empleado::where('idUsuario', $auth->id)->get();
+
+            return response()->json([
+                'message' => 'GET - Id Empleado',
+                'status' => true,
+                'data' => $employed,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }   
 }

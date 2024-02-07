@@ -44,6 +44,9 @@ Route::controller(MovimientosController::class)->group(function () {
     Route::get('/list/activo/clientes', 'list_activo_clientes')->name('/list/activo/clientes');
     Route::get('/list/activo/comprobantes', 'list_activo_comprobantes')->name('/list/activo/comprobantes');
     Route::get('/list/activo/productos', 'list_activo_productos')->name('/list/activo/productos');
+
+    
+    Route::get('/number/ticket/venta', 'number_ticket_venta')->name('/number/ticket/venta');
 });
 
 Route::controller(MantenimientoController::class)->group(function () {
@@ -99,6 +102,9 @@ Route::controller(MantenimientoController::class)->group(function () {
     // ROUTES COMPARTIDOS
     Route::get('/list/activo/presentaciones', 'list_activo_presentaciones')->name('/list/activo/presentaciones');
     Route::get('/list/activo/laboratorios', 'list_activo_laboratorios')->name('/list/activo/laboratorios');
+    Route::get('/list/activo/empleados', 'list_activo_empleados')->name('/list/activo/empleados');
+    
+    Route::get('/session/activo/empleado', 'session_activo_empleado')->name('/session/activo/empleados');
 });
 
 Route::controller(AdministradorController::class)->group(function () {
@@ -125,6 +131,5 @@ Route::controller(AdministradorController::class)->group(function () {
     Route::post('/edit/permiso', 'edit_permiso')->name('/edit/permiso');
     Route::post('/delete/permiso', 'delete_permiso')->name('/delete/permiso');
 
-    // ROUTES COMPARTIDAS
-    Route::get('/list/empleados', 'list_empleados')->name('/list/empleados');
+    
 });

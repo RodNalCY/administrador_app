@@ -97,7 +97,7 @@ function listUsuariosAll() {
 function listEmpleadosAll() {
     $.ajax({
         type: "GET",
-        url: "/list/empleados",
+        url: "/list/activo/empleados",
         data: {
             _token: _globa_token_crf,
         },

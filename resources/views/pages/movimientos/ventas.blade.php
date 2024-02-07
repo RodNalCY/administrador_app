@@ -15,6 +15,7 @@
 
 @section('content')
 <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
+
 <div class="row">
     <div class="col-md-12 d-flex justify-content-end">
         <p class="mr-2"> </i><strong> <span id="fechaHora"></span></strong> <i class="fas fa-fw fa-calendar"></i></p>
@@ -31,6 +32,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">NOMBRES: </label>
+                        <input type="hidden" id="txtIdCliente" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtCliente" readonly>
                     </div>
 
@@ -59,6 +61,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">TIPO : </label>
+                        <input type="hidden" id="txtIdTipoComprobante" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtTipoComprobante" readonly>
                     </div>
 
@@ -91,6 +94,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">PRODUCTO: </label>
+                        <input type="hidden" id="txtIdProducto" readonly>
                         <input type="text" class="form-control" id="txtNombreProducto" readonly>
                     </div>                    
                     <div class="col-sm-6 col-md-3 mb-2" style="display: none;">
@@ -107,6 +111,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">PRECIO: </label>
+                        <input type="hidden" id="txtCosto" readonly>
                         <input type="text" class="form-control" id="txtPrecio" readonly>
                     </div>
                  
@@ -183,7 +188,7 @@
 
             <div class="col-sm-6 col-md-2 mb-2">
                 <label class="col-form-label">DESCUENTO : </label>
-                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorDescuento">
+                <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorDescuento" readonly>
             </div>
 
             <div class="col-sm-6 col-md-2 mb-2">

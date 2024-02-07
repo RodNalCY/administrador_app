@@ -18,11 +18,11 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">NOMBRE : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtRoleNombre">
+                        <input type="text" class="form-control" id="txtRoleNombre">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">TIPO: </label>
-                        <input type="text" class="form-control form-control-sm" value="web" id="txtRoleTipo" readonly>
+                        <input type="text" class="form-control" value="web" id="txtRoleTipo" readonly>
                     </div>
                 </div>
                 <div class="row">
