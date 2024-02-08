@@ -321,7 +321,7 @@ function saveVentaProductos(data) {
                     text: "La venta se realizo correctamente !",
                     icon: "success",
                     showConfirmButton: false,
-                    timer: 1500,
+                    timer: 2000,
                 });
             } else {
                 Swal.fire({
@@ -329,7 +329,7 @@ function saveVentaProductos(data) {
                     text: "Algo paso, no se pudo realizar la venta !",
                     icon: "error",
                     showConfirmButton: false,
-                    timer: 1500,
+                    timer: 2000,
                 });
             }
         },
@@ -612,7 +612,7 @@ $("#btnRegistrarVenta").on("click", function () {
         });
     } else {
         Swal.fire({
-            title: "Registrar Venta !",
+            title: "Realizar Venta !",
             text: "Estas segur@ de realizar la venta !",
             icon: "warning",
             showCancelButton: true,

@@ -133,7 +133,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">CANTIDAD: </label>
-                        <input type="number" class="form-control" id="txtCantidad" min="0">
+                        <input type="number" class="form-control" id="txtCantidad" min="1">
                     </div>
 
                     <div class="col-sm-12 col-md-4 mb-2">

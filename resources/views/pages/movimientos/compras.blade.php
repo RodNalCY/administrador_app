@@ -22,6 +22,7 @@
                 <div class="row">
                     <div class="col-sm-4 col-md-4 mb-2">
                         <label class="col-form-label">PROVEEDOR:</label>
+                        <input type="hidden" id="txtIdProveedor" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtProveedor" readonly>
                     </div>
 
@@ -50,6 +51,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">TIPO : </label>
+                        <input type="hidden" id="txtIdTipoComprobante" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtTipoComprobante" readonly>
                     </div>
 
@@ -81,23 +83,24 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">PRODUCTO: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtNombreProducto" readonly>
+                        <input type="hidden" id="txtIdProducto" readonly>
+                        <input type="text" class="form-control" id="txtNombreProducto" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2" style="display: none;">
                         <label class="col-form-label">Presentación: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtPresentacion" readonly>
+                        <input type="text" class="form-control" id="txtPresentacion" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">CONCETRACIÓN: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtConcentracion" readonly>
+                        <input type="text" class="form-control" id="txtConcentracion" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">STOCK: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtStock" readonly>
+                        <input type="text" class="form-control" id="txtStock" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">COSTO: </label>
-                        <input type="text" class="form-control form-control-sm" id="txtPrecio" readonly>
+                        <input type="text" class="form-control" id="txtCosto" readonly>
                     </div>
 
                     <div class="col-sm-6 col-md-12">
@@ -119,12 +122,12 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">CANTIDAD: </label>
-                        <input type="number" class="form-control form-control-sm" id="txtCantidad">
+                        <input type="number" class="form-control" id="txtCantidad" min="1">
                     </div>
 
                     <div class="col-sm-12 col-md-4 mb-2">
                         <label class="col-form-label">TOTAL : </label>
-                        <input type="text" class="form-control form-control-sm" id="txtTotal" style="background-color: lightyellow;" readonly>
+                        <input type="text" class="form-control" id="txtTotal" style="background-color: lightyellow;" readonly>
                     </div>
 
                     <div class="col-sm-12 col-md-12">
@@ -182,7 +185,7 @@
             </div>
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
-                <button type="button" class="btn btn-success btn-lg"><i class="fas fa-fw fa-plus"></i> Registrar Compra</button>
+                <button type="button" class="btn btn-success btn-lg" id="btnRegistrarCompra"><i class="fas fa-fw fa-plus"></i> Registrar Compra</button>
             </div>
         </div>
 

@@ -48,9 +48,11 @@ Route::controller(MovimientosController::class)->group(function () {
     // ROUTES VENTAS
     Route::get('/number/ticket/venta', 'number_ticket_venta')->name('/number/ticket/venta');
     Route::post('/save/venta/productos', 'save_venta_productos')->name('/save/venta/productos');
-
     Route::post('/generar/pdf/voucher', 'generar_pdf_voucher')->name('/generar/pdf/voucher');
-    
+
+    // ROUTES COMPRAS
+    Route::get('/number/ticket/compra', 'number_ticket_compra')->name('/number/ticket/compra');
+    Route::post('/save/compra/productos', 'save_compra_productos')->name('/save/compra/productos');
 });
 
 Route::controller(MantenimientoController::class)->group(function () {

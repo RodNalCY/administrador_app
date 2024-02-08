@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Compras;
 use App\Models\Comprobante;
+use App\Models\DetalleCompra;
 use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\Proveedor;
@@ -166,7 +168,7 @@ class MovimientosController extends Controller
             }
 
             return response()->json([
-                'message' => 'GET - Voucher',
+                'message' => 'GET - Voucher Venta',
                 'status' => true,
                 'data' =>  $ticket
             ]);
@@ -283,6 +285,85 @@ class MovimientosController extends Controller
                     'ruta_pdf' => null,
                 ]);
             }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function number_ticket_compra()
+    {
+        try {
+            $ultimoId = Compras::max('IdCompra');
+            if ($ultimoId !== null) {
+                $suma = $ultimoId + 1;
+                $ticket = "COMPRA000" . $suma;
+            } else {
+                $ticket = "COMPRA0001";
+            }
+
+            return response()->json([
+                'message' => 'GET - Voucher Compra',
+                'status' => true,
+                'data' =>  $ticket
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function save_compra_productos(Request $request)
+    {
+        try {
+
+  
+            $createCompra = new Compras;          
+            $createCompra->Numero = $request->_compras_details_lista[0]['comprobanteNumero'];
+            $createCompra->Fecha = $request->_compras_details_lista[0]['fechaCompra'];
+            $createCompra->TipoPago = "-";
+            $createCompra->SubTotal = $request->_compras_details_lista[0]['subtotal'];
+            $createCompra->Total = $request->_compras_details_lista[0]['valorTotal'];            
+            $createCompra->Igv = $request->_compras_details_lista[0]['valorIGV'];
+            $createCompra->Estado = $request->_compras_details_lista[0]['estado'];
+            $createCompra->idProveedor = intval($request->_compras_details_lista[0]['provedorId']);
+            $createCompra->idEmpleado = intval($request->_compras_details_lista[0]['empleadoId']);
+            $createCompra->idTipoComprobante = intval($request->_compras_details_lista[0]['comprobanteId']);
+
+            $status = false;
+            $message = "upps, algo paso no se guardo !";
+            if ($createCompra->save()) {
+                $idCompra = $createCompra->idCompra;
+
+                foreach ($request->_compras_productos_lista as $dc) {
+                    $detalle = new DetalleCompra;
+                    $detalle->idCompra = intval($idCompra);
+                    $detalle->idProducto = intval($dc['productoId']);
+                    $detalle->Cantidad = intval($dc['cantidad']);
+                    $detalle->Costo = $dc['costo'];
+                    $detalle->Importe = $dc['total'];
+                    if ($detalle->save()) {
+                        $producto = Producto::find(intval($dc['productoId']));
+                        $updateStock = $producto->Stock + intval($dc['cantidad']);
+                        $producto->Stock = intval($updateStock);
+                        $producto->update();    
+                    }
+                }
+                $status = true;
+                $message = "Se registro correctamente las ventas";
+            }
+
+
+
+            return response()->json([
+                'message' => $message,
+                'status' => $status,
+                'data' => $createCompra,
+            ]);
         } catch (\Exception $ex) {
             return response()->json([
                 'status' => false,
