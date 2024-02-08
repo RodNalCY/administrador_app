@@ -8,8 +8,14 @@ use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\Ventas;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class MovimientosController extends Controller
 {
@@ -192,9 +198,9 @@ class MovimientosController extends Controller
 
             $status = false;
             $message = "upps, algo paso no se guardo !";
-            if($createVenta->save()){               
+            if ($createVenta->save()) {
                 $idVenta = $createVenta->IdVenta;
-                
+
                 foreach ($request->_list_ventas_productos as $dv) {
                     $detalle = new DetalleVenta;
                     $detalle->IdVenta = intval($idVenta);
@@ -203,7 +209,7 @@ class MovimientosController extends Controller
                     $detalle->Costo = $dv['costo'];
                     $detalle->Precio = $dv['precio'];
                     $detalle->Importe = $dv['total'];
-                    if($detalle->save()){
+                    if ($detalle->save()) {
                         $producto = Producto::find(intval($dv['productoId']));
                         $updateStock = $producto->Stock - intval($dv['cantidad']);
                         $producto->Stock = intval($updateStock);
@@ -228,4 +234,61 @@ class MovimientosController extends Controller
             ], 500);
         }
     }
+
+    public function generar_pdf_voucher(Request $request)
+    {
+        try {
+
+            $options = new Options();
+            $options->set('isHtml5ParserEnabled', true);
+
+            // Crear instancia de dompdf con las opciones
+            $dompdf = new Dompdf($options);
+
+            // Puedes pasar valores a la vista usando el método with()      
+            $datos = ['nombre' => 'Juan', 'monto' => 100];
+
+            // Renderiza la vista con los datos proporcionados
+            $html = view('pages.pdf.voucher')->with($datos)->render();
+
+            // Cargar HTML en dompdf
+            $dompdf->loadHtml($html);
+
+            // Establecer tamaño de hoja como boleta (tamaño estándar)
+            //x inicio, y inicio, ancho final, alto final
+            $dompdf->setPaper([0, 0, 250,  800]);
+
+            // Renderizar PDF
+            $dompdf->render();
+
+            // Obtener el contenido del PDF
+            $pdfContent = $dompdf->output();
+
+            // Nombre de archivo para el PDF
+
+            $fileName = 'voucher_impreso_' . $request->_time . '.pdf';
+
+            // Guardar el contenido del PDF en el disco 'public2'
+            $path = 'downloads/pdf/' . $fileName;
+            $resultado = Storage::disk('public2')->put($fileName, $pdfContent);
+
+            if ($resultado) {
+                return response()->json([
+                    'status' => true,
+                    'ruta_pdf' => $path,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'ruta_pdf' => null,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
 }

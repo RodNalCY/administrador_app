@@ -26,7 +26,6 @@
             <div class="card-header bg-header-purple">
                 DATOS DE LA CLIENTE
                 <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup>
-
             </div>
             <div class="card-body">
                 <div class="row">
@@ -96,7 +95,7 @@
                         <label class="col-form-label">PRODUCTO: </label>
                         <input type="hidden" id="txtIdProducto" readonly>
                         <input type="text" class="form-control" id="txtNombreProducto" readonly>
-                    </div>                    
+                    </div>
                     <div class="col-sm-6 col-md-3 mb-2" style="display: none;">
                         <label class="col-form-label">Presentación: </label>
                         <input type="text" class="form-control" id="txtPresentacion" readonly>
@@ -114,7 +113,7 @@
                         <input type="hidden" id="txtCosto" readonly>
                         <input type="text" class="form-control" id="txtPrecio" readonly>
                     </div>
-                 
+
                     <div class="col-sm-6 col-md-12">
                         <div class="d-flex ">
                             <button type="button" class="btn btn-primary btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
@@ -206,7 +205,9 @@
             </div>
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
-                <button type="button" class="btn btn-success btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
+                <!-- <button type="button" class="btn btn-success btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button> -->
+
+                <button type="button" class="btn btn-success btn-lg" id="btnGenerarVoucher"><i class="fas fa-fw fa-plus"></i> Generar Voucher </button>
             </div>
         </div>
 
@@ -232,7 +233,7 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">DNI</th>
                                     <th scope="col">NOMBRES</th>
-                                    <th scope="col">APELLIDOS</th>                                  
+                                    <th scope="col">APELLIDOS</th>
                                     <th scope="col">SEXO</th>
                                     <th scope="col">Teléfono</th>
                                     <th scope="col">Opciones</th>
@@ -316,6 +317,23 @@
     </div>
 </div>
 
+
+<!----------------------------------------------------------------------------------------------->
+<div class="modal fade" id="mdPDFVoucher" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProductoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Voucher </h5>
+            </div>
+            <div class="modal-body">
+                <embed id="docVoucherPDF" type="application/pdf" width="100%" height="800px" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('css')

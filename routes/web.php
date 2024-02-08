@@ -48,6 +48,8 @@ Route::controller(MovimientosController::class)->group(function () {
     // ROUTES VENTAS
     Route::get('/number/ticket/venta', 'number_ticket_venta')->name('/number/ticket/venta');
     Route::post('/save/venta/productos', 'save_venta_productos')->name('/save/venta/productos');
+
+    Route::post('/generar/pdf/voucher', 'generar_pdf_voucher')->name('/generar/pdf/voucher');
     
 });
 

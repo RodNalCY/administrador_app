@@ -600,7 +600,9 @@ $("#btnRegistrarVenta").on("click", function () {
 
     if (camposVacios.length > 0) {
         var mensaje =
-            "<span>Debe completar los siguientes campos: </span><br><strong>" + camposVacios.join(",  ")+"</strong>";
+            "<span>Debe completar los siguientes campos: </span><br><strong>" +
+            camposVacios.join(",  ") +
+            "</strong>";
         Swal.fire({
             title: "Upps!",
             html: mensaje,
@@ -656,4 +658,61 @@ $("#btnRegistrarVenta").on("click", function () {
     }
 });
 
+$("#btnGenerarVoucher").click(function () {
+    console.log("btnGenerarVoucher()");
+    // Obtener la fecha y hora actual
+    const fechaHoraFormateada = obtenerFechaHoraFormateada();
 
+    $.ajax({
+        type: "POST",
+        url: "/generar/pdf/voucher",
+        data: {
+            _token: _global_token_crf,
+            _time: fechaHoraFormateada,
+        },
+        dataType: "json",
+        beforeSend: function (response) {},
+        success: function (response) {
+            console.log("pdf > ", response);
+            if (response.status) {
+                var urlPdf = response.ruta_pdf;
+                // Obtener el dominio base de la página actual
+                var dominioBase = window.location.origin;
+                // Convertir la URL relativa a una URL absoluta
+                var urlAbsoluta = new URL(urlPdf, dominioBase).href;
+                // Establecer la URL absoluta como el atributo src del elemento
+                $("#docVoucherPDF").attr("src", urlAbsoluta);
+                $("#mdPDFVoucher").modal("show");
+            }else{
+                Swal.fire({
+                    title: "Upps!",
+                    html: "<strong>Error del servidor al generar el voucher !</strong>",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    timer: 3000,
+                });
+            }
+        },
+        complete: function (response) {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+});
+
+function obtenerFechaHoraFormateada() {
+    const fechaHoraActual = new Date();
+
+    // Obtener los componentes de la fecha y hora
+    const dia = String(fechaHoraActual.getDate()).padStart(2, "0");
+    const mes = String(fechaHoraActual.getMonth() + 1).padStart(2, "0"); // Sumar 1 porque enero es 0
+    const año = fechaHoraActual.getFullYear();
+    const horas = String(fechaHoraActual.getHours()).padStart(2, "0");
+    const minutos = String(fechaHoraActual.getMinutes()).padStart(2, "0");
+    const segundos = String(fechaHoraActual.getSeconds()).padStart(2, "0");
+
+    // Construir la cadena de fecha y hora
+    const fechaHoraFormateada = `${dia}_${mes}_${año}_${horas}_${minutos}_${segundos}`;
+
+    return fechaHoraFormateada;
+}
