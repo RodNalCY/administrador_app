@@ -658,48 +658,6 @@ $("#btnRegistrarVenta").on("click", function () {
     }
 });
 
-$("#btnGenerarVoucher").click(function () {
-    console.log("btnGenerarVoucher()");
-    // Obtener la fecha y hora actual
-    const fechaHoraFormateada = obtenerFechaHoraFormateada();
-
-    $.ajax({
-        type: "POST",
-        url: "/generar/pdf/voucher",
-        data: {
-            _token: _global_token_crf,
-            _time: fechaHoraFormateada,
-        },
-        dataType: "json",
-        beforeSend: function (response) {},
-        success: function (response) {
-            console.log("pdf > ", response);
-            if (response.status) {
-                var urlPdf = response.ruta_pdf;
-                // Obtener el dominio base de la página actual
-                var dominioBase = window.location.origin;
-                // Convertir la URL relativa a una URL absoluta
-                var urlAbsoluta = new URL(urlPdf, dominioBase).href;
-                // Establecer la URL absoluta como el atributo src del elemento
-                $("#docVoucherPDF").attr("src", urlAbsoluta);
-                $("#mdPDFVoucher").modal("show");
-            }else{
-                Swal.fire({
-                    title: "Upps!",
-                    html: "<strong>Error del servidor al generar el voucher !</strong>",
-                    icon: "warning",
-                    showConfirmButton: false,
-                    timer: 3000,
-                });
-            }
-        },
-        complete: function (response) {},
-        error: function (response) {
-            console.log("Error", response);
-        },
-    });
-});
-
 function obtenerFechaHoraFormateada() {
     const fechaHoraActual = new Date();
 
@@ -716,3 +674,73 @@ function obtenerFechaHoraFormateada() {
 
     return fechaHoraFormateada;
 }
+
+$("#btnGenerarVoucher").click(function () {
+    console.log("btnGenerarVoucher()");
+    // Obtener la fecha y hora actual
+    const fechaHoraFormateada = obtenerFechaHoraFormateada();
+
+    $.ajax({
+        type: "POST",
+        url: "/generar/pdf/voucher",
+        data: {
+            _token: _global_token_crf,
+            _time: fechaHoraFormateada,
+        },
+        dataType: "json",
+        beforeSend: function (response) {
+            let timerInterval;
+            Swal.fire({
+                title: "Generando PDF",
+                html: "Procesando en : <b></b> milisegundos.",
+                timer: 10000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    const timer = Swal.getPopup().querySelector("b");
+                    let totalTime = 0;
+                    timerInterval = setInterval(() => {
+                        totalTime += 1;
+                        timer.textContent = `${totalTime}`;
+                    }, 100);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                },
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log("I was closed by the timer");
+                }
+            });
+        },
+        success: function (response) {
+            console.log("pdf > ", response);
+            
+            if (response.status) {
+                var urlPdf = response.ruta_pdf;
+                // Obtener el dominio base de la página actual
+                var dominioBase = window.location.origin;
+                // Convertir la URL relativa a una URL absoluta
+                var urlAbsoluta = new URL(urlPdf, dominioBase).href;
+                // Establecer la URL absoluta como el atributo src del elemento
+                $("#docVoucherPDF").attr("src", urlAbsoluta);
+                $("#mdPDFVoucher").modal("show");
+                Swal.close();
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    html: "<strong>Error del servidor al generar el voucher !</strong>",
+                    icon: "warning",
+                    showConfirmButton: false,
+                    timer: 3000,
+                });
+                Swal.close();
+            }
+        },
+        complete: function (response) {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+});

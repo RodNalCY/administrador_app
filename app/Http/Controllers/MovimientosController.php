@@ -10,12 +10,13 @@ use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\Ventas;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
-use Dompdf\Dompdf;
-use Dompdf\Options;
+// use Dompdf\Dompdf;
+// use Dompdf\Options;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
@@ -237,62 +238,6 @@ class MovimientosController extends Controller
         }
     }
 
-    public function generar_pdf_voucher(Request $request)
-    {
-        try {
-
-            $options = new Options();
-            $options->set('isHtml5ParserEnabled', true);
-
-            // Crear instancia de dompdf con las opciones
-            $dompdf = new Dompdf($options);
-
-            // Puedes pasar valores a la vista usando el método with()      
-            $datos = ['nombre' => 'Juan', 'monto' => 100];
-
-            // Renderiza la vista con los datos proporcionados
-            $html = view('pages.pdf.voucher')->with($datos)->render();
-
-            // Cargar HTML en dompdf
-            $dompdf->loadHtml($html);
-
-            // Establecer tamaño de hoja como boleta (tamaño estándar)
-            //x inicio, y inicio, ancho final, alto final
-            $dompdf->setPaper([0, 0, 250,  800]);
-
-            // Renderizar PDF
-            $dompdf->render();
-
-            // Obtener el contenido del PDF
-            $pdfContent = $dompdf->output();
-
-            // Nombre de archivo para el PDF
-
-            $fileName = 'voucher_impreso_' . $request->_time . '.pdf';
-
-            // Guardar el contenido del PDF en el disco 'public2'
-            $path = 'downloads/pdf/' . $fileName;
-            $resultado = Storage::disk('public2')->put($fileName, $pdfContent);
-
-            if ($resultado) {
-                return response()->json([
-                    'status' => true,
-                    'ruta_pdf' => $path,
-                ]);
-            } else {
-                return response()->json([
-                    'status' => false,
-                    'ruta_pdf' => null,
-                ]);
-            }
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }
-
     public function number_ticket_compra()
     {
         try {
@@ -321,13 +266,13 @@ class MovimientosController extends Controller
     {
         try {
 
-  
-            $createCompra = new Compras;          
+
+            $createCompra = new Compras;
             $createCompra->Numero = $request->_compras_details_lista[0]['comprobanteNumero'];
             $createCompra->Fecha = $request->_compras_details_lista[0]['fechaCompra'];
             $createCompra->TipoPago = "-";
             $createCompra->SubTotal = $request->_compras_details_lista[0]['subtotal'];
-            $createCompra->Total = $request->_compras_details_lista[0]['valorTotal'];            
+            $createCompra->Total = $request->_compras_details_lista[0]['valorTotal'];
             $createCompra->Igv = $request->_compras_details_lista[0]['valorIGV'];
             $createCompra->Estado = $request->_compras_details_lista[0]['estado'];
             $createCompra->idProveedor = intval($request->_compras_details_lista[0]['provedorId']);
@@ -350,7 +295,7 @@ class MovimientosController extends Controller
                         $producto = Producto::find(intval($dc['productoId']));
                         $updateStock = $producto->Stock + intval($dc['cantidad']);
                         $producto->Stock = intval($updateStock);
-                        $producto->update();    
+                        $producto->update();
                     }
                 }
                 $status = true;
@@ -372,4 +317,35 @@ class MovimientosController extends Controller
         }
     }
 
+    public function generar_pdf_voucher(Request $request)
+    {
+        try {            // Generar el PDF
+            $pdf = PDF::setPaper([0, 0, 250,  800])->loadView('pages.pdf.voucher', ['titulo' => 'Rodnal']);
+            $pdfContent = $pdf->output();
+
+            // Nombre del archivo y ubicación donde se guardará
+            $fileName = 'voucher_impreso_' . $request->_time . '.pdf';
+            $filePath = 'downloads/pdf/' . $fileName;
+
+            // Guardar el archivo en el disco
+            $resultado =  Storage::disk('public2')->put($fileName, $pdfContent);
+
+            if ($resultado) {
+                return response()->json([
+                    'status' => true,
+                    'ruta_pdf' => $filePath,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'ruta_pdf' => null,
+                ]);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 }
