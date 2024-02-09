@@ -15,7 +15,7 @@ return [
     */
 
     'title' => 'Login',
-    'title_prefix' => 'Farma | ',
+    'title_prefix' => 'DALIFHAR | ',
     'title_postfix' => '',
 
     /*
@@ -63,12 +63,11 @@ return [
     |
     */
 
-    'logo' => '',
-    'logo_img' => '/img/icons/pildora1.png',
-    'logo_img_class' => 'brand-image img-circle elevation-0',
-    'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-lg',
-    'logo_img_alt' => 'Admin Logo',
+    'logo' => null,
+    'logo_img' => '/img/icons/logo-circular.png',
+    'logo_img_class' => 'brand-image img-circle elevation-2',
+    'logo_img_xl_class' => null,
+    'logo_img_alt' => 'LOGO NAVBAR',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,11 +85,10 @@ return [
     'auth_logo' => [
         'enabled' => true,
         'img' => [
-            'path' => '/img/icons/loading.png',
-            'alt' => 'Auth Logo',
-            'class' => '',
-            'width' => 50,
-            'height' => 50,
+            'path' => '/img/icons/logo-circular.png',
+            'alt' => 'LOGO LOGIN',
+            'width' => 150,
+            'height' => 150,
         ],
     ],
 
@@ -109,7 +107,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => '/img/icons/loading.png',
+            'path' => '/img/icons/logo-circular.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 200,
@@ -186,7 +184,7 @@ return [
     'classes_auth_body' => 'bg-gradient-light',
     'classes_auth_footer' => 'text-center',
     'classes_auth_icon' => 'fa-fw text-light',
-    'classes_auth_btn' => 'btn-flat btn-dark',
+    'classes_auth_btn' => 'btn-flat btn-primary',
 
     /*
     |--------------------------------------------------------------------------
