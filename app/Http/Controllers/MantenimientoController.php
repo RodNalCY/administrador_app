@@ -514,9 +514,9 @@ class MantenimientoController extends Controller
             $create->Nombres = $request->_cliNombre;
             $create->Apellidos = $request->_cliApellidos ?? "-";
             $create->Sexo = $request->_cliSexo ?? "-";
-            $create->Dni = $request->_cliDNI ?? 0;
-            $create->Telefono = $request->_cliTelef ?? 0;
-            $create->Ruc = $request->_cliRUC ?? 0;
+            $create->Dni = $request->_cliDNI ?? "-";
+            $create->Telefono = $request->_cliTelef ?? "-";
+            $create->Ruc = $request->_cliRUC ?? "-";
             $create->Email = $request->_cliEmail ?? "-";
             $create->Direccion = $request->_cliDirec ?? "-";
             $create->Estado = "Activo";
@@ -543,9 +543,9 @@ class MantenimientoController extends Controller
             $create->Nombres = $request->_cliNombre;
             $create->Apellidos = $request->_cliApellidos ?? "-";
             $create->Sexo = $request->_cliSexo ?? "-";
-            $create->Dni = $request->_cliDNI ?? 0;
-            $create->Telefono = $request->_cliTelef ?? 0;
-            $create->Ruc = $request->_cliRUC ?? 0;
+            $create->Dni = $request->_cliDNI ?? "-";
+            $create->Telefono = $request->_cliTelef ?? "-";
+            $create->Ruc = $request->_cliRUC ?? "-";
             $create->Email = $request->_cliEmail ?? "-";
             $create->Direccion = $request->_cliDirec ?? "-";
             $create->Estado = $request->_cliEstado;

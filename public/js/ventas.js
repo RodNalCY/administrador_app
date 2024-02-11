@@ -66,6 +66,11 @@ $("#btnBuscarComprobante").click(function () {
 $("#btnBuscarProducto").click(function () {
     $("#mdListProducto").modal("show");
 });
+$("#btnAgregarCliente").click(function () {
+    $("#mdListClientes").modal("hide");
+    $("#mdAgragarCliente").modal("show");
+});
+
 
 function listClientes() {
     $.ajax({
@@ -157,7 +162,86 @@ function listProductos() {
             var html_tabla_productos = "";
 
             response.data.forEach(function (producto) {
-                html_tabla_productos =
+
+                if(producto.Stock == 0  || producto.Stock <= 0 ){
+                    html_tabla_productos =
+                    html_tabla_productos +
+                    "<tr style='background-color: #ff5454; color: white;'>" +
+                    "<th class='text-center' scope='row'>" +
+                    producto.idProducto +
+                    "</th>" +
+                    "<td>" +
+                    producto.Descripcion +
+                    "</td>" +
+                    "<td>" +
+                    producto.laboratorio.Nombre +
+                    "</td>" +
+                    "<td>" +
+                    producto.presentacion.Descripcion +
+                    "</td>" +
+                    "<td>" +
+                    producto.Concentracion +
+                    "</td>" +
+                    "<td>" +
+                    producto.Stock +
+                    "</td>" +
+                    "<td>" +
+                    producto.Precio_Venta +
+                    "</td>" +
+                    "<td>" +
+                    "   <center>" +
+                    "      <button type='button' class='btn btn-danger btn-sm'><i class='fas fa-times'></i></button>" +
+                    "    </center>" +
+                    "</td>" +
+                    "</tr>";
+                }else if(producto.Stock <= 5){
+                    html_tabla_productos =
+                    html_tabla_productos +
+                    "<tr  style='background-color: #ffff6f;'" +
+                    " data-id='" +
+                    producto.idProducto +
+                    "' data-name='" +
+                    producto.Descripcion +
+                    "' data-stock='" +
+                    producto.Stock +
+                    "' data-precioventa='" +
+                    producto.Precio_Venta +
+                    "' data-costo='" +
+                    producto.Costo +
+                    "' data-concent='" +
+                    producto.Concentracion +
+                    "' data-present='" +
+                    producto.presentacion.Descripcion +
+                    "'>" +
+                    "<th class='text-center' scope='row'>" +
+                    producto.idProducto +
+                    "</th>" +
+                    "<td>" +
+                    producto.Descripcion +
+                    "</td>" +
+                    "<td>" +
+                    producto.laboratorio.Nombre +
+                    "</td>" +
+                    "<td>" +
+                    producto.presentacion.Descripcion +
+                    "</td>" +
+                    "<td>" +
+                    producto.Concentracion +
+                    "</td>" +
+                    "<td>" +
+                    producto.Stock +
+                    "</td>" +
+                    "<td>" +
+                    producto.Precio_Venta +
+                    "</td>" +
+                    "<td>" +
+                    "   <center>" +
+                    "      <button type='button' class='btn btn-secondary btn-sm'><i class='fas fa-check'></i></button>" +
+                    "    </center>" +
+                    "</td>" +
+                    "</tr>";
+                } else{
+                    html_tabla_productos =
                     html_tabla_productos +
                     "<tr " +
                     "data-id='" +
@@ -202,6 +286,8 @@ function listProductos() {
                     "    </center>" +
                     "</td>" +
                     "</tr>";
+                }
+               
             });
 
             $("#tbl_row_productos").html(html_tabla_productos);
@@ -637,6 +723,7 @@ $("#btnRegistrarVenta").on("click", function () {
             cancelButtonColor: "#d33",
             confirmButtonText: "Si, vender",
             cancelButtonText: "No, cancelar",
+            allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
                 total_pagar_texto = convertirNumeroATexto(valorTotal);
@@ -716,6 +803,7 @@ function generaVoucherPDF(data) {
                 html: "Procesando en : <b></b> segundos.",
                 timer: 20000,
                 timerProgressBar: true,
+                allowOutsideClick: false,
                 didOpen: () => {
                     Swal.showLoading();
                     const timer = Swal.getPopup().querySelector("b");

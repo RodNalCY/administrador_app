@@ -248,6 +248,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="btnAgregarCliente"><i class="fas fa-plus"></i> Añadir</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>
@@ -319,6 +320,22 @@
     </div>
 </div>
 
+<!----------------------------------------------------------------------------------------------->
+<div class="modal fade" id="mdAgragarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProductoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Añadir Cliente</h5>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!----------------------------------------------------------------------------------------------->
 <div class="modal fade" id="mdPDFVoucher" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProductoLabel" aria-hidden="true">

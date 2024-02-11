@@ -10,6 +10,7 @@ use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\Ventas;
+use App\Models\VentasLog;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Exception;
@@ -344,12 +345,27 @@ class MovimientosController extends Controller
             $resultado =  Storage::disk('public2')->put($fileName, $pdfContent);
 
             if ($resultado) {
-                return response()->json([
-                    'status' => true,
-                    'ruta_pdf' => $filePath,
-                    'height_pdf' => $height,
-                    'total_pagar' =>  $request->_total_pagar_texto,
-                ]);
+
+                $log_venta = new VentasLog;
+                $log_venta->comp_id = $request->_list_details_productos[0]['comprobanteId']; 
+                $log_venta->comp_name = $request->_list_details_productos[0]['comprobanteName']; 
+                $log_venta->fecha_venta = $request->_time; 
+                $log_venta->vendedor_id = $request->_list_details_productos[0]['empleadoId']; 
+                $log_venta->cliente_id = $request->_list_details_productos[0]['clienteId']; 
+                $log_venta->valor_total = $request->_list_details_productos[0]['ventaTotal']; 
+                $log_venta->texto_valor_total = $request->_total_pagar_texto; 
+                $log_venta->ruta_comprobante = $filePath; 
+
+                if($log_venta->save()){
+                    return response()->json([
+                        'status' => true,
+                        'ruta_pdf' => $filePath,
+                        'height_pdf' => $height,
+                        'total_pagar' =>  $request->_total_pagar_texto,
+                    ]);
+                }
+                
+                
             } else {
                 return response()->json([
                     'status' => false,
