@@ -11,6 +11,7 @@ var global_valor_descuento = "";
 var global_valor_sub_total = "";
 var global_valor_igv = "";
 var global_valor_total = "";
+var global_name_comprobante = "";
 
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
@@ -27,6 +28,7 @@ $(document).ready(function () {
     $("#tableListVentas").html(
         "<tr><td colspan='7' class='text-center'>Por favor, ingrese las ventas</td></tr>"
     );
+  
 });
 
 function fechaAndHora() {
@@ -92,12 +94,17 @@ function listClientes() {
                     cliente.Nombres +
                     "' data-dni='" +
                     cliente.Dni +
+                    "' data-ruc='" +
+                    cliente.Ruc +
                     "'>" +
                     "<th class='text-center' scope='row'>" +
                     cliente.idCliente +
                     "</th>" +
                     "<td>" +
                     cliente.Dni +
+                    "</td>" +
+                    "<td>" +
+                    cliente.Ruc +
                     "</td>" +
                     "<td>" +
                     cliente.Nombres +
@@ -305,6 +312,7 @@ function getIdVoucher() {
 }
 
 function saveVentaProductos(data) {
+    console.log("saveVentaProductos() > ", data);
     $.ajax({
         type: "POST",
         url: "/save/venta/productos",
@@ -313,16 +321,10 @@ function saveVentaProductos(data) {
         beforeSend: function (response) {},
         success: function (response) {
             console.log("success()");
-            console.log(response);
+            // console.log(response);
             let status = response.status;
             if (status) {
-                Swal.fire({
-                    title: "Registrado !",
-                    text: "La venta se realizo correctamente !",
-                    icon: "success",
-                    showConfirmButton: false,
-                    timer: 2000,
-                });
+                generaVoucherPDF(data);
             } else {
                 Swal.fire({
                     title: "Upps!",
@@ -356,12 +358,16 @@ $("#tableClientes tbody").on("click", "tr", function () {
     var id = $(this).data("id");
     var name = $(this).data("name");
     var dni = $(this).data("dni");
+    var ruc = $(this).data("ruc");
     // Ver los detalles en consola
-    console.log("id > " + id + " name > " + name + " dni > " + dni);
+    console.log(
+        "id > " + id + " name > " + name + " dni > " + dni + " ruc > " + ruc
+    );
     // Pintar en los inputs
     $("#txtIdCliente").val(id);
     $("#txtCliente").val(name);
     $("#txtDNI").val(dni);
+    $("#txtClienteRUC").val(ruc);
     // Cerrar Modal
     $("#mdListClientes").modal("hide");
 });
@@ -557,12 +563,17 @@ function setValores() {
 $("#btnRegistrarVenta").on("click", function () {
     console.log("btnRegistrarVenta()");
     global_ventas_details_lista = [];
-
+    global_name_comprobante = "";
+    var total_pagar_texto = "";    
     var fechaActual = new Date();
     var fechaFormateada = fechaActual.toISOString().split("T")[0];
 
     var comprobanteId = $("#txtIdTipoComprobante").val().trim();
+    var comprobanteName = $("#txtTipoComprobante").val().trim().toUpperCase();
     var clienteId = $("#txtIdCliente").val().trim();
+    var clienteDNI = $("#txtDNI").val().trim();
+    var clienteRUC = $("#txtClienteRUC").val().trim();
+    var clienteName = $("#txtCliente").val().trim().toUpperCase();
     var valorVenta = $("#txtValorVenta").val().trim();
     var descuento = $("#txtValorDescuento").val().trim();
     var subtotal = $("#txtValorSubtotal").val().trim();
@@ -570,8 +581,10 @@ $("#btnRegistrarVenta").on("click", function () {
     var valorTotal = $("#txtTotalPagar").val().trim();
     var ticket = $("#txtNumComprobante").val().trim();
 
-    var camposVacios = [];
+ 
 
+    var camposVacios = [];
+    global_name_comprobante = comprobanteName;
     // Verificar si algún campo está vacío
     if (comprobanteId === "") {
         camposVacios.push("Tipo de Comprobante");
@@ -622,10 +635,16 @@ $("#btnRegistrarVenta").on("click", function () {
             cancelButtonText: "No, cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
+                total_pagar_texto = convertirNumeroATexto(valorTotal);
+           
                 var miListaDetails = {};
                 miListaDetails["clienteId"] = clienteId;
+                miListaDetails["clienteDNI"] = clienteDNI;
+                miListaDetails["clienteRUC"] = clienteRUC;
+                miListaDetails["clienteName"] = clienteName;
                 miListaDetails["empleadoId"] = _global_id_employed;
                 miListaDetails["comprobanteId"] = comprobanteId;
+                miListaDetails["comprobanteName"] = comprobanteName;
                 miListaDetails["comprobanteNumero"] = ticket;
                 miListaDetails["fechaVenta"] = fechaFormateada;
                 miListaDetails["ventaTotal"] = valorVenta;
@@ -645,11 +664,15 @@ $("#btnRegistrarVenta").on("click", function () {
                     "global_ventas_details_lista  > ",
                     global_ventas_details_lista
                 );
-
+                const fechaHoraFormateada = obtenerFechaHoraFormateada();
+                const total_productos = global_ventas_productos_lista.length;
                 var data = {
                     _token: _global_token_crf,
                     _list_ventas_productos: global_ventas_productos_lista,
                     _list_details_productos: global_ventas_details_lista,
+                    _time: fechaHoraFormateada,
+                    _total_productos: total_productos,
+                    _total_pagar_texto: total_pagar_texto,
                 };
 
                 saveVentaProductos(data);
@@ -670,30 +693,24 @@ function obtenerFechaHoraFormateada() {
     const segundos = String(fechaHoraActual.getSeconds()).padStart(2, "0");
 
     // Construir la cadena de fecha y hora
-    const fechaHoraFormateada = `${dia}_${mes}_${año}_${horas}_${minutos}_${segundos}`;
+    const fechaHoraFormateada = `${dia}/${mes}/${año} ${horas}:${minutos}:${segundos}`;
 
     return fechaHoraFormateada;
 }
 
-$("#btnGenerarVoucher").click(function () {
-    console.log("btnGenerarVoucher()");
-    // Obtener la fecha y hora actual
-    const fechaHoraFormateada = obtenerFechaHoraFormateada();
-
+function generaVoucherPDF(data) {
+    console.log("generaVoucherPDF()");
     $.ajax({
         type: "POST",
         url: "/generar/pdf/voucher",
-        data: {
-            _token: _global_token_crf,
-            _time: fechaHoraFormateada,
-        },
+        data: data,
         dataType: "json",
         beforeSend: function (response) {
             let timerInterval;
             Swal.fire({
-                title: "Generando PDF",
-                html: "Procesando en : <b></b> milisegundos.",
-                timer: 10000,
+                title: "Generando: " + global_name_comprobante + " DE VENTA",
+                html: "Procesando en : <b></b> segundos.",
+                timer: 20000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading();
@@ -702,7 +719,7 @@ $("#btnGenerarVoucher").click(function () {
                     timerInterval = setInterval(() => {
                         totalTime += 1;
                         timer.textContent = `${totalTime}`;
-                    }, 100);
+                    }, 1000);
                 },
                 willClose: () => {
                     clearInterval(timerInterval);
@@ -716,7 +733,7 @@ $("#btnGenerarVoucher").click(function () {
         },
         success: function (response) {
             console.log("pdf > ", response);
-            
+
             if (response.status) {
                 var urlPdf = response.ruta_pdf;
                 // Obtener el dominio base de la página actual
@@ -743,4 +760,150 @@ $("#btnGenerarVoucher").click(function () {
             console.log("Error", response);
         },
     });
-});
+}
+
+function convertirNumeroATexto(numero) {
+    var unidades = ["CERO", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
+    var decenas = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE", "DIECISÉIS", "DIECISIETE", "DIECIOCHO", "DIECINUEVE"];
+    var decenasX = ["VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
+    var centenas = ["CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
+    var miles = ["MIL", "MILLÓN", "MILLONES"];
+
+    function convertirNumeroMenorCien(numero) {
+        if (numero < 10) return unidades[numero];
+        else if (numero < 20) return decenas[numero - 10];
+        else {
+            var decena = Math.floor(numero / 10);
+            var unidad = numero % 10;
+            return decenasX[decena - 2] + (unidad > 0 ? ' Y ' + unidades[unidad] : '');
+        }
+    }
+
+    function convertirNumero(numero) {
+        if (numero === 0) return '';
+        if (numero < 10) return unidades[numero];
+        if (numero < 100) return convertirNumeroMenorCien(numero);
+
+        var resultado = '';
+        if (numero >= 100) {
+            var centena = Math.floor(numero / 100);
+            numero %= 100;
+            if (centena === 1 && numero === 0) resultado = 'CIEN';
+            else resultado = centenas[centena - 1];
+        }
+
+        if (numero > 0) {
+            if (resultado !== '') resultado += ' ';
+            resultado += convertirNumeroMenorCien(numero);
+        }
+
+        return resultado;
+    }
+
+    function convertirNumeroEntero(numero) {
+        if (numero === 0) return 'CERO';
+
+        var resultado = '';
+        var contador = 0;
+
+        while (numero > 0) {
+            var fragmento = numero % 1000;
+            if (fragmento > 0) {
+                var textoFragmento = convertirNumero(fragmento);
+                resultado = textoFragmento + (contador > 0 ? ' ' + miles[contador - 1] : '') + (resultado ? ' ' + resultado : '');
+            }
+            numero = Math.floor(numero / 1000);
+            contador++;
+        }
+
+        return resultado;
+    }
+
+    function convertirDecimales(numero) {
+        var centavo = Math.round(numero * 100);
+        if (centavo === 0) return '';
+        return centavo + "/100";
+    }
+
+    var parteEntera = Math.floor(numero);
+    var parteDecimal = numero - parteEntera;
+
+    var textoEntero = convertirNumeroEntero(parteEntera);
+    var textoDecimal = convertirDecimales(parteDecimal);
+
+    var resultado = textoEntero + (textoDecimal ? ' CON ' + textoDecimal : '');
+    return resultado.toUpperCase();
+}
+
+
+// $("#btnGenerarVoucher").click(function () {
+//     console.log("btnGenerarVoucher()");
+//     // Obtener la fecha y hora actual
+//     const fechaHoraFormateada = obtenerFechaHoraFormateada();
+
+//     $.ajax({
+//         type: "POST",
+//         url: "/generar/pdf/voucher",
+//         data: {
+//             _token: _global_token_crf,
+//             _time: fechaHoraFormateada,
+//         },
+//         dataType: "json",
+//         beforeSend: function (response) {
+//             let timerInterval;
+//             Swal.fire({
+//                 title: "Generando Boleta de Venta",
+//                 html: "Procesando en : <b></b> segundos.",
+//                 timer: 20000,
+//                 timerProgressBar: true,
+//                 didOpen: () => {
+//                     Swal.showLoading();
+//                     const timer = Swal.getPopup().querySelector("b");
+//                     let totalTime = 0;
+//                     timerInterval = setInterval(() => {
+//                         totalTime += 1;
+//                         timer.textContent = `${totalTime}`;
+//                     }, 1000);
+//                 },
+//                 willClose: () => {
+//                     clearInterval(timerInterval);
+//                 },
+//             }).then((result) => {
+//                 /* Read more about handling dismissals below */
+//                 if (result.dismiss === Swal.DismissReason.timer) {
+//                     console.log("I was closed by the timer");
+//                 }
+//             });
+//         },
+//         success: function (response) {
+//             console.log("pdf > ", response);
+
+//             if (response.status) {
+//                 var urlPdf = response.ruta_pdf;
+//                 // Obtener el dominio base de la página actual
+//                 var dominioBase = window.location.origin;
+//                 // Convertir la URL relativa a una URL absoluta
+//                 var urlAbsoluta = new URL(urlPdf, dominioBase).href;
+//                 // Establecer la URL absoluta como el atributo src del elemento
+//                 $("#docVoucherPDF").attr("src", urlAbsoluta);
+//                 $("#mdPDFVoucher").modal("show");
+//                 Swal.close();
+//             } else {
+//                 Swal.fire({
+//                     title: "Upps!",
+//                     html: "<strong>Error del servidor al generar el voucher !</strong>",
+//                     icon: "warning",
+//                     showConfirmButton: false,
+//                     timer: 3000,
+//                 });
+//                 Swal.close();
+//             }
+//         },
+//         complete: function (response) {},
+//         error: function (response) {
+//             console.log("Error", response);
+//         },
+//     });
+// });
+
+

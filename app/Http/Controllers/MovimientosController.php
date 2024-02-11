@@ -302,8 +302,6 @@ class MovimientosController extends Controller
                 $message = "Se registro correctamente las ventas";
             }
 
-
-
             return response()->json([
                 'message' => $message,
                 'status' => $status,
@@ -319,12 +317,27 @@ class MovimientosController extends Controller
 
     public function generar_pdf_voucher(Request $request)
     {
-        try {            // Generar el PDF
-            $pdf = PDF::setPaper([0, 0, 250,  800])->loadView('pages.pdf.voucher', ['titulo' => 'Rodnal']);
+        try {
+            // Generar el PDF x, y, width, heigth
+            // 1 producto 
+            $add_height = 20 * intval($request->_total_productos);
+            $width = 250;
+            $height = 700 + $add_height; //Dinamico - aumenta en 20 por cada producto
+            $pdf = PDF::setPaper([0, 0, $width, $height])->loadView('pages.pdf.voucher', [
+                'detalle' => $request->_list_details_productos[0], 
+                'productos' => $request->_list_ventas_productos,  
+                'fecha_hora' => $request->_time,
+                'total_pagar_texto' => $request->_total_pagar_texto,
+            ]);
+
             $pdfContent = $pdf->output();
 
             // Nombre del archivo y ubicación donde se guardará
-            $fileName = 'voucher_impreso_' . $request->_time . '.pdf';
+            $replace_time = str_replace("/", "_", $request->_time);
+            $replace_time = str_replace(":", "_", $replace_time);
+            $replace_time = str_replace(" ", "_", $replace_time);
+
+            $fileName = 'voucher_impreso_' . $replace_time . '.pdf';
             $filePath = 'downloads/pdf/' . $fileName;
 
             // Guardar el archivo en el disco
@@ -334,6 +347,8 @@ class MovimientosController extends Controller
                 return response()->json([
                     'status' => true,
                     'ruta_pdf' => $filePath,
+                    'height_pdf' => $height,
+                    'total_pagar' =>  $request->_total_pagar_texto,
                 ]);
             } else {
                 return response()->json([

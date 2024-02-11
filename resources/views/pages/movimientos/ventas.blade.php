@@ -37,6 +37,7 @@
 
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">DNI: </label>
+                        <input type="hidden" id="txtClienteRUC" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtDNI" readonly>
                     </div>
 
@@ -205,9 +206,9 @@
             </div>
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
-                <!-- <button type="button" class="btn btn-success btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button> -->
+                <button type="button" class="btn btn-success btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
 
-                <button type="button" class="btn btn-success btn-lg" id="btnGenerarVoucher"><i class="fas fa-fw fa-plus"></i> Generar Voucher </button>
+                <!-- <button type="button" class="btn btn-success btn-lg" id="btnGenerarVoucher"><i class="fas fa-fw fa-plus"></i> Generar Voucher </button> -->
             </div>
         </div>
 
@@ -232,6 +233,7 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">DNI</th>
+                                    <th scope="col">RUC</th>
                                     <th scope="col">NOMBRES</th>
                                     <th scope="col">APELLIDOS</th>
                                     <th scope="col">SEXO</th>
@@ -323,7 +325,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Voucher </h5>
+                <h5 class="modal-title">VOUCHER ELECTRÓNICO</h5>
             </div>
             <div class="modal-body">
                 <embed id="docVoucherPDF" type="application/pdf" width="100%" height="800px" />
