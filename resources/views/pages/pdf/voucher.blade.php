@@ -60,10 +60,8 @@
         <div style="margin-top: 10px;">
             <table style="width: 100%;">
                 <tr>
-                    <td><span class="title">RUC: </span></td>
-                    <td><span class="title-details">20105566229</span></td>
-                    <td><span class="title"> TELEF: </span></td>
-                    <td><span class="title-details"> 987654321 </span></td>
+                    <td colspan="2"><span class="title">RUC:</span><span class="title-details">20105566229</span></td>                   
+                    <td colspan="2" ><span class="title">TELEF:</span><span class="title-details">987654321</span></td>
                 </tr>
                 <tr>
                     <td colspan="4"><span class="title-details">A.A.H.H LA ENCANTADA MZ B LT 4 GRUPO 2 VILLA EL SALVADOR LIMA - PERÚ </span></td>
@@ -89,11 +87,11 @@
                     <td><span class="title-details">{{ $detalle['empleadoId'] }} </span></td>
                 </tr>
                 <tr>
-                    <td colspan="1"><span class="title">RUC: </span></td>
+                    <td colspan="1"><span class="title">RUC/DNI: </span></td>
                     <td colspan="3"><span class="title-details">{{ $detalle['clienteRUC'] }} </span></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><span class="title">RAZÓN SOCIAL:  </span></td>
+                    <td colspan="2"><span class="title">CLIENTE:  </span></td>
                 </tr>
                 <tr>
                     <td colspan="4"><span class="title-details">{{ $detalle['clienteName'] }}</span></td>

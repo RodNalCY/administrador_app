@@ -92,6 +92,8 @@ function listClientes() {
                     cliente.idCliente +
                     "' data-name='" +
                     cliente.Nombres +
+                    "' data-apellidos='" +
+                    cliente.Apellidos +
                     "' data-dni='" +
                     cliente.Dni +
                     "' data-ruc='" +
@@ -357,15 +359,17 @@ $("#tableComprobantes tbody").on("click", "tr", function () {
 $("#tableClientes tbody").on("click", "tr", function () {
     var id = $(this).data("id");
     var name = $(this).data("name");
+    var apellidos = $(this).data("apellidos");
     var dni = $(this).data("dni");
-    var ruc = $(this).data("ruc");
+    var ruc = $(this).data("ruc"); 
     // Ver los detalles en consola
     console.log(
-        "id > " + id + " name > " + name + " dni > " + dni + " ruc > " + ruc
+        "id > " + id + " name > " + name + " "+apellidos+"  dni > " + dni + " ruc > " + ruc
     );
     // Pintar en los inputs
+    var cliente = name + " "+apellidos;
     $("#txtIdCliente").val(id);
-    $("#txtCliente").val(name);
+    $("#txtCliente").val(cliente);
     $("#txtDNI").val(dni);
     $("#txtClienteRUC").val(ruc);
     // Cerrar Modal

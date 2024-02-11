@@ -30,7 +30,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">NOMBRES: </label>
+                        <label class="col-form-label">CLIENTE: </label>
                         <input type="hidden" id="txtIdCliente" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtCliente" readonly>
                     </div>
