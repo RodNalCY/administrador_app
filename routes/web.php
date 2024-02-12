@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\GestionController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -143,4 +144,10 @@ Route::controller(AdministradorController::class)->group(function () {
     Route::post('/save/permiso', 'save_permiso')->name('/save/permiso');
     Route::post('/edit/permiso', 'edit_permiso')->name('/edit/permiso');
     Route::post('/delete/permiso', 'delete_permiso')->name('/delete/permiso');
+});
+
+Route::controller(GestionController::class)->group(function () {
+    Route::get('/gestion/ventas', 'index_gestion_ventas')->name('/gestion/ventas');
+    // ROUTES CONSULTAR VENTAS
+    Route::get('/list/gestion/ventas', 'list_gestion_ventas')->name('/list/gestion/ventas');
 });

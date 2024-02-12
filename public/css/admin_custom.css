@@ -11,7 +11,7 @@
 }
 
 .header-table {
-    background:rgb(55 98 255) !important;
+    background: rgb(55 98 255) !important;
     border-color: rgb(55 98 255) !important;
     color: #fff;
 }
@@ -22,27 +22,31 @@
     margin-left: 3px;
 }
 
-.bg-header-purple{
-    background:#2738F5 !important;
-    border-color: #2738F5 !important;
+.bg-header-purple {
+    background: #2738f5 !important;
+    border-color: #2738f5 !important;
     color: #fff !important;
 }
 
 .btn-purple {
     color: #fff;
-    background:rgb(55 98 255) !important;
+    background: rgb(55 98 255) !important;
     border-color: rgb(55 98 255) !important;
     box-shadow: none;
 }
 
 .btn-purple:hover {
     color: #fff;
-   
-   /* transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+    /* transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     background:  linear-gradient(45deg, rgb(55 98 255) 0%, rgb(94 54 255) 30%, rgb(145 0 255) 160%);*/
 }
 
-
 [class*="sidebar-dark-"] {
     background-color: #080f22 !important;
-  }
+}
+
+
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover{
+    color: #fff;
+}

@@ -14,6 +14,7 @@ class VentasLog extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'comp_id',
+        'ventas_id',
         'comp_name',
         'fecha_venta',
         'vendedor_id',
