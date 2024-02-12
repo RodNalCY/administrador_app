@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 
     protected $table = 'cliente';
     protected $primaryKey = 'idCliente'; 
@@ -23,6 +22,9 @@ class Cliente extends Model
         'Email', 
         'Direccion', 
         'Estado',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
 }

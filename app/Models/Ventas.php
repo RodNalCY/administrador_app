@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Ventas extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 
     protected $table = 'ventas';
     protected $primaryKey = 'IdVenta'; 
@@ -26,5 +25,8 @@ class Ventas extends Model
         'idCliente ',
         'idEmpleado',
         'idTipoComprobante',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 }

@@ -20,16 +20,16 @@
                         <table class="table table-hover table-bordered" id="tableGestionVentas">
                             <thead class="header-table">
                                 <tr>
-                                    <th scope="col">OPCIONES</th>
                                     <th scope="col">ID</th>
-                                    <th scope="col">NUMERO</th>
+                                    <th scope="col">NUMERO</th>                                    
                                     <th scope="col">COMPROBANTE</th>
-                                    <th scope="col">CLIENTE</th>
                                     <th scope="col">EMPLEADO</th>
+                                    <th scope="col">CLIENTE</th>
                                     <th scope="col">VALOR TOTAL</th>
-                                    <th scope="col">TEXTO DE VALOR TOTAL</th>
-                                    <th scope="col">DOCUMENTO</th>
+                                    <th scope="col">VALOR TOTAL TEXTO</th>
+                                    <th scope="col">RUTA COMPROBANTE</th>
                                     <th scope="col">FECHA</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tableListGestionVentas">

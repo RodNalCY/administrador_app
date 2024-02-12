@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Proveedor extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 
     protected $table = 'proveedor';
     protected $primaryKey = 'IdProveedor'; 
@@ -23,5 +22,8 @@ class Proveedor extends Model
         'Banco', 
         'Cuenta', 
         'Estado', 
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 }

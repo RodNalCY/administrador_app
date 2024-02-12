@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Laboratorio extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 
     protected $table = 'laboratorio';
     protected $primaryKey = 'idLaboratorio';     
@@ -18,6 +17,9 @@ class Laboratorio extends Model
         'Direccion', 
         'Telefono', 
         'Estado', 
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
 }

@@ -9,7 +9,6 @@ class Empleado extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
     protected $table = 'empleado';
     protected $primaryKey = 'idEmpleado'; 
     protected $guarded = ['idEmpleado'];
@@ -27,6 +26,9 @@ class Empleado extends Model
         'Sueldo',
         'Estado', 
         'idUsuario ', 
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
 }

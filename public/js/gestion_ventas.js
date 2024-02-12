@@ -31,13 +31,13 @@ function listGestionVentas() {
                     gv.Numero +
                     "</td>" +
                     "<td>" +
+                    gv.comp_name +
+                    "</td>" +
+                    "<td>" +
                     gv.empleado +
                     "</td>" +
                     "<td>" +
                     gv.cliente +
-                    "</td>" +
-                    "<td>" +
-                    gv.comp_name +
                     "</td>" +
                     "<td>" +
                     gv.valor_total +
@@ -45,8 +45,10 @@ function listGestionVentas() {
                     "<td>" +
                     gv.texto_valor_total +
                     "</td>" +
-                    "<td>" +
-                    gv.ruta_comprobante +
+                    "<td>"+
+                    "<a href='#'>" +
+                    "../"+gv.ruta_comprobante +
+                    "</a>"+
                     "</td>" +
                     "<td>" +
                     gv.fecha_venta +
