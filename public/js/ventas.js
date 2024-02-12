@@ -12,6 +12,7 @@ var global_valor_sub_total = "";
 var global_valor_igv = "";
 var global_valor_total = "";
 var global_name_comprobante = "";
+var globalListaDetails = {};
 
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
@@ -28,7 +29,6 @@ $(document).ready(function () {
     $("#tableListVentas").html(
         "<tr><td colspan='7' class='text-center'>Por favor, ingrese las ventas</td></tr>"
     );
-  
 });
 
 function fechaAndHora() {
@@ -75,7 +75,6 @@ $("#btnAgregarCliente").click(function () {
 $("#btnFinalizarVenta").click(function () {
     location.reload();
 });
-
 
 $("#btnRegistrarCliente").click(function () {
     var cliDNI = $("#txtClienteDNI").val().trim();
@@ -149,10 +148,10 @@ function listClientes() {
             var html_tabla_clientes = "";
 
             var html_select_sexo_options =
-            "<select class='form-control' id='selectSexoCliente'>" +
-            "<option value='M'>Masculino</option>" +
-            "<option value='F'>Femenino</option>" +
-            "</select>";
+                "<select class='form-control' id='selectSexoCliente'>" +
+                "<option value='M'>Masculino</option>" +
+                "<option value='F'>Femenino</option>" +
+                "</select>";
 
             response.data.forEach(function (cliente) {
                 // console.log(cliente.Email);
@@ -227,132 +226,130 @@ function listProductos() {
             var html_tabla_productos = "";
 
             response.data.forEach(function (producto) {
-
-                if(producto.Stock == 0  || producto.Stock <= 0 ){
+                if (producto.Stock == 0 || producto.Stock <= 0) {
                     html_tabla_productos =
-                    html_tabla_productos +
-                    "<tr style='background-color: #ff5454; color: white;'>" +
-                    "<th class='text-center' scope='row'>" +
-                    producto.idProducto +
-                    "</th>" +
-                    "<td>" +
-                    producto.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    producto.laboratorio.Nombre +
-                    "</td>" +
-                    "<td>" +
-                    producto.presentacion.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    producto.Concentracion +
-                    "</td>" +
-                    "<td>" +
-                    producto.Stock +
-                    "</td>" +
-                    "<td>" +
-                    producto.Precio_Venta +
-                    "</td>" +
-                    "<td>" +
-                    "   <center>" +
-                    "      <button type='button' class='btn btn-danger btn-sm'><i class='fas fa-times'></i></button>" +
-                    "    </center>" +
-                    "</td>" +
-                    "</tr>";
-                }else if(producto.Stock <= 5){
+                        html_tabla_productos +
+                        "<tr style='background-color: #ff5454; color: white;'>" +
+                        "<th class='text-center' scope='row'>" +
+                        producto.idProducto +
+                        "</th>" +
+                        "<td>" +
+                        producto.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.laboratorio.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        producto.presentacion.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.Concentracion +
+                        "</td>" +
+                        "<td>" +
+                        producto.Stock +
+                        "</td>" +
+                        "<td>" +
+                        producto.Precio_Venta +
+                        "</td>" +
+                        "<td>" +
+                        "   <center>" +
+                        "      <button type='button' class='btn btn-danger btn-sm'><i class='fas fa-times'></i></button>" +
+                        "    </center>" +
+                        "</td>" +
+                        "</tr>";
+                } else if (producto.Stock <= 5) {
                     html_tabla_productos =
-                    html_tabla_productos +
-                    "<tr  style='background-color: #ffff6f;'" +
-                    " data-id='" +
-                    producto.idProducto +
-                    "' data-name='" +
-                    producto.Descripcion +
-                    "' data-stock='" +
-                    producto.Stock +
-                    "' data-precioventa='" +
-                    producto.Precio_Venta +
-                    "' data-costo='" +
-                    producto.Costo +
-                    "' data-concent='" +
-                    producto.Concentracion +
-                    "' data-present='" +
-                    producto.presentacion.Descripcion +
-                    "'>" +
-                    "<th class='text-center' scope='row'>" +
-                    producto.idProducto +
-                    "</th>" +
-                    "<td>" +
-                    producto.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    producto.laboratorio.Nombre +
-                    "</td>" +
-                    "<td>" +
-                    producto.presentacion.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    producto.Concentracion +
-                    "</td>" +
-                    "<td>" +
-                    producto.Stock +
-                    "</td>" +
-                    "<td>" +
-                    producto.Precio_Venta +
-                    "</td>" +
-                    "<td>" +
-                    "   <center>" +
-                    "      <button type='button' class='btn btn-secondary btn-sm'><i class='fas fa-check'></i></button>" +
-                    "    </center>" +
-                    "</td>" +
-                    "</tr>";
-                } else{
+                        html_tabla_productos +
+                        "<tr  style='background-color: #ffff6f;'" +
+                        " data-id='" +
+                        producto.idProducto +
+                        "' data-name='" +
+                        producto.Descripcion +
+                        "' data-stock='" +
+                        producto.Stock +
+                        "' data-precioventa='" +
+                        producto.Precio_Venta +
+                        "' data-costo='" +
+                        producto.Costo +
+                        "' data-concent='" +
+                        producto.Concentracion +
+                        "' data-present='" +
+                        producto.presentacion.Descripcion +
+                        "'>" +
+                        "<th class='text-center' scope='row'>" +
+                        producto.idProducto +
+                        "</th>" +
+                        "<td>" +
+                        producto.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.laboratorio.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        producto.presentacion.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.Concentracion +
+                        "</td>" +
+                        "<td>" +
+                        producto.Stock +
+                        "</td>" +
+                        "<td>" +
+                        producto.Precio_Venta +
+                        "</td>" +
+                        "<td>" +
+                        "   <center>" +
+                        "      <button type='button' class='btn btn-secondary btn-sm'><i class='fas fa-check'></i></button>" +
+                        "    </center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
                     html_tabla_productos =
-                    html_tabla_productos +
-                    "<tr " +
-                    "data-id='" +
-                    producto.idProducto +
-                    "' data-name='" +
-                    producto.Descripcion +
-                    "' data-stock='" +
-                    producto.Stock +
-                    "' data-precioventa='" +
-                    producto.Precio_Venta +
-                    "' data-costo='" +
-                    producto.Costo +
-                    "' data-concent='" +
-                    producto.Concentracion +
-                    "' data-present='" +
-                    producto.presentacion.Descripcion +
-                    "'>" +
-                    "<th class='text-center' scope='row'>" +
-                    producto.idProducto +
-                    "</th>" +
-                    "<td>" +
-                    producto.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    producto.laboratorio.Nombre +
-                    "</td>" +
-                    "<td>" +
-                    producto.presentacion.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    producto.Concentracion +
-                    "</td>" +
-                    "<td>" +
-                    producto.Stock +
-                    "</td>" +
-                    "<td>" +
-                    producto.Precio_Venta +
-                    "</td>" +
-                    "<td>" +
-                    "   <center>" +
-                    "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
-                    "    </center>" +
-                    "</td>" +
-                    "</tr>";
+                        html_tabla_productos +
+                        "<tr " +
+                        "data-id='" +
+                        producto.idProducto +
+                        "' data-name='" +
+                        producto.Descripcion +
+                        "' data-stock='" +
+                        producto.Stock +
+                        "' data-precioventa='" +
+                        producto.Precio_Venta +
+                        "' data-costo='" +
+                        producto.Costo +
+                        "' data-concent='" +
+                        producto.Concentracion +
+                        "' data-present='" +
+                        producto.presentacion.Descripcion +
+                        "'>" +
+                        "<th class='text-center' scope='row'>" +
+                        producto.idProducto +
+                        "</th>" +
+                        "<td>" +
+                        producto.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.laboratorio.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        producto.presentacion.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.Concentracion +
+                        "</td>" +
+                        "<td>" +
+                        producto.Stock +
+                        "</td>" +
+                        "<td>" +
+                        producto.Precio_Venta +
+                        "</td>" +
+                        "<td>" +
+                        "   <center>" +
+                        "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
+                        "    </center>" +
+                        "</td>" +
+                        "</tr>";
                 }
-               
             });
 
             $("#tbl_row_productos").html(html_tabla_productos);
@@ -474,10 +471,14 @@ function saveVentaProductos(data) {
         beforeSend: function (response) {},
         success: function (response) {
             console.log("success()");
-            // console.log(response);
+            var response_id_venta = 0;
             let status = response.status;
+
             if (status) {
-                generaVoucherPDF(data);
+                response_id_venta = response.data.IdVenta;
+                globalListaDetails["ventaId"] = response_id_venta;
+
+                generaVoucherPDF(data, response_id_venta);
             } else {
                 Swal.fire({
                     title: "Upps!",
@@ -512,13 +513,22 @@ $("#tableClientes tbody").on("click", "tr", function () {
     var name = $(this).data("name");
     var apellidos = $(this).data("apellidos");
     var dni = $(this).data("dni");
-    var ruc = $(this).data("ruc"); 
+    var ruc = $(this).data("ruc");
     // Ver los detalles en consola
     console.log(
-        "id > " + id + " name > " + name + " "+apellidos+"  dni > " + dni + " ruc > " + ruc
+        "id > " +
+            id +
+            " name > " +
+            name +
+            " " +
+            apellidos +
+            "  dni > " +
+            dni +
+            " ruc > " +
+            ruc
     );
     // Pintar en los inputs
-    var cliente = name + " "+apellidos;
+    var cliente = name + " " + apellidos;
     $("#txtIdCliente").val(id);
     $("#txtCliente").val(cliente);
     $("#txtDNI").val(dni);
@@ -719,7 +729,7 @@ $("#btnRegistrarVenta").on("click", function () {
     console.log("btnRegistrarVenta()");
     global_ventas_details_lista = [];
     global_name_comprobante = "";
-    var total_pagar_texto = "";    
+    var total_pagar_texto = "";
     var fechaActual = new Date();
     var fechaFormateada = fechaActual.toISOString().split("T")[0];
 
@@ -735,8 +745,6 @@ $("#btnRegistrarVenta").on("click", function () {
     var valorIGV = $("#txtValorIGV").val().trim();
     var valorTotal = $("#txtTotalPagar").val().trim();
     var ticket = $("#txtNumComprobante").val().trim();
-
- 
 
     var camposVacios = [];
     global_name_comprobante = comprobanteName;
@@ -788,29 +796,29 @@ $("#btnRegistrarVenta").on("click", function () {
             cancelButtonColor: "#d33",
             confirmButtonText: "Si, vender",
             cancelButtonText: "No, cancelar",
-            allowOutsideClick: false
+            allowOutsideClick: false,
         }).then((result) => {
             if (result.isConfirmed) {
                 total_pagar_texto = convertirNumeroATexto(valorTotal);
-           
-                var miListaDetails = {};
-                miListaDetails["clienteId"] = clienteId;
-                miListaDetails["clienteDNI"] = clienteDNI;
-                miListaDetails["clienteRUC"] = clienteRUC;
-                miListaDetails["clienteName"] = clienteName;
-                miListaDetails["empleadoId"] = _global_id_employed;
-                miListaDetails["comprobanteId"] = comprobanteId;
-                miListaDetails["comprobanteName"] = comprobanteName;
-                miListaDetails["comprobanteNumero"] = ticket;
-                miListaDetails["fechaVenta"] = fechaFormateada;
-                miListaDetails["ventaTotal"] = valorVenta;
-                miListaDetails["descuento"] = descuento;
-                miListaDetails["subtotal"] = subtotal;
-                miListaDetails["valorIGV"] = valorIGV;
-                miListaDetails["valorTotal"] = valorTotal;
-                miListaDetails["estado"] = "EMITIDO";
 
-                global_ventas_details_lista.push(miListaDetails);
+                globalListaDetails = {};
+                globalListaDetails["clienteId"] = clienteId;
+                globalListaDetails["clienteDNI"] = clienteDNI;
+                globalListaDetails["clienteRUC"] = clienteRUC;
+                globalListaDetails["clienteName"] = clienteName;
+                globalListaDetails["empleadoId"] = _global_id_employed;
+                globalListaDetails["comprobanteId"] = comprobanteId;
+                globalListaDetails["comprobanteName"] = comprobanteName;
+                globalListaDetails["comprobanteNumero"] = ticket;
+                globalListaDetails["fechaVenta"] = fechaFormateada;
+                globalListaDetails["ventaTotal"] = valorVenta;
+                globalListaDetails["descuento"] = descuento;
+                globalListaDetails["subtotal"] = subtotal;
+                globalListaDetails["valorIGV"] = valorIGV;
+                globalListaDetails["valorTotal"] = valorTotal;
+                globalListaDetails["estado"] = "EMITIDO";
+
+                global_ventas_details_lista.push(globalListaDetails);
 
                 console.log(
                     "global_ventas_productos_lista  > ",
@@ -856,6 +864,7 @@ function obtenerFechaHoraFormateada() {
 
 function generaVoucherPDF(data) {
     console.log("generaVoucherPDF()");
+
     $.ajax({
         type: "POST",
         url: "/generar/pdf/voucher",
@@ -920,10 +929,51 @@ function generaVoucherPDF(data) {
 }
 
 function convertirNumeroATexto(numero) {
-    var unidades = ["CERO", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"];
-    var decenas = ["DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE", "DIECISÉIS", "DIECISIETE", "DIECIOCHO", "DIECINUEVE"];
-    var decenasX = ["VEINTE", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"];
-    var centenas = ["CIENTO", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"];
+    var unidades = [
+        "CERO",
+        "UNO",
+        "DOS",
+        "TRES",
+        "CUATRO",
+        "CINCO",
+        "SEIS",
+        "SIETE",
+        "OCHO",
+        "NUEVE",
+    ];
+    var decenas = [
+        "DIEZ",
+        "ONCE",
+        "DOCE",
+        "TRECE",
+        "CATORCE",
+        "QUINCE",
+        "DIECISÉIS",
+        "DIECISIETE",
+        "DIECIOCHO",
+        "DIECINUEVE",
+    ];
+    var decenasX = [
+        "VEINTE",
+        "TREINTA",
+        "CUARENTA",
+        "CINCUENTA",
+        "SESENTA",
+        "SETENTA",
+        "OCHENTA",
+        "NOVENTA",
+    ];
+    var centenas = [
+        "CIENTO",
+        "DOSCIENTOS",
+        "TRESCIENTOS",
+        "CUATROCIENTOS",
+        "QUINIENTOS",
+        "SEISCIENTOS",
+        "SETECIENTOS",
+        "OCHOCIENTOS",
+        "NOVECIENTOS",
+    ];
     var miles = ["MIL", "MILLÓN", "MILLONES"];
 
     function convertirNumeroMenorCien(numero) {
@@ -932,25 +982,28 @@ function convertirNumeroATexto(numero) {
         else {
             var decena = Math.floor(numero / 10);
             var unidad = numero % 10;
-            return decenasX[decena - 2] + (unidad > 0 ? ' Y ' + unidades[unidad] : '');
+            return (
+                decenasX[decena - 2] +
+                (unidad > 0 ? " Y " + unidades[unidad] : "")
+            );
         }
     }
 
     function convertirNumero(numero) {
-        if (numero === 0) return '';
+        if (numero === 0) return "";
         if (numero < 10) return unidades[numero];
         if (numero < 100) return convertirNumeroMenorCien(numero);
 
-        var resultado = '';
+        var resultado = "";
         if (numero >= 100) {
             var centena = Math.floor(numero / 100);
             numero %= 100;
-            if (centena === 1 && numero === 0) resultado = 'CIEN';
+            if (centena === 1 && numero === 0) resultado = "CIEN";
             else resultado = centenas[centena - 1];
         }
 
         if (numero > 0) {
-            if (resultado !== '') resultado += ' ';
+            if (resultado !== "") resultado += " ";
             resultado += convertirNumeroMenorCien(numero);
         }
 
@@ -958,16 +1011,19 @@ function convertirNumeroATexto(numero) {
     }
 
     function convertirNumeroEntero(numero) {
-        if (numero === 0) return 'CERO';
+        if (numero === 0) return "CERO";
 
-        var resultado = '';
+        var resultado = "";
         var contador = 0;
 
         while (numero > 0) {
             var fragmento = numero % 1000;
             if (fragmento > 0) {
                 var textoFragmento = convertirNumero(fragmento);
-                resultado = textoFragmento + (contador > 0 ? ' ' + miles[contador - 1] : '') + (resultado ? ' ' + resultado : '');
+                resultado =
+                    textoFragmento +
+                    (contador > 0 ? " " + miles[contador - 1] : "") +
+                    (resultado ? " " + resultado : "");
             }
             numero = Math.floor(numero / 1000);
             contador++;
@@ -978,7 +1034,7 @@ function convertirNumeroATexto(numero) {
 
     function convertirDecimales(numero) {
         var centavo = Math.round(numero * 100);
-        if (centavo === 0) return '';
+        if (centavo === 0) return "";
         return centavo + "/100";
     }
 
@@ -988,7 +1044,7 @@ function convertirNumeroATexto(numero) {
     var textoEntero = convertirNumeroEntero(parteEntera);
     var textoDecimal = convertirDecimales(parteDecimal);
 
-    var resultado = textoEntero + (textoDecimal ? ' CON ' + textoDecimal : '');
+    var resultado = textoEntero + (textoDecimal ? " CON " + textoDecimal : "");
     return resultado.toUpperCase();
 }
 
@@ -998,8 +1054,8 @@ function registrarCliente(data) {
         url: "/save/cliente",
         data: data,
         dataType: "json",
-        beforeSend: function () {                       
-            $('#tableClientes').DataTable().destroy();
+        beforeSend: function () {
+            $("#tableClientes").DataTable().destroy();
         },
         success: function (response) {
             console.log("success()");
@@ -1014,7 +1070,6 @@ function registrarCliente(data) {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-
             } else {
                 Swal.fire({
                     title: "Upps!",
@@ -1027,7 +1082,7 @@ function registrarCliente(data) {
         },
         complete: function () {
             console.log("complete()");
-            setTimeout(() => {                
+            setTimeout(() => {
                 listClientes();
                 $("#mdListClientes").modal("show");
                 $("#mdAgragarCliente").modal("hide");
@@ -1045,7 +1100,6 @@ function registrarCliente(data) {
         },
     });
 }
-
 
 // $("#btnGenerarVoucher").click(function () {
 //     console.log("btnGenerarVoucher()");
@@ -1116,5 +1170,3 @@ function registrarCliente(data) {
 //         },
 //     });
 // });
-
-

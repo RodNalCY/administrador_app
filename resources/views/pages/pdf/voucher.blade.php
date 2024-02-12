@@ -55,13 +55,13 @@
     <main>
         <center>
             <div><?php echo $firma; ?></div>
-            <span class="farma-title">GRINFAR E.I.R.L</span>
+            <span class="farma-title">GRINFAR E.I.R.L.</span>
         </center>
         <div style="margin-top: 10px;">
             <table style="width: 100%;">
                 <tr>
-                    <td colspan="2"><span class="title">RUC:</span><span class="title-details">20105566229</span></td>                   
-                    <td colspan="2" ><span class="title">TELEF:</span><span class="title-details">987654321</span></td>
+                    <td colspan="2"><span class="title">RUC:</span><span class="title-details"> 20612114537</span></td>
+                    <td colspan="2"><span class="title">TELEF:</span><span class="title-details"> 991566055</span></td>
                 </tr>
                 <tr>
                     <td colspan="4"><span class="title-details">A.A.H.H LA ENCANTADA MZ B LT 4 GRUPO 2 VILLA EL SALVADOR LIMA - PERÚ </span></td>
@@ -86,16 +86,30 @@
                     <td><span class="title"> VENDEDOR(A): </span></td>
                     <td><span class="title-details">{{ $detalle['empleadoId'] }} </span></td>
                 </tr>
+                @if($detalle['comprobanteId'] == "1")
                 <tr>
-                    <td colspan="1"><span class="title">RUC/DNI: </span></td>
-                    <td colspan="3"><span class="title-details">{{ $detalle['clienteRUC'] }} </span></td>
+                    <td colspan="1"><span class="title">DNI: </span></td>
+                    <td colspan="3"><span class="title-details">{{ $detalle['clienteDNI'] }} </span></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><span class="title">CLIENTE:  </span></td>
+                    <td colspan="2"><span class="title">CLIENTE: </span></td>
                 </tr>
                 <tr>
                     <td colspan="4"><span class="title-details">{{ $detalle['clienteName'] }}</span></td>
                 </tr>
+                @endif
+                @if($detalle['comprobanteId'] == "2")
+                <tr>
+                    <td colspan="1"><span class="title">RUC: </span></td>
+                    <td colspan="3"><span class="title-details">{{ $detalle['clienteRUC'] }} </span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span class="title">RÁZON SOCIAL: </span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span class="title-details">{{ $detalle['clienteName'] }}</span></td>
+                </tr>
+                @endif
                 <tr style="background-color: grey; color: white;">
                     <td colspan="4">
                         <table style="width: 100%;">
@@ -109,15 +123,15 @@
                 <tr>
                     <td colspan="4">
                         <table style="width: 100%;">
-                        @foreach($productos as $value)
+                            @foreach($productos as $value)
                             <tr>
                                 <td colspan="2"><span class="title-details">{{ $value['producto'] }} {{ $value['descripcion'] }} </span></td>
                                 <td colspan="1"><span class="title-details">{{ $value['cantidad'] }} x {{ $value['precio'] }}</span></td>
                                 <td colspan="1"><span class="title-details">{{ $value['total'] }}</span></td>
                             </tr>
-                        @endforeach
+                            @endforeach
                         </table>
-                        
+
                     </td>
                 </tr>
 
@@ -157,7 +171,7 @@
                             </tr>
                         </table>
                     </td>
-                </tr>              
+                </tr>
                 <tr style="background-color: grey; color: white;">
                     <td colspan="4">
                         <table style="width: 100%;">

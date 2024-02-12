@@ -355,6 +355,7 @@ class MovimientosController extends Controller
                 $log_venta->valor_total = $request->_list_details_productos[0]['ventaTotal']; 
                 $log_venta->texto_valor_total = $request->_total_pagar_texto; 
                 $log_venta->ruta_comprobante = $filePath; 
+                $log_venta->venta_id = $request->_list_details_productos[0]['ventaId']; 
 
                 if($log_venta->save()){
                     return response()->json([

@@ -35,13 +35,17 @@
                         <input type="text" class="form-control form-control-sm" id="txtCliente" readonly>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 mb-2">
+                    <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">DNI/CARNET: </label>
-                        <input type="hidden" id="txtClienteRUC" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtDNI" readonly>
                     </div>
+                    
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">RUC: </label>
+                        <input type="text" class="form-control form-control-sm" id="txtClienteRUC" readonly>
+                    </div>
 
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-2">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
                             <button type="button" class="btn btn-primary mr-2 btn-sm" id="btnBuscarClientes"><i class="fas fa-fw fa-search"></i> Buscar</button>
