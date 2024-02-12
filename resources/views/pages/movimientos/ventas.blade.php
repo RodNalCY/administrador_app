@@ -385,7 +385,7 @@
                 <embed id="docVoucherPDF" type="application/pdf" width="100%" height="800px" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                <button type="button" class="btn btn-danger" id="btnFinalizarVenta"><i class="fas fa-times"></i> Finalizar / Cerrar  </button>
             </div>
         </div>
     </div>

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
+use App\Models\Compras;
+use App\Models\Producto;
+use App\Models\Ventas;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,19 +30,32 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function dashboard_ingreso_mensuales()
+    public function dashboard_total_ventas_mensuales()
     {
 
         try {
             // Datos del gráfico (puedes cambiar esto según tus necesidades)
-            $labels1 = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre'];
-            $data1 = [2, 25, 35, 30, 11, 25, 15, 10, 5, 45, 60,];
+
+            $data = [];
+            $labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre'];
+
+            $ventasPorMes = Ventas::selectRaw('DATE_FORMAT(Fecha, "%Y-%m") AS mes, COUNT(*) AS total')
+                ->whereBetween('Fecha', ['2024-01-01', '2024-12-31'])
+                ->groupBy('mes')
+                ->orderBy('mes', 'ASC')
+                ->get();
+
+            if (count($ventasPorMes) > 0) {
+                foreach ($ventasPorMes as $venta) {
+                    array_push($data, $venta['total']);
+                }
+            }
 
             return response()->json([
                 'message' => 'dashboard ingreso mensuales',
                 'status' => true,
-                'labels' => $labels1,
-                'data' => $data1,
+                'labels' => $labels,
+                'data' => $data,
             ]);
         } catch (\Exception $ex) {
             return response()->json([
@@ -48,20 +65,32 @@ class HomeController extends Controller
         }
     }
 
-    public function dashboard_ingreso_semanales()
+    public function dashboard_suma_ventas_mensuales()
     {
 
         try {
             // Datos del gráfico (puedes cambiar esto según tus necesidades)
 
-            $labels2 = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
-            $data2 = ['2', '25', '35', '20', '35', '40', '30'];
+            $data = [];
+            $labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre'];
+
+            $sumaVentaMes = Ventas::selectRaw('	DATE_FORMAT( Fecha, "%Y-%m" ) AS mes, SUM(ventas.VentaTotal) AS suma')
+                ->whereBetween('Fecha', ['2024-01-01', '2024-12-31'])
+                ->groupBy('mes')
+                ->orderBy('mes', 'ASC')
+                ->get();
+
+            if (count($sumaVentaMes) > 0) {
+                foreach ($sumaVentaMes as $venta) {
+                    array_push($data, $venta['suma']);
+                }
+            }
 
             return response()->json([
                 'message' => 'dashboard ingreso semanales',
                 'status' => true,
-                'labels' => $labels2,
-                'data' => $data2,
+                'labels' => $labels,
+                'data' => $data,
             ]);
         } catch (\Exception $ex) {
             return response()->json([
@@ -100,13 +129,39 @@ class HomeController extends Controller
             // Datos del gráfico (puedes cambiar esto según tus necesidades)
             $labels4 = ['Categoría 1', 'Categoría 2', 'Categoría 3'];
             $data4 = [10, 15, 0.5];
-    
-    
+
+
             return response()->json([
                 'message' => 'dashboard total de laboratorios',
                 'status' => true,
                 'labels' => $labels4,
                 'data' => $data4,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function dashboard_resumen()
+    {
+
+        try {
+            $total_ventas = Ventas::whereBetween('Fecha', ['2024-01-01', '2024-12-31'])->get();
+            $total_compras = Compras::whereBetween('Fecha', ['2024-01-01', '2024-12-31'])->get();
+            $total_clientes = Cliente::all();
+            $total_productos = Producto::all();
+
+
+            return response()->json([
+                'message' => 'dashboard resumen',
+                'status' => true,
+                'total_ventas' => count($total_ventas),
+                'total_compras' => count($total_compras),
+                'total_clientes' => count($total_clientes),
+                'total_productos' => count($total_productos),
             ]);
         } catch (\Exception $ex) {
             return response()->json([

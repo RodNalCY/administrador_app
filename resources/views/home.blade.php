@@ -17,7 +17,7 @@
 
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>150</h3>
+                    <h3 id="HTMLVentaRealizadas"></h3>
                     <p>Ventas Realizadas</p>
                 </div>
                 <div class="icon">
@@ -31,7 +31,7 @@
 
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <h3 id="HTMLComprasRealizadas"></h3>
                     <p>Compras Realizadas</p>
                 </div>
                 <div class="icon">
@@ -45,11 +45,11 @@
 
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3 id="HTMLTotalCliente"></h3>
                     <p>Clientes Registrados</p>
                 </div>
                 <div class="icon">
-                <i class="fas fa-fw fa-users"></i>
+                    <i class="fas fa-fw fa-users"></i>
                 </div>
                 <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -59,11 +59,11 @@
 
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
-                    <p>Stock de Productos</p>
+                    <h3 id="HTMLTotalProductos"></h3>
+                    <p>Total de Productos</p>
                 </div>
                 <div class="icon">
-                <i class="fas fa-fw fa-capsules"></i>
+                    <i class="fas fa-fw fa-capsules"></i>
                 </div>
                 <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -75,7 +75,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Ingresos Mensuales (S/.)</h3>
+                    <h3 class="box-title">TOTAL DE VENTAS POR MES</h3>
                 </div>
                 <div class="box-body">
                     <canvas id="barChart1" style="height:250px"></canvas>
@@ -85,7 +85,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Ingresos Semanales (S/.)</h3>
+                    <h3 class="box-title">INGRESO DE VENTAS POR MES (S/)</h3>
                 </div>
                 <div class="box-body">
                     <canvas id="barChart2" style="height:250px"></canvas>
@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    <div class="row mt-4">
+    <!-- <div class="row mt-4">
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 </div>

@@ -1,16 +1,17 @@
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
     console.log("_global_token_crf > ", _global_token_crf);
-    dataIngresosMensuales();
-    dataIngresosSemanales();
-    dataTotalPresentaciones();
-    dataTotalLaboratorios();
+    dataResumenDashboard();
+    dataTotalVentasMensuales();
+    dataSumaVentasMensuales();
+    // dataTotalPresentaciones();
+    // dataTotalLaboratorios();
 });
 
-function dataIngresosMensuales() {
+function dataTotalVentasMensuales() {
     $.ajax({
         type: "GET",
-        url: "/dashboard/ingreso/mensuales",
+        url: "/dashboard/total/ventas/mensuales",
         data: {
             _token: _global_token_crf,
         },
@@ -56,10 +57,10 @@ function dataIngresosMensuales() {
     });
 }
 
-function dataIngresosSemanales() {
+function dataSumaVentasMensuales() {
     $.ajax({
         type: "GET",
-        url: "/dashboard/ingreso/semanales",
+        url: "/dashboard/suma/ventas/mensuales",
         data: {
             _token: _global_token_crf,
         },
@@ -183,6 +184,29 @@ function dataTotalLaboratorios() {
                     ],
                 },
             });
+        },
+        complete: function (response) {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function dataResumenDashboard() {
+    $.ajax({
+        type: "GET",
+        url: "/dashboard/resumen",
+        data: {
+            _token: _global_token_crf,
+        },
+        dataType: "json",
+        beforeSend: function (response) {},
+        success: function (response) {
+            console.log("RDX> ", response);
+            $("#HTMLVentaRealizadas").text(response.total_ventas);
+            $("#HTMLComprasRealizadas").text(response.total_compras);
+            $("#HTMLTotalCliente").text(response.total_clientes);
+            $("#HTMLTotalProductos").text(response.total_productos);
         },
         complete: function (response) {},
         error: function (response) {

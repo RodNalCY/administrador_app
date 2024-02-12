@@ -29,9 +29,10 @@ Auth::routes();
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/dashboard/resumen', 'dashboard_resumen')->name('/dashboard/resumen');
 
-    Route::get('/dashboard/ingreso/mensuales', 'dashboard_ingreso_mensuales')->name('/dashboard/ingreso/mensuales');
-    Route::get('/dashboard/ingreso/semanales', 'dashboard_ingreso_semanales')->name('/dashboard/ingreso/semanales');
+    Route::get('/dashboard/total/ventas/mensuales', 'dashboard_total_ventas_mensuales')->name('/dashboard/total/ventas/mensuales');
+    Route::get('/dashboard/suma/ventas/mensuales', 'dashboard_suma_ventas_mensuales')->name('/dashboard/suma/ventas/mensuales');
     Route::get('/dashboard/total/presentaciones', 'dashboard_total_presentaciones')->name('/dashboard/total/presentaciones');
     Route::get('/dashboard/total/laboratorios', 'dashboard_total_laboratorios')->name('/dashboard/total/laboratorios');
 });

@@ -72,6 +72,11 @@ $("#btnAgregarCliente").click(function () {
     $("#mdAgragarCliente").modal("show");
 });
 
+$("#btnFinalizarVenta").click(function () {
+    location.reload();
+});
+
+
 $("#btnRegistrarCliente").click(function () {
     var cliDNI = $("#txtClienteDNI").val().trim();
     var cliNombres = $("#txtClienteNombres").val().trim().toUpperCase();
