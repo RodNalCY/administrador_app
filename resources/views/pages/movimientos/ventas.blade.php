@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">DNI: </label>
+                        <label class="col-form-label">DNI/CARNET: </label>
                         <input type="hidden" id="txtClienteRUC" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtDNI" readonly>
                     </div>
@@ -161,13 +161,13 @@
                 <table class="table table-hover table-bordered" id="tableCompras">
                     <thead class="header-table text-center">
                         <tr class='text-center'>
-                            <th scope="col">Opciones</th>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Categoría</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">OPCIONES</th>
+                            <th scope="col">PRODUCTO</th>
+                            <th scope="col">DESCRIPCIÓN</th>
+                            <th scope="col">CATEGORÍA</th>
+                            <th scope="col">CANTIDAD</th>
+                            <th scope="col">PRECIO</th>
+                            <th scope="col">TOTAL</th>
                         </tr>
                     </thead>
                     <tbody id="tableListVentas">
@@ -232,13 +232,13 @@
                             <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">DNI</th>
+                                    <th scope="col">DNI/CARNET</th>
                                     <th scope="col">RUC</th>
                                     <th scope="col">NOMBRES</th>
                                     <th scope="col">APELLIDOS</th>
                                     <th scope="col">SEXO</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">TELÉFONO</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_clientes">
@@ -268,8 +268,8 @@
                             <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">DESCRIPCIÓN</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_comprobantes">
@@ -298,13 +298,13 @@
                             <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Laboratorio</th>
-                                    <th scope="col">Presentación</th>
-                                    <th scope="col">Concentración</th>
-                                    <th scope="col">Stock</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">DESCRIPCIÓN</th>
+                                    <th scope="col">LABORATORIO</th>
+                                    <th scope="col">PRESENTACIÓN</th>
+                                    <th scope="col">CONCENTRACIÓN</th>
+                                    <th scope="col">STOCK</th>
+                                    <th scope="col">PRECIO</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_productos">
@@ -338,7 +338,7 @@
                         <input type="text" class="form-control" id="txtClienteApellidos">
                     </div>                  
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">DNI: </i></sup></label>
+                        <label class="col-form-label">DNI/CARNET: </i></sup></label>
                         <input type="number" class="form-control" id="txtClienteDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">

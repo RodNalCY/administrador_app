@@ -17,19 +17,19 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">DNI: </label>
+                        <label class="col-form-label">DNI/CARNET: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtClienteDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">NOMBRES: </label>
+                        <label class="col-form-label">NOMBRES: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtClienteNombres">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">APELLIDOS: </label>
+                        <label class="col-form-label">APELLIDOS: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtClienteApellidos">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">SEXO: </label>
+                        <label class="col-form-label">SEXO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectHTMLSexo"></div>
                     </div>
 
@@ -80,7 +80,7 @@
                             <th scope="col">DIRECCIÓN</th>
                             <th scope="col">EMAIL</th>
                             <th scope="col">ESTADO</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tableListClientes">
@@ -101,20 +101,20 @@
             <div class="modal-body">
                 <div class="row m-2">
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">DNI : </label>
+                        <label class="col-form-label">DNI/CARNET : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtEditCliId">
                         <input type="number" class="form-control" id="txtEditCliDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">NOMBRES : </label>
+                        <label class="col-form-label">NOMBRES : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtEditCliName">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">APELLIDOS : </label>
+                        <label class="col-form-label">APELLIDOS : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtEditCliApellidos">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">SEXO : </label>
+                        <label class="col-form-label">SEXO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectEditHTMLSexo"></div>
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">

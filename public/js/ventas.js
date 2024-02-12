@@ -993,16 +993,8 @@ function registrarCliente(data) {
         url: "/save/cliente",
         data: data,
         dataType: "json",
-        beforeSend: function () {
-            
-            var x = "1";
-            if ($.fn.DataTable.isDataTable('#tableClientes')) {
-                $('#tableClientes').DataTable();
-                x = "2";
-            }
+        beforeSend: function () {                       
             $('#tableClientes').DataTable().destroy();
-            console.log('x > ',x);
-
         },
         success: function (response) {
             console.log("success()");

@@ -17,42 +17,42 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">NOMBRE: </label>
+                        <label class="col-form-label">NOMBRE: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtProductoNombre">
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">CONCENTRACIÓN: </label>
+                        <label class="col-form-label">CONCENTRACIÓN: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtProductoConcentracion">
                     </div>
 
 
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">STOCK <code>(cantidad)</code>: </label>
+                        <label class="col-form-label">STOCK <code>(cantidad)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtProductoStock" min="0" max="1000">
                     </div>
 
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">COSTO <code>(Compra)</code> :</label>
+                        <label class="col-form-label">COSTO <code>(Compra)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtProductoCosto" min="0" max="1000">
                     </div>
 
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">PRECIO <code>(Venta)</code> : </label>
+                        <label class="col-form-label">PRECIO <code>(Venta)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtProductoPrecio" min="0" max="10000">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">PRESENTACIÓN: </label>
+                        <label class="col-form-label">PRESENTACIÓN: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtProductoIdPresentacion" readonly>
                         <input type="text" class="form-control" id="txtProductoPresentacion" readonly>
                         <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarPresentacion"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">LABORATORIO: </label>
+                        <label class="col-form-label">LABORATORIO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtProductoIdLaboratorio" readonly>
                         <input type="text" class="form-control" id="txtProductoLaboratorio" readonly>
                         <button type="button" class="btn btn-primary  btn-sm mt-2" id="btnBuscarLaboratorio"><i class="fas fa-fw fa-search"></i> Buscar</button>
@@ -65,7 +65,7 @@
 
 
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">VENCIMIENTO: </label>
+                        <label class="col-form-label">VENCIMIENTO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="date" class="form-control" id="txtProductoVencimiento">
                     </div>
 
@@ -183,34 +183,34 @@
             <div class="modal-body">
                 <div class="row m-2">
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">NOMBRES : </label>
+                        <label class="col-form-label">NOMBRES : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtEditProdId">
                         <input type="text" class="form-control" id="txtEditProdName">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">CONCENTRACIÓN : </label>
+                        <label class="col-form-label">CONCENTRACIÓN : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtEditProdConcentracion">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">LABORATORIO : </label>
+                        <label class="col-form-label">LABORATORIO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectEditHTMLLaboratorio"></div>
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">PRESENTACIÓN : </label>
+                        <label class="col-form-label">PRESENTACIÓN : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup> </label>
                         <div id="selectEditHTMLPresentaciones"></div>
                     </div>                    
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">STOCK <code>(cantidad)</code>: </label>
+                        <label class="col-form-label">STOCK <code>(cantidad)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtEditProdStock" min="0" max="1000">                        
                         <div class="form-text"><sup><code>Inventario: <span id="txtDescripcionStock"></span> productos registrados</code></sup></div>
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">COSTO <code>(compra)</code>: </label>
+                        <label class="col-form-label">COSTO <code>(compra)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtEditProdCosto" min="0" max="10000">
                         <div class="form-text"><sup><code>El costo actual del producto: <span id="txtDescripcionCosto"></span></code></sup></div>
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">PRECIO <code>(venta)</code>: </label>
+                        <label class="col-form-label">PRECIO <code>(venta)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtEditProdVenta" min="0" max="10000">
                         <div class="form-text"><sup><code>El precio actual de venta: <span id="txtDescripcionPrecio"></span></code></sup></div>
                     </div>
@@ -219,7 +219,7 @@
                         <input type="text" class="form-control" id="txtEditProdRegistroSanitario">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">VENCIMIENTO : </label>
+                        <label class="col-form-label">VENCIMIENTO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="date" class="form-control" id="txtEditProdVencimiento">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">

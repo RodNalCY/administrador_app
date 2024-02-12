@@ -17,17 +17,17 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">NOMBRE: </label>
+                        <label class="col-form-label">NOMBRE : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtLabNombre">
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">DIRECCIÓN: </label>
+                        <label class="col-form-label">DIRECCIÓN : </label>
                         <input type="text" class="form-control" id="txtLabDireccion">
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">TELEFONO: </label>
+                        <label class="col-form-label">TELEFONO : </label>
                         <input type="number" class="form-control" id="txtLabTelefono" min="0">
                     </div>
                 </div>
@@ -49,11 +49,11 @@
                     <thead class="header-table">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Dirección</th>
-                            <th scope="col">Teléfono</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">NOMBRE</th>
+                            <th scope="col">DIRECCIÓN</th>
+                            <th scope="col">TELÉFONO</th>
+                            <th scope="col">ESTADO</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tableListLaboratorios">
@@ -74,7 +74,7 @@
             <div class="modal-body">
                 <div class="row m-2">
                     <div class="col-sm-6 col-md-12 mb-2">
-                        <label class="col-form-label">NOMBRE : </label>
+                        <label class="col-form-label">NOMBRE : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtEditIdLab">
                         <input type="text" class="form-control" id="txtEditNameLab">
                     </div>

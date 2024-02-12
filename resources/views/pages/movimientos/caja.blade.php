@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="mb-3 row text-right">
-                         
+
                             <div class="col-sm-12 col-md-12">
                                 <button class="btn btn-success btn-sm" type="button" id="btnCalcularIngresos"> <i class="fas fa-hand-holding-usd"></i> Calcular Ingresos</button>
                             </div>
@@ -80,7 +80,7 @@
                             <div class="col-sm-12 col-md-12 mt-3">
                                 <button class="btn btn-secondary btn-sm" type="button" id="btnVisualizarVentas"> <i class="fas fa-fw fa-cash-register"></i> Visualizar Ventas </button>
                             </div>
-                        
+
                         </div>
                     </div>
 
@@ -97,12 +97,12 @@
                 <table class="table table-hover table-bordered">
                     <thead class="header-table text-center">
                         <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Ganancia</th>
-                            <th scope="col">Fecha</th>
+                            <th scope="col">PRODUCTO</th>
+                            <th scope="col">CANTIDAD</th>
+                            <th scope="col">PRECIO</th>
+                            <th scope="col">TOTAL</th>
+                            <th scope="col">GANANCIA</th>
+                            <th scope="col">FECHA</th>
                         </tr>
                     </thead>
                     <tbody id="tableResumenDiario">
@@ -141,13 +141,13 @@
                         <table class="table table-hover table-bordered text-center">
                             <thead class="header-table">
                                 <tr>
-                                    <th scope="col">Código</th>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Presentación</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Ganancia</th>
+                                    <th scope="col">CÓDIGO</th>
+                                    <th scope="col">PRODUCTO</th>
+                                    <th scope="col">PRESENTACIÓN</th>
+                                    <th scope="col">PRECIO</th>
+                                    <th scope="col">CANTIDAD</th>
+                                    <th scope="col">TOTAL</th>
+                                    <th scope="col">GANANCIAS</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_ventas_detalle">

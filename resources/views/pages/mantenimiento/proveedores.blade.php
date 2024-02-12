@@ -17,15 +17,15 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">NOMBRE: </label>
+                        <label class="col-form-label">NOMBRE: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtProvNombre">
                     </div>   
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">DNI / CARNET: </label>
+                        <label class="col-form-label">DNI/CARNET: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtProvDNI" min="0">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">RUC: </label>
+                        <label class="col-form-label">RUC: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtProvRUC" min="0">
                     </div> 
                     <div class="col-sm-6 col-md-3 mb-2">
@@ -71,7 +71,7 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">DNI/Carnet</th>
+                            <th scope="col">DNI/CARNET</th>
                             <th scope="col">RUC</th>
                             <th scope="col">Dirección</th>
                             <th scope="col">Email</th>
@@ -100,36 +100,36 @@
             <div class="modal-body">
                 <div class="row m-2">
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">NOMBRE : </label>
+                        <label class="col-form-label">NOMBRE : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtEditProvId">
                         <input type="text" class="form-control" id="txtEditProvName">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">DNI/Carnet : </label>
+                        <label class="col-form-label">DNI/CARNET : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtEditProvDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">RUC : </label>
+                        <label class="col-form-label">RUC : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtEditProvRUC" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">Dirección : </label>
+                        <label class="col-form-label">DIRECCIÓN : </label>
                         <input type="text" class="form-control" id="txtEditProvDirc">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">Email : </label>
+                        <label class="col-form-label">EMAIL : </label>
                         <input type="email" class="form-control" id="txtEditProvEmail">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">Teléfono : </label>
+                        <label class="col-form-label">TELÉFONO : </label>
                         <input type="number" class="form-control" id="txtEditProvTele" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">Banco : </label>
+                        <label class="col-form-label">BANCO : </label>
                         <input type="text" class="form-control" id="txtEditProvBanco">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">Cuenta : </label>
+                        <label class="col-form-label">CUENTA (N°/CCI) : </label>
                         <input type="number" class="form-control" id="txtEditProvCuenta" min="0">
                     </div>
                     <div class="col-sm-6 col-md-12 mb-2">

@@ -16,6 +16,7 @@ $("#btnBuscarPresentacion").click(function () {
 $("#btnBuscarLaboratorio").click(function () {
     $("#mdListLaboratorios").modal("show");
 });
+
 $("#btnRegistrarProducto").click(function () {
     var prodNombre = $("#txtProductoNombre").val().trim().toUpperCase();
     var prodConcentacion = $("#txtProductoConcentracion").val().trim();

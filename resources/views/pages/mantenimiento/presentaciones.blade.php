@@ -17,7 +17,7 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">NOMBRE: </label>
+                        <label class="col-form-label">NOMBRE : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtPresentacionNombre">
                     </div>                  
                 </div>
@@ -39,9 +39,9 @@
                     <thead class="header-table">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">NOMBRE</th>
+                            <th scope="col">ESTADO</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tableListPresentacion">
@@ -62,7 +62,7 @@
             <div class="modal-body">
                 <div class="row m-2">
                     <div class="col-sm-6 col-md-12 mb-2">
-                        <label class="col-form-label">NOMBRE : </label>
+                        <label class="col-form-label">NOMBRE : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtEditIdPre">
                         <input type="text" class="form-control" id="txtEditNamePre">
                     </div>

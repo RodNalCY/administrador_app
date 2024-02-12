@@ -43,10 +43,10 @@
                     <thead class="header-table">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Permiso</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">PERMISO</th>
+                            <th scope="col">TIPO</th>
+                            <th scope="col">FECHA</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tableListPermisos">

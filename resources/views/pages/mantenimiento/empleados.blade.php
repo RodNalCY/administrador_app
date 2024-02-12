@@ -17,23 +17,23 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">DNI: </label>
+                        <label class="col-form-label">DNI/CARNET: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtEmpleadoDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">NOMBRE: </label>
+                        <label class="col-form-label">NOMBRE: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtEmpleadoNombre">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">APELLIDOS: </label>
+                        <label class="col-form-label">APELLIDOS: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtEmpleadoApellidos">
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">SEXO: </label>
+                        <label class="col-form-label">SEXO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectHTMLSexo"></div>
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">ESPECIALIDAD: </label>
+                        <label class="col-form-label">ESPECIALIDAD: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectHTMLEspecialidad"></div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                     <thead class="header-table">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
+                            <th scope="col">NOMBRES</th>
                             <th scope="col">APELLIDOS</th>
                             <th scope="col">ESPECIALIDAD</th>
                             <th scope="col">SEXO</th>
@@ -90,11 +90,11 @@
                             <th scope="col">EMAIL</th>
                             <th scope="col">TELÉFONO</th>
                             <th scope="col">DIRECCIÓN</th>
-                            <th scope="col">Hora Ingreso</th>
-                            <th scope="col">Hora Ingreso</th>
+                            <th scope="col">HORA Ingreso</th>
+                            <th scope="col">HORA Ingreso</th>
                             <th scope="col">SUELDO</th>
                             <th scope="col">ESTADO</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tableListEmpleados">
@@ -115,24 +115,24 @@
             <div class="modal-body">
                 <div class="row m-2">
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">DNI : </label>
+                        <label class="col-form-label">DNI/CARNET : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtEditEmpDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">NOMBRES : </label>
+                        <label class="col-form-label">NOMBRES : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtEditEmpId">
                         <input type="text" class="form-control" id="txtEditEmpName">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">APELLIDOS : </label>
+                        <label class="col-form-label">APELLIDOS : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtEditEmpApellidos">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">SEXO : </label>
+                        <label class="col-form-label">SEXO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectEditHTMLSexo"></div>
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">ESPECIALIDAD : </label>
+                        <label class="col-form-label">ESPECIALIDAD : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectEditHTMLEspecialidad"></div>
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">

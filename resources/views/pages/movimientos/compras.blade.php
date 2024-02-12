@@ -149,13 +149,13 @@
                 <table class="table table-hover table-bordered" id="tableCompras">
                     <thead class="header-table text-center">
                         <tr>
-                            <th scope="col">Opciones</th>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Categoría</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">OPCIONES</th>
+                            <th scope="col">PRODUCTOS</th>
+                            <th scope="col">DESCRIPCIÓN</th>
+                            <th scope="col">CATEGORÍA</th>
+                            <th scope="col">CANTIDAD</th>
+                            <th scope="col">PRECIO</th>
+                            <th scope="col">TOTAL</th>
                         </tr>
                     </thead>
                     <tbody id="tableListCompras">
@@ -209,9 +209,9 @@
                             <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Nombre</th>
+                                    <th scope="col">NOMBRE</th>
                                     <th scope="col">RUC</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_proveedores">
@@ -242,9 +242,9 @@
                             <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">DESCRIPCIÓN</th>
+                                    <th scope="col">ESTADO</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_comprobantes">
@@ -274,13 +274,13 @@
                             <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Laboratorio</th>
-                                    <th scope="col">Presentación</th>
-                                    <th scope="col">Concentración</th>
-                                    <th scope="col">Stock</th>
-                                    <th scope="col">Costo</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">DESCRIPCIÓN</th>
+                                    <th scope="col">LABORATORIO</th>
+                                    <th scope="col">PRESENTACIÓN</th>
+                                    <th scope="col">CONCENTRACIÓN</th>
+                                    <th scope="col">STOCK</th>
+                                    <th scope="col">COSTO</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_productos">

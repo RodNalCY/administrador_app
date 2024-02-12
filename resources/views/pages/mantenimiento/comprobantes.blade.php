@@ -44,9 +44,9 @@
                             <thead class="header-table">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">DESCRIPCIÓN</th>
+                                    <th scope="col">ESTADO</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tableListComprobantes">

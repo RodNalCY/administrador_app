@@ -43,10 +43,10 @@
                     <thead class="header-table">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">ROLE</th>
+                            <th scope="col">TIPO</th>
+                            <th scope="col">FECHA</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tableListRoles">
@@ -71,9 +71,9 @@
                         <table class="table table-hover table-bordered" id="tablePermisosRoles">
                             <thead class="header-table">
                                 <tr>
-                                    <th class="text-center" scope="col">Id</th>
-                                    <th class="text-center" scope="col">Nombre</th>
-                                    <th class="text-center" scope="col">Activo</th>
+                                    <th class="text-center" scope="col">ID</th>
+                                    <th class="text-center" scope="col">NOMBRE</th>
+                                    <th class="text-center" scope="col">ACTIVO</th>
                                 </tr>
                             </thead>
                             <tbody id="table_permisos_roles">

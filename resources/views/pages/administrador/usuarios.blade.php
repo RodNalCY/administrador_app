@@ -61,11 +61,11 @@
                     <thead class="header-table">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Nombre & Apellidos</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">NOMBRE & APELLIDOS</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">ROLE</th>
+                            <th scope="col">FECHA</th>
+                            <th scope="col">OPCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tableListUsuarios">
@@ -89,12 +89,12 @@
                             <thead class="header-table">
                                 <tr>
                                     <th scope="col">Id</th>
-                                    <th scope="col">Nombres & Apellidos</th>
-                                    <th scope="col">Especialidad</th>
-                                    <th scope="col">Sexo</th>
-                                    <th scope="col">DNI</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">NOMBRES & APELLIDOS</th>
+                                    <th scope="col">ESPECIALIDAD</th>
+                                    <th scope="col">SEXO</th>
+                                    <th scope="col">DNI/CARNET</th>
+                                    <th scope="col">EMAIL</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_empleados">
@@ -124,10 +124,10 @@
                         <table class="table table-hover table-bordered text-center" id="tableRoles">
                             <thead class="header-table">
                                 <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">FECHA</th>
+                                    <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl_row_roles">

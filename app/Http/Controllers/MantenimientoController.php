@@ -144,9 +144,9 @@ class MantenimientoController extends Controller
     {
         try {
             $lab = new Laboratorio;
-            $lab->Nombre = $request->_labsNombre;
-            $lab->Direccion = $request->_labsDireccion;
-            $lab->Telefono = $request->_labsTelefono;
+            $lab->Nombre = $request->_labsNombre ?? "-";
+            $lab->Direccion = $request->_labsDireccion ?? "-";
+            $lab->Telefono = $request->_labsTelefono ?? "-";
             $lab->Estado = 'Activo';
 
             if ($lab->save()) {
@@ -188,10 +188,10 @@ class MantenimientoController extends Controller
     {
         try {
             $labs = Laboratorio::find($request->_labsId);
-            $labs->Nombre = $request->_labsName;
-            $labs->Direccion = $request->_labsDireccion;
-            $labs->Telefono = $request->_labsTelefono;
-            $labs->Estado = $request->_labsEstado;
+            $labs->Nombre = $request->_labsName ?? "-";
+            $labs->Direccion = $request->_labsDireccion ?? "-";
+            $labs->Telefono = $request->_labsTelefono ?? "-";
+            $labs->Estado = $request->_labsEstado ?? "-";
 
             if ($labs->update()) {
                 return response()->json([
