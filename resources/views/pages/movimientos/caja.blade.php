@@ -14,11 +14,7 @@
 @stop
 
 @section('content')
-<input type="hidden" name="_token" id="_token" value="<?php
-
-                                                        use Illuminate\Support\Facades\Auth;
-
-                                                        echo csrf_token(); ?>">
+<input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
 <div class="row">
     <div class="col-md-12">
         <div class="card">

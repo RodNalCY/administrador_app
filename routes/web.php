@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MovimientosController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,11 @@ Auth::routes();
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/dashboard', 'index')->name('dashboard');
+
+    Route::get('/dashboard/ingreso/mensuales', 'dashboard_ingreso_mensuales')->name('/dashboard/ingreso/mensuales');
+    Route::get('/dashboard/ingreso/semanales', 'dashboard_ingreso_semanales')->name('/dashboard/ingreso/semanales');
+    Route::get('/dashboard/total/presentaciones', 'dashboard_total_presentaciones')->name('/dashboard/total/presentaciones');
+    Route::get('/dashboard/total/laboratorios', 'dashboard_total_laboratorios')->name('/dashboard/total/laboratorios');
 });
 
 
