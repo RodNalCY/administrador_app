@@ -411,9 +411,9 @@ class MantenimientoController extends Controller
             $create->Apellidos = $request->_empApellidos ?? "-";
             $create->Especialidad = $request->_empEspecial ?? "-";
             $create->Sexo = $request->_empSexo ?? "-";
-            $create->Dni = $request->_empDNI ?? 0;
+            $create->Dni = $request->_empDNI ?? "-";
             $create->Email = $request->_empEmail ?? "-";
-            $create->Telefono = $request->_empTelef ?? 0;
+            $create->Telefono = $request->_empTelef ?? "-";
             $create->Direccion = $request->_empDirec ?? "-";
             $create->HoraIngreso = $request->_empHIngreso ?? "-";
             $create->HoraSalida = $request->_empHSalida ?? "-";
@@ -444,9 +444,9 @@ class MantenimientoController extends Controller
             $edit->Apellidos = $request->_empApellidos ?? "-";
             $edit->Especialidad = $request->_empEspecial ?? "-";
             $edit->Sexo = $request->_empSexo ?? "-";
-            $edit->Dni = $request->_empDNI ?? 0;
+            $edit->Dni = $request->_empDNI ?? "-";
             $edit->Email = $request->_empEmail ?? "-";
-            $edit->Telefono = $request->_empTelef ?? 0;
+            $edit->Telefono = $request->_empTelef ?? "-";
             $edit->Direccion = $request->_empDirec ?? "-";
             $edit->HoraIngreso = $request->_empHIngreso ?? "-";
             $edit->HoraSalida = $request->_empHSalida ?? "-";

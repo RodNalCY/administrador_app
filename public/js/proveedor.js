@@ -9,14 +9,14 @@ $(document).ready(function () {
 });
 
 $("#btnRegistrarProveedor").click(function () {
-    var provNombre = $("#txtProvNombre").val();
-    var provDNI = $("#txtProvDNI").val();
-    var provRuc = $("#txtProvRUC").val();
-    var provDir = $("#txtProvDireccion").val();
-    var provEmail = $("#txtProvEmail").val();
-    var provTelef = $("#txtProvTelefono").val();
-    var provBanco = $("#txtProvBanco").val();
-    var provCuenta = $("#txtProvCuenta").val();
+    var provNombre = $("#txtProvNombre").val().trim().toUpperCase();
+    var provDNI = $("#txtProvDNI").val().trim();
+    var provRuc = $("#txtProvRUC").val().trim();
+    var provDir = $("#txtProvDireccion").val().trim().toUpperCase();
+    var provEmail = $("#txtProvEmail").val().trim();
+    var provTelef = $("#txtProvTelefono").val().trim();
+    var provBanco = $("#txtProvBanco").val().trim();
+    var provCuenta = $("#txtProvCuenta").val().trim();
 
     if (provNombre != "") {
         console.log(
@@ -62,16 +62,16 @@ $("#btnRegistrarProveedor").click(function () {
 });
 
 $("#btnActualizarProveedor").click(function () {
-    var provId = $("#txtEditProvId").val();
-    var provNombre = $("#txtEditProvName").val();
-    var provDNI = $("#txtEditProvDNI").val();
-    var provRuc = $("#txtEditProvRUC").val();
-    var provDir = $("#txtEditProvDirc").val();
-    var provEmail = $("#txtEditProvEmail").val();
-    var provTelef = $("#txtEditProvTele").val();
-    var provBanco = $("#txtEditProvBanco").val();
-    var provCuenta = $("#txtEditProvCuenta").val();
-    var provEstado = $("#selectEstadoProveedor").val();
+    var provId = $("#txtEditProvId").val().trim();
+    var provNombre = $("#txtEditProvName").val().trim().toUpperCase();
+    var provDNI = $("#txtEditProvDNI").val().trim();
+    var provRuc = $("#txtEditProvRUC").val().trim();
+    var provDir = $("#txtEditProvDirc").val().trim().toUpperCase();
+    var provEmail = $("#txtEditProvEmail").val().trim();
+    var provTelef = $("#txtEditProvTele").val().trim();
+    var provBanco = $("#txtEditProvBanco").val().trim();
+    var provCuenta = $("#txtEditProvCuenta").val().trim();
+    var provEstado = $("#selectEstadoProveedor").val().trim();
 
     if (provId != "" && provNombre != "") {
         console.log(

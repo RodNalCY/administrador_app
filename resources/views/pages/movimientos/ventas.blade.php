@@ -248,7 +248,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btnAgregarCliente"><i class="fas fa-plus"></i> Añadir</button>
+                <button type="button" class="btn btn-primary" id="btnAgregarCliente"><i class="fas fa-plus"></i> Añadir</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>
@@ -328,9 +328,46 @@
                 <h5 class="modal-title">Añadir Cliente</h5>
             </div>
             <div class="modal-body">
-              
+                <div class="row mb-2">                  
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">NOMBRES: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <input type="text" class="form-control" id="txtClienteNombres">
+                    </div>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">APELLIDOS: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <input type="text" class="form-control" id="txtClienteApellidos">
+                    </div>                  
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">DNI: </i></sup></label>
+                        <input type="number" class="form-control" id="txtClienteDNI" min="0">
+                    </div>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">RUC: </label>
+                        <input type="number" class="form-control" id="txtClienteRUC" min="0">
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">EMAIL: </label>
+                        <input type="email" class="form-control" id="txtClienteEmail">
+                    </div>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">TELEFONO: </label>
+                        <input type="number" class="form-control" id="txtClienteTelefono" min="0">
+                    </div>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">DIRECCIÓN: </label>
+                        <input type="text" class="form-control" id="txtClienteDireccion">
+                    </div>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">SEXO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <div id="selectHTMLSexo"></div>
+                    </div>
+
+                </div>
             </div>
             <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="btnRegistrarCliente"><i class="fas fa-plus"></i> Añadir</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>

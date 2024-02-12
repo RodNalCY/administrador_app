@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 $("#btnRegistrarPresentacion").click(function () {
-    var preNombre = $("#txtPresentacionNombre").val();
+    var preNombre = $("#txtPresentacionNombre").val().trim().toUpperCase();
 
     if (preNombre != "") {
         console.log("preNombre > " + preNombre);
@@ -30,9 +30,9 @@ $("#btnRegistrarPresentacion").click(function () {
 });
 
 $("#btnActualizarPresentacion").click(function () {
-    var preId = $("#txtEditIdPre").val();
-    var preName = $("#txtEditNamePre").val();
-    var preState = $("#selectEstadoPre").val();
+    var preId = $("#txtEditIdPre").val().trim();
+    var preName = $("#txtEditNamePre").val().trim().toUpperCase();
+    var preState = $("#selectEstadoPre").val().trim();
 
     if (preName != "") {
         console.log("preName > " + preName);

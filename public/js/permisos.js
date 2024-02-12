@@ -9,8 +9,8 @@ $(document).ready(function () {
 
 $("#btnRegistrarPermiso").click(function () {
     console.log("btnRegistrarPermiso()");
-    var permisoName = $("#txtNombrePermiso").val();
-    var permisoTipo = $("#txtTipoPermiso").val();
+    var permisoName = $("#txtNombrePermiso").val().trim();
+    var permisoTipo = $("#txtTipoPermiso").val().trim();
 
     if (permisoName != "") {
         console.log(
@@ -35,8 +35,8 @@ $("#btnRegistrarPermiso").click(function () {
 
 $("#btnActualizarPermiso").click(function () {
     console.log("btnActualizarPermiso()");
-    var permisoEditId = $("#txtEditIdPermiso").val();
-    var permisoEditName = $("#txtEditNombrePermiso").val();
+    var permisoEditId = $("#txtEditIdPermiso").val().trim();
+    var permisoEditName = $("#txtEditNombrePermiso").val().trim();
 
     if (permisoEditName != "") {
         console.log(

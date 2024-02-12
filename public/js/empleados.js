@@ -9,17 +9,17 @@ $(document).ready(function () {
 });
 
 $("#btnRegistrarEmpleado").click(function () {
-    var empNombre = $("#txtEmpleadoNombre").val();
-    var empApellidos = $("#txtEmpleadoApellidos").val();
-    var empDNI = $("#txtEmpleadoDNI").val();
-    var empSexo = $("#selectSexoEmpleado").val();
-    var empEspecial = $("#selectEspecialidadEmpleado").val();
-    var empEmail = $("#txtEmpleadoEmail").val();
-    var empTelef = $("#txtEmpleadoTelefono").val();
-    var empDirec = $("#txtEmpleadoDireccion").val();
-    var empHIngreso = $("#txtEmpleadoHIngreso").val();
-    var empHSalida = $("#txtEmpleadoHSalida").val();
-    var empSueldo = $("#txtEmpleadoSueldo").val();
+    var empNombre = $("#txtEmpleadoNombre").val().trim().toUpperCase();
+    var empApellidos = $("#txtEmpleadoApellidos").val().trim().toUpperCase();
+    var empDNI = $("#txtEmpleadoDNI").val().trim();
+    var empSexo = $("#selectSexoEmpleado").val().trim();
+    var empEspecial = $("#selectEspecialidadEmpleado").val().trim();
+    var empEmail = $("#txtEmpleadoEmail").val().trim();
+    var empTelef = $("#txtEmpleadoTelefono").val().trim();
+    var empDirec = $("#txtEmpleadoDireccion").val().trim().toUpperCase();
+    var empHIngreso = $("#txtEmpleadoHIngreso").val().trim();
+    var empHSalida = $("#txtEmpleadoHSalida").val().trim();
+    var empSueldo = $("#txtEmpleadoSueldo").val().trim();
 
     if (empNombre != "" && empApellidos != "" && empDNI != "") {
         console.log(
@@ -74,19 +74,19 @@ $("#btnRegistrarEmpleado").click(function () {
 });
 
 $("#btnActualizarEmpleado").click(function () {
-    var empId = $("#txtEditEmpId").val();
-    var empNombre = $("#txtEditEmpName").val();
-    var empApellidos = $("#txtEditEmpApellidos").val();
-    var empDNI = $("#txtEditEmpDNI").val();
-    var empSexo = $("#selectEditSexoEmpleado").val();
-    var empEspecial = $("#selectEditEspecialidadEmpleado").val();
-    var empEmail = $("#txtEditEmpEmail").val();
-    var empTelef = $("#txtEditEmpTelef").val();
-    var empDirec = $("#txtEditEmpDireccion").val();
-    var empHIngreso = $("#txtEditEmpHIngreso").val();
-    var empHSalida = $("#txtEditEmpHSalida").val();
-    var empSueldo = $("#txtEditEmpSueldo").val();
-    var empEstado = $("#selectEditEstadoEmpleado").val();
+    var empId = $("#txtEditEmpId").val().trim();
+    var empNombre = $("#txtEditEmpName").val().trim().toUpperCase();
+    var empApellidos = $("#txtEditEmpApellidos").val().trim().toUpperCase();;
+    var empDNI = $("#txtEditEmpDNI").val().trim();
+    var empSexo = $("#selectEditSexoEmpleado").val().trim();
+    var empEspecial = $("#selectEditEspecialidadEmpleado").val().trim();
+    var empEmail = $("#txtEditEmpEmail").val().trim();
+    var empTelef = $("#txtEditEmpTelef").val().trim();
+    var empDirec = $("#txtEditEmpDireccion").val().trim().toUpperCase();
+    var empHIngreso = $("#txtEditEmpHIngreso").val().trim();
+    var empHSalida = $("#txtEditEmpHSalida").val().trim();
+    var empSueldo = $("#txtEditEmpSueldo").val().trim();
+    var empEstado = $("#selectEditEstadoEmpleado").val().trim();
 
 
     if (empNombre != "" && empApellidos != "" && empDNI != "") {

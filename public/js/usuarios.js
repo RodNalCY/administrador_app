@@ -358,14 +358,14 @@ $(document).on("click", ".btn-select-delete", function () {
 });
 
 $("#btnRegistrarUsuario").click(function () {
-    var employeeId = $("#txtEmployeeId").val();
-    var userName = $("#txtNombresApellidos").val();
-    var userEmail = $("#txtEmail").val();
+    var employeeId = $("#txtEmployeeId").val().trim();
+    var userName = $("#txtNombresApellidos").val().trim().toUpperCase();
+    var userEmail = $("#txtEmail").val().trim();
     var userPassword = $("#txtPassword").val();
     var userVerifPassword = $("#txtPasswordVerified").val();
 
-    var roleId = $("#txtRoleId").val();
-    var roleName = $("#txtRole").val();
+    var roleId = $("#txtRoleId").val().trim();
+    var roleName = $("#txtRole").val().trim();
 
     console.log(
         "employeeId > " +
@@ -423,8 +423,8 @@ $("#btnRegistrarUsuario").click(function () {
 });
 
 $("#btnEditarUsuario").click(function () {
-    var userId = $("#txtEditUserId").val();
-    var roleId = $("#selectIdRole").val();
+    var userId = $("#txtEditUserId").val().trim();
+    var roleId = $("#selectIdRole").val().trim();
     var password = $("#txtEditPassword").val();
     var passwordVerified = $("#txtEditVerificarPassword").val();
 

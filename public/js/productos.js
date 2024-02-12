@@ -17,15 +17,15 @@ $("#btnBuscarLaboratorio").click(function () {
     $("#mdListLaboratorios").modal("show");
 });
 $("#btnRegistrarProducto").click(function () {
-    var prodNombre = $("#txtProductoNombre").val();
-    var prodConcentacion = $("#txtProductoConcentracion").val();
-    var prodStock = $("#txtProductoStock").val();
-    var prodCosto = $("#txtProductoCosto").val();
-    var prodPrecio = $("#txtProductoPrecio").val();
-    var prodIdPresentacion = $("#txtProductoIdPresentacion").val();
-    var prodIdLaboratorio = $("#txtProductoIdLaboratorio").val();
-    var prodRegistroSanitario = $("#txtProductoRegistroSanitario").val();
-    var prodVencimiento = $("#txtProductoVencimiento").val();
+    var prodNombre = $("#txtProductoNombre").val().trim().toUpperCase();
+    var prodConcentacion = $("#txtProductoConcentracion").val().trim();
+    var prodStock = $("#txtProductoStock").val().trim();
+    var prodCosto = $("#txtProductoCosto").val().trim();
+    var prodPrecio = $("#txtProductoPrecio").val().trim();
+    var prodIdPresentacion = $("#txtProductoIdPresentacion").val().trim();
+    var prodIdLaboratorio = $("#txtProductoIdLaboratorio").val().trim();
+    var prodRegistroSanitario = $("#txtProductoRegistroSanitario").val().trim().toUpperCase();
+    var prodVencimiento = $("#txtProductoVencimiento").val().trim();
 
     console.log(
         "Nombre:",
@@ -80,17 +80,17 @@ $("#btnRegistrarProducto").click(function () {
 });
 
 $("#btnActualizarProducto").click(function () {
-    var prodId = $("#txtEditProdId").val();
-    var prodNombre = $("#txtEditProdName").val();
-    var prodConcentacion = $("#txtEditProdConcentracion").val();
-    var prodStock = $("#txtEditProdStock").val();
-    var prodCosto = $("#txtEditProdCosto").val();
-    var prodPrecio = $("#txtEditProdVenta").val();
-    var prodIdPresentacion = $("#selectEditPresentacion").val();
-    var prodIdLaboratorio = $("#selectEditLaboratorio").val();
-    var prodRegistroSanitario = $("#txtEditProdRegistroSanitario").val();
-    var prodVencimiento = $("#txtEditProdVencimiento").val();
-    var prodEstado = $("#selectEditEstadoProducto").val();
+    var prodId = $("#txtEditProdId").val().trim();
+    var prodNombre = $("#txtEditProdName").val().trim().toUpperCase();
+    var prodConcentacion = $("#txtEditProdConcentracion").val().trim();
+    var prodStock = $("#txtEditProdStock").val().trim();
+    var prodCosto = $("#txtEditProdCosto").val().trim();
+    var prodPrecio = $("#txtEditProdVenta").val().trim();
+    var prodIdPresentacion = $("#selectEditPresentacion").val().trim();
+    var prodIdLaboratorio = $("#selectEditLaboratorio").val().trim();
+    var prodRegistroSanitario = $("#txtEditProdRegistroSanitario").val().trim().toUpperCase();
+    var prodVencimiento = $("#txtEditProdVencimiento").val().trim();
+    var prodEstado = $("#selectEditEstadoProducto").val().trim();
 
     console.log(
         "prodId:",

@@ -9,14 +9,14 @@ $(document).ready(function () {
 });
 
 $("#btnRegistrarCliente").click(function () {
-    var cliDNI = $("#txtClienteDNI").val();
-    var cliNombres = $("#txtClienteNombres").val();
-    var cliApellidos = $("#txtClienteApellidos").val();
-    var cliSexo = $("#selectSexoCliente").val();
-    var cliEmail = $("#txtClienteEmail").val();
-    var cliTelef = $("#txtClienteTelefono").val();
-    var cliDirec = $("#txtClienteDireccion").val();
-    var cliRUC = $("#txtClienteRUC").val();
+    var cliDNI = $("#txtClienteDNI").val().trim();
+    var cliNombres = $("#txtClienteNombres").val().trim().toUpperCase();
+    var cliApellidos = $("#txtClienteApellidos").val().trim().toUpperCase();
+    var cliSexo = $("#selectSexoCliente").val().trim().toUpperCase();
+    var cliEmail = $("#txtClienteEmail").val().trim();
+    var cliTelef = $("#txtClienteTelefono").val().trim();
+    var cliDirec = $("#txtClienteDireccion").val().trim().toUpperCase();
+    var cliRUC = $("#txtClienteRUC").val().trim();
 
     if (cliNombres != "" && cliApellidos != "" && cliDNI != "") {
         console.log(
@@ -62,16 +62,16 @@ $("#btnRegistrarCliente").click(function () {
 });
 
 $("#btnActualizarCliente").click(function () {
-    var cliId = $("#txtEditCliId").val();
-    var cliDNI = $("#txtEditCliDNI").val();
-    var cliNombre = $("#txtEditCliName").val();
-    var cliApellidos = $("#txtEditCliApellidos").val();
-    var cliEmail = $("#txtEditCliEmail").val();
-    var cliTelef = $("#txtEditCliTelef").val();
-    var cliSexo = $("#selectEditSexoCliente").val();
-    var cliDirec = $("#txtEditCliDireccion").val();
-    var cliRUC = $("#txtEditCliRUC").val();
-    var cliEstado = $("#selectEditEstadoCliente").val();
+    var cliId = $("#txtEditCliId").val().trim();
+    var cliDNI = $("#txtEditCliDNI").val().trim();
+    var cliNombre = $("#txtEditCliName").val().trim().toUpperCase();
+    var cliApellidos = $("#txtEditCliApellidos").val().trim().toUpperCase();
+    var cliEmail = $("#txtEditCliEmail").val().trim();
+    var cliTelef = $("#txtEditCliTelef").val().trim();
+    var cliSexo = $("#selectEditSexoCliente").val().trim().toUpperCase();
+    var cliDirec = $("#txtEditCliDireccion").val().trim().toUpperCase();
+    var cliRUC = $("#txtEditCliRUC").val().trim();
+    var cliEstado = $("#selectEditEstadoCliente").val().trim();
 
     if (cliNombre != "" && cliApellidos != "" && cliDNI != "") {
         console.log(

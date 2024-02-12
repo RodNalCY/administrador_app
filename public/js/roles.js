@@ -75,8 +75,8 @@ function listRolesAll() {
 
 $("#btnRegistrarRole").click(function () {
     console.log("btnRegistrarRole()");
-    var roleName = $("#txtRoleNombre").val();
-    var roleTipo = $("#txtRoleTipo").val();
+    var roleName = $("#txtRoleNombre").val().trim().toUpperCase();
+    var roleTipo = $("#txtRoleTipo").val().trim();
 
     if (roleName != "") {
         console.log("roleName > " + roleName + " roleTipo > " + roleTipo);

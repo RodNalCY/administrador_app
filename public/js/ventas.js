@@ -66,11 +66,64 @@ $("#btnBuscarComprobante").click(function () {
 $("#btnBuscarProducto").click(function () {
     $("#mdListProducto").modal("show");
 });
+
 $("#btnAgregarCliente").click(function () {
     $("#mdListClientes").modal("hide");
     $("#mdAgragarCliente").modal("show");
 });
 
+$("#btnRegistrarCliente").click(function () {
+    var cliDNI = $("#txtClienteDNI").val().trim();
+    var cliNombres = $("#txtClienteNombres").val().trim().toUpperCase();
+    var cliApellidos = $("#txtClienteApellidos").val().trim().toUpperCase();
+    var cliSexo = $("#selectSexoCliente").val().trim().toUpperCase();
+    var cliEmail = $("#txtClienteEmail").val().trim();
+    var cliTelef = $("#txtClienteTelefono").val().trim();
+    var cliDirec = $("#txtClienteDireccion").val().trim().toUpperCase();
+    var cliRUC = $("#txtClienteRUC").val().trim();
+
+    if (cliNombres != "" && cliApellidos != "" && cliDNI != "") {
+        console.log(
+            " cliDNI > " +
+                cliDNI +
+                "cliNombre > " +
+                cliNombres +
+                "cliApellidos > " +
+                cliApellidos +
+                " cliSexo > " +
+                cliSexo +
+                " cliEmail > " +
+                cliEmail +
+                " cliTelef > " +
+                cliTelef +
+                " cliDirec > " +
+                cliDirec +
+                " cliRUC > " +
+                cliRUC
+        );
+        var data = {
+            _token: _global_token_crf,
+            _cliDNI: cliDNI,
+            _cliNombre: cliNombres,
+            _cliApellidos: cliApellidos,
+            _cliSexo: cliSexo,
+            _cliEmail: cliEmail,
+            _cliTelef: cliTelef,
+            _cliDirec: cliDirec,
+            _cliRUC: cliRUC,
+        };
+
+        registrarCliente(data);
+    } else {
+        Swal.fire({
+            title: "Upps!",
+            text: "Debe completar los datos del cliente !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
 
 function listClientes() {
     $.ajax({
@@ -89,6 +142,13 @@ function listClientes() {
 
             // Construir el contenido de la tabla
             var html_tabla_clientes = "";
+
+            var html_select_sexo_options =
+            "<select class='form-control' id='selectSexoCliente'>" +
+            "<option value='M'>Masculino</option>" +
+            "<option value='F'>Femenino</option>" +
+            "</select>";
+
             response.data.forEach(function (cliente) {
                 // console.log(cliente.Email);
                 html_tabla_clientes +=
@@ -131,7 +191,7 @@ function listClientes() {
 
             // Actualizar el contenido de la tabla
             $("#tbl_row_clientes").html(html_tabla_clientes);
-
+            $("#selectHTMLSexo").html(html_select_sexo_options);
             // Reinicializar DataTables
             $("#tableClientes").DataTable({
                 order: [[0, "desc"]],
@@ -500,8 +560,8 @@ $("#tableProductos tbody").on("click", "tr", function () {
 });
 
 $("#txtCantidad").on("change", function () {
-    var cantidad = $("#txtCantidad").val();
-    var precio = $("#txtPrecio").val();
+    var cantidad = $("#txtCantidad").val().trim();
+    var precio = $("#txtPrecio").val().trim();
 
     var calcular = cantidad * precio;
     $("#txtTotal").val(calcular.toFixed(2));
@@ -925,6 +985,68 @@ function convertirNumeroATexto(numero) {
 
     var resultado = textoEntero + (textoDecimal ? ' CON ' + textoDecimal : '');
     return resultado.toUpperCase();
+}
+
+function registrarCliente(data) {
+    $.ajax({
+        type: "POST",
+        url: "/save/cliente",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {
+            
+            var x = "1";
+            if ($.fn.DataTable.isDataTable('#tableClientes')) {
+                $('#tableClientes').DataTable();
+                x = "2";
+            }
+            $('#tableClientes').DataTable().destroy();
+            console.log('x > ',x);
+
+        },
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            console.log("status > ", status);
+            if (status) {
+                Swal.fire({
+                    title: "Registrado!",
+                    text: "El cliente fue registrado con exito !",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+
+            } else {
+                Swal.fire({
+                    title: "Upps!",
+                    text: "Algo paso, no se registro el cliente !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            console.log("complete()");
+            setTimeout(() => {                
+                listClientes();
+                $("#mdListClientes").modal("show");
+                $("#mdAgragarCliente").modal("hide");
+            }, 1500);
+        },
+        error: function (response) {
+            console.log("Error", response);
+            Swal.fire({
+                title: "Upps!",
+                text: "Algo paso, no se registro el cliente !",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+    });
 }
 
 

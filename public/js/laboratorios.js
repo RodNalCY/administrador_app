@@ -8,9 +8,9 @@ $(document).ready(function () {
 });
 
 $("#btnRegistrarLabs").click(function () {
-    var labsNombre = $("#txtLabNombre").val();
-    var labsDireccion = $("#txtLabDireccion").val();
-    var labsTelefono = $("#txtLabTelefono").val();
+    var labsNombre = $("#txtLabNombre").val().trim().toUpperCase();
+    var labsDireccion = $("#txtLabDireccion").val().trim().toUpperCase();
+    var labsTelefono = $("#txtLabTelefono").val().trim();
     if (labsNombre != "") {
         console.log(
             "labsNombre > " +
@@ -40,11 +40,11 @@ $("#btnRegistrarLabs").click(function () {
 });
 
 $("#btnActualizarLaboratorio").click(function () {
-    var labsId = $("#txtEditIdLab").val();
-    var labsName = $("#txtEditNameLab").val();
-    var labsDireccion = $("#txtEditDirecLab").val();
-    var labsTelefono = $("#txtEditTelefLab").val();
-    var labsEstado = $("#selectEstadoLabs").val();
+    var labsId = $("#txtEditIdLab").val().trim();
+    var labsName = $("#txtEditNameLab").val().trim().toUpperCase();
+    var labsDireccion = $("#txtEditDirecLab").val().trim().toUpperCase();
+    var labsTelefono = $("#txtEditTelefLab").val().trim();
+    var labsEstado = $("#selectEstadoLabs").val().trim();
 
     if (labsName != "") {
         console.log("labsEstado > ", labsEstado);

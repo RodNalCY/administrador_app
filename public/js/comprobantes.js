@@ -8,8 +8,8 @@ $(document).ready(function () {
 });
 
 $("#btnActualizarComprobante").click(function () {
-    var comprobanteId = $("#txtEditIdComprobante").val();
-    var comprobanteState = $("#selectEstadoComprobante").val();
+    var comprobanteId = $("#txtEditIdComprobante").val().trim();
+    var comprobanteState = $("#selectEstadoComprobante").val().trim()
 
     console.log("comprobanteId > " + comprobanteId + " comprobanteState > " + comprobanteState);
     Swal.fire({
