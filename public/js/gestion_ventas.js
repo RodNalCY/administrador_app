@@ -1,9 +1,9 @@
 $(document).ready(function () {
     _globa_token_crf = document.getElementById("_token").value;
     console.log("_globa_token_crf > ", _globa_token_crf);
-    // $("#tableResumenDiario").html(
-    //     "<tr><td colspan='6' class='text-center'>Por favor, consulte el resumen diario </td></tr>"
-    // );
+    $("#tableListGestionVentas").html(
+        "<tr><td colspan='10' class='text-center'>No hay registros de ventas </td></tr>"
+    );
     listGestionVentas();
 });
 

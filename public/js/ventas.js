@@ -13,6 +13,7 @@ var global_valor_igv = "";
 var global_valor_total = "";
 var global_name_comprobante = "";
 var globalListaDetails = {};
+var global_url_voucher_pdf = "";
 
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
@@ -73,6 +74,10 @@ $("#btnAgregarCliente").click(function () {
 });
 
 $("#btnFinalizarVenta").click(function () {
+    location.reload();
+});
+
+$("#btnCerrarPDFWhatsapp").click(function () {
     location.reload();
 });
 
@@ -167,6 +172,8 @@ function listClientes() {
                     cliente.Dni +
                     "' data-ruc='" +
                     cliente.Ruc +
+                    "' data-telefono='" +
+                    cliente.Telefono +
                     "'>" +
                     "<th class='text-center' scope='row'>" +
                     cliente.idCliente +
@@ -514,6 +521,7 @@ $("#tableClientes tbody").on("click", "tr", function () {
     var apellidos = $(this).data("apellidos");
     var dni = $(this).data("dni");
     var ruc = $(this).data("ruc");
+    var tel = $(this).data("telefono") == "-" ? "" : $(this).data("telefono");
     // Ver los detalles en consola
     console.log(
         "id > " +
@@ -525,7 +533,9 @@ $("#tableClientes tbody").on("click", "tr", function () {
             "  dni > " +
             dni +
             " ruc > " +
-            ruc
+            ruc +
+            " tel > " +
+            tel
     );
     // Pintar en los inputs
     var cliente = name + " " + apellidos;
@@ -533,6 +543,7 @@ $("#tableClientes tbody").on("click", "tr", function () {
     $("#txtCliente").val(cliente);
     $("#txtDNI").val(dni);
     $("#txtClienteRUC").val(ruc);
+    $("#txtTelefonoCliente").val(tel);
     // Cerrar Modal
     $("#mdListClientes").modal("hide");
 });
@@ -899,6 +910,7 @@ function generaVoucherPDF(data) {
         },
         success: function (response) {
             console.log("pdf > ", response);
+            global_url_voucher_pdf = "";
 
             if (response.status) {
                 var urlPdf = response.ruta_pdf;
@@ -907,6 +919,8 @@ function generaVoucherPDF(data) {
                 // Convertir la URL relativa a una URL absoluta
                 var urlAbsoluta = new URL(urlPdf, dominioBase).href;
                 // Establecer la URL absoluta como el atributo src del elemento
+                global_url_voucher_pdf = urlAbsoluta;
+
                 $("#docVoucherPDF").attr("src", urlAbsoluta);
                 $("#mdPDFVoucher").modal("show");
                 Swal.close();
@@ -1170,3 +1184,33 @@ function registrarCliente(data) {
 //         },
 //     });
 // });
+
+// $("#btnDEMO").click(function () {
+//     $("#mdPDFVoucher").modal("show");
+// });
+
+$("#btnAbrirMdWhatsapp").click(function () {
+    $("#mdPDFVoucher").modal("hide");
+    $("#mdEnviarWhatsapp").modal("show");
+});
+
+$("#btnEnviarPDFWhatsapp").click(function () {
+    var numeroTel = $("#txtTelefonoCliente").val();
+    var mensaje =
+        "Holi :) ! Gracias por tu visita a DALIFHAR y vuelva pronto, descargue su comprobante desde este enlace : \n\n" +
+        global_url_voucher_pdf;
+    console.log("global_url_voucher_pdf > ", global_url_voucher_pdf);
+    console.log("numeroTel > ", numeroTel);
+
+    var numeroCodificado = encodeURIComponent(numeroTel);
+    var mensajeCodificado = encodeURIComponent(mensaje);
+    // Insertar un salto de línea después de los dos puntos en el mensaje
+    mensajeCodificado = mensajeCodificado.replace(/:/g, ":\n");
+
+    // Construir la URL del esquema de WhatsApp
+    var url =
+        "https://wa.me/51" + numeroCodificado + "?text=" + mensajeCodificado;
+
+    // Abrir la URL en una nueva pestaña o ventana
+    window.open(url, "_blank");
+});

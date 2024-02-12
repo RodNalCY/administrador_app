@@ -211,7 +211,7 @@
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
                 <button type="button" class="btn btn-success btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
-
+                <!-- <button type="button" class="btn btn-success btn-lg" id="btnDEMO"><i class="fas fa-fw fa-plus"></i> DEMO </button> -->
                 <!-- <button type="button" class="btn btn-success btn-lg" id="btnGenerarVoucher"><i class="fas fa-fw fa-plus"></i> Generar Voucher </button> -->
             </div>
         </div>
@@ -389,7 +389,31 @@
                 <embed id="docVoucherPDF" type="application/pdf" width="100%" height="800px" />
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnAbrirMdWhatsapp"><i class="fab fa-whatsapp fa-lg"></i> Enviar x Whatsapp </button>
                 <button type="button" class="btn btn-danger" id="btnFinalizarVenta"><i class="fas fa-times"></i> Finalizar / Cerrar  </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------------------------------------------------------------------------------------->
+<div class="modal fade" id="mdEnviarWhatsapp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProductoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">INGRESE O VERIFIQUE EL NÚMERO DE WHATSAPP</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-2">
+                    <div class="col-sm-12 col-md-12 mb-2">
+                        <label class="col-form-label">NUMERO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <input type="number" class="form-control" id="txtTelefonoCliente">
+                        <div class="form-text"><sup><code>Por favor, no olvide verificar el número de teléfono con el cliente</code></sup></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnEnviarPDFWhatsapp"><i class="fab fa-whatsapp fa-lg"></i> Enviar </button>
+                <button type="button" class="btn btn-danger" id="btnCerrarPDFWhatsapp""><i class="fas fa-times"></i> Cerrar </button>
             </div>
         </div>
     </div>
