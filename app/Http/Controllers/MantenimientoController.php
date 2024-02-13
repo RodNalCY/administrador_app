@@ -452,7 +452,6 @@ class MantenimientoController extends Controller
             $edit->HoraSalida = $request->_empHSalida ?? "-";
             $edit->Sueldo = $request->_empSueldo ?? 0;
             $edit->Estado = $request->_empEstado ?? "-";
-            $edit->idUsuario = 0;
 
             if ($edit->update()) {
                 return response()->json([
