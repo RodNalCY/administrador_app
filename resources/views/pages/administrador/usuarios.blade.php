@@ -20,7 +20,7 @@
                         <label class="col-form-label">NOMBRES APELLIDOS: </label>
                         <input type="hidden" id="txtEmployeeId" readonly>
                         <input type="text" class="form-control" id="txtNombresApellidos" readonly>
-                        <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarEmpleados"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                        <button type="button" class="btn btn-info btn-sm mt-2" id="btnBuscarEmpleados"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
@@ -40,12 +40,12 @@
                         <label class="col-form-label">ROLE: </label>
                         <input type="hidden" id="txtRoleId" readonly>
                         <input type="text" class="form-control" id="txtRole" readonly>
-                        <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarRoles"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                        <button type="button" class="btn btn-info btn-sm mt-2" id="btnBuscarRoles"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-success" id="btnRegistrarUsuario"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
+                        <button type="button" class="btn btn-primary" id="btnRegistrarUsuario"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
                     </div>
                 </div>
             </div>
@@ -182,7 +182,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnEditarUsuario"><i class="fas fa-pen"></i> Editar</button>
+                <button type="button" class="btn btn-primary" id="btnEditarUsuario"><i class="fas fa-pen"></i> Editar</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>

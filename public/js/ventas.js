@@ -196,7 +196,7 @@ function listClientes() {
                     "<td>" +
                     cliente.Telefono +
                     "</td>" +
-                    "<td><center><button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button></center></td>" +
+                    "<td><center><button type='button' class='btn btn-info btn-sm'><i class='fas fa-check'></i></button></center></td>" +
                     "</tr>";
             });
 
@@ -352,7 +352,7 @@ function listProductos() {
                         "</td>" +
                         "<td>" +
                         "   <center>" +
-                        "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
+                        "      <button type='button' class='btn btn-info btn-sm'><i class='fas fa-check'></i></button>" +
                         "    </center>" +
                         "</td>" +
                         "</tr>";
@@ -406,7 +406,7 @@ function listComprobantes() {
                     "</td>" +
                     "<td>" +
                     "   <center>" +
-                    "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
+                    "      <button type='button' class='btn btn-info btn-sm'><i class='fas fa-check'></i></button>" +
                     "    </center>" +
                     "</td>" +
                     "</tr>";

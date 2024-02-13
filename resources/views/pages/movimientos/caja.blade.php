@@ -70,7 +70,7 @@
                         <div class="mb-3 row text-right">
 
                             <div class="col-sm-12 col-md-12">
-                                <button class="btn btn-success btn-sm" type="button" id="btnCalcularIngresos"> <i class="fas fa-hand-holding-usd"></i> Calcular Ingresos</button>
+                                <button class="btn btn-primary btn-sm" type="button" id="btnCalcularIngresos"> <i class="fas fa-hand-holding-usd"></i> Calcular Ingresos</button>
                             </div>
 
                             <div class="col-sm-12 col-md-12 mt-3">

@@ -35,11 +35,15 @@
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">COSTO <code>(Compra)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtProductoCosto" min="0" max="1000">
+                        <div class="form-text"><sup><code><strong>Si el costo es un valor decimal no olvide colocar el punto(.) Ejemplo: 5.40</strong></code></sup></div>
                     </div>
 
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">PRECIO <code>(Venta)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtProductoPrecio" min="0" max="10000">
+                        <div class="form-text"><sup><code><strong>
+                                        Si el precio es un valor decimal no olvide colocar el punto(.) Ejemplo: 2.90
+                                    </strong></code></sup></div>
                     </div>
                 </div>
 
@@ -48,14 +52,14 @@
                         <label class="col-form-label">PRESENTACIÓN: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtProductoIdPresentacion" readonly>
                         <input type="text" class="form-control" id="txtProductoPresentacion" readonly>
-                        <button type="button" class="btn btn-primary btn-sm mt-2" id="btnBuscarPresentacion"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                        <button type="button" class="btn btn-info btn-sm mt-2" id="btnBuscarPresentacion"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">LABORATORIO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtProductoIdLaboratorio" readonly>
                         <input type="text" class="form-control" id="txtProductoLaboratorio" readonly>
-                        <button type="button" class="btn btn-primary  btn-sm mt-2" id="btnBuscarLaboratorio"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                        <button type="button" class="btn btn-info  btn-sm mt-2" id="btnBuscarLaboratorio"><i class="fas fa-fw fa-search"></i> Buscar</button>
                     </div>
 
                     <div class="col-sm-6 col-md-3 mb-2">
@@ -72,7 +76,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-success" id="btnRegistrarProducto"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
+                        <button type="button" class="btn btn-primary" id="btnRegistrarProducto"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
                     </div>
                 </div>
             </div>
@@ -117,7 +121,13 @@
                 <h5 class="modal-title">Lista de Presentaciones</h5>
             </div>
             <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="alert alert-info" role="alert">
+                        <sup style="top: 0;"><strong>NOTA:</strong> Si no encuentra la presentación del producto, por favor diríjase al menú <strong>Mantenimiento > Presentaciones</strong> para crearla.</sup>
+                    </div>
+                </div>
                 <div class="row m-2">
+
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered" id="tablePresentaciones">
                             <thead class="header-table text-center">
@@ -150,6 +160,11 @@
             </div>
             <div class="modal-body">
                 <div class="row m-2">
+                    <div class="col-md-12">
+                        <div class="alert alert-info" role="alert">
+                            <sup style="top: 0;"><strong>NOTA:</strong> Si no encuentra el laboratorio del producto, por favor diríjase al menú <strong>Mantenimiento > Laboratorios</strong> para crearla.</sup>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered" id="tableLaboratorios">
                             <thead class="header-table text-center">
@@ -198,10 +213,10 @@
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">PRESENTACIÓN : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup> </label>
                         <div id="selectEditHTMLPresentaciones"></div>
-                    </div>                    
+                    </div>
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">STOCK <code>(cantidad)</code> : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
-                        <input type="number" class="form-control" id="txtEditProdStock" min="0" max="1000">                        
+                        <input type="number" class="form-control" id="txtEditProdStock" min="0" max="1000">
                         <div class="form-text"><sup><code>Inventario: <span id="txtDescripcionStock"></span> productos registrados</code></sup></div>
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
@@ -229,17 +244,17 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnActualizarProducto"><i class="fas fa-pen"></i> Editar</button>
+                <button type="button" class="btn btn-primary" id="btnActualizarProducto"><i class="fas fa-pen"></i> Editar</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>
     </div>
-@stop
+    @stop
 
-@section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+    @section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
 
-@section('js')
-<script src="{{ asset('js/productos.js') }}"></script>
-@stop
+    @section('js')
+    <script src="{{ asset('js/productos.js') }}"></script>
+    @stop

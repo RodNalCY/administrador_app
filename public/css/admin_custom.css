@@ -11,8 +11,8 @@
 }
 
 .header-table {
-    background: rgb(55 98 255) !important;
-    border-color: rgb(55 98 255) !important;
+    background: #4a3fff !important;
+    border-color: #4a3fff !important;
     color: #fff;
 }
 
@@ -23,8 +23,8 @@
 }
 
 .bg-header-purple {
-    background: #2738f5 !important;
-    border-color: #2738f5 !important;
+    background: #4a3fff !important;
+    border-color: #4a3fff !important;
     color: #fff !important;
 }
 
@@ -49,4 +49,14 @@
 
 [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover{
     color: #fff;
+}
+
+.btn-primary{
+    background: #4a3fff !important;
+    border-color: #4a3fff !important;
+}
+.btn-primary:hover{
+    transform: scale(1.1); /* Aumento del 10% */
+    transition: transform 0.5s ease; /* Transición suave durante 0.5 segundos */
+
 }

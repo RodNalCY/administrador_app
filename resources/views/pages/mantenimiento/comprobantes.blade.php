@@ -23,7 +23,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-success" id="btnRegistrarComprobante"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
+                        <button type="button" class="btn btn-primary" id="btnRegistrarComprobante"> <i class="fas fa-fw fa-plus"></i> REGISTRAR</button>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnActualizarComprobante"><i class="fas fa-pen"></i> Editar</button>
+                <button type="button" class="btn btn-primary" id="btnActualizarComprobante"><i class="fas fa-pen"></i> Editar</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>

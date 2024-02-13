@@ -39,7 +39,7 @@
                         <label class="col-form-label">DNI/CARNET: </label>
                         <input type="text" class="form-control form-control-sm" id="txtDNI" readonly>
                     </div>
-                    
+
                     <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">RUC: </label>
                         <input type="text" class="form-control form-control-sm" id="txtClienteRUC" readonly>
@@ -48,7 +48,7 @@
                     <div class="col-sm-12 col-md-2">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-primary mr-2 btn-sm" id="btnBuscarClientes"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-info mr-2 btn-sm" id="btnBuscarClientes"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                     <div class="col-sm-12 col-md-4">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-primary btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-info btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
 
                     <div class="col-sm-6 col-md-12">
                         <div class="d-flex ">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-info btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
 
                     <div class="col-sm-12 col-md-12">
                         <div class="d-flex">
-                            <button type="button" class="btn btn-success btn-sm" id="btnAgregarVenta"><i class="fas fa-fw fa-plus"></i> Agregar </button>
+                            <button type="button" class="btn btn-primary btn-sm" id="btnAgregarVenta"><i class="fas fa-fw fa-plus"></i> Agregar </button>
                         </div>
                     </div>
                 </div>
@@ -210,7 +210,7 @@
             </div>
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
-                <button type="button" class="btn btn-success btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
+                <button type="button" class="btn btn-primary btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
                 <!-- <button type="button" class="btn btn-success btn-lg" id="btnDEMO"><i class="fas fa-fw fa-plus"></i> DEMO </button> -->
                 <!-- <button type="button" class="btn btn-success btn-lg" id="btnGenerarVoucher"><i class="fas fa-fw fa-plus"></i> Generar Voucher </button> -->
             </div>
@@ -252,7 +252,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnAgregarCliente"><i class="fas fa-plus"></i> Añadir</button>
+                <button type="button" class="btn btn-info" id="btnAgregarCliente"><i class="fas fa-plus"></i> Añadir</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>
@@ -296,6 +296,15 @@
                 <h5 class="modal-title" id="mdListProductoLabel">Mis Productos</h5>
             </div>
             <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="alert alert-light" role="alert" style="padding: 15px 0px 0px 10px;">
+                        <sup style="top: 0;">
+                            <p><strong>NOTA:</strong> Los siguientes colores en la lista de productos tienen el siguiente significado:</p>
+                            <p style="color:#ff5454; font-weight: bold;">ROJO : El producto esta agotado y no puede ser seleccionado.</p>
+                            <p style="color:#cccc00; font-weight: bold;">AMARILLO : El producto esta por agotarse pronto.</p>
+                        </sup>
+                    </div>
+                </div>
                 <div class="row m-2">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-sm" id="tableProductos">
@@ -332,46 +341,54 @@
                 <h5 class="modal-title">Añadir Cliente</h5>
             </div>
             <div class="modal-body">
-                <div class="row mb-2">                  
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">NOMBRES: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
-                        <input type="text" class="form-control" id="txtClienteNombres">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info" role="alert">
+                            <sup style="top: 0;"><strong>NOTA:</strong> Por favor, asegúrate de ingresar los siguientes datos para el nuevo cliente: <strong>DNI, NOMBRES, APELLIDOS, TELÉFONO Y SEXO</strong>.</sup>
+                        </div>
                     </div>
+                </div>
+                <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">APELLIDOS: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
-                        <input type="text" class="form-control" id="txtClienteApellidos">
-                    </div>                  
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">DNI/CARNET: </i></sup></label>
+                        <label class="col-form-label">DNI/CARNET : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtClienteDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">RUC: </label>
+                        <label class="col-form-label">NOMBRES : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <input type="text" class="form-control" id="txtClienteNombres">
+                    </div>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">APELLIDOS : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <input type="text" class="form-control" id="txtClienteApellidos">
+                    </div>
+
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">RUC : </label>
                         <input type="number" class="form-control" id="txtClienteRUC" min="0">
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">EMAIL: </label>
+                        <label class="col-form-label">EMAIL : </label>
                         <input type="email" class="form-control" id="txtClienteEmail">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">TELEFONO: </label>
+                        <label class="col-form-label">TELEFONO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtClienteTelefono" min="0">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">DIRECCIÓN: </label>
+                        <label class="col-form-label">DIRECCIÓN : </label>
                         <input type="text" class="form-control" id="txtClienteDireccion">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">SEXO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <label class="col-form-label">SEXO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectHTMLSexo"></div>
                     </div>
 
                 </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btnRegistrarCliente"><i class="fas fa-plus"></i> Añadir</button>
+                <button type="button" class="btn btn-info" id="btnRegistrarCliente"><i class="fas fa-plus"></i> Añadir</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
             </div>
         </div>
@@ -390,7 +407,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" id="btnAbrirMdWhatsapp"><i class="fab fa-whatsapp fa-lg"></i> Enviar x Whatsapp </button>
-                <button type="button" class="btn btn-danger" id="btnFinalizarVenta"><i class="fas fa-times"></i> Finalizar / Cerrar  </button>
+                <button type="button" class="btn btn-danger" id="btnFinalizarVenta"><i class="fas fa-times"></i> Finalizar / Cerrar </button>
             </div>
         </div>
     </div>
@@ -413,7 +430,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" id="btnEnviarPDFWhatsapp"><i class="fab fa-whatsapp fa-lg"></i> Enviar </button>
-                <button type="button" class="btn btn-danger" id="btnCerrarPDFWhatsapp""><i class="fas fa-times"></i> Cerrar </button>
+                <button type="button" class="btn btn-danger" id="btnCerrarPDFWhatsapp""><i class=" fas fa-times"></i> Cerrar </button>
             </div>
         </div>
     </div>

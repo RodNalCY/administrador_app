@@ -34,7 +34,7 @@
                     <div class="col-sm-4 col-md-4">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-primary mr-2 btn-sm" id="btnBuscarProveedores"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-info mr-2 btn-sm" id="btnBuscarProveedores"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <div class="col-sm-12 col-md-4">
                         <label class="col-form-label"><br></label>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-primary btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-info btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
 
                     <div class="col-sm-6 col-md-12">
                         <div class="d-flex ">
-                            <button type="button" class="btn btn-primary btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                            <button type="button" class="btn btn-info btn-sm" id="btnBuscarProducto"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
 
                     <div class="col-sm-12 col-md-12">
                         <div class="d-flex">
-                            <button type="button" class="btn btn-success btn-sm" id="btnAgregarVenta"><i class="fas fa-fw fa-plus"></i> Agregar </button>
+                            <button type="button" class="btn btn-primary btn-sm" id="btnAgregarVenta"><i class="fas fa-fw fa-plus"></i> Agregar </button>
                         </div>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
             </div>
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
-                <button type="button" class="btn btn-success btn-lg" id="btnRegistrarCompra"><i class="fas fa-fw fa-plus"></i> Registrar Compra</button>
+                <button type="button" class="btn btn-primary btn-lg" id="btnRegistrarCompra"><i class="fas fa-fw fa-plus"></i> Registrar Compra</button>
             </div>
         </div>
 
