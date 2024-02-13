@@ -11,90 +11,90 @@
 @section('content')
 <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3 col-6">
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
 
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3 id="HTMLVentaRealizadas"></h3>
-                    <p>Ventas Realizadas</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-fw fa-handshake"></i>
-                </div>
-                <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3 id="HTMLVentaRealizadas"></h3>
+                <p>Ventas Realizadas</p>
             </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-
-            <div class="small-box bg-success">
-                <div class="inner">
-                    <h3 id="HTMLComprasRealizadas"></h3>
-                    <p>Compras Realizadas</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-fw fa-cart-plus"></i>
-                </div>
-                <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="icon">
+                <i class="fas fa-fw fa-handshake"></i>
             </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3 id="HTMLTotalCliente"></h3>
-                    <p>Clientes Registrados</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-fw fa-users"></i>
-                </div>
-                <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-
-            <div class="small-box bg-danger">
-                <div class="inner">
-                    <h3 id="HTMLTotalProductos"></h3>
-                    <p>Total de Productos</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-fw fa-capsules"></i>
-                </div>
-                <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">TOTAL DE VENTAS POR MES</h3>
-                </div>
-                <div class="box-body">
-                    <canvas id="barChart1" style="height:250px"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">INGRESO DE VENTAS POR MES (S/)</h3>
-                </div>
-                <div class="box-body">
-                    <canvas id="barChart2" style="height:250px"></canvas>
-                </div>
-            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
-    <!-- <div class="row mt-4">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3 id="HTMLComprasRealizadas"></h3>
+                <p>Compras Realizadas</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-fw fa-cart-plus"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3 id="HTMLTotalCliente"></h3>
+                <p>Clientes Registrados</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-fw fa-users"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3 id="HTMLTotalProductos"></h3>
+                <p>Total de Productos</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-fw fa-capsules"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">TOTAL DE VENTAS POR MES</h3>
+            </div>
+            <div class="box-body">
+                <canvas id="barChart1" ></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">INGRESO DE VENTAS POR MES (S/)</h3>
+            </div>
+            <div class="box-body">
+                <canvas id="barChart2" ></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="row mt-4">
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
@@ -117,8 +117,6 @@
         </div>
     </div> -->
 
-
-</div>
 
 @stop
 
