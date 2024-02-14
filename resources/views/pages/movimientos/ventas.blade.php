@@ -29,7 +29,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 mb-2">
+                    <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">CLIENTE: </label>
                         <input type="hidden" id="txtIdCliente" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtCliente" readonly>
@@ -45,8 +45,7 @@
                         <input type="text" class="form-control form-control-sm" id="txtClienteRUC" readonly>
                     </div>
 
-                    <div class="col-sm-12 col-md-2">
-                        <label class="col-form-label"><br></label>
+                    <div class="col-sm-12 col-md-12">
                         <div class="d-flex">
                             <button type="button" class="btn btn-info mr-2 btn-sm" id="btnBuscarClientes"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
@@ -63,19 +62,18 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 mb-2">
+                    <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">TIPO : </label>
                         <input type="hidden" id="txtIdTipoComprobante" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtTipoComprobante" readonly>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 mb-2">
+                    <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">N° VENTA : </label>
                         <input type="text" class="form-control form-control-sm" id="txtNumComprobante" readonly>
                     </div>
 
-                    <div class="col-sm-12 col-md-4">
-                        <label class="col-form-label"><br></label>
+                    <div class="col-sm-12 col-md-12">
                         <div class="d-flex">
                             <button type="button" class="btn btn-info btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
@@ -211,7 +209,6 @@
 
             <div class="col-sm-12 col-md-12 mt-4 text-right">
                 <button type="button" class="btn btn-primary btn-lg" id="btnRegistrarVenta"><i class="fas fa-fw fa-plus"></i> Registrar Venta</button>
-                <!-- <button type="button" class="btn btn-success btn-lg" id="btnDEMO"><i class="fas fa-fw fa-plus"></i> DEMO </button> -->
                 <!-- <button type="button" class="btn btn-success btn-lg" id="btnGenerarVoucher"><i class="fas fa-fw fa-plus"></i> Generar Voucher </button> -->
             </div>
         </div>
@@ -341,50 +338,71 @@
                 <h5 class="modal-title">Añadir Cliente</h5>
             </div>
             <div class="modal-body">
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="alert alert-info" role="alert">
-                            <sup style="top: 0;"><strong>NOTA:</strong> Por favor, asegúrate de ingresar los siguientes datos para el nuevo cliente: <strong>DNI, NOMBRES, APELLIDOS, TELÉFONO Y SEXO</strong>.</sup>
+                            <sup style="top: 0;"><strong>NOTA:</strong> Por favor, asegúrate de ingresar los siguientes datos para el nuevo cliente: <strong>DNI, NOMBRES, APELLIDOS, TELÉFONO Y SEXO.</strong><br><b>Tener en cuenta que el botón de búsqueda solo se aplica para <strong>DNI</strong></b></sup>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">DNI/CARNET : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <input type="number" class="form-control form-control-sm" id="txtClienteDNI" min="0">
+                        <div id="loading" style="display: none;">
+                            <div class="progress mt-2" style="border-radius: 3px !important;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">CONSULTADO DATOS A LA RENIEC</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <label class="col-form-label"><br></label>
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-info btn-sm mr-2" id="btnGetAPIDNI"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">RUC : </label>
+                        <input type="number" class="form-control form-control-sm" id="txtClienteRUC" min="0">
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <label class="col-form-label"><br></label>
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-info btn-sm mr-2" disabled><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">DNI/CARNET : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
-                        <input type="number" class="form-control" id="txtClienteDNI" min="0">
-                    </div>
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">NOMBRES : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">NOMBRES / RAZÓN SOCIAL : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtClienteNombres">
                     </div>
-                    <div class="col-sm-6 col-md-3 mb-2">
+                    <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">APELLIDOS : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtClienteApellidos">
                     </div>
 
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">RUC : </label>
-                        <input type="number" class="form-control" id="txtClienteRUC" min="0">
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">EMAIL : </label>
-                        <input type="email" class="form-control" id="txtClienteEmail">
-                    </div>
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">TELEFONO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
-                        <input type="number" class="form-control" id="txtClienteTelefono" min="0">
-                    </div>
-                    <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">DIRECCIÓN : </label>
-                        <input type="text" class="form-control" id="txtClienteDireccion">
-                    </div>
-                    <div class="col-sm-6 col-md-3 mb-2">
+                    <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">SEXO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectHTMLSexo"></div>
                     </div>
-
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">TELÉFONO : </label>
+                        <input type="number" class="form-control" id="txtClienteTelefono" min="0">
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">EMAIL : </label>
+                        <input type="email" class="form-control" id="txtClienteEmail">
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">DIRECCIÓN : </label>
+                        <input type="text" class="form-control" id="txtClienteDireccion">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

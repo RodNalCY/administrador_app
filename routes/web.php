@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\APIExternoController;
 use App\Http\Controllers\GestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -151,3 +152,8 @@ Route::controller(GestionController::class)->group(function () {
     // ROUTES CONSULTAR VENTAS
     Route::get('/list/gestion/ventas', 'list_gestion_ventas')->name('/list/gestion/ventas');
 });
+
+Route::controller(APIExternoController::class)->group(function () {
+    Route::post('/reniec/dni/api', 'reniec_dni_api')->name('/reniec/dni/api');
+});
+

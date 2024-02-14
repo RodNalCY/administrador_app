@@ -1214,3 +1214,71 @@ $("#btnEnviarPDFWhatsapp").click(function () {
     // Abrir la URL en una nueva pestaña o ventana
     window.open(url, "_blank");
 });
+
+$("#btnGetAPIDNI").click(function () {
+    var setDNI = $("#txtClienteDNI").val().trim();
+    if(setDNI !=""){
+        var data = {
+            _token: _global_token_crf,
+            _DNI: setDNI,
+        };
+    
+        getDataAPIReniecDNI(data);
+    }else{
+        Swal.fire({
+            title: "Upps!",
+            text: "Por favor, Ingrese el número de DNI !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
+
+function getDataAPIReniecDNI(data) {
+    $.ajax({
+        type: "POST",
+        url: "/reniec/dni/api",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {
+            $(document).ready(function() {
+                // Ocultar el div con clase "row"
+                $("#loading").css("display", "block");
+            });
+        },
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            if (status) {
+                $('#txtClienteNombres').val(response.data.nombres);
+                $('#txtClienteApellidos').val(response.data.apellidoPaterno +" "+response.data.apellidoMaterno);
+            }else{
+                Swal.fire({
+                    title: "Upps !",
+                    text: "Algo paso, no se registro el cliente, ingrese manualmente !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            $(document).ready(function() {
+                // Ocultar el div con clase "row"
+                $("#loading").css("display", "none");
+            });
+        },
+        error: function (response) {
+            console.log("Error", response);
+            Swal.fire({
+                title: "Upps !",
+                text: "Algo paso, no se registro el cliente !",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+    });
+}

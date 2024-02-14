@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    _globa_token_crf = document.getElementById("_token").value;
-    console.log("_globa_token_crf > ", _globa_token_crf);
+    _global_token_crf = document.getElementById("_token").value;
+    console.log("_global_token_crf > ", _global_token_crf);
     $("#tableListClientes").html(
         "<tr><td colspan='11' class='text-center'>No hay empleados disponibles.</td></tr>"
     );
@@ -38,7 +38,7 @@ $("#btnRegistrarCliente").click(function () {
                 cliRUC
         );
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _cliDNI: cliDNI,
             _cliNombre: cliNombres,
             _cliApellidos: cliApellidos,
@@ -98,11 +98,11 @@ $("#btnActualizarCliente").click(function () {
         );
 
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _cliId: cliId,
             _cliDNI: cliDNI,
             _cliNombre: cliNombre,
-            _cliApellidos: cliApellidos,         
+            _cliApellidos: cliApellidos,
             _cliEmail: cliEmail,
             _cliTelef: cliTelef,
             _cliSexo: cliSexo,
@@ -128,7 +128,7 @@ function listaClientes() {
         type: "GET",
         url: "/list/clientes",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function (response) {},
@@ -435,7 +435,7 @@ $(document).on("click", ".btn-delete-cliente", function () {
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
-                _token: _globa_token_crf,
+                _token: _global_token_crf,
                 _clienteId: clienteId,
             };
 
@@ -443,3 +443,75 @@ $(document).on("click", ".btn-delete-cliente", function () {
         }
     });
 });
+
+$("#btnGetAPIDNI").click(function () {
+    var setDNI = $("#txtClienteDNI").val().trim();
+    if (setDNI != "") {
+        var data = {
+            _token: _global_token_crf,
+            _DNI: setDNI,
+        };
+
+        getDataAPIReniecDNI(data);
+    } else {
+        Swal.fire({
+            title: "Upps!",
+            text: "Por favor, Ingrese el número de DNI !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
+
+function getDataAPIReniecDNI(data) {
+    $.ajax({
+        type: "POST",
+        url: "/reniec/dni/api",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {
+            $(document).ready(function () {
+                // Ocultar el div con clase "row"
+                $("#loading").css("display", "block");
+            });
+        },
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            if (status) {
+                $("#txtClienteNombres").val(response.data.nombres);
+                $("#txtClienteApellidos").val(
+                    response.data.apellidoPaterno +
+                        " " +
+                        response.data.apellidoMaterno
+                );
+            } else {
+                Swal.fire({
+                    title: "Upps !",
+                    text: "Algo paso, no se registro el cliente, ingrese manualmente !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            $(document).ready(function () {
+                // Ocultar el div con clase "row"
+                $("#loading").css("display", "none");
+            });
+        },
+        error: function (response) {
+            console.log("Error", response);
+            Swal.fire({
+                title: "Upps !",
+                text: "Algo paso, no se registro el cliente !",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+    });
+}
