@@ -342,7 +342,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="alert alert-info" role="alert">
-                            <sup style="top: 0;"><strong>NOTA:</strong> Por favor, asegúrate de ingresar los siguientes datos para el nuevo cliente: <strong>DNI, NOMBRES, APELLIDOS, TELÉFONO Y SEXO.</strong><br><b>Tener en cuenta que el botón de búsqueda solo se aplica para <strong>DNI</strong></b></sup>
+                            <sup style="top: 0;"><strong>NOTA:</strong> Por favor, asegúrate de ingresar los siguientes datos para el nuevo cliente: <strong>DNI, NOMBRES, APELLIDOS, TELÉFONO Y SEXO.</strong><br><b>Tener en cuenta que el botón de búsqueda solo se aplica para <strong>DNI's</strong></b></sup>
                         </div>
                     </div>
                 </div>

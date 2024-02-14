@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="form-text">
-                            <sup><code>Por favor, ten en cuenta que el botón de búsqueda solo se aplica para <strong>DNI</strong></code></sup>
+                            <sup><code>El botón de búsqueda solo se aplica para <strong>DNI's</strong></code></sup>
                         </div>
 
                     </div>

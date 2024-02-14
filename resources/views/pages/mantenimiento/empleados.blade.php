@@ -16,54 +16,72 @@
             </div>
             <div class="card-body">
                 <div class="row mb-2">
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">DNI/CARNET: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
-                        <input type="number" class="form-control" id="txtEmpleadoDNI" min="0">
-                    </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">NOMBRE: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <label class="col-form-label">DNI/CARNET : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <input type="number" class="form-control form-control-sm" id="txtEmpleadoDNI" min="0">
+                        <div id="loading" style="display: none;">
+                            <div class="progress mt-2" style="border-radius: 3px !important;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">CONSULTADO DATOS A LA RENIEC</div>
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            <sup><code>El botón de búsqueda solo se aplica para <strong>DNI's</strong></code></sup>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <label class="col-form-label"><br></label>
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-info mr-2 btn-sm" id="btnGetAPIDNI"><i class="fas fa-fw fa-search"></i> Buscar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">NOMBRES : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtEmpleadoNombre">
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">APELLIDOS: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <label class="col-form-label">APELLIDOS : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtEmpleadoApellidos">
                     </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">SEXO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">SEXO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectHTMLSexo"></div>
                     </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">ESPECIALIDAD: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">ESPECIALIDAD : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectHTMLEspecialidad"></div>
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">EMAIL: </label>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">EMAIL : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="email" class="form-control" id="txtEmpleadoEmail">
                     </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">TELEFONO: </label>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">TELEFONO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtEmpleadoTelefono" min="0">
                     </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">DIRECCIÓN: </label>
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">DIRECCIÓN : </label>
                         <input type="text" class="form-control" id="txtEmpleadoDireccion">
+                    </div>                    
+                    <div class="col-sm-6 col-md-3 mb-2">
+                        <label class="col-form-label">SUELDO : </label>
+                        <input type="number" class="form-control" id="txtEmpleadoSueldo" min="0">
                     </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">HORA INGRESO: </label>
                         <input type="time" class="form-control" id="txtEmpleadoHIngreso">
                     </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
+                    <div class="col-sm-6 col-md-3 mb-2">
                         <label class="col-form-label">HORA SALIDA: </label>
                         <input type="time" class="form-control" id="txtEmpleadoHSalida">
                     </div>
-                    <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">SUELDO: </label>
-                        <input type="number" class="form-control" id="txtEmpleadoSueldo" min="0">
-                    </div>
-
                 </div>
+
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
                         <button type="button" class="btn btn-primary" id="btnRegistrarEmpleado"> <i class="fas fa-fw fa-plus"></i> REGISTRAR </button>
@@ -119,6 +137,10 @@
                         <input type="number" class="form-control" id="txtEditEmpDNI" min="0">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">ESPECIALIDAD : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <div id="selectEditHTMLEspecialidad"></div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">NOMBRES : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="hidden" id="txtEditEmpId">
                         <input type="text" class="form-control" id="txtEditEmpName">
@@ -128,17 +150,13 @@
                         <input type="text" class="form-control" id="txtEditEmpApellidos">
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">SEXO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
-                        <div id="selectEditHTMLSexo"></div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">ESPECIALIDAD : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
-                        <div id="selectEditHTMLEspecialidad"></div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">EMAIL : </label>
+                        <label class="col-form-label">EMAIL : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="email" class="form-control" id="txtEditEmpEmail">
                     </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">SEXO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <div id="selectEditHTMLSexo"></div>
+                    </div>    
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">TELÉFONO : </label>
                         <input type="number" class="form-control" id="txtEditEmpTelef" min="0">

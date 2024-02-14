@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    _globa_token_crf = document.getElementById("_token").value;
-    console.log("_globa_token_crf > ", _globa_token_crf);
+    _global_token_crf = document.getElementById("_token").value;
+    console.log("_global_token_crf > ", _global_token_crf);
     $("#tableListEmpleados").html(
         "<tr><td colspan='14' class='text-center'>No hay empleados disponibles.</td></tr>"
     );
@@ -47,7 +47,7 @@ $("#btnRegistrarEmpleado").click(function () {
                 empSueldo
         );
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _empNombre: empNombre,
             _empApellidos: empApellidos,
             _empDNI: empDNI,
@@ -120,7 +120,7 @@ $("#btnActualizarEmpleado").click(function () {
         );
 
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _empId: empId,
             _empNombre: empNombre,
             _empApellidos: empApellidos,
@@ -154,7 +154,7 @@ function listaEmpleados() {
         type: "GET",
         url: "/list/empleados",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function (response) {},
@@ -500,7 +500,7 @@ $(document).on("click", ".btn-delete-empleado", function () {
         if (result.isConfirmed) {
             
             var data = {
-                _token: _globa_token_crf,
+                _token: _global_token_crf,
                 _empleadoId: empleadoId,
             };
 
@@ -508,3 +508,75 @@ $(document).on("click", ".btn-delete-empleado", function () {
         }
     });
 });
+
+$("#btnGetAPIDNI").click(function () {
+    var setDNI = $("#txtEmpleadoDNI").val().trim();
+    if (setDNI != "") {
+        var data = {
+            _token: _global_token_crf,
+            _DNI: setDNI,
+        };
+
+        getDataAPIReniecDNI(data);
+    } else {
+        Swal.fire({
+            title: "Upps!",
+            text: "Por favor, Ingrese el número de DNI !",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+});
+
+function getDataAPIReniecDNI(data) {
+    $.ajax({
+        type: "POST",
+        url: "/reniec/dni/api",
+        data: data,
+        dataType: "json",
+        beforeSend: function () {
+            $(document).ready(function () {
+                // Ocultar el div con clase "row"
+                $("#loading").css("display", "block");
+            });
+        },
+        success: function (response) {
+            console.log("success()");
+            console.log(response);
+            let status = response.status;
+            if (status) {
+                $("#txtEmpleadoNombre").val(response.data.nombres);
+                $("#txtEmpleadoApellidos").val(
+                    response.data.apellidoPaterno +
+                        " " +
+                        response.data.apellidoMaterno
+                );
+            } else {
+                Swal.fire({
+                    title: "Upps !",
+                    text: "Algo paso, no se registro el cliente, ingrese manualmente !",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        },
+        complete: function () {
+            $(document).ready(function () {
+                // Ocultar el div con clase "row"
+                $("#loading").css("display", "none");
+            });
+        },
+        error: function (response) {
+            console.log("Error", response);
+            Swal.fire({
+                title: "Upps !",
+                text: "Algo paso, no se registro el cliente !",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        },
+    });
+}
