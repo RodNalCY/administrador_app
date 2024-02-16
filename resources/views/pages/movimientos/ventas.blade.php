@@ -63,13 +63,13 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">TIPO : </label>
+                        <label class="col-form-label">TIPO :</label>
                         <input type="hidden" id="txtIdTipoComprobante" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtTipoComprobante" readonly>
                     </div>
 
                     <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">N° VENTA : </label>
+                        <label class="col-form-label">N° VENTA :</label>
                         <input type="text" class="form-control form-control-sm" id="txtNumComprobante" readonly>
                     </div>
 
@@ -95,24 +95,24 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">PRODUCTO: </label>
+                        <label class="col-form-label">PRODUCTO:</label>
                         <input type="hidden" id="txtIdProducto" readonly>
                         <input type="text" class="form-control" id="txtNombreProducto" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2" style="display: none;">
-                        <label class="col-form-label">Presentación: </label>
+                        <label class="col-form-label">Presentación:</label>
                         <input type="text" class="form-control" id="txtPresentacion" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">CONCETRACIÓN: </label>
+                        <label class="col-form-label">CONCETRACIÓN:</label>
                         <input type="text" class="form-control" id="txtConcentracion" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">STOCK: </label>
+                        <label class="col-form-label">STOCK:</label>
                         <input type="text" class="form-control" id="txtStock" readonly>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-2">
-                        <label class="col-form-label">PRECIO: </label>
+                        <label class="col-form-label">PRECIO:</label>
                         <input type="hidden" id="txtCosto" readonly>
                         <input type="text" class="form-control" id="txtPrecio" readonly>
                     </div>
@@ -135,12 +135,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">CANTIDAD: </label>
+                        <label class="col-form-label">CANTIDAD:</label>
                         <input type="number" class="form-control" id="txtCantidad" min="1">
                     </div>
 
                     <div class="col-sm-12 col-md-4 mb-2">
-                        <label class="col-form-label">TOTAL : </label>
+                        <label class="col-form-label">TOTAL:</label>
                         <input type="text" class="form-control" id="txtTotal" style="background-color: lightyellow;" readonly>
                     </div>
 
@@ -184,26 +184,26 @@
     <div class="card-body">
         <div class="row d-flex justify-content-end">
             <div class="col-sm-6 col-md-2 mb-2">
-                <label class="col-form-label">VALOR DE VENTA: </label>
+                <label class="col-form-label">VALOR DE VENTA:</label>
                 <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorVenta" readonly>
             </div>
 
             <div class="col-sm-6 col-md-2 mb-2">
-                <label class="col-form-label">DESCUENTO : </label>
+                <label class="col-form-label">DESCUENTO:</label>
                 <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorDescuento" readonly>
             </div>
 
             <div class="col-sm-6 col-md-2 mb-2">
-                <label class="col-form-label">SUB TOTAL: </label>
+                <label class="col-form-label">SUB TOTAL:</label>
                 <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorSubtotal" readonly>
             </div>
 
             <div class="col-sm-6 col-md-2 mb-2">
-                <label class="col-form-label">I.G.V (18 %) : </label>
+                <label class="col-form-label">I.G.V (18 %):</label>
                 <input type="text" class="form-control form-control-lg" style="background-color: lightyellow;" id="txtValorIGV" readonly>
             </div>
             <div class="col-sm-6 col-md-2 mb-2">
-                <label class="col-form-label">TOTAL A PAGAR : </label>
+                <label class="col-form-label">TOTAL A PAGAR:</label>
                 <input type="text" class="form-control form-control-lg" style="background-color: cyan;" id="txtTotalPagar" readonly>
             </div>
 
@@ -349,7 +349,7 @@
 
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">DNI/CARNET : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <label class="col-form-label">DNI/CARNET :<sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control form-control-sm" id="txtClienteDNI" min="0">
                         <div id="loading" style="display: none;">
                             <div class="progress mt-2" style="border-radius: 3px !important;">
@@ -364,7 +364,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">RUC : </label>
+                        <label class="col-form-label">RUC :</label>
                         <input type="number" class="form-control form-control-sm" id="txtClienteRUC" min="0">
                     </div>
                     <div class="col-sm-12 col-md-2">
@@ -377,30 +377,30 @@
                 <div class="row mb-2">
 
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">NOMBRES / RAZÓN SOCIAL : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <label class="col-form-label">NOMBRES / RAZÓN SOCIAL :<sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtClienteNombres">
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">APELLIDOS : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <label class="col-form-label">APELLIDOS :<sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="text" class="form-control" id="txtClienteApellidos">
                     </div>
 
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">SEXO : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <label class="col-form-label">SEXO :<sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <div id="selectHTMLSexo"></div>
                     </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">TELÉFONO : </label>
+                        <label class="col-form-label">TELÉFONO :</label>
                         <input type="number" class="form-control" id="txtClienteTelefono" min="0">
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">EMAIL : </label>
+                        <label class="col-form-label">EMAIL :</label>
                         <input type="email" class="form-control" id="txtClienteEmail">
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">DIRECCIÓN : </label>
+                        <label class="col-form-label">DIRECCIÓN :</label>
                         <input type="text" class="form-control" id="txtClienteDireccion">
                     </div>
                 </div>
@@ -440,7 +440,7 @@
             <div class="modal-body">
                 <div class="row mb-2">
                     <div class="col-sm-12 col-md-12 mb-2">
-                        <label class="col-form-label">NUMERO: <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                        <label class="col-form-label">NUMERO :<sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
                         <input type="number" class="form-control" id="txtTelefonoCliente">
                         <div class="form-text"><sup><code>Por favor, no olvide verificar el número de teléfono con el cliente</code></sup></div>
                     </div>

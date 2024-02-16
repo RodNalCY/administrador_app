@@ -17,6 +17,7 @@ class VentasLog extends Model
         'ventas_id',
         'comp_name',
         'fecha_venta',
+        'dia_venta',
         'vendedor_id',
         'cliente_id',
         'valor_total',

@@ -44,7 +44,7 @@
 <body>
     <?php
 
-    $firma = file_get_contents("img/icons/icono-farma.png");
+    $firma = file_get_contents("img/icons/icono-farma-black.png");
     $firma = '<img src="data:image/jpg;base64,' . base64_encode($firma) . '" style="width:120px" alt="Logo Farma">';
 
     $imgqr = file_get_contents("img/icons/qrcode-boleta.png");

@@ -14,6 +14,7 @@ var global_valor_total = "";
 var global_name_comprobante = "";
 var globalListaDetails = {};
 var global_url_voucher_pdf = "";
+var global_dia_venta = "";
 
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
@@ -30,7 +31,35 @@ $(document).ready(function () {
     $("#tableListVentas").html(
         "<tr><td colspan='7' class='text-center'>Por favor, ingrese las ventas</td></tr>"
     );
+
+    // Ejemplo de uso
+    global_dia_venta = obtenerDiaSemana();
+    console.log("Hoy es: " + global_dia_venta);
 });
+
+function obtenerDiaSemana() {
+    // Crear una nueva instancia de Date
+    var fechaActual = new Date();
+
+    // Obtener el número del día de la semana (0 para Domingo, 1 para Lunes, ..., 6 para Sábado)
+    var diaDeLaSemana = fechaActual.getDay();
+    // Crear un array con los nombres de los días de la semana
+    var diasSemana = [
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+    ];
+
+    // Obtener el nombre del día de la semana utilizando el número obtenido anteriormente
+    var nombreDia = diasSemana[diaDeLaSemana];
+
+    // Retornar el nombre del día de la semana
+    return nombreDia;
+}
 
 function fechaAndHora() {
     // Obtener la fecha y hora actual
@@ -848,6 +877,7 @@ $("#btnRegistrarVenta").on("click", function () {
                     _time: fechaHoraFormateada,
                     _total_productos: total_productos,
                     _total_pagar_texto: total_pagar_texto,
+                    _global_dia_venta: global_dia_venta,
                 };
 
                 saveVentaProductos(data);
@@ -1217,14 +1247,14 @@ $("#btnEnviarPDFWhatsapp").click(function () {
 
 $("#btnGetAPIDNI").click(function () {
     var setDNI = $("#txtClienteDNI").val().trim();
-    if(setDNI !=""){
+    if (setDNI != "") {
         var data = {
             _token: _global_token_crf,
             _DNI: setDNI,
         };
-    
+
         getDataAPIReniecDNI(data);
-    }else{
+    } else {
         Swal.fire({
             title: "Upps!",
             text: "Por favor, Ingrese el número de DNI !",
@@ -1242,7 +1272,7 @@ function getDataAPIReniecDNI(data) {
         data: data,
         dataType: "json",
         beforeSend: function () {
-            $(document).ready(function() {
+            $(document).ready(function () {
                 // Ocultar el div con clase "row"
                 $("#loading").css("display", "block");
             });
@@ -1252,9 +1282,13 @@ function getDataAPIReniecDNI(data) {
             console.log(response);
             let status = response.status;
             if (status) {
-                $('#txtClienteNombres').val(response.data.nombres);
-                $('#txtClienteApellidos').val(response.data.apellidoPaterno +" "+response.data.apellidoMaterno);
-            }else{
+                $("#txtClienteNombres").val(response.data.nombres);
+                $("#txtClienteApellidos").val(
+                    response.data.apellidoPaterno +
+                        " " +
+                        response.data.apellidoMaterno
+                );
+            } else {
                 Swal.fire({
                     title: "Upps !",
                     text: "Algo paso, no se registro el cliente, ingrese manualmente !",
@@ -1265,7 +1299,7 @@ function getDataAPIReniecDNI(data) {
             }
         },
         complete: function () {
-            $(document).ready(function() {
+            $(document).ready(function () {
                 // Ocultar el div con clase "row"
                 $("#loading").css("display", "none");
             });

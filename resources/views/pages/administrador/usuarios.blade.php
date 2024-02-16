@@ -30,11 +30,17 @@
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">CONTRASEÑA: </label>
                         <input type="password" class="form-control" id="txtPassword">
+                        <div class="form-text"><sup><code><strong>
+                                        Cree una contraseña para el usuario.
+                                    </strong></code></sup></div>
                     </div>
 
                     <div class="col-sm-6 col-md-2 mb-2">
-                        <label class="col-form-label">VERIFICAR CONTRASEÑA: </label>
+                        <label class="col-form-label">Verf. CONTRASEÑA: </label>
                         <input type="password" class="form-control" id="txtPasswordVerified">
+                        <div class="form-text"><sup><code><strong>
+                                        Vuelve a ingresar la contraseña del usuario.
+                                    </strong></code></sup></div>
                     </div>
                     <div class="col-sm-6 col-md-2 mb-2">
                         <label class="col-form-label">ROLE: </label>
