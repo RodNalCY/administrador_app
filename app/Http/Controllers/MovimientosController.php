@@ -110,12 +110,13 @@ class MovimientosController extends Controller
     {
 
         try {
-            $ventas = DetalleVenta::selectRaw('producto.idProducto, producto.Descripcion, SUM(detalleventa.Cantidad) AS cantidades, detalleventa.Costo, detalleventa.Precio, SUM(detalleventa.Importe) AS importe, (SUM(detalleventa.Cantidad)* detalleventa.Costo) AS costo_total, SUM( detalleventa.Importe) - (SUM( detalleventa.Cantidad) * detalleventa.Costo) AS ganancias, ventas.Fecha, ventas_log.fecha_venta')
-                ->join('ventas', 'detalleventa.IdVenta', '=', 'ventas.IdVenta')
-                ->join('ventas_log', 'ventas.IdVenta', '=', 'ventas_log.venta_id')
+            $ventas = Ventas::selectRaw('producto.idProducto, producto.Descripcion, detalleventa.Costo, detalleventa.Precio, SUM( detalleventa.Cantidad ) AS cantidades, SUM( detalleventa.Importe ) AS importe, SUM( detalleventa.Cantidad * detalleventa.Costo ) AS costo_total,
+            SUM( detalleventa.Importe ) - SUM( detalleventa.Cantidad * detalleventa.Costo ) AS ganancias, ventas.Fecha, ventas_log.fecha_venta')
+                ->join('detalleventa', 'ventas.IdVenta', '=', 'detalleventa.IdVenta')
                 ->join('producto', 'detalleventa.idProducto', '=', 'producto.idProducto')
+                ->join('ventas_log', 'detalleventa.IdVenta', '=', 'ventas_log.venta_id')
                 ->where('ventas.Fecha', $request->fecha)
-                ->groupBy('producto.idProducto', 'producto.Descripcion', 'detalleventa.Costo', 'detalleventa.Precio', 'ventas.Fecha', 'ventas_log.fecha_venta')
+                ->groupBy('producto.idProducto', 'producto.Descripcion', 'detalleventa.Costo', 'detalleventa.Precio', 'detalleventa.Importe', 'ventas.Fecha', 'ventas_log.fecha_venta')
                 ->orderBy('ventas_log.fecha_venta', 'DESC')
                 ->get();
 
@@ -136,14 +137,13 @@ class MovimientosController extends Controller
     {
 
         try {
-            $ventas_general = DetalleVenta::selectRaw('producto.idProducto, producto.Descripcion, presentacion.Descripcion AS presentacion, detalleventa.Precio,
-            SUM( detalleventa.Cantidad ) AS cantidades, detalleventa.Costo,  SUM( detalleventa.Importe ) AS importe, ( SUM( detalleventa.Cantidad )* detalleventa.Costo ) AS costo_total, SUM( detalleventa.Importe ) - ( SUM( detalleventa.Cantidad )* detalleventa.Costo ) AS ganancias')
+            $ventas_general = DetalleVenta::selectRaw('producto.idProducto, producto.Descripcion, presentacion.Descripcion AS presentacion, detalleventa.Costo, detalleventa.Precio, SUM( detalleventa.Cantidad ) AS cantidades, SUM( detalleventa.Importe ) AS importe, SUM( detalleventa.Cantidad * detalleventa.Costo ) AS costo_total, SUM( detalleventa.Importe ) - SUM( detalleventa.Cantidad * detalleventa.Costo ) AS ganancias')
                 ->join('ventas', 'detalleventa.IdVenta', '=', 'ventas.IdVenta')
                 ->join('producto', 'detalleventa.idProducto', '=', 'producto.idProducto')
                 ->join('presentacion', 'producto.idPresentacion', '=', 'presentacion.idPresentacion')
                 ->where('ventas.Fecha', ">=", $request->fecha_init)
                 ->where('ventas.Fecha', "<=", $request->fecha_end)
-                ->groupBy('producto.idProducto', 'producto.Descripcion', 'detalleventa.Costo', 'detalleventa.Precio')
+                ->groupBy('producto.idProducto', 'producto.Descripcion', 'presentacion.Descripcion', 'detalleventa.Costo', 'detalleventa.Precio', 'detalleventa.Cantidad', 'detalleventa.Importe')
                 ->orderBy('producto.idProducto', 'ASC')
                 ->get();
 
@@ -327,8 +327,8 @@ class MovimientosController extends Controller
             $width = 250;
             $height = 700 + $add_height; //Dinamico - aumenta en 20 por cada producto
             $pdf = PDF::setPaper([0, 0, $width, $height])->loadView('pages.pdf.voucher', [
-                'detalle' => $request->_list_details_productos[0], 
-                'productos' => $request->_list_ventas_productos,  
+                'detalle' => $request->_list_details_productos[0],
+                'productos' => $request->_list_ventas_productos,
                 'fecha_hora' => $request->_time,
                 'total_pagar_texto' => $request->_total_pagar_texto,
             ]);
@@ -349,18 +349,18 @@ class MovimientosController extends Controller
             if ($resultado) {
 
                 $log_venta = new VentasLog;
-                $log_venta->comp_id = $request->_list_details_productos[0]['comprobanteId']; 
-                $log_venta->comp_name = $request->_list_details_productos[0]['comprobanteName']; 
-                $log_venta->fecha_venta = $request->_time; 
-                $log_venta->vendedor_id = $request->_list_details_productos[0]['empleadoId']; 
-                $log_venta->cliente_id = $request->_list_details_productos[0]['clienteId']; 
-                $log_venta->valor_total = $request->_list_details_productos[0]['ventaTotal']; 
-                $log_venta->texto_valor_total = $request->_total_pagar_texto; 
-                $log_venta->ruta_comprobante = $filePath; 
-                $log_venta->venta_id = $request->_list_details_productos[0]['ventaId']; 
-                $log_venta->dia_venta = $request->_global_dia_venta; 
+                $log_venta->comp_id = $request->_list_details_productos[0]['comprobanteId'];
+                $log_venta->comp_name = $request->_list_details_productos[0]['comprobanteName'];
+                $log_venta->fecha_venta = $request->_time;
+                $log_venta->vendedor_id = $request->_list_details_productos[0]['empleadoId'];
+                $log_venta->cliente_id = $request->_list_details_productos[0]['clienteId'];
+                $log_venta->valor_total = $request->_list_details_productos[0]['ventaTotal'];
+                $log_venta->texto_valor_total = $request->_total_pagar_texto;
+                $log_venta->ruta_comprobante = $filePath;
+                $log_venta->venta_id = $request->_list_details_productos[0]['ventaId'];
+                $log_venta->dia_venta = $request->_global_dia_venta;
 
-                if($log_venta->save()){
+                if ($log_venta->save()) {
                     return response()->json([
                         'status' => true,
                         'ruta_pdf' => $filePath,
@@ -368,8 +368,6 @@ class MovimientosController extends Controller
                         'total_pagar' =>  $request->_total_pagar_texto,
                     ]);
                 }
-                
-                
             } else {
                 return response()->json([
                     'status' => false,

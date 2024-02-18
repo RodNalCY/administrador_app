@@ -75,11 +75,11 @@ function listVentasResumenDiario(fechita) {
                     venta.Descripcion +
                     "</th>" +
                     "<td style='text-align:center;'>" +
-                    venta.cantidades +
-                    "</td>" +
-                    "<td style='text-align:center;'>" +
                     venta.Precio +
                     "</td>" +
+                    "<td style='text-align:center;'>" +
+                    venta.cantidades +
+                    "</td>" +                   
                     "<th style='text-align:center;'>" +
                     venta.importe +
                     "</th>" +
@@ -92,8 +92,17 @@ function listVentasResumenDiario(fechita) {
                     "</tr>";
             });
 
+            html_tabla_resumen_diario +=  
+            "<tr class='text-center' style='background-color: lightyellow; color: black; font-weight: bold; border-top: solid; border-color: gold; font-size: x-large;'>"+
+            "<td colspan='2'>TOTAL: </td>"+
+            "<td>"+local_cantidad_producto+"</td>"+
+            "<td>"+local_ingreso_venta.toFixed(2)+"</td>"+
+            "<td>"+local_ganancias.toFixed(2)+"</td>"+
+            "<td>&nbsp;</td>"+
+            "</tr>";
+
             $("#txtIngresoVenta").val(local_ingreso_venta.toFixed(2));
-            $("#txtCantProducto").val(local_cantidad_producto.toFixed(2));
+            $("#txtCantProducto").val(local_cantidad_producto);
             $("#txtGanancia").val(local_ganancias.toFixed(2));
             $("#txtTotalCaja").val(local_ingreso_venta.toFixed(2));
 
@@ -107,6 +116,10 @@ function listVentasResumenDiario(fechita) {
 }
 
 function listVentasResumenDetalle(f_init, f_end) {
+    var local_detalle_cantidad_producto = 0;
+    var local_detalle_total= 0;
+    var local_detalle_ganancias = 0;
+
     $.ajax({
         type: "POST",
         url: "/list/resumen/detalle",
@@ -122,10 +135,14 @@ function listVentasResumenDetalle(f_init, f_end) {
             var html_tabla_resumen_detallado = "";
 
             response.data.forEach(function (venta) {
+                local_detalle_cantidad_producto += parseInt(venta.cantidades);
+                local_detalle_total += parseFloat(venta.importe);
+                local_detalle_ganancias += parseFloat(venta.ganancias);
+
                 html_tabla_resumen_detallado =
                     html_tabla_resumen_detallado +
                     "<tr>" +
-                    "<td scope='row'>" +
+                    "<td scope='row' style='text-align:center;'>" +
                     venta.idProducto +
                     "</td>" +
                     "<th>" +
@@ -148,6 +165,14 @@ function listVentasResumenDetalle(f_init, f_end) {
                     "</td>" +
                     "</tr>";
             });
+
+            html_tabla_resumen_detallado +=  
+            "<tr class='text-center' style='background-color: lightyellow; color: black; font-weight: bold; border-top: solid; border-color: gold; font-size: x-large;'>"+
+            "<td colspan='4'>TOTAL: </td>"+
+            "<td>"+local_detalle_cantidad_producto+"</td>"+
+            "<td>"+local_detalle_total.toFixed(2)+"</td>"+
+            "<td>"+local_detalle_ganancias.toFixed(2)+"</td>"+
+            "</tr>";
 
             $("#tbl_row_ventas_detalle").html(html_tabla_resumen_detallado);
         },

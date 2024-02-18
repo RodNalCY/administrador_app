@@ -93,12 +93,12 @@
                 <table class="table table-hover table-bordered">
                     <thead class="header-table text-center">
                         <tr>
-                            <th scope="col">PRODUCTO</th>
-                            <th scope="col">CANTIDAD</th>
+                            <th scope="col">NOMBRE PRODUCTO</th>
                             <th scope="col">PRECIO</th>
+                            <th scope="col">CANTIDAD</th>                          
                             <th scope="col">TOTAL</th>
                             <th scope="col">GANANCIA</th>
-                            <th scope="col">FECHA</th>
+                            <th scope="col">FECHA - HORA</th>
                         </tr>
                     </thead>
                     <tbody id="tableResumenDiario">
