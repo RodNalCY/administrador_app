@@ -110,11 +110,13 @@ class MovimientosController extends Controller
     {
 
         try {
-            $ventas = DetalleVenta::selectRaw('producto.idProducto, producto.Descripcion, SUM(detalleventa.Cantidad) AS cantidades, detalleventa.Costo, detalleventa.Precio, SUM(detalleventa.Importe) AS importe, (SUM(detalleventa.Cantidad)* detalleventa.Costo) AS costo_total, SUM( detalleventa.Importe) - (SUM( detalleventa.Cantidad) * detalleventa.Costo) AS ganancias, ventas.Fecha')
+            $ventas = DetalleVenta::selectRaw('producto.idProducto, producto.Descripcion, SUM(detalleventa.Cantidad) AS cantidades, detalleventa.Costo, detalleventa.Precio, SUM(detalleventa.Importe) AS importe, (SUM(detalleventa.Cantidad)* detalleventa.Costo) AS costo_total, SUM( detalleventa.Importe) - (SUM( detalleventa.Cantidad) * detalleventa.Costo) AS ganancias, ventas.Fecha, ventas_log.fecha_venta')
                 ->join('ventas', 'detalleventa.IdVenta', '=', 'ventas.IdVenta')
+                ->join('ventas_log', 'ventas.IdVenta', '=', 'ventas_log.venta_id')
                 ->join('producto', 'detalleventa.idProducto', '=', 'producto.idProducto')
                 ->where('ventas.Fecha', $request->fecha)
-                ->groupBy('producto.idProducto', 'producto.Descripcion', 'detalleventa.Costo', 'detalleventa.Precio', 'ventas.Fecha')
+                ->groupBy('producto.idProducto', 'producto.Descripcion', 'detalleventa.Costo', 'detalleventa.Precio', 'ventas.Fecha', 'ventas_log.fecha_venta')
+                ->orderBy('ventas_log.fecha_venta', 'DESC')
                 ->get();
 
             return response()->json([

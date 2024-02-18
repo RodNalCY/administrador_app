@@ -770,8 +770,7 @@ $("#btnRegistrarVenta").on("click", function () {
     global_ventas_details_lista = [];
     global_name_comprobante = "";
     var total_pagar_texto = "";
-    var fechaActual = new Date();
-    var fechaFormateada = fechaActual.toISOString().split("T")[0];
+    const fechaFormateada = obtenerFechaHoraFormateada(1);
 
     var comprobanteId = $("#txtIdTipoComprobante").val().trim();
     var comprobanteName = $("#txtTipoComprobante").val().trim().toUpperCase();
@@ -839,7 +838,7 @@ $("#btnRegistrarVenta").on("click", function () {
             allowOutsideClick: false,
         }).then((result) => {
             if (result.isConfirmed) {
-                total_pagar_texto = convertirNumeroATexto(valorTotal);
+                total_pagar_texto = convertirNumeroATexto(valorTotal);                
 
                 globalListaDetails = {};
                 globalListaDetails["clienteId"] = clienteId;
@@ -868,7 +867,7 @@ $("#btnRegistrarVenta").on("click", function () {
                     "global_ventas_details_lista  > ",
                     global_ventas_details_lista
                 );
-                const fechaHoraFormateada = obtenerFechaHoraFormateada();
+                const fechaHoraFormateada = obtenerFechaHoraFormateada(2);
                 const total_productos = global_ventas_productos_lista.length;
                 var data = {
                     _token: _global_token_crf,
@@ -886,19 +885,27 @@ $("#btnRegistrarVenta").on("click", function () {
     }
 });
 
-function obtenerFechaHoraFormateada() {
+function obtenerFechaHoraFormateada(option) {
     const fechaHoraActual = new Date();
 
     // Obtener los componentes de la fecha y hora
     const dia = String(fechaHoraActual.getDate()).padStart(2, "0");
     const mes = String(fechaHoraActual.getMonth() + 1).padStart(2, "0"); // Sumar 1 porque enero es 0
-    const año = fechaHoraActual.getFullYear();
+    const anio = fechaHoraActual.getFullYear();
     const horas = String(fechaHoraActual.getHours()).padStart(2, "0");
     const minutos = String(fechaHoraActual.getMinutes()).padStart(2, "0");
     const segundos = String(fechaHoraActual.getSeconds()).padStart(2, "0");
 
     // Construir la cadena de fecha y hora
-    const fechaHoraFormateada = `${dia}/${mes}/${año} ${horas}:${minutos}:${segundos}`;
+    var  fechaHoraFormateada = "";
+    switch (option) {
+        case 1:
+            fechaHoraFormateada = `${anio}-${mes}-${dia}`;
+            break;
+        case 2:
+            fechaHoraFormateada = `${dia}/${mes}/${anio} ${horas}:${minutos}:${segundos}`;
+            break;
+    }   
 
     return fechaHoraFormateada;
 }

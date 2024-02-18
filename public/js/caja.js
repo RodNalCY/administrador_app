@@ -9,7 +9,17 @@ $(document).ready(function () {
 $("#btnCalcularIngresos").click(function () {
     var fechita = $("#txtFechaDiario").val().trim();
     console.log("fechita > ", fechita);
-    listVentasResumenDiario(fechita);
+    if (fechita != "") {
+        listVentasResumenDiario(fechita);
+    } else {
+        Swal.fire({
+            icon: "warning",
+            title: "Upps!",
+            text: "Por favor, ingrese la fecha de consulta !.",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
 });
 
 $("#btnVisualizarVentas").click(function () {
@@ -21,17 +31,17 @@ $("#btnVentasDetalle").click(function () {
     var fecha_end = $("#txtFechaHasta").val().trim();
 
     // Validación de las fechas
-    if (fecha_init === "" || fecha_end === "") {
+    if (fecha_init != "" || fecha_end != "") {
+        console.log("fecha_init > " + fecha_init + " fecha_end > " + fecha_end);
+        listVentasResumenDetalle(fecha_init, fecha_end);
+    } else {
         Swal.fire({
             icon: "warning",
             title: "Upps!",
-            text: "Por favor, completa ambas fechas.",
+            text: "Por favor, completa las fechas de Inicio - Fin a consultar.",
             showConfirmButton: false,
-            timer: 1500
-          });
-    } else {
-        console.log("fecha_init > " + fecha_init + " fecha_end > " + fecha_end);
-        listVentasResumenDetalle(fecha_init, fecha_end);
+            timer: 1500,
+        });
     }
 });
 
@@ -64,20 +74,20 @@ function listVentasResumenDiario(fechita) {
                     "<th scope='row'>" +
                     venta.Descripcion +
                     "</th>" +
-                    "<td>" +
+                    "<td style='text-align:center;'>" +
                     venta.cantidades +
                     "</td>" +
-                    "<td>" +
+                    "<td style='text-align:center;'>" +
                     venta.Precio +
                     "</td>" +
-                    "<th>" +
+                    "<th style='text-align:center;'>" +
                     venta.importe +
                     "</th>" +
-                    "<td>" +
+                    "<td style='text-align:center;'>" +
                     venta.ganancias +
                     "</td>" +
-                    "<td>" +
-                    venta.Fecha +
+                    "<td style='text-align:center;'>" +
+                    venta.fecha_venta +
                     "</td>" +
                     "</tr>";
             });
@@ -124,16 +134,16 @@ function listVentasResumenDetalle(f_init, f_end) {
                     "<td>" +
                     venta.presentacion +
                     "</td>" +
-                    "<td>" +
+                    "<td style='text-align:center;'>" +
                     venta.Precio +
                     "</td>" +
-                    "<td>" +
+                    "<td style='text-align:center;'>" +
                     venta.cantidades +
                     "</td>" +
-                    "<th>" +
+                    "<th style='text-align:center;'>" +
                     venta.importe +
                     "</th>" +
-                    "<td> " +
+                    "<td style='text-align:center;'> " +
                     venta.ganancias +
                     "</td>" +
                     "</tr>";

@@ -111,7 +111,7 @@
 
 <!----------------------------------------------------------------------------------------------->
 <div class="modal fade" id="mdListResumen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProveedoresLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="mdListResumenLabel">Lista de Ventas</h5>
@@ -134,11 +134,11 @@
                 </div>
                 <div class="row m-2">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered text-center">
-                            <thead class="header-table">
+                        <table class="table table-hover table-bordered">
+                            <thead class="header-table text-center">
                                 <tr>
-                                    <th scope="col">CÓDIGO</th>
-                                    <th scope="col">PRODUCTO</th>
+                                    <th scope="col">CÓDIGO PRODUCTO</th>
+                                    <th scope="col">NOMBRE PRODUCTO</th>
                                     <th scope="col">PRESENTACIÓN</th>
                                     <th scope="col">PRECIO</th>
                                     <th scope="col">CANTIDAD</th>
