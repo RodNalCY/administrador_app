@@ -55,8 +55,27 @@
     background: #4a3fff !important;
     border-color: #4a3fff !important;
 }
+
 .btn-primary:hover{
     transform: scale(1.1); /* Aumento del 10% */
     transition: transform 0.5s ease; /* Transición suave durante 0.5 segundos */
 
+}
+
+.bg-gradient-dark {     
+    border-radius: 18px !important;
+    box-shadow: 0px 10px 10px 5px rgba(0,0,0,0.25) !important;
+}
+
+.login-logo img{
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.25)  !important;
+    border-radius: 150px !important;
+}
+
+.btn.btn-flat {
+    border-radius: 13px !important;
+}
+
+.input-group-append {
+    cursor: pointer !important;
 }

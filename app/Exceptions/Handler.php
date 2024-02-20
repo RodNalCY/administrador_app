@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\PostTooLargeException;
+use Illuminate\Session\TokenMismatchException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +28,24 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof TokenMismatchException) {
+            return redirect()->back()->withInput()->withErrors(['csrf' => 'El formulario ha expirado. Por favor, intenta nuevamente.']);
+        }
+
+        if ($exception instanceof PostTooLargeException) {
+            return redirect()->back()->withInput()->withErrors(['post_too_large' => 'El archivo que intentas subir es demasiado grande.']);
+        }
+
+        return parent::render($request, $exception);
     }
 }
