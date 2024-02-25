@@ -74,24 +74,49 @@
     <div class="col-md-6">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">TOTAL DE VENTAS POR MES</h3>
+                <h3 class="box-title">INGRESO POR SEMANA (S/.)</h3>
             </div>
             <div class="box-body">
-                <canvas id="barChart1" ></canvas>
+                <canvas id="barChartSumVentaSemana"></canvas>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">INGRESO DE VENTAS POR MES (S/)</h3>
+                <h3 class="box-title">VENTAS POR SEMANA</h3>
             </div>
             <div class="box-body">
-                <canvas id="barChart2" ></canvas>
+                <canvas id="barChartTotalVentaSemana"></canvas>
             </div>
         </div>
     </div>
 </div>
+
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">INGRESO POR MES (S/.)</h3>
+            </div>
+            <div class="box-body">
+                <canvas id="barChartSumVentaMensual"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">VENTAS POR MES</h3>
+            </div>
+            <div class="box-body">
+                <canvas id="barChartTotalVentaMensual"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- <div class="row mt-4">

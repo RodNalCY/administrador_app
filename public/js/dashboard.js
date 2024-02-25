@@ -6,6 +6,8 @@ $(document).ready(function () {
     dataSumaVentasMensuales();
     // dataTotalPresentaciones();
     // dataTotalLaboratorios();
+    dataSumaVentasSemana();
+    dataTotalVentasSemana();
 });
 
 function dataTotalVentasMensuales() {
@@ -20,19 +22,19 @@ function dataTotalVentasMensuales() {
         success: function (response) {
             console.log("RDX> ", response);
 
-            var labels = response.labels;
-            var data = response.data;
+            var label_response = response.labels;
+            var data_response = response.data;
 
             // Configuración del gráfico
-            var ctx1 = document.getElementById("barChart1").getContext("2d");
-            var barChart1 = new Chart(ctx1, {
+            var ctx1 = document.getElementById("barChartTotalVentaMensual").getContext("2d");
+            var barChartTotalVentaMensual = new Chart(ctx1, {
                 type: "line",
                 data: {
-                    labels: labels,
+                    labels: label_response,
                     datasets: [
                         {
                             label: "Total",
-                            data: data,
+                            data: data_response,
                             backgroundColor: "rgba(0, 191, 255, 0.3)", // Azul claro
                             borderColor: "rgba(0, 191, 255, 1)", // Azul claro
                             pointStyle: "circle",
@@ -69,18 +71,18 @@ function dataSumaVentasMensuales() {
         success: function (response) {
             console.log("RDX> ", response);
 
-            var labels2 = response.labels;
-            var data2 = response.data;
+            var label_response = response.labels;
+            var data_response = response.data;
 
-            var ctx2 = document.getElementById("barChart2").getContext("2d");
-            var barChart2 = new Chart(ctx2, {
+            var ctx2 = document.getElementById("barChartSumVentaMensual").getContext("2d");
+            var barChartSumVentaMensual = new Chart(ctx2, {
                 type: "line",
                 data: {
-                    labels: labels2,
+                    labels: label_response,
                     datasets: [
                         {
-                            label: "Total",
-                            data: data2,
+                            label: "Total (S/.) ",
+                            data: data_response,
                             backgroundColor: "rgba(75, 192, 192, 0.2)",
                             borderColor: "rgba(75, 192, 192, 1)",
                             pointStyle: "circle",
@@ -207,6 +209,102 @@ function dataResumenDashboard() {
             $("#HTMLComprasRealizadas").text(response.total_compras);
             $("#HTMLTotalCliente").text(response.total_clientes);
             $("#HTMLTotalProductos").text(response.total_productos);
+        },
+        complete: function (response) {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function dataSumaVentasSemana() {
+    $.ajax({
+        type: "GET",
+        url: "/dashboard/suma/ventas/semana",
+        data: {
+            _token: _global_token_crf,
+        },
+        dataType: "json",
+        beforeSend: function (response) {},
+        success: function (response) {
+            console.log("RDX> ", response);
+            var label_response = response.labels;
+            var data_response = response.data;
+
+            var ctx2 = document.getElementById("barChartSumVentaSemana").getContext("2d");
+            var barChartSumVentaSemana = new Chart(ctx2, {
+                type: "line",
+                data: {
+                    labels: label_response,
+                    datasets: [
+                        {
+                            label: "Total (S/.) ",
+                            data: data_response,
+                            backgroundColor: "rgba(75, 192, 192, 0.2)",
+                            borderColor: "rgba(75, 192, 192, 1)",
+                            pointStyle: "circle",
+                            pointRadius: 10,
+                            pointHoverRadius: 15,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
+         
+        },
+        complete: function (response) {},
+        error: function (response) {
+            console.log("Error", response);
+        },
+    });
+}
+
+function dataTotalVentasSemana() {
+    $.ajax({
+        type: "GET",
+        url: "/dashboard/total/ventas/semana",
+        data: {
+            _token: _global_token_crf,
+        },
+        dataType: "json",
+        beforeSend: function (response) {},
+        success: function (response) {
+            console.log("RDX> ", response);
+            var label_response = response.labels;
+            var data_response = response.data;
+
+            var ctx2 = document.getElementById("barChartTotalVentaSemana").getContext("2d");
+            var barChartTotalVentaSemana = new Chart(ctx2, {
+                type: "line",
+                data: {
+                    labels: label_response,
+                    datasets: [
+                        {
+                            label: "Total",
+                            data: data_response,
+                            backgroundColor: "rgba(0, 191, 255, 0.3)", // Azul claro
+                            borderColor: "rgba(0, 191, 255, 1)", // Azul claro
+                            pointStyle: "circle",
+                            pointRadius: 10,
+                            pointHoverRadius: 15,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
+         
         },
         complete: function (response) {},
         error: function (response) {

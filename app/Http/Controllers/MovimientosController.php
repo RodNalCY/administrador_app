@@ -336,9 +336,7 @@ class MovimientosController extends Controller
             $pdfContent = $pdf->output();
 
             // Nombre del archivo y ubicación donde se guardará
-            $replace_time = str_replace("/", "_", $request->_time);
-            $replace_time = str_replace(":", "_", $replace_time);
-            $replace_time = str_replace(" ", "_", $replace_time);
+            $replace_time = str_replace(["/", ":", " "], "_", $request->_time);
 
             $fileName = 'voucher_impreso_' . $replace_time . '.pdf';
             $filePath = 'downloads/pdf/' . $fileName;

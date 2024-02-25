@@ -37,6 +37,9 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/dashboard/suma/ventas/mensuales', 'dashboard_suma_ventas_mensuales')->name('/dashboard/suma/ventas/mensuales');
     Route::get('/dashboard/total/presentaciones', 'dashboard_total_presentaciones')->name('/dashboard/total/presentaciones');
     Route::get('/dashboard/total/laboratorios', 'dashboard_total_laboratorios')->name('/dashboard/total/laboratorios');
+
+    Route::get('/dashboard/suma/ventas/semana', 'dashboard_suma_ventas_semana')->name('/dashboard/suma/ventas/semana');
+    Route::get('/dashboard/total/ventas/semana', 'dashboard_total_ventas_semana')->name('/dashboard/total/ventas/semana');
 });
 
 
