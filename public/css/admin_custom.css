@@ -79,3 +79,7 @@
 .input-group-append {
     cursor: pointer !important;
 }
+
+/* div.dataTables_wrapper div.dataTables_filter {
+    display: none !important;
+} */

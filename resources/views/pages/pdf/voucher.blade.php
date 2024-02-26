@@ -184,7 +184,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span class="title-details">SON {{ $total_pagar_texto }}</span></td>
+                    <td colspan="4"><span class="title-details">SON {{ $total_pagar_texto }} SOLES</span></td>
                 </tr>
                 <tr>
                     <td colspan="4">

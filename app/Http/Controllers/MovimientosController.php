@@ -54,7 +54,7 @@ class MovimientosController extends Controller
     public function list_activo_clientes()
     {
         try {
-            $clientes = Cliente::orderBy("idCliente", "DESC")->where('Estado', 'Activo')->get();
+            $clientes = Cliente::orderBy("Nombres", "ASC")->where('Estado', 'Activo')->get();
 
             return response()->json([
                 'message' => 'lista de clientes activos',
@@ -90,7 +90,7 @@ class MovimientosController extends Controller
     public function list_activo_productos()
     {
         try {
-            $productos = Producto::with(['presentacion', 'laboratorio'])->where('Estado', 'Activo')->get();
+            $productos = Producto::with(['presentacion', 'laboratorio'])->where('Estado', 'Activo')->orderBy('producto.Descripcion', 'ASC')->get();
 
             return response()->json([
                 'message' => 'lista de productos activos',
@@ -325,7 +325,7 @@ class MovimientosController extends Controller
             // 1 producto 
             $add_height = 20 * intval($request->_total_productos);
             $width = 250;
-            $height = 700 + $add_height; //Dinamico - aumenta en 20 por cada producto
+            $height = 720 + $add_height; //Dinamico - aumenta en 20 por cada producto
             $pdf = PDF::setPaper([0, 0, $width, $height])->loadView('pages.pdf.voucher', [
                 'detalle' => $request->_list_details_productos[0],
                 'productos' => $request->_list_ventas_productos,

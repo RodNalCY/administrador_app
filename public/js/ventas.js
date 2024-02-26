@@ -11,7 +11,6 @@ var global_valor_descuento = "";
 var global_valor_sub_total = "";
 var global_valor_igv = "";
 var global_valor_total = "";
-var global_name_comprobante = "";
 var globalListaDetails = {};
 var global_url_voucher_pdf = "";
 var global_dia_venta = "";
@@ -39,12 +38,12 @@ $(document).ready(function () {
 
 function obtenerDiaSemana() {
     // Crear una nueva instancia de Date
-    var fechaActual = new Date();
+    const fechaActual = new Date();
 
     // Obtener el número del día de la semana (0 para Domingo, 1 para Lunes, ..., 6 para Sábado)
-    var diaDeLaSemana = fechaActual.getDay();
+    const diaDeLaSemana = fechaActual.getDay();
     // Crear un array con los nombres de los días de la semana
-    var diasSemana = [
+    const diasSemana = [
         "Domingo",
         "Lunes",
         "Martes",
@@ -55,7 +54,7 @@ function obtenerDiaSemana() {
     ];
 
     // Obtener el nombre del día de la semana utilizando el número obtenido anteriormente
-    var nombreDia = diasSemana[diaDeLaSemana];
+    const nombreDia = diasSemana[diaDeLaSemana];
 
     // Retornar el nombre del día de la semana
     return nombreDia;
@@ -63,10 +62,10 @@ function obtenerDiaSemana() {
 
 function fechaAndHora() {
     // Obtener la fecha y hora actual
-    const fechaHoraActual = new Date();
+    var fechaHoraActual = new Date();
 
     // Formatear la fecha y hora sin el indicador de la zona horaria
-    const opciones = {
+    var opciones = {
         weekday: "long",
         year: "numeric",
         month: "long",
@@ -75,13 +74,13 @@ function fechaAndHora() {
         minute: "numeric",
         second: "numeric",
     };
-    const fechaHoraFormateada = fechaHoraActual.toLocaleDateString(
+    var fechaHoraFormateada = fechaHoraActual.toLocaleDateString(
         "es-ES",
         opciones
     );
 
     // Mostrar la fecha y hora en el elemento de span
-    const spanFechaHora = document.getElementById("fechaHora");
+    var spanFechaHora = document.getElementById("fechaHora");
     spanFechaHora.textContent = fechaHoraFormateada;
 }
 
@@ -208,21 +207,21 @@ function listClientes() {
                     cliente.idCliente +
                     "</th>" +
                     "<td>" +
-                    cliente.Dni +
-                    "</td>" +
-                    "<td>" +
-                    cliente.Ruc +
-                    "</td>" +
-                    "<td>" +
                     cliente.Nombres +
                     "</td>" +
                     "<td>" +
                     cliente.Apellidos +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
+                    cliente.Dni +
+                    "</td>" +
+                    "<td class='text-center'>" +
+                    cliente.Ruc +
+                    "</td>" +
+                    "<td class='text-center'>" +
                     cliente.Sexo +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     cliente.Telefono +
                     "</td>" +
                     "<td><center><button type='button' class='btn btn-info btn-sm'><i class='fas fa-check'></i></button></center></td>" +
@@ -234,10 +233,18 @@ function listClientes() {
             $("#selectHTMLSexo").html(html_select_sexo_options);
             // Reinicializar DataTables
             $("#tableClientes").DataTable({
-                order: [[0, "desc"]],
+                order: [[1, "desc"]],
                 language: {
                     url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
                 },
+            });
+
+            $("#btnBuscarListCliente").on("input", function () {
+                var searchText = $(this).val().toLowerCase(); // Obtener el texto ingresado en minúsculas
+                // Obtener instancia de DataTables de la tabla
+                var table = $("#tableClientes").DataTable();
+                // Realizar la búsqueda en la tabla utilizando el texto ingresado
+                table.search(searchText).draw();
             });
         },
         complete: function () {},
@@ -281,10 +288,10 @@ function listProductos() {
                         "<td>" +
                         producto.Concentracion +
                         "</td>" +
-                        "<td>" +
+                        "<td class='text-center'>" +
                         producto.Stock +
                         "</td>" +
-                        "<td>" +
+                        "<td class='text-center'>" +
                         producto.Precio_Venta +
                         "</td>" +
                         "<td>" +
@@ -327,10 +334,10 @@ function listProductos() {
                         "<td>" +
                         producto.Concentracion +
                         "</td>" +
-                        "<td>" +
+                        "<td class='text-center'>" +
                         producto.Stock +
                         "</td>" +
-                        "<td>" +
+                        "<td class='text-center'>" +
                         producto.Precio_Venta +
                         "</td>" +
                         "<td>" +
@@ -373,10 +380,10 @@ function listProductos() {
                         "<td>" +
                         producto.Concentracion +
                         "</td>" +
-                        "<td>" +
+                        "<td class='text-center'>" +
                         producto.Stock +
                         "</td>" +
-                        "<td>" +
+                        "<td class='text-center'>" +
                         producto.Precio_Venta +
                         "</td>" +
                         "<td>" +
@@ -389,12 +396,25 @@ function listProductos() {
             });
 
             $("#tbl_row_productos").html(html_tabla_productos);
+
             // Reinicializar DataTables
             $("#tableProductos").DataTable({
-                order: [[0, "desc"]],
+                order: [[1, "asc"]],
+                // lengthMenu: [ [15, 25, 50, -1], [15, 25, 50, "Todos"] ],
+                // searching: false,
+                search: "Buscar productos:",
                 language: {
                     url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    search: "Buscar productos:",
                 },
+            });
+
+            $("#btnBuscarListProducto").on("input", function () {
+                var searchText = $(this).val().toLowerCase(); // Obtener el texto ingresado en minúsculas
+                // Obtener instancia de DataTables de la tabla
+                var table = $("#tableProductos").DataTable();
+                // Realizar la búsqueda en la tabla utilizando el texto ingresado
+                table.search(searchText).draw();
             });
         },
         complete: function (response) {},
@@ -430,7 +450,7 @@ function listComprobantes() {
                     "<th class='text-center' scope='row'>" +
                     comprobante.idTipoComprobante +
                     "</th>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     comprobante.Descripcion +
                     "</td>" +
                     "<td>" +
@@ -620,6 +640,8 @@ $("#txtCantidad").on("change", function () {
 
     var calcular = cantidad * precio;
     $("#txtTotal").val(calcular.toFixed(2));
+
+    console.log("cantidad > ", cantidad);
 });
 
 $("#btnAgregarVenta").on("click", function () {
@@ -631,6 +653,7 @@ $("#btnAgregarVenta").on("click", function () {
     var precio = $("#txtPrecio").val().trim();
     var costo = $("#txtCosto").val().trim();
     var total = $("#txtTotal").val().trim();
+    var stock = $("#txtStock").val().trim();
 
     // Validar si los campos tienen texto
     if (
@@ -655,29 +678,74 @@ $("#btnAgregarVenta").on("click", function () {
         // Todos los campos tienen texto, puedes continuar con la lógica principal
         console.log("productoId:", productoId);
         console.log("producto:", producto);
-        console.log("descripcion:", descripcion);
-        console.log("categoria:", categoria);
-        console.log("cantidad:", cantidad);
-        console.log("precio:", precio);
-        console.log("costo:", costo);
-        console.log("total:", total);
+        // console.log("descripcion:", descripcion);
+        // console.log("categoria:", categoria);
+        // console.log("cantidad:", cantidad);
+        // console.log("precio:", precio);
+        // console.log("costo:", costo);
+        // console.log("total:", total);
+        // Verificar si el producto ya está en la lista
+        var encontrarProductoId = global_ventas_productos_lista.find(function (
+            producto
+        ) {
+            return producto.productoId === productoId;
+        });
 
-        var miLista = {};
-        global_index_ventas = global_index_ventas + 1;
+        // Si el producto no está en la lista, agregarlo
+        if (encontrarProductoId === undefined) {
+            var iquals = parseInt(cantidad) > parseInt(stock) ? true : false;
+            if (iquals) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Stock Limitado!",
+                    html:
+                        "<p>El producto <strong>" +
+                        producto +
+                        "</strong> tiene un limite de : <strong>" +
+                        stock +
+                        " uds.</strong></p>",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else if (parseInt(cantidad) == 0) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Advertencia!",
+                    html: "<p>Ingrese como mínimo: <strong> 1 unidad</strong> del producto.</p>",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                global_index_ventas++;
 
-        miLista["id"] = global_index_ventas;
-        miLista["productoId"] = productoId;
-        miLista["producto"] = producto;
-        miLista["descripcion"] = descripcion;
-        miLista["categoria"] = categoria;
-        miLista["cantidad"] = cantidad;
-        miLista["precio"] = precio;
-        miLista["costo"] = costo;
-        miLista["total"] = total;
+                var nuevoProducto = {
+                    id: global_index_ventas,
+                    productoId: productoId,
+                    producto: producto,
+                    descripcion: descripcion,
+                    categoria: categoria,
+                    cantidad: cantidad,
+                    precio: precio,
+                    costo: costo,
+                    total: total,
+                };
 
-        global_ventas_productos_lista.push(miLista);
-        global_sumatoria_total = global_sumatoria_total + parseFloat(total);
-        listaVentas();
+                global_ventas_productos_lista.push(nuevoProducto);
+                global_sumatoria_total += parseFloat(total);
+                listaVentas();
+            }
+        } else {
+            Swal.fire({
+                icon: "warning",
+                title: "Advertencia!",
+                html:
+                    "<p>El producto: <strong>" +
+                    producto +
+                    "</strong>, ya fue añadido !</p>",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
     }
 });
 
@@ -768,9 +836,7 @@ function setValores() {
 $("#btnRegistrarVenta").on("click", function () {
     console.log("btnRegistrarVenta()");
     global_ventas_details_lista = [];
-    global_name_comprobante = "";
     var total_pagar_texto = "";
-    const fechaFormateada = obtenerFechaHoraFormateada(1);
 
     var comprobanteId = $("#txtIdTipoComprobante").val().trim();
     var comprobanteName = $("#txtTipoComprobante").val().trim().toUpperCase();
@@ -786,7 +852,6 @@ $("#btnRegistrarVenta").on("click", function () {
     var ticket = $("#txtNumComprobante").val().trim();
 
     var camposVacios = [];
-    global_name_comprobante = comprobanteName;
     // Verificar si algún campo está vacío
     if (comprobanteId === "") {
         camposVacios.push("Tipo de Comprobante");
@@ -811,6 +876,9 @@ $("#btnRegistrarVenta").on("click", function () {
     }
     if (ticket === "") {
         camposVacios.push("Número de Comprobante");
+    }
+    if (global_ventas_productos_lista.length == 0) {
+        camposVacios.push("No hay productos añadidos");
     }
 
     if (camposVacios.length > 0) {
@@ -838,7 +906,9 @@ $("#btnRegistrarVenta").on("click", function () {
             allowOutsideClick: false,
         }).then((result) => {
             if (result.isConfirmed) {
-                total_pagar_texto = convertirNumeroATexto(valorTotal);                
+                total_pagar_texto = convertirNumeroATexto(valorTotal);
+                const fechaFormateada = obtenerFechaHoraFormateada(1);
+                const fechaHoraFormateada = obtenerFechaHoraFormateada(2);
 
                 globalListaDetails = {};
                 globalListaDetails["clienteId"] = clienteId;
@@ -867,7 +937,7 @@ $("#btnRegistrarVenta").on("click", function () {
                     "global_ventas_details_lista  > ",
                     global_ventas_details_lista
                 );
-                const fechaHoraFormateada = obtenerFechaHoraFormateada(2);
+
                 const total_productos = global_ventas_productos_lista.length;
                 var data = {
                     _token: _global_token_crf,
@@ -897,7 +967,7 @@ function obtenerFechaHoraFormateada(option) {
     const segundos = String(fechaHoraActual.getSeconds()).padStart(2, "0");
 
     // Construir la cadena de fecha y hora
-    var  fechaHoraFormateada = "";
+    var fechaHoraFormateada = "";
     switch (option) {
         case 1:
             fechaHoraFormateada = `${anio}-${mes}-${dia}`;
@@ -905,14 +975,17 @@ function obtenerFechaHoraFormateada(option) {
         case 2:
             fechaHoraFormateada = `${dia}/${mes}/${anio} ${horas}:${minutos}:${segundos}`;
             break;
-    }   
+    }
 
     return fechaHoraFormateada;
 }
 
 function generaVoucherPDF(data) {
     console.log("generaVoucherPDF()");
-
+    var _numberComprobante = $("#txtTipoComprobante")
+        .val()
+        .trim()
+        .toUpperCase();
     $.ajax({
         type: "POST",
         url: "/generar/pdf/voucher",
@@ -921,7 +994,7 @@ function generaVoucherPDF(data) {
         beforeSend: function (response) {
             let timerInterval;
             Swal.fire({
-                title: "Generando: " + global_name_comprobante + " DE VENTA",
+                title: "Generando: " + _numberComprobante + " DE VENTA",
                 html: "Procesando en : <b></b> segundos.",
                 timer: 20000,
                 timerProgressBar: true,
@@ -1152,80 +1225,6 @@ function registrarCliente(data) {
     });
 }
 
-// $("#btnGenerarVoucher").click(function () {
-//     console.log("btnGenerarVoucher()");
-//     // Obtener la fecha y hora actual
-//     const fechaHoraFormateada = obtenerFechaHoraFormateada();
-
-//     $.ajax({
-//         type: "POST",
-//         url: "/generar/pdf/voucher",
-//         data: {
-//             _token: _global_token_crf,
-//             _time: fechaHoraFormateada,
-//         },
-//         dataType: "json",
-//         beforeSend: function (response) {
-//             let timerInterval;
-//             Swal.fire({
-//                 title: "Generando Boleta de Venta",
-//                 html: "Procesando en : <b></b> segundos.",
-//                 timer: 20000,
-//                 timerProgressBar: true,
-//                 didOpen: () => {
-//                     Swal.showLoading();
-//                     const timer = Swal.getPopup().querySelector("b");
-//                     let totalTime = 0;
-//                     timerInterval = setInterval(() => {
-//                         totalTime += 1;
-//                         timer.textContent = `${totalTime}`;
-//                     }, 1000);
-//                 },
-//                 willClose: () => {
-//                     clearInterval(timerInterval);
-//                 },
-//             }).then((result) => {
-//                 /* Read more about handling dismissals below */
-//                 if (result.dismiss === Swal.DismissReason.timer) {
-//                     console.log("I was closed by the timer");
-//                 }
-//             });
-//         },
-//         success: function (response) {
-//             console.log("pdf > ", response);
-
-//             if (response.status) {
-//                 var urlPdf = response.ruta_pdf;
-//                 // Obtener el dominio base de la página actual
-//                 var dominioBase = window.location.origin;
-//                 // Convertir la URL relativa a una URL absoluta
-//                 var urlAbsoluta = new URL(urlPdf, dominioBase).href;
-//                 // Establecer la URL absoluta como el atributo src del elemento
-//                 $("#docVoucherPDF").attr("src", urlAbsoluta);
-//                 $("#mdPDFVoucher").modal("show");
-//                 Swal.close();
-//             } else {
-//                 Swal.fire({
-//                     title: "Upps!",
-//                     html: "<strong>Error del servidor al generar el voucher !</strong>",
-//                     icon: "warning",
-//                     showConfirmButton: false,
-//                     timer: 3000,
-//                 });
-//                 Swal.close();
-//             }
-//         },
-//         complete: function (response) {},
-//         error: function (response) {
-//             console.log("Error", response);
-//         },
-//     });
-// });
-
-// $("#btnDEMO").click(function () {
-//     $("#mdPDFVoucher").modal("show");
-// });
-
 $("#btnAbrirMdWhatsapp").click(function () {
     $("#mdPDFVoucher").modal("hide");
     $("#mdEnviarWhatsapp").modal("show");
@@ -1323,3 +1322,15 @@ function getDataAPIReniecDNI(data) {
         },
     });
 }
+
+$("#btnTestingHora").click(function () {
+    console.log("btnTestingHora");
+
+    const fecha1 = obtenerFechaHoraFormateada(1);
+    const fecha2 = obtenerFechaHoraFormateada(2);
+
+    console.log("fecha1 > ", fecha1);
+    console.log("fecha2 > ", fecha2);
+    console.log("obtenerDiaSemana() > ", obtenerDiaSemana());
+    // console.log("fechaAndHora() > ",fechaAndHora());
+});
