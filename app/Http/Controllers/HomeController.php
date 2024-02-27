@@ -7,6 +7,7 @@ use App\Models\Compras;
 use App\Models\Producto;
 use App\Models\Ventas;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -33,8 +34,12 @@ class HomeController extends Controller
     private function get_semana()
     {
         try {
+            // Obtener la fecha actual
+            $currentDate = Carbon::now();            
+            // Formatear la fecha en el formato deseado
+            $formattedDate = $currentDate->format('Y-m-d');
             // Definir la fecha actual o cualquier otra fecha de referencia
-            $fecha_referencia = '2024-02-24'; // Puedes usar date('Y-m-d') para la fecha actual
+            $fecha_referencia = $formattedDate; // Puedes usar date('Y-m-d') para la fecha actual
             // Obtener el número de la semana
             $numero_semana = date('W', strtotime($fecha_referencia));
             // Obtener el primer día de la semana (Lunes)
