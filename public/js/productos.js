@@ -177,87 +177,159 @@ function listProductos() {
                 "</select>";
 
             response.data.forEach(function (venta) {
-                html_tabla_productos =
-                    html_tabla_productos +
-                    "<tr>" +
-                    "<td scope='row' class='text-center'>" +
-                    venta.idProducto +
-                    "</td>" +
-                    "<th>" +
-                    venta.Descripcion +
-                    "</th>" +
-                    "<td>" +
-                    venta.laboratorio.Nombre +
-                    "</td>" +
-                    "<td>" +
-                    venta.presentacion.Descripcion +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    venta.Concentracion +
-                    "</td>" +
-                    "<th class='text-center'>" +
-                    venta.Stock +
-                    "</th>" +
-                    "<td class='text-center'> " +
-                    venta.Costo +
-                    "</td>" +
-                    "<td class='text-center'> " +
-                    venta.Precio_Venta +
-                    "</td>" +
-                    "<td> " +
-                    venta.RegistroSanitario +
-                    "</td>" +
-                    "<td class='text-center'> " +
-                    venta.FechaVencimiento +
-                    "</td>" +
-                    "<td class='text-center'> " +
-                    venta.Estado +
-                    "</td>" +
-                    "<td>" +
-                    "<center>" +
-                    " <button type='button' class='btn btn-warning btn-sm btn-edit-producto'" +
-                    " data-id='" +
-                    venta.idProducto +
-                    "' data-name='" +
-                    venta.Descripcion +
-                    "' data-idlaboratorio='" +
-                    venta.laboratorio.idLaboratorio +
-                    "' data-laboratorio='" +
-                    venta.laboratorio.Nombre +
-                    "' data-idpresentacion='" +
-                    venta.presentacion.idPresentacion +
-                    "' data-presentacion='" +
-                    venta.presentacion.Descripcion +
-                    "' data-concentracion='" +
-                    venta.Concentracion +
-                    "' data-stock='" +
-                    venta.Stock +
-                    "' data-costo='" +
-                    venta.Costo +
-                    "' data-venta='" +
-                    venta.Precio_Venta +
-                    "' data-sanitario='" +
-                    venta.RegistroSanitario +
-                    "' data-vencimiento='" +
-                    venta.FechaVencimiento +
-                    "' data-state='" +
-                    venta.Estado +
-                    "'><i class='fas fa-pen'></i></button>" +
-                    " <button type='button' class='btn btn-info btn-sm btn-active-producto'" +
-                    " data-id='" +
-                    venta.idProducto +
-                    "' data-name='" +
-                    venta.Descripcion +
-                    "'><i class='fas fa-eye'></i></button>" +
-                    " <button type='button' class='btn btn-danger btn-sm btn-desactive-producto'" +
-                    " data-id='" +
-                    venta.idProducto +
-                    "' data-name='" +
-                    venta.Descripcion +
-                    "'><i class='fas fa-eye-slash'></i></button>" +
-                    "</center>" +
-                    "</td>" +
-                    "</tr>";
+                if (venta.Estado == "Inactivo") {
+                    html_tabla_productos =
+                        html_tabla_productos +
+                        "<tr style='background-color: #ffb3b3;'>" +
+                        "<td scope='row' class='text-center'>" +
+                        venta.idProducto +
+                        "</td>" +
+                        "<th>" +
+                        venta.Descripcion +
+                        "</th>" +
+                        "<td>" +
+                        venta.laboratorio.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        venta.presentacion.Descripcion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        venta.Concentracion +
+                        "</td>" +
+                        "<th class='text-center'>" +
+                        venta.Stock +
+                        "</th>" +
+                        "<td class='text-center'> " +
+                        venta.Costo +
+                        "</td>" +
+                        "<td class='text-center'> " +
+                        venta.Precio_Venta +
+                        "</td>" +
+                        "<td> " +
+                        venta.RegistroSanitario +
+                        "</td>" +
+                        "<td class='text-center'> " +
+                        venta.FechaVencimiento +
+                        "</td>" +
+                        "<td class='text-center'> " +
+                        venta.Estado +
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-producto'" +
+                        " data-id='" +
+                        venta.idProducto +
+                        "' data-name='" +
+                        venta.Descripcion +
+                        "' data-idlaboratorio='" +
+                        venta.laboratorio.idLaboratorio +
+                        "' data-laboratorio='" +
+                        venta.laboratorio.Nombre +
+                        "' data-idpresentacion='" +
+                        venta.presentacion.idPresentacion +
+                        "' data-presentacion='" +
+                        venta.presentacion.Descripcion +
+                        "' data-concentracion='" +
+                        venta.Concentracion +
+                        "' data-stock='" +
+                        venta.Stock +
+                        "' data-costo='" +
+                        venta.Costo +
+                        "' data-venta='" +
+                        venta.Precio_Venta +
+                        "' data-sanitario='" +
+                        venta.RegistroSanitario +
+                        "' data-vencimiento='" +
+                        venta.FechaVencimiento +
+                        "' data-state='" +
+                        venta.Estado +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-info btn-sm btn-active-desactive-producto' data-bs-toggle='tooltip' data-bs-placement='left' title='Activar Producto'" +
+                        " data-id='" +
+                        venta.idProducto +
+                        "' data-name='" +
+                        venta.Descripcion +
+                        "' data-active='1'><i class='fas fa-unlock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
+                    html_tabla_productos =
+                        html_tabla_productos +
+                        "<tr>" +
+                        "<td scope='row' class='text-center'>" +
+                        venta.idProducto +
+                        "</td>" +
+                        "<th>" +
+                        venta.Descripcion +
+                        "</th>" +
+                        "<td>" +
+                        venta.laboratorio.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        venta.presentacion.Descripcion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        venta.Concentracion +
+                        "</td>" +
+                        "<th class='text-center'>" +
+                        venta.Stock +
+                        "</th>" +
+                        "<td class='text-center'> " +
+                        venta.Costo +
+                        "</td>" +
+                        "<td class='text-center'> " +
+                        venta.Precio_Venta +
+                        "</td>" +
+                        "<td> " +
+                        venta.RegistroSanitario +
+                        "</td>" +
+                        "<td class='text-center'> " +
+                        venta.FechaVencimiento +
+                        "</td>" +
+                        "<td class='text-center'> " +
+                        venta.Estado +
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-producto'" +
+                        " data-id='" +
+                        venta.idProducto +
+                        "' data-name='" +
+                        venta.Descripcion +
+                        "' data-idlaboratorio='" +
+                        venta.laboratorio.idLaboratorio +
+                        "' data-laboratorio='" +
+                        venta.laboratorio.Nombre +
+                        "' data-idpresentacion='" +
+                        venta.presentacion.idPresentacion +
+                        "' data-presentacion='" +
+                        venta.presentacion.Descripcion +
+                        "' data-concentracion='" +
+                        venta.Concentracion +
+                        "' data-stock='" +
+                        venta.Stock +
+                        "' data-costo='" +
+                        venta.Costo +
+                        "' data-venta='" +
+                        venta.Precio_Venta +
+                        "' data-sanitario='" +
+                        venta.RegistroSanitario +
+                        "' data-vencimiento='" +
+                        venta.FechaVencimiento +
+                        "' data-state='" +
+                        venta.Estado +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-danger btn-sm btn-active-desactive-producto' data-bs-toggle='tooltip' data-bs-placement='left' title='Desactivar Producto'" +
+                        " data-id='" +
+                        venta.idProducto +
+                        "' data-name='" +
+                        venta.Descripcion +
+                        "' data-active='0'><i class='fas fa-lock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                }
             });
 
             $("#tableListProductos").html(html_tabla_productos);
@@ -529,8 +601,8 @@ function deleteProducto(data) {
             console.log("status > ", status);
             if (status) {
                 Swal.fire({
-                    title: "Desactivado!",
-                    text: "El producto fue desactivado con exito !",
+                    title: "Actualizado!",
+                    text: "El estado del producto fue actualizado con exito !",
                     icon: "success",
                     showConfirmButton: false,
                     timer: 1500,
@@ -538,7 +610,7 @@ function deleteProducto(data) {
             } else {
                 Swal.fire({
                     title: "Upps!",
-                    text: "Algo paso, no se desactivo el producto !",
+                    text: "Algo paso, no se actualizo el estado del producto !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,
@@ -623,27 +695,40 @@ $(document).on("click", ".btn-edit-producto", function () {
     $("#mdEditProducto").modal("show");
 });
 
-$(document).on("click", ".btn-desactive-producto", function () {
+$(document).on("click", ".btn-active-desactive-producto", function () {
     var productoId = $(this).data("id");
     var productoName = $(this).data("name");
+    var productoEstado = $(this).data("active");
+
+    console.log("productoId > "+ productoId+ " productoName > "+ productoName+ " productoEstado > "+productoEstado);
+    var message = "Desea desactivar el producto: ";
+    var btnText = "Si, desactivar!";
+    var btnTitle = "Desactivar!";
+
+    if (productoEstado == 1) {
+        message = "Desea activar el producto:";
+        btnText = "Si, Activar!";
+        btnTitle = "Activar!";
+    }
 
     Swal.fire({
-        title: "Desactivar",
+        title: btnTitle,
         html:
-            "<p>Desea desactivar el producto: <strong>" +
+            "<p>"+message+"<strong>" +
             productoName +
             " !</strong></p>",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, desactivar!",
+        confirmButtonText: btnText,
         cancelButtonText: "No, cancelar!",
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
                 _token: _global_token_crf,
                 _productoId: productoId,
+                _estado: productoEstado,
             };
 
             deleteProducto(data);
