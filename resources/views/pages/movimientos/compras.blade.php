@@ -223,7 +223,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Proveedor</button>
+                <!-- <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Proveedor</button> -->
             </div>
         </div>
     </div>
@@ -255,7 +255,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
             </div>
         </div>
     </div>
@@ -268,6 +267,22 @@
                 <h5 class="modal-title" id="mdListProductoLabel">Lista de Productos</h5>
             </div>
             <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="alert alert-light" role="alert" style="padding: 15px 0px 0px 10px;">
+                        <sup style="top: 0;">
+                            <p><strong>NOTA:</strong> Los siguientes colores en la lista de productos tienen el siguiente significado:</p>
+                            <p style="color:#ff5454; font-weight: bold;">ROJO : El producto esta agotado.</p>
+                            <p style="color:#cccc00; font-weight: bold;">AMARILLO : El producto esta por agotarse.</p>
+                        </sup>
+                    </div>
+                </div>
+                <div class="row m-2 mb-4">
+                    <div class="input-group">
+                        <div class="input-group-text" style="background-color: #4a3fff; color:white; "> <i class="fas fa-fw fa-search"></i> </div>
+                        <input type="search" class="form-control" id="btnBuscarListProducto" placeholder="Ingrese el nombre del producto" style="background-color: azure;">
+                    </div>
+                </div>
+
                 <div class="row m-2">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-sm" id="tableProductos">
@@ -279,7 +294,7 @@
                                     <th scope="col">PRESENTACIÓN</th>
                                     <th scope="col">CONCENTRACIÓN</th>
                                     <th scope="col">STOCK</th>
-                                    <th scope="col">COSTO</th>
+                                    <th scope="col" style="width: 100px;">COSTO</th>
                                     <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
@@ -291,7 +306,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                <button type="button" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Añadir Comprobante</button>
             </div>
         </div>
     </div>

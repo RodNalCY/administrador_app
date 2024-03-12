@@ -309,7 +309,7 @@
                         <sup style="top: 0;">
                             <p><strong>NOTA:</strong> Los siguientes colores en la lista de productos tienen el siguiente significado:</p>
                             <p style="color:#ff5454; font-weight: bold;">ROJO : El producto esta agotado y no puede ser seleccionado.</p>
-                            <p style="color:#cccc00; font-weight: bold;">AMARILLO : El producto esta por agotarse pronto.</p>
+                            <p style="color:#cccc00; font-weight: bold;">AMARILLO : El producto esta por agotarse.</p>
                         </sup>
                     </div>
                 </div>

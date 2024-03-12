@@ -303,7 +303,7 @@ function listProductos() {
                 } else if (producto.Stock <= 5) {
                     html_tabla_productos =
                         html_tabla_productos +
-                        "<tr  style='background-color: #ffff6f47;'" +
+                        "<tr style='background-color: #ffff6f47;'" +
                         " data-id='" +
                         producto.idProducto +
                         "' data-name='" +

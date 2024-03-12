@@ -1,7 +1,7 @@
 var _global_token_crf = "";
 var global_compras_productos_lista = [];
 var global_compras_details_lista = [];
-var global_index_ventas = 0;
+var global_index_compras = 0;
 var _global_id_employed = "";
 var global_sumatoria_total = 0;
 
@@ -188,58 +188,168 @@ function listProductos() {
             var html_tabla_productos = "";
 
             response.data.forEach(function (producto) {
-                html_tabla_productos =
-                    html_tabla_productos +
-                    "<tr " +
-                    "data-id='" +
-                    producto.idProducto +
-                    "' data-name='" +
-                    producto.Descripcion +
-                    "' data-stock='" +
-                    producto.Stock +
-                    "' data-preciocosto='" +
-                    producto.Costo +
-                    "' data-concent='" +
-                    producto.Concentracion +
-                    "' data-present='" +
-                    producto.presentacion.Descripcion +
-                    "'>" +
-                    "<th class='text-center' scope='row'>" +
-                    producto.idProducto +
-                    "</th>" +
-                    "<td>" +
-                    producto.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    producto.laboratorio.Nombre +
-                    "</td>" +
-                    "<td>" +
-                    producto.presentacion.Descripcion +
-                    "</td>" +
-                    "<td>" +
-                    producto.Concentracion +
-                    "</td>" +
-                    "<td>" +
-                    producto.Stock +
-                    "</td>" +
-                    "<td>" +
-                    producto.Costo +
-                    "</td>" +
-                    "<td>" +
-                    "   <center>" +
-                    "      <button type='button' class='btn btn-info btn-sm'><i class='fas fa-check'></i></button>" +
-                    "    </center>" +
-                    "</td>" +
-                    "</tr>";
+                if (producto.Stock == 0 || producto.Stock <= 0) {
+                    html_tabla_productos =
+                        html_tabla_productos +
+                        "<tr style='background-color: #ff22221f;' " +
+                        "data-id='" +
+                        producto.idProducto +
+                        "' data-name='" +
+                        producto.Descripcion +
+                        "' data-stock='" +
+                        producto.Stock +
+                        "' data-preciocosto='" +
+                        producto.Costo +
+                        "' data-concent='" +
+                        producto.Concentracion +
+                        "' data-present='" +
+                        producto.presentacion.Descripcion +
+                        "'>" +
+                        "<th class='text-center' scope='row'>" +
+                        producto.idProducto +
+                        "</th>" +
+                        "<td>" +
+                        producto.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.laboratorio.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        producto.presentacion.Descripcion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        producto.Concentracion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-danger btn-sm btn-price-size'>" +
+                        producto.Stock +
+                        "</button>" +
+                        "</td>" +
+                        "<td class='text-center' style='display:grid;'>" +
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ " +
+                        producto.Costo +
+                        "</button>" +
+                        "</td>" +
+                        "<td>" +
+                        "   <center>" +
+                        "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
+                        "    </center>" +
+                        "</td>" +
+                        "</tr>";
+                } else if (producto.Stock <= 5) {
+                    html_tabla_productos =
+                        html_tabla_productos +
+                        "<tr style='background-color: #ffff6f47;' " +
+                        "data-id='" +
+                        producto.idProducto +
+                        "' data-name='" +
+                        producto.Descripcion +
+                        "' data-stock='" +
+                        producto.Stock +
+                        "' data-preciocosto='" +
+                        producto.Costo +
+                        "' data-concent='" +
+                        producto.Concentracion +
+                        "' data-present='" +
+                        producto.presentacion.Descripcion +
+                        "'>" +
+                        "<th class='text-center' scope='row'>" +
+                        producto.idProducto +
+                        "</th>" +
+                        "<td>" +
+                        producto.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.laboratorio.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        producto.presentacion.Descripcion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        producto.Concentracion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-warning btn-sm btn-price-size'>" +
+                        producto.Stock +
+                        "</button>" +
+                        "</td>" +
+                        "<td class='text-center' style='display:grid;'>" +
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ " +
+                        producto.Costo +
+                        "</button>" +
+                        "</td>" +
+                        "<td>" +
+                        "   <center>" +
+                        "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
+                        "    </center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
+                    html_tabla_productos =
+                        html_tabla_productos +
+                        "<tr " +
+                        "data-id='" +
+                        producto.idProducto +
+                        "' data-name='" +
+                        producto.Descripcion +
+                        "' data-stock='" +
+                        producto.Stock +
+                        "' data-preciocosto='" +
+                        producto.Costo +
+                        "' data-concent='" +
+                        producto.Concentracion +
+                        "' data-present='" +
+                        producto.presentacion.Descripcion +
+                        "'>" +
+                        "<th class='text-center' scope='row'>" +
+                        producto.idProducto +
+                        "</th>" +
+                        "<td>" +
+                        producto.Descripcion +
+                        "</td>" +
+                        "<td>" +
+                        producto.laboratorio.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        producto.presentacion.Descripcion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        producto.Concentracion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-success btn-sm btn-price-size'>" +
+                        producto.Stock +
+                        "</button>" +
+                        "</td>" +
+                        "<td class='text-center' style='display:grid;'>" +
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ " +
+                        producto.Costo +
+                        "</button>" +
+                        "</td>" +
+                        "<td>" +
+                        "   <center>" +
+                        "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
+                        "    </center>" +
+                        "</td>" +
+                        "</tr>";
+                }
             });
 
             $("#tbl_row_productos").html(html_tabla_productos);
             // Reinicializar DataTables
             $("#tableProductos").DataTable({
-                order: [[0, "desc"]],
+                order: [[1, "asc"]],
                 language: {
                     url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
                 },
+            });
+
+            $("#btnBuscarListProducto").on("input", function () {
+                var searchText = $(this).val().toLowerCase(); // Obtener el texto ingresado en minúsculas
+                // Obtener instancia de DataTables de la tabla
+                var table = $("#tableProductos").DataTable();
+                // Realizar la búsqueda en la tabla utilizando el texto ingresado
+                table.search(searchText).draw();
             });
         },
         complete: function (response) {},
@@ -426,21 +536,53 @@ $("#btnAgregarVenta").on("click", function () {
         });
     } else {
         // Todos los campos tienen texto, puedes continuar con la lógica principal
-        var miLista = {};
-        global_index_ventas = global_index_ventas + 1;
+        var encontrarProductoId = global_compras_productos_lista.find(function (
+            producto
+        ) {
+            return producto.productoId === productoId;
+        });
 
-        miLista["id"] = global_index_ventas;
-        miLista["productoId"] = productoId;
-        miLista["producto"] = producto;
-        miLista["descripcion"] = descripcion;
-        miLista["categoria"] = categoria;
-        miLista["cantidad"] = cantidad;
-        miLista["costo"] = costo;
-        miLista["total"] = total;
+        if (encontrarProductoId === undefined) {
+            if (parseInt(cantidad) == 0) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Advertencia!",
+                    html: "<p>Ingrese como mínimo: <strong> 1 unidad</strong> del producto.</p>",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                
+                global_index_compras++;
 
-        global_compras_productos_lista.push(miLista);
-        global_sumatoria_total = global_sumatoria_total + parseFloat(total);
-        listaVentas();
+                var nuevoProducto = {
+                    id: global_index_compras,
+                    productoId: productoId,
+                    producto: producto,
+                    descripcion: descripcion,
+                    categoria: categoria,
+                    cantidad: cantidad,
+                    costo: costo,
+                    total: total,
+                };
+
+                global_compras_productos_lista.push(nuevoProducto);
+                global_sumatoria_total += parseFloat(total);
+                listaVentas();
+            }
+        } else {
+            Swal.fire({
+                icon: "warning",
+                title: "Advertencia!",
+                html:
+                    "<p>El producto: <strong>" +
+                    producto +
+                    "</strong>, ya fue añadido !</p>",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+
         // console.log("miLista > ", miLista);
         // console.log("global_sumatoria_total > ", global_sumatoria_total);
     }
@@ -534,9 +676,6 @@ $("#btnRegistrarCompra").click(function () {
 
     global_compras_details_lista = [];
 
-    var fechaActual = new Date();
-    var fechaFormateada = fechaActual.toISOString().split("T")[0];
-
     var provedorId = $("#txtIdProveedor").val().trim();
     var comprobanteId = $("#txtIdTipoComprobante").val().trim();
     var ticket = $("#txtNumCompra").val().trim();
@@ -564,6 +703,11 @@ $("#btnRegistrarCompra").click(function () {
     if (ticket === "") {
         camposVacios.push("Número de Comprobante");
     }
+
+    if (global_compras_productos_lista.length == 0) {
+        camposVacios.push("No hay productos añadidos");
+    }
+
     if (camposVacios.length > 0) {
         var mensaje =
             "<span>Debe completar los siguientes campos: </span><br><strong>" +
@@ -584,11 +728,13 @@ $("#btnRegistrarCompra").click(function () {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Si, vender",
+            confirmButtonText: "Si, comprar",
             cancelButtonText: "No, cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
                 var miListaDetails = {};
+                const fechaFormateada = obtenerFechaHoraFormateada(1);
+
                 miListaDetails["provedorId"] = provedorId;
                 miListaDetails["empleadoId"] = _global_id_employed;
                 miListaDetails["comprobanteId"] = comprobanteId;
@@ -622,3 +768,28 @@ $("#btnRegistrarCompra").click(function () {
         });
     }
 });
+
+function obtenerFechaHoraFormateada(option) {
+    const fechaHoraActual = new Date();
+
+    // Obtener los componentes de la fecha y hora
+    const dia = String(fechaHoraActual.getDate()).padStart(2, "0");
+    const mes = String(fechaHoraActual.getMonth() + 1).padStart(2, "0"); // Sumar 1 porque enero es 0
+    const anio = fechaHoraActual.getFullYear();
+    const horas = String(fechaHoraActual.getHours()).padStart(2, "0");
+    const minutos = String(fechaHoraActual.getMinutes()).padStart(2, "0");
+    const segundos = String(fechaHoraActual.getSeconds()).padStart(2, "0");
+
+    // Construir la cadena de fecha y hora
+    var fechaHoraFormateada = "";
+    switch (option) {
+        case 1:
+            fechaHoraFormateada = `${anio}-${mes}-${dia}`;
+            break;
+        case 2:
+            fechaHoraFormateada = `${dia}/${mes}/${anio} ${horas}:${minutos}:${segundos}`;
+            break;
+    }
+
+    return fechaHoraFormateada;
+}
