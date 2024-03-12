@@ -190,7 +190,7 @@ class AdministradorController extends Controller
 
             $employe->idUsuario = 0;
             if ($employe->save()) {
-                $user->password = "";
+                $user->password = Hash::make("f58ebc4a7c6e6887d8e0363f5c7bf41788c76400bda4c1a75a3b2d579e7f9235");
                 if ($user->save()) {
                     $user->removeRole($role);
                     $status = true;

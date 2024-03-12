@@ -262,7 +262,7 @@
 </div>
 <!----------------------------------------------------------------------------------------------->
 <div class="modal fade" id="mdListProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProductoLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="mdListProductoLabel">Lista de Productos</h5>
