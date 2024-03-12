@@ -67,7 +67,7 @@
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableProveedores">
-                    <thead class="header-table">
+                    <thead class="header-table text-center">
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>

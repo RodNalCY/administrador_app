@@ -46,7 +46,7 @@
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableLaboratorios">
-                    <thead class="header-table">
+                    <thead class="header-table text-center">
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">NOMBRE</th>

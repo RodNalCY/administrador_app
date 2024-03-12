@@ -573,7 +573,11 @@ class MantenimientoController extends Controller
     {
         try {
             $delete = Cliente::find($request->_clienteId);
-            $delete->Estado = "Inactivo";
+            if ($request->_estado == "1") {
+                $delete->Estado = "Activo";
+            } else {
+                $delete->Estado = "Inactivo";
+            }
 
             if ($delete->update()) {
                 return response()->json([

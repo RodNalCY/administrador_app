@@ -155,74 +155,145 @@ function listaClientes() {
                 "</select>";
 
             response.data.forEach(function (cli) {
-                html_tabla_clientes =
-                    html_tabla_clientes +
-                    "<tr>" +
-                    "<th class='text-center' scope='row'>" +
-                    cli.idCliente +
-                    "</th>" +
-                    "<td>" +
-                    cli.Nombres +
-                    "</td>" +
-                    "<td>" +
-                    cli.Apellidos +
-                    "</td>" +
-                    "<td>" +
-                    cli.Sexo +
-                    "</td>" +
-                    "<td>" +
-                    cli.Dni +
-                    "</td>" +
-                    "<td>" +
-                    cli.Telefono +
-                    "</td>" +
-                    "<td>" +
-                    cli.Ruc +
-                    "</td>" +
-                    "<td>" +
-                    cli.Email +
-                    "</td>" +
-                    "<td>" +
-                    cli.Direccion +
-                    "</td>" +
-                    "<td>" +
-                    cli.Estado +
-                    "</td>" +
-                    "<td>" +
-                    "<center>" +
-                    " <button type='button' class='btn btn-warning btn-sm btn-edit-cliente'" +
-                    " data-id='" +
-                    cli.idCliente +
-                    "' data-name='" +
-                    cli.Nombres +
-                    "' data-apellidos='" +
-                    cli.Apellidos +
-                    "' data-sexo='" +
-                    cli.Sexo +
-                    "' data-dni='" +
-                    cli.Dni +
-                    "' data-telefono='" +
-                    cli.Telefono +
-                    "' data-ruc='" +
-                    cli.Ruc +
-                    "' data-email='" +
-                    cli.Email +
-                    "' data-direccion='" +
-                    cli.Direccion +
-                    "' data-state='" +
-                    cli.Estado +
-                    "'><i class='fas fa-pen'></i></button>" +
-                    " <button type='button' class='btn btn-danger btn-sm btn-delete-cliente'" +
-                    " data-id='" +
-                    cli.idCliente +
-                    "' data-name='" +
-                    cli.Nombres +
-                    " " +
-                    cli.Apellidos +
-                    "'><i class='fas fa-trash'></i></button>" +
-                    "</center>" +
-                    "</td>" +
-                    "</tr>";
+                if (cli.Estado == "Inactivo") {
+                    html_tabla_clientes =
+                        html_tabla_clientes +
+                        "<tr style='background-color: #ffb3b3;'>" +
+                        "<th class='text-center' scope='row'>" +
+                        cli.idCliente +
+                        "</th>" +
+                        "<td>" +
+                        cli.Nombres +
+                        "</td>" +
+                        "<td>" +
+                        cli.Apellidos +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Sexo +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Dni +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Telefono +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Ruc +
+                        "</td>" +
+                        "<td>" +
+                        cli.Email +
+                        "</td>" +
+                        "<td>" +
+                        cli.Direccion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Estado +
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-cliente'" +
+                        " data-id='" +
+                        cli.idCliente +
+                        "' data-name='" +
+                        cli.Nombres +
+                        "' data-apellidos='" +
+                        cli.Apellidos +
+                        "' data-sexo='" +
+                        cli.Sexo +
+                        "' data-dni='" +
+                        cli.Dni +
+                        "' data-telefono='" +
+                        cli.Telefono +
+                        "' data-ruc='" +
+                        cli.Ruc +
+                        "' data-email='" +
+                        cli.Email +
+                        "' data-direccion='" +
+                        cli.Direccion +
+                        "' data-state='" +
+                        cli.Estado +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-info btn-sm btn-estado-cliente'" +
+                        " data-id='" +
+                        cli.idCliente +
+                        "' data-name='" +
+                        cli.Nombres +
+                        " " +
+                        cli.Apellidos +
+                        "' data-active='1'><i class='fas fa-unlock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
+                    html_tabla_clientes =
+                        html_tabla_clientes +
+                        "<tr>" +
+                        "<th class='text-center' scope='row'>" +
+                        cli.idCliente +
+                        "</th>" +
+                        "<td>" +
+                        cli.Nombres +
+                        "</td>" +
+                        "<td>" +
+                        cli.Apellidos +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Sexo +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Dni +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Telefono +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Ruc +
+                        "</td>" +
+                        "<td>" +
+                        cli.Email +
+                        "</td>" +
+                        "<td>" +
+                        cli.Direccion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        cli.Estado +
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-cliente'" +
+                        " data-id='" +
+                        cli.idCliente +
+                        "' data-name='" +
+                        cli.Nombres +
+                        "' data-apellidos='" +
+                        cli.Apellidos +
+                        "' data-sexo='" +
+                        cli.Sexo +
+                        "' data-dni='" +
+                        cli.Dni +
+                        "' data-telefono='" +
+                        cli.Telefono +
+                        "' data-ruc='" +
+                        cli.Ruc +
+                        "' data-email='" +
+                        cli.Email +
+                        "' data-direccion='" +
+                        cli.Direccion +
+                        "' data-state='" +
+                        cli.Estado +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-danger btn-sm btn-estado-cliente'" +
+                        " data-id='" +
+                        cli.idCliente +
+                        "' data-name='" +
+                        cli.Nombres +
+                        " " +
+                        cli.Apellidos +
+                        "' data-active='0'><i class='fas fa-lock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                }
             });
 
             $("#tableListClientes").html(html_tabla_clientes);
@@ -358,8 +429,8 @@ function deleteCliente(data) {
             console.log("status > ", status);
             if (status) {
                 Swal.fire({
-                    title: "Desactivado!",
-                    text: "El cliente fue desactivado con exito !",
+                    title: "Actualizado!",
+                    text: "El estado del cliente fue actualizado con exito !",
                     icon: "success",
                     showConfirmButton: false,
                     timer: 1500,
@@ -367,7 +438,7 @@ function deleteCliente(data) {
             } else {
                 Swal.fire({
                     title: "Upps!",
-                    text: "Algo paso, no se desactivo el cliente !",
+                    text: "Algo paso, no se actualizo el estado del cliente !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,
@@ -416,27 +487,41 @@ $(document).on("click", ".btn-edit-cliente", function () {
     $("#mdEditCliente").modal("show");
 });
 
-$(document).on("click", ".btn-delete-cliente", function () {
+$(document).on("click", ".btn-estado-cliente", function () {
     var clienteId = $(this).data("id");
     var clienteName = $(this).data("name");
+    var clienteEstado = $(this).data("active");
+
+    console.log("clienteId > "+ clienteId+ " clienteName > "+ clienteName+ " clienteEstado > "+clienteEstado);
+
+    var message = "Desea desactivar el cliente: ";
+    var btnText = "Si, desactivar!";
+    var btnTitle = "Desactivar!";
+
+    if (clienteEstado == 1) {
+        message = "Desea activar el cliente: ";
+        btnText = "Si, Activar!";
+        btnTitle = "Activar!";
+    }
 
     Swal.fire({
-        title: "Desactivar",
+        title: btnTitle,
         html:
-            "<p>Desea desactivar el Cliente: <strong>" +
+            "<p>"+message+"<strong>" +
             clienteName +
             "</strong></p>",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, desactivar!",
+        confirmButtonText: btnText,
         cancelButtonText: "No, cancelar!",
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
                 _token: _global_token_crf,
                 _clienteId: clienteId,
+                _estado: clienteEstado,
             };
 
             deleteCliente(data);

@@ -244,7 +244,7 @@ function listProductos() {
                         "' data-state='" +
                         venta.Estado +
                         "'><i class='fas fa-pen'></i></button>" +
-                        " <button type='button' class='btn btn-info btn-sm btn-active-desactive-producto' data-bs-toggle='tooltip' data-bs-placement='left' title='Activar Producto'" +
+                        " <button type='button' class='btn btn-info btn-sm btn-estado-producto' data-bs-toggle='tooltip' data-bs-placement='left' title='Activar Producto'" +
                         " data-id='" +
                         venta.idProducto +
                         "' data-name='" +
@@ -320,7 +320,7 @@ function listProductos() {
                         "' data-state='" +
                         venta.Estado +
                         "'><i class='fas fa-pen'></i></button>" +
-                        " <button type='button' class='btn btn-danger btn-sm btn-active-desactive-producto' data-bs-toggle='tooltip' data-bs-placement='left' title='Desactivar Producto'" +
+                        " <button type='button' class='btn btn-danger btn-sm btn-estado-producto' data-bs-toggle='tooltip' data-bs-placement='left' title='Desactivar Producto'" +
                         " data-id='" +
                         venta.idProducto +
                         "' data-name='" +
@@ -695,7 +695,7 @@ $(document).on("click", ".btn-edit-producto", function () {
     $("#mdEditProducto").modal("show");
 });
 
-$(document).on("click", ".btn-active-desactive-producto", function () {
+$(document).on("click", ".btn-estado-producto", function () {
     var productoId = $(this).data("id");
     var productoName = $(this).data("name");
     var productoEstado = $(this).data("active");
@@ -706,7 +706,7 @@ $(document).on("click", ".btn-active-desactive-producto", function () {
     var btnTitle = "Desactivar!";
 
     if (productoEstado == 1) {
-        message = "Desea activar el producto:";
+        message = "Desea activar el producto: ";
         btnText = "Si, Activar!";
         btnTitle = "Activar!";
     }

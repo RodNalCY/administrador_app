@@ -97,7 +97,7 @@
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableEmpleados">
-                    <thead class="header-table">
+                    <thead class="header-table text-center">
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">NOMBRES</th>
@@ -109,7 +109,7 @@
                             <th scope="col">TELÉFONO</th>
                             <th scope="col">DIRECCIÓN</th>
                             <th scope="col">HORA Ingreso</th>
-                            <th scope="col">HORA Ingreso</th>
+                            <th scope="col">HORA Salida</th>
                             <th scope="col">SUELDO</th>
                             <th scope="col">ESTADO</th>
                             <th scope="col">OPCIONES</th>
