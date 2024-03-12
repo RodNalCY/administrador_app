@@ -83,7 +83,7 @@ function listaPresentaciones() {
                     "<td>" +
                     pre.Descripcion +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     pre.Estado +
                     "</td>" +
                     "<td>" +
@@ -101,7 +101,7 @@ function listaPresentaciones() {
                     pre.idPresentacion +
                     "' data-name='" +
                     pre.Descripcion +
-                    "'><i class='fas fa-trash'></i></button>" +
+                    "'><i class='fas fa-lock'></i></button>" +
                     "</center>" +
                     "</td>" +
                     "</tr>";

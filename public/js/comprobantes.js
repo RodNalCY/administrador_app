@@ -65,7 +65,7 @@ function listaComprobantes() {
                     "<td>" +
                     comprobante.Descripcion +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     comprobante.Estado +
                     "</td>" +
                     "<td>" +
@@ -83,7 +83,7 @@ function listaComprobantes() {
                     comprobante.idTipoComprobante +
                     "' data-name='" +
                     comprobante.Descripcion +
-                    "'><i class='fas fa-trash'></i></button>" +              
+                    "'><i class='fas fa-lock'></i></button>" +              
                     "</center>" +
                     "</td>" +
                     "</tr>";

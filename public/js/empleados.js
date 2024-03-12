@@ -211,31 +211,31 @@ function listaEmpleados() {
                     "<td>" +
                     emp.Especialidad +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     emp.Sexo +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     emp.Dni +
                     "</td>" +
                     "<td>" +
                     emp.Email +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     emp.Telefono +
                     "</td>" +
                     "<td>" +
                     emp.Direccion +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     emp.HoraIngreso +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     emp.HoraSalida +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     emp.Sueldo +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     emp.Estado +
                     "</td>" +
                     "<td>" +
@@ -273,7 +273,7 @@ function listaEmpleados() {
                     emp.idEmpleado +
                     "' data-name='" +
                     emp.Nombres +
-                    "'><i class='fas fa-trash'></i></button>" +
+                    "'><i class='fas fa-lock'></i></button>" +
                     "</center>" +
                     "</td>" +
                     "</tr>";

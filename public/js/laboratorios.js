@@ -100,10 +100,10 @@ function listaLaboratorios() {
                     "<td>" +
                     labs.Direccion +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     labs.Telefono +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     labs.Estado +
                     "</td>" +
                     "<td>" +
@@ -127,7 +127,7 @@ function listaLaboratorios() {
                     labs.Estado +
                     "' data-name='" +
                     labs.Nombre +
-                    "'><i class='fas fa-trash'></i></button>" +
+                    "'><i class='fas fa-lock'></i></button>" +
                     "</center>" +
                     "</td>" +
                     "</tr>";

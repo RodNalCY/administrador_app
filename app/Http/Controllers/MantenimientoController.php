@@ -41,12 +41,7 @@ class MantenimientoController extends Controller
     public function index_clientes()
     {
         return view('pages.mantenimiento.clientes');
-    }
-
-    public function index_empleados()
-    {
-        return view('pages.mantenimiento.empleados');
-    }
+    }    
 
     public function index_proveedores()
     {
@@ -389,110 +384,7 @@ class MantenimientoController extends Controller
             ], 500);
         }
     }
-
-    public function list_empleados()
-    {
-        try {
-            $lista = Empleado::all();
-
-            return response()->json([
-                'message' => 'lista de empleados',
-                'status' => true,
-                'data' => $lista
-            ]);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }
-
-    public function save_empleado(Request $request)
-    {
-        try {
-            $create = new Empleado;
-            $create->Nombres = $request->_empNombre;
-            $create->Apellidos = $request->_empApellidos ?? "-";
-            $create->Especialidad = $request->_empEspecial ?? "-";
-            $create->Sexo = $request->_empSexo ?? "-";
-            $create->Dni = $request->_empDNI ?? "-";
-            $create->Email = $request->_empEmail ?? "-";
-            $create->Telefono = $request->_empTelef ?? "-";
-            $create->Direccion = $request->_empDirec ?? "-";
-            $create->HoraIngreso = $request->_empHIngreso ?? "-";
-            $create->HoraSalida = $request->_empHSalida ?? "-";
-            $create->Sueldo = $request->_empSueldo ?? 0;
-            $create->Estado = 'Activo';
-            $create->idUsuario = 0;
-
-            if ($create->save()) {
-                return response()->json([
-                    'message' => 'Se creo el empleado correctamente',
-                    'status' => true,
-                    'data' => $create
-                ]);
-            }
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }
-
-    public function edit_empleado(Request $request)
-    {
-        try {
-            $edit = Empleado::find($request->_empId);
-            $edit->Nombres = $request->_empNombre;
-            $edit->Apellidos = $request->_empApellidos ?? "-";
-            $edit->Especialidad = $request->_empEspecial ?? "-";
-            $edit->Sexo = $request->_empSexo ?? "-";
-            $edit->Dni = $request->_empDNI ?? "-";
-            $edit->Email = $request->_empEmail ?? "-";
-            $edit->Telefono = $request->_empTelef ?? "-";
-            $edit->Direccion = $request->_empDirec ?? "-";
-            $edit->HoraIngreso = $request->_empHIngreso ?? "-";
-            $edit->HoraSalida = $request->_empHSalida ?? "-";
-            $edit->Sueldo = $request->_empSueldo ?? 0;
-            $edit->Estado = $request->_empEstado ?? "-";
-
-            if ($edit->update()) {
-                return response()->json([
-                    'message' => 'Se edito el empleado correctamente',
-                    'status' => true,
-                    'data' => $edit
-                ]);
-            }
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }
-
-    public function delete_empleado(Request $request)
-    {
-        try {
-            $delete = Empleado::find($request->_empleadoId);
-            $delete->Estado = "Inactivo";
-
-            if ($delete->update()) {
-                return response()->json([
-                    'message' => 'Se desactivo el empleado correctamente',
-                    'status' => true,
-                ]);
-            }
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'message' => $ex->getMessage(),
-            ], 500);
-        }
-    }
-
+ 
     public function list_clientes()
     {
         try {

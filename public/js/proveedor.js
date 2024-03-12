@@ -150,10 +150,10 @@ function listaProveedores() {
                     "<td>" +
                     pro.Nombre +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     pro.Dni +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     pro.Ruc +
                     "</td>" +
                     "<td>" +
@@ -162,7 +162,7 @@ function listaProveedores() {
                     "<td>" +
                     pro.Email +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     pro.Telefono +
                     "</td>" +
                     "<td>" +
@@ -171,7 +171,7 @@ function listaProveedores() {
                     "<td>" +
                     pro.Cuenta +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     pro.Estado +
                     "</td>" +
                     "<td>" +
@@ -203,7 +203,7 @@ function listaProveedores() {
                     pro.IdProveedor +
                     "' data-name='" +
                     pro.Nombre +
-                    "'><i class='fas fa-trash'></i></button>" +
+                    "'><i class='fas fa-lock'></i></button>" +
                     "</center>" +
                     "</td>" +
                     "</tr>";

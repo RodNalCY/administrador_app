@@ -334,7 +334,15 @@ return [
             'text' => 'ADMINISTRADOR',
             'url'  => '#',
             'can'  => 'administrador',
-        ],     
+        ],             
+        [
+            'icon' => 'fas fa-fw fa-address-card',
+            'text' => 'Empleados',
+            'url'  => '/administrador/empleados',
+            'can'  => 'administrador.empleados',            
+            'label' => 'OjO',
+            'label_color' => 'info',
+        ],
         [
             'icon' => 'fas fa-fw fa-user-tie',
             'text' => 'Usuarios',
@@ -404,14 +412,6 @@ return [
             'can'  => 'mantenimiento.clientes',
             'label' => 'OjO',
             'label_color' => 'danger',
-        ],
-        [
-            'icon' => 'fas fa-fw fa-address-card',
-            'text' => 'Empleados',
-            'url'  => 'mantenimiento/empleados',
-            'can'  => 'mantenimiento.empleados',            
-            'label' => 'OjO',
-            'label_color' => 'info',
         ],
         [
             'icon' => 'fas fa-fw fa-truck',

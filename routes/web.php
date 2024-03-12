@@ -70,7 +70,6 @@ Route::controller(MovimientosController::class)->group(function () {
 Route::controller(MantenimientoController::class)->group(function () {
     Route::get('/mantenimiento/productos', 'index_productos')->name('productos');
     Route::get('/mantenimiento/clientes', 'index_clientes')->name('clientes');
-    Route::get('/mantenimiento/empleados', 'index_empleados')->name('empleados');
     Route::get('/mantenimiento/proveedores', 'index_proveedores')->name('proveedores');
     Route::get('/mantenimiento/presentacion', 'index_presentaciones')->name('presentacion');
     Route::get('/mantenimiento/laboratorios', 'index_laboratorios')->name('laboratorios');
@@ -97,13 +96,7 @@ Route::controller(MantenimientoController::class)->group(function () {
     Route::get('/list/proveedores', 'list_proveedores')->name('/list/proveedores');
     Route::post('/save/proveedor', 'save_proveedor')->name('/save/proveedor');
     Route::post('/edit/proveedor', 'edit_proveedor')->name('/edit/proveedor');
-    Route::post('/delete/proveedor', 'delete_proveedor')->name('/delete/proveedor');
-
-    // ROUTES PROVEEDORES
-    Route::get('/list/empleados', 'list_empleados')->name('/list/empleados');
-    Route::post('/save/empleado', 'save_empleado')->name('/save/empleado');
-    Route::post('/edit/empleado', 'edit_empleado')->name('/edit/empleado');
-    Route::post('/delete/empleado', 'delete_empleado')->name('/delete/empleado');
+    Route::post('/delete/proveedor', 'delete_proveedor')->name('/delete/proveedor');    
 
     // ROUTES PROVEEDORES
     Route::get('/list/clientes', 'list_clientes')->name('/list/clientes');
@@ -131,7 +124,8 @@ Route::controller(MantenimientoController::class)->group(function () {
 Route::controller(AdministradorController::class)->group(function () {
     Route::get('/administrador/usuarios', 'index_usuarios')->name('usuarios');
     Route::get('/administrador/roles', 'index_roles')->name('roles');
-    Route::get('/administrador/permisos', 'index_permisos')->name('permisos');
+    Route::get('/administrador/permisos', 'index_permisos')->name('permisos');    
+    Route::get('/administrador/empleados', 'index_empleados')->name('empleados');
 
     // ROUTES USUARIOS
     Route::get('/list/usuarios', 'list_usuarios')->name('/list/usuarios');
@@ -151,6 +145,12 @@ Route::controller(AdministradorController::class)->group(function () {
     Route::post('/save/permiso', 'save_permiso')->name('/save/permiso');
     Route::post('/edit/permiso', 'edit_permiso')->name('/edit/permiso');
     Route::post('/delete/permiso', 'delete_permiso')->name('/delete/permiso');
+
+    // ROUTES PROVEEDORES
+    Route::get('/list/empleados', 'list_empleados')->name('/list/empleados');
+    Route::post('/save/empleado', 'save_empleado')->name('/save/empleado');
+    Route::post('/edit/empleado', 'edit_empleado')->name('/edit/empleado');
+    Route::post('/delete/empleado', 'delete_empleado')->name('/delete/empleado');
 });
 
 Route::controller(GestionController::class)->group(function () {
