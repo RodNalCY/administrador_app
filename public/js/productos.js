@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#tableListProductos").html(
         "<tr><td colspan='12' class='text-center'>No hay productos disponibles.</td></tr>"
     );
-    listVentasResumenDetalle();
+    listProductos();
     listPresentacionesActivos();
     listLaboratoriosActivos();
 });
@@ -157,7 +157,7 @@ $("#btnActualizarProducto").click(function () {
     }
 });
 
-function listVentasResumenDetalle() {
+function listProductos() {
     $.ajax({
         type: "GET",
         url: "/list/productos",
@@ -180,7 +180,7 @@ function listVentasResumenDetalle() {
                 html_tabla_productos =
                     html_tabla_productos +
                     "<tr>" +
-                    "<td class='text-center' scope='row'>" +
+                    "<td scope='row' class='text-center'>" +
                     venta.idProducto +
                     "</td>" +
                     "<th>" +
@@ -192,25 +192,25 @@ function listVentasResumenDetalle() {
                     "<td>" +
                     venta.presentacion.Descripcion +
                     "</td>" +
-                    "<td>" +
+                    "<td class='text-center'>" +
                     venta.Concentracion +
                     "</td>" +
-                    "<th>" +
+                    "<th class='text-center'>" +
                     venta.Stock +
                     "</th>" +
-                    "<td> " +
+                    "<td class='text-center'> " +
                     venta.Costo +
                     "</td>" +
-                    "<td> " +
+                    "<td class='text-center'> " +
                     venta.Precio_Venta +
                     "</td>" +
                     "<td> " +
                     venta.RegistroSanitario +
                     "</td>" +
-                    "<td> " +
+                    "<td class='text-center'> " +
                     venta.FechaVencimiento +
                     "</td>" +
-                    "<td> " +
+                    "<td class='text-center'> " +
                     venta.Estado +
                     "</td>" +
                     "<td>" +
@@ -243,12 +243,18 @@ function listVentasResumenDetalle() {
                     "' data-state='" +
                     venta.Estado +
                     "'><i class='fas fa-pen'></i></button>" +
-                    " <button type='button' class='btn btn-danger btn-sm btn-delete-producto'" +
+                    " <button type='button' class='btn btn-info btn-sm btn-active-producto'" +
                     " data-id='" +
                     venta.idProducto +
                     "' data-name='" +
                     venta.Descripcion +
-                    "'><i class='fas fa-trash'></i></button>" +
+                    "'><i class='fas fa-eye'></i></button>" +
+                    " <button type='button' class='btn btn-danger btn-sm btn-desactive-producto'" +
+                    " data-id='" +
+                    venta.idProducto +
+                    "' data-name='" +
+                    venta.Descripcion +
+                    "'><i class='fas fa-eye-slash'></i></button>" +
                     "</center>" +
                     "</td>" +
                     "</tr>";
@@ -262,6 +268,14 @@ function listVentasResumenDetalle() {
                 language: {
                     url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
                 },
+            });
+
+            $("#btnBuscarListProducto").on("input", function () {
+                var searchText = $(this).val().toLowerCase(); // Obtener el texto ingresado en minúsculas
+                // Obtener instancia de DataTables de la tabla
+                var table = $("#tableProductos").DataTable();
+                // Realizar la búsqueda en la tabla utilizando el texto ingresado
+                table.search(searchText).draw();
             });
         },
         complete: function () {},
@@ -609,7 +623,7 @@ $(document).on("click", ".btn-edit-producto", function () {
     $("#mdEditProducto").modal("show");
 });
 
-$(document).on("click", ".btn-delete-producto", function () {
+$(document).on("click", ".btn-desactive-producto", function () {
     var productoId = $(this).data("id");
     var productoName = $(this).data("name");
 

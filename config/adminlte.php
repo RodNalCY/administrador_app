@@ -611,10 +611,14 @@ return [
             ],
         ],
 
-
         'Datatables' => [
             'active' => true,
             'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                ],
                 [
                     'type' => 'js',
                     'asset' => true,
@@ -624,12 +628,12 @@ return [
                     'type' => 'js',
                     'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
-                ],
+                ],              
                 [
-                    'type' => 'css',
+                    'type' => 'js',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
-                ],
+                    'location' => '//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js',
+                ],             
             ],
         ],
         'Select2' => [

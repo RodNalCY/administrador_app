@@ -89,15 +89,26 @@
 
 <div class="card">
     <div class="card-body">
-        <div class="row mb-4">
-            <div class="col-md-12 d-flex justify-content-end">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="input-group">
+                    <div class="input-group-text" style="background-color: #4a3fff; color:white; "> <i class="fas fa-fw fa-search"></i> </div>
+                    <input type="search" class="form-control" id="btnBuscarListProducto" placeholder="Ingrese el nombre del producto" style="background-color: azure;">
+                </div>
+            </div>
+            <div class="col-md-2 d-flex justify-content-end">
                 <button type="button" class="btn btn-success" id="btnExportarExcelProductos"> <i class="fas fa-fw fa-table"></i> Exportar Excel</button>
             </div>
         </div>
-        <div class="row">
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row mb-4">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableProductos">
-                    <thead class="header-table">
+                    <thead class="header-table text-center">
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">DESCRIPCIÓN</th>
@@ -116,7 +127,7 @@
                     <tbody id="tableListProductos">
                     </tbody>
                 </table>
-            </div>
+            </div>  
         </div>
     </div>
 </div>
