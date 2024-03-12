@@ -272,7 +272,7 @@ function listProductos() {
                 if (producto.Stock == 0 || producto.Stock <= 0) {
                     html_tabla_productos =
                         html_tabla_productos +
-                        "<tr style='background-color: #ff5454; color: white;'>" +
+                        "<tr style='background-color: #ff22221f;'>" +
                         "<th class='text-center' scope='row'>" +
                         producto.idProducto +
                         "</th>" +
@@ -289,10 +289,10 @@ function listProductos() {
                         producto.Concentracion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        producto.Stock +
+                        "<button type='button' class='btn btn-danger btn-sm btn-price-size'>"+  producto.Stock+"</button>"+
                         "</td>" +
-                        "<td class='text-center'>" +
-                        producto.Precio_Venta +
+                        "<td class='text-center' style='display:grid;'>" +
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ "+  producto.Precio_Venta+"</button>"+
                         "</td>" +
                         "<td>" +
                         "   <center>" +
@@ -303,7 +303,7 @@ function listProductos() {
                 } else if (producto.Stock <= 5) {
                     html_tabla_productos =
                         html_tabla_productos +
-                        "<tr  style='background-color: #ffff6f;'" +
+                        "<tr  style='background-color: #ffff6f47;'" +
                         " data-id='" +
                         producto.idProducto +
                         "' data-name='" +
@@ -335,14 +335,14 @@ function listProductos() {
                         producto.Concentracion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        producto.Stock +
+                        "<button type='button' class='btn btn-warning btn-sm btn-price-size'>"+  producto.Stock+"</button>"+
                         "</td>" +
-                        "<td class='text-center'>" +
-                        producto.Precio_Venta +
+                        "<td class='text-center' style='display:grid;'>" +
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ "+  producto.Precio_Venta+"</button>"+
                         "</td>" +
                         "<td>" +
                         "   <center>" +
-                        "      <button type='button' class='btn btn-secondary btn-sm'><i class='fas fa-check'></i></button>" +
+                        "      <button type='button' class='btn btn-warning btn-sm'><i class='fas fa-check'></i></button>" +
                         "    </center>" +
                         "</td>" +
                         "</tr>";
@@ -381,14 +381,14 @@ function listProductos() {
                         producto.Concentracion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        producto.Stock +
+                        "<button type='button' class='btn btn-success btn-sm btn-price-size'>"+  producto.Stock+"</button>"+
                         "</td>" +
-                        "<td class='text-center'>" +
-                        producto.Precio_Venta +
+                        "<td class='text-center' style='display:grid;'>" +
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ "+  producto.Precio_Venta+"</button>"+
                         "</td>" +
                         "<td>" +
                         "   <center>" +
-                        "      <button type='button' class='btn btn-info btn-sm'><i class='fas fa-check'></i></button>" +
+                        "      <button type='button' class='btn btn-success btn-sm'><i class='fas fa-check'></i></button>" +
                         "    </center>" +
                         "</td>" +
                         "</tr>";

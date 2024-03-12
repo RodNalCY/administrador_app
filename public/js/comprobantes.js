@@ -56,18 +56,19 @@ function listaComprobantes() {
             "</select>";
 
             response.data.forEach(function (comprobante) {
-                html_tabla_comprobantes =
+                if (comprobante.Estado == "Inactivo") {
+                    html_tabla_comprobantes =
                     html_tabla_comprobantes +
-                    "<tr>" +
+                    "<tr style='background-color: #ff22221f;'>" +
                     "<th class='text-center' scope='row'>" +
                     comprobante.idTipoComprobante +
                     "</th>" +
                     "<td>" +
                     comprobante.Descripcion +
                     "</td>" +
-                    "<td class='text-center'>" +
-                    comprobante.Estado +
-                    "</td>" +
+                    "<th class='text-center'>" +                    
+                    "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>"+ comprobante.Estado+"</button>"+
+                    "</th>" +
                     "<td>" +
                     "<center>" +
                     " <button type='button' class='btn btn-warning btn-sm btn-edit-comprobante'" +
@@ -78,15 +79,49 @@ function listaComprobantes() {
                     "' data-name='" +
                     comprobante.Descripcion +
                     "'><i class='fas fa-pen'></i></button>" +     
-                    " <button type='button' class='btn btn-danger btn-sm btn-delete-comprobante'" +
+                    " <button type='button' class='btn btn-success btn-sm btn-estado-comprobante'" +
                     " data-id='" +
                     comprobante.idTipoComprobante +
                     "' data-name='" +
                     comprobante.Descripcion +
-                    "'><i class='fas fa-lock'></i></button>" +              
+                    "' data-active='1'><i class='fas fa-unlock'></i></button>" +              
                     "</center>" +
                     "</td>" +
                     "</tr>";
+                } else {
+                    html_tabla_comprobantes =
+                    html_tabla_comprobantes +
+                    "<tr>" +
+                    "<th class='text-center' scope='row'>" +
+                    comprobante.idTipoComprobante +
+                    "</th>" +
+                    "<td>" +
+                    comprobante.Descripcion +
+                    "</td>" +
+                    "<th class='text-center'>" +
+                    "<button type='button' class='btn btn-success btn-sm btn-estado-size'>"+ comprobante.Estado+"</button>"+
+                    "</th>" +
+                    "<td>" +
+                    "<center>" +
+                    " <button type='button' class='btn btn-warning btn-sm btn-edit-comprobante'" +
+                    " data-id='" +
+                    comprobante.idTipoComprobante +
+                    "' data-state='" +
+                    comprobante.Estado +
+                    "' data-name='" +
+                    comprobante.Descripcion +
+                    "'><i class='fas fa-pen'></i></button>" +     
+                    " <button type='button' class='btn btn-danger btn-sm btn-estado-comprobante'" +
+                    " data-id='" +
+                    comprobante.idTipoComprobante +
+                    "' data-name='" +
+                    comprobante.Descripcion +
+                    "' data-active='0'><i class='fas fa-lock'></i></button>" +              
+                    "</center>" +
+                    "</td>" +
+                    "</tr>";
+                }
+               
             });
 
             $("#tableListComprobantes").html(html_tabla_comprobantes);
@@ -162,8 +197,8 @@ function deleteComprobante(data) {
             console.log("status > ", status);
             if (status) {
                 Swal.fire({
-                    title: "Desactivado!",
-                    text: "El comprobante fue desactivado con exito !",
+                    title: "Actualizado!",
+                    text: "El estado del comprobante fue actualizado con exito !",
                     icon: "success",
                     showConfirmButton: false,
                     timer: 1500,
@@ -171,7 +206,7 @@ function deleteComprobante(data) {
             } else {
                 Swal.fire({
                     title: "Upps!",
-                    text: "Algo paso, no se desactivo la comprobante !",
+                    text: "Algo paso, no se actualizo el estado del comprobante !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,
@@ -209,27 +244,41 @@ $(document).on("click", ".btn-edit-comprobante", function () {
 
 
 
-$(document).on("click", ".btn-delete-comprobante", function () {
+$(document).on("click", ".btn-estado-comprobante", function () {
     var dataId = $(this).data("id");
     var dataName = $(this).data("name");
+    var dataActive = $(this).data("active");
+
+    console.log("dataId > "+ dataId+ " dataName > "+ dataName+ " dataActive > "+dataActive);
+
+    var message = "Desea desactivar el comprobante: ";
+    var btnText = "Si, desactivar!";
+    var textTitle = "Desactivar!";
+
+    if (dataActive == 1) {
+        message = "Desea activar el comprobante: ";
+        btnText = "Si, Activar!";
+        textTitle = "Activar!";
+    }
 
     Swal.fire({
-        title: "Desactivar",
+        title: textTitle,
         html:
-            "<p>Desea desactivar el comprobante : <strong>" +
+            "<p>"+message+"<strong>" +
             dataName +
             "</strong></p>",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, desactivar!",
+        confirmButtonText: btnText,
         cancelButtonText: "No, cancelar!",
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
                 _token: _globa_token_crf,
                 _dataId: dataId,
+                _estado: dataActive,
             };
 
             deleteComprobante(data);

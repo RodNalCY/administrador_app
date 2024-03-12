@@ -88,49 +88,95 @@ function listaLaboratorios() {
                 "</select>";
 
             response.data.forEach(function (labs) {
-                html_tabla_laboratorios =
-                    html_tabla_laboratorios +
-                    "<tr>" +
-                    "<th class='text-center' scope='row'>" +
-                    labs.idLaboratorio +
-                    "</th>" +
-                    "<td>" +
-                    labs.Nombre +
-                    "</td>" +
-                    "<td>" +
-                    labs.Direccion +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    labs.Telefono +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    labs.Estado +
-                    "</td>" +
-                    "<td>" +
-                    "<center>" +
-                    " <button type='button' class='btn btn-warning btn-sm btn-edit-laboratorio'" +
-                    " data-id='" +
-                    labs.idLaboratorio +
-                    "' data-state='" +
-                    labs.Estado +
-                    "' data-direccion='" +
-                    labs.Direccion +
-                    "' data-telefono='" +
-                    labs.Telefono +
-                    "' data-name='" +
-                    labs.Nombre +
-                    "'><i class='fas fa-pen'></i></button>" +
-                    " <button type='button' class='btn btn-danger btn-sm btn-delete-laboratorio'" +
-                    " data-id='" +
-                    labs.idLaboratorio +
-                    "' data-state='" +
-                    labs.Estado +
-                    "' data-name='" +
-                    labs.Nombre +
-                    "'><i class='fas fa-lock'></i></button>" +
-                    "</center>" +
-                    "</td>" +
-                    "</tr>";
+                if (labs.Estado == "Inactivo") {
+                    html_tabla_laboratorios =
+                        html_tabla_laboratorios +
+                        "<tr style='background-color: #ff22221f;'>" +
+                        "<th class='text-center' scope='row'>" +
+                        labs.idLaboratorio +
+                        "</th>" +
+                        "<td>" +
+                        labs.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        labs.Direccion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        labs.Telefono +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>"+ labs.Estado+"</button>"+
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-laboratorio'" +
+                        " data-id='" +
+                        labs.idLaboratorio +
+                        "' data-state='" +
+                        labs.Estado +
+                        "' data-direccion='" +
+                        labs.Direccion +
+                        "' data-telefono='" +
+                        labs.Telefono +
+                        "' data-name='" +
+                        labs.Nombre +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-success btn-sm btn-estado-laboratorio'" +
+                        " data-id='" +
+                        labs.idLaboratorio +
+                        "' data-state='" +
+                        labs.Estado +
+                        "' data-name='" +
+                        labs.Nombre +
+                        "' data-active='1'><i class='fas fa-unlock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
+                    html_tabla_laboratorios =
+                        html_tabla_laboratorios +
+                        "<tr>" +
+                        "<th class='text-center' scope='row'>" +
+                        labs.idLaboratorio +
+                        "</th>" +
+                        "<td>" +
+                        labs.Nombre +
+                        "</td>" +
+                        "<td>" +
+                        labs.Direccion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        labs.Telefono +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-success btn-sm btn-estado-size'>"+ labs.Estado+"</button>"+
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-laboratorio'" +
+                        " data-id='" +
+                        labs.idLaboratorio +
+                        "' data-state='" +
+                        labs.Estado +
+                        "' data-direccion='" +
+                        labs.Direccion +
+                        "' data-telefono='" +
+                        labs.Telefono +
+                        "' data-name='" +
+                        labs.Nombre +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-danger btn-sm btn-estado-laboratorio'" +
+                        " data-id='" +
+                        labs.idLaboratorio +
+                        "' data-state='" +
+                        labs.Estado +
+                        "' data-name='" +
+                        labs.Nombre +
+                        "' data-active='0'><i class='fas fa-lock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                }
             });
 
             $("#tableListLaboratorios").html(html_tabla_laboratorios);
@@ -204,10 +250,11 @@ function deleteLaboratorio(data) {
             console.log(response);
             let status = response.status;
             console.log("status > ", status);
+          
             if (status) {
                 Swal.fire({
-                    title: "Desactivado!",
-                    text: "El laboratorio fue desactivado con exito !",
+                    title: "Actualizado!",
+                    text: "El estado del laboratorio fue actualizado con exito !",
                     icon: "success",
                     showConfirmButton: false,
                     timer: 1500,
@@ -215,7 +262,7 @@ function deleteLaboratorio(data) {
             } else {
                 Swal.fire({
                     title: "Upps!",
-                    text: "Algo paso, no se desactivo el laboratorio !",
+                    text: "Algo paso, no se actualizo el estado del laboratorio !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,
@@ -298,27 +345,41 @@ $(document).on("click", ".btn-edit-laboratorio", function () {
     $("#mdEditLaboratorio").modal("show");
 });
 
-$(document).on("click", ".btn-delete-laboratorio", function () {
+$(document).on("click", ".btn-estado-laboratorio", function () {
     var laboratorioId = $(this).data("id");
     var laboratorioName = $(this).data("name");
+    var laboratorioActive = $(this).data("active");
+
+    console.log("laboratorioId > "+ laboratorioId+ " laboratorioName > "+ laboratorioName+ " laboratorioActive > "+laboratorioActive);
+
+    var message = "Desea desactivar el laboratorio: ";
+    var btnText = "Si, desactivar!";
+    var btnTitle = "Desactivar!";
+
+    if (laboratorioActive == 1) {
+        message = "Desea activar el laboratorio: ";
+        btnText = "Si, Activar!";
+        btnTitle = "Activar!";
+    }
 
     Swal.fire({
-        title: "Desactivar",
+        title: btnTitle,
         html:
-            "<p>Desea desactivar el laboratorio: <strong>" +
+            "<p>"+message+"<strong>" +
             laboratorioName +
             "</strong></p>",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, desactivar!",
+        confirmButtonText: btnText,
         cancelButtonText: "No, cancelar!",
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
                 _token: _globa_token_crf,
                 _laboratorioId: laboratorioId,
+                _estado: laboratorioActive,
             };
 
             deleteLaboratorio(data);

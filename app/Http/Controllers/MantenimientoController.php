@@ -106,7 +106,11 @@ class MantenimientoController extends Controller
     {
         try {
             $delete = Comprobante::find($request->_dataId);
-            $delete->Estado = "Inactivo";
+            if ($request->_estado == "1") {
+                $delete->Estado = "Activo";
+            } else {
+                $delete->Estado = "Inactivo";
+            }
 
             if ($delete->update()) {
                 return response()->json([
@@ -168,7 +172,11 @@ class MantenimientoController extends Controller
     {
         try {
             $labs = Laboratorio::find($request->_laboratorioId);
-            $labs->Estado = "Inactivo";
+            if ($request->_estado == "1") {
+                $labs->Estado = "Activo";
+            } else {
+                $labs->Estado = "Inactivo";
+            }
 
             if ($labs->update()) {
                 return response()->json([
@@ -272,7 +280,12 @@ class MantenimientoController extends Controller
     {
         try {
             $delete = Presentacion::find($request->_dataId);
-            $delete->Estado = "Inactivo";
+            
+            if ($request->_estado == "1") {
+                $delete->Estado = "Activo";
+            } else {
+                $delete->Estado = "Inactivo";
+            }
 
             if ($delete->update()) {
                 return response()->json([
@@ -369,7 +382,12 @@ class MantenimientoController extends Controller
     {
         try {
             $prov = Proveedor::find($request->_proveedorId);
-            $prov->Estado = "Inactivo";
+
+            if ($request->_estado == "1") {
+                $prov->Estado = "Activo";
+            } else {
+                $prov->Estado = "Inactivo";
+            }
 
             if ($prov->update()) {
                 return response()->json([

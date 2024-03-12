@@ -273,7 +273,7 @@ function listaEmpleados() {
                     emp.idEmpleado +
                     "' data-name='" +
                     emp.Nombres +
-                    "'><i class='fas fa-lock'></i></button>" +
+                    "'><i class='fas fa-trash'></i></button>" +
                     "</center>" +
                     "</td>" +
                     "</tr>";

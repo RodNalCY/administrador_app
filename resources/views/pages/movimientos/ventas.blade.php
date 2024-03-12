@@ -330,7 +330,7 @@
                                     <th scope="col">PRESENTACIÓN</th>
                                     <th scope="col">CONCENTRACIÓN</th>
                                     <th scope="col">STOCK</th>
-                                    <th scope="col">PRECIO</th>
+                                    <th scope="col" style="width: 100px;">PRECIO</th>
                                     <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>

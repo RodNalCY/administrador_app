@@ -158,7 +158,7 @@ function listaClientes() {
                 if (cli.Estado == "Inactivo") {
                     html_tabla_clientes =
                         html_tabla_clientes +
-                        "<tr style='background-color: #ffb3b3;'>" +
+                        "<tr style='background-color: #ff22221f;'>" +
                         "<th class='text-center' scope='row'>" +
                         cli.idCliente +
                         "</th>" +
@@ -187,7 +187,7 @@ function listaClientes() {
                         cli.Direccion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        cli.Estado +
+                        "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>"+ cli.Estado+"</button>"+
                         "</td>" +
                         "<td>" +
                         "<center>" +
@@ -213,7 +213,7 @@ function listaClientes() {
                         "' data-state='" +
                         cli.Estado +
                         "'><i class='fas fa-pen'></i></button>" +
-                        " <button type='button' class='btn btn-info btn-sm btn-estado-cliente'" +
+                        " <button type='button' class='btn btn-success btn-sm btn-estado-cliente'" +
                         " data-id='" +
                         cli.idCliente +
                         "' data-name='" +
@@ -256,7 +256,7 @@ function listaClientes() {
                         cli.Direccion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        cli.Estado +
+                        "<button type='button' class='btn btn-success btn-sm btn-estado-size'>"+ cli.Estado+"</button>"+
                         "</td>" +
                         "<td>" +
                         "<center>" +

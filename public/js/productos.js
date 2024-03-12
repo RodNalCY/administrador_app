@@ -180,7 +180,7 @@ function listProductos() {
                 if (venta.Estado == "Inactivo") {
                     html_tabla_productos =
                         html_tabla_productos +
-                        "<tr style='background-color: #ffb3b3;'>" +
+                        "<tr style='background-color: #ff22221f;'>" +
                         "<td scope='row' class='text-center'>" +
                         venta.idProducto +
                         "</td>" +
@@ -212,7 +212,7 @@ function listProductos() {
                         venta.FechaVencimiento +
                         "</td>" +
                         "<td class='text-center'> " +
-                        venta.Estado +
+                        "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>"+ venta.Estado+"</button>"+
                         "</td>" +
                         "<td>" +
                         "<center>" +
@@ -244,7 +244,7 @@ function listProductos() {
                         "' data-state='" +
                         venta.Estado +
                         "'><i class='fas fa-pen'></i></button>" +
-                        " <button type='button' class='btn btn-info btn-sm btn-estado-producto' data-bs-toggle='tooltip' data-bs-placement='left' title='Activar Producto'" +
+                        " <button type='button' class='btn btn-success btn-sm btn-estado-producto' data-bs-toggle='tooltip' data-bs-placement='left' title='Activar Producto'" +
                         " data-id='" +
                         venta.idProducto +
                         "' data-name='" +
@@ -288,7 +288,7 @@ function listProductos() {
                         venta.FechaVencimiento +
                         "</td>" +
                         "<td class='text-center'> " +
-                        venta.Estado +
+                        "<button type='button' class='btn btn-success btn-sm btn-estado-size'>"+ venta.Estado+"</button>"+
                         "</td>" +
                         "<td>" +
                         "<center>" +

@@ -74,37 +74,71 @@ function listaPresentaciones() {
                 "</select>";
 
             response.data.forEach(function (pre) {
-                html_tabla_presentaciones =
-                    html_tabla_presentaciones +
-                    "<tr>" +
-                    "<th class='text-center' scope='row'>" +
-                    pre.idPresentacion +
-                    "</th>" +
-                    "<td>" +
-                    pre.Descripcion +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    pre.Estado +
-                    "</td>" +
-                    "<td>" +
-                    "<center>" +
-                    " <button type='button' class='btn btn-warning btn-sm btn-edit-presentacion'" +
-                    " data-id='" +
-                    pre.idPresentacion +
-                    "' data-state='" +
-                    pre.Estado +
-                    "' data-name='" +
-                    pre.Descripcion +
-                    "'><i class='fas fa-pen'></i></button>" +
-                    " <button type='button' class='btn btn-danger btn-sm btn-delete-presentacion'" +
-                    " data-id='" +
-                    pre.idPresentacion +
-                    "' data-name='" +
-                    pre.Descripcion +
-                    "'><i class='fas fa-lock'></i></button>" +
-                    "</center>" +
-                    "</td>" +
-                    "</tr>";
+                if (pre.Estado == "Inactivo") {
+                    html_tabla_presentaciones =
+                        html_tabla_presentaciones +
+                        "<tr style='background-color: #ff22221f;'>" +
+                        "<th class='text-center' scope='row'>" +
+                        pre.idPresentacion +
+                        "</th>" +
+                        "<td>" +
+                        pre.Descripcion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>"+ pre.Estado+"</button>"+
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-presentacion'" +
+                        " data-id='" +
+                        pre.idPresentacion +
+                        "' data-state='" +
+                        pre.Estado +
+                        "' data-name='" +
+                        pre.Descripcion +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-success btn-sm btn-estado-presentacion'" +
+                        " data-id='" +
+                        pre.idPresentacion +
+                        "' data-name='" +
+                        pre.Descripcion +
+                        "' data-active='1'><i class='fas fa-unlock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
+                    html_tabla_presentaciones =
+                        html_tabla_presentaciones +
+                        "<tr>" +
+                        "<th class='text-center' scope='row'>" +
+                        pre.idPresentacion +
+                        "</th>" +
+                        "<td>" +
+                        pre.Descripcion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-success btn-sm btn-estado-size'>"+ pre.Estado+"</button>"+
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-presentacion'" +
+                        " data-id='" +
+                        pre.idPresentacion +
+                        "' data-state='" +
+                        pre.Estado +
+                        "' data-name='" +
+                        pre.Descripcion +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-danger btn-sm btn-estado-presentacion'" +
+                        " data-id='" +
+                        pre.idPresentacion +
+                        "' data-name='" +
+                        pre.Descripcion +
+                        "' data-active='0'><i class='fas fa-lock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                }
             });
 
             $("#tableListPresentacion").html(html_tabla_presentaciones);
@@ -208,7 +242,6 @@ function editarPresentacion(data) {
     });
 }
 
-
 function deletePresentacion(data) {
     $.ajax({
         type: "POST",
@@ -221,10 +254,11 @@ function deletePresentacion(data) {
             console.log(response);
             let status = response.status;
             console.log("status > ", status);
+
             if (status) {
                 Swal.fire({
-                    title: "Desactivado!",
-                    text: "El presentación fue desactivado con exito !",
+                    title: "Actualizado!",
+                    text: "El estado de la presentación fue actualizado con exito !",
                     icon: "success",
                     showConfirmButton: false,
                     timer: 1500,
@@ -232,7 +266,7 @@ function deletePresentacion(data) {
             } else {
                 Swal.fire({
                     title: "Upps!",
-                    text: "Algo paso, no se desactivo el presentación !",
+                    text: "Algo paso, no se actualizo el estado de la presentación !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,
@@ -269,27 +303,40 @@ $(document).on("click", ".btn-edit-presentacion", function () {
     $("#mdEditPresentacion").modal("show");
 });
 
-$(document).on("click", ".btn-delete-presentacion", function () {
+$(document).on("click", ".btn-estado-presentacion", function () {
     var dataId = $(this).data("id");
     var dataName = $(this).data("name");
+    var dataActive = $(this).data("active");
+
+    console.log("dataId > "+ dataId+ " dataName > "+ dataName+ " dataActive > "+dataActive);
+    var message = "Desea desactivar el comprobante: ";
+    var btnText = "Si, desactivar!";
+    var infoTitle = "Desactivar!";
+
+    if (dataActive == 1) {
+        message = "Desea activar el comprobante: ";
+        btnText = "Si, Activar!";
+        infoTitle = "Activar!";
+    }
 
     Swal.fire({
-        title: "Desactivar",
+        title: infoTitle,
         html:
-            "<p>Desea desactivar la Presentación : <strong>" +
+            "<p>"+message+"<strong>" +
             dataName +
             "</strong></p>",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, desactivar!",
+        confirmButtonText: btnText,
         cancelButtonText: "No, cancelar!",
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
                 _token: _globa_token_crf,
                 _dataId: dataId,
+                _estado: dataActive,
             };
 
             deletePresentacion(data);

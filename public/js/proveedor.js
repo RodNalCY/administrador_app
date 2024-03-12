@@ -141,72 +141,141 @@ function listaProveedores() {
                 "</select>";
 
             response.data.forEach(function (pro) {
-                html_tabla_proveedores =
-                    html_tabla_proveedores +
-                    "<tr>" +
-                    "<th class='text-center' scope='row'>" +
-                    pro.IdProveedor +
-                    "</th>" +
-                    "<td>" +
-                    pro.Nombre +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    pro.Dni +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    pro.Ruc +
-                    "</td>" +
-                    "<td>" +
-                    pro.Direccion +
-                    "</td>" +
-                    "<td>" +
-                    pro.Email +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    pro.Telefono +
-                    "</td>" +
-                    "<td>" +
-                    pro.Banco +
-                    "</td>" +
-                    "<td>" +
-                    pro.Cuenta +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    pro.Estado +
-                    "</td>" +
-                    "<td>" +
-                    "<center>" +
-                    " <button type='button' class='btn btn-warning btn-sm btn-edit-proveedor'" +
-                    " data-id='" +
-                    pro.IdProveedor +
-                    "' data-name='" +
-                    pro.Nombre +
-                    "' data-dni='" +
-                    pro.Dni +
-                    "' data-ruc='" +
-                    pro.Ruc +
-                    "' data-dir='" +
-                    pro.Direccion +
-                    "' data-email='" +
-                    pro.Email +
-                    "' data-tel='" +
-                    pro.Telefono +
-                    "' data-banco='" +
-                    pro.Banco +
-                    "' data-cuenta='" +
-                    pro.Cuenta +
-                    "' data-state='" +
-                    pro.Estado +
-                    "'><i class='fas fa-pen'></i></button>" +
-                    " <button type='button' class='btn btn-danger btn-sm btn-delete-proveedor'" +
-                    " data-id='" +
-                    pro.IdProveedor +
-                    "' data-name='" +
-                    pro.Nombre +
-                    "'><i class='fas fa-lock'></i></button>" +
-                    "</center>" +
-                    "</td>" +
-                    "</tr>";
+                if (pro.Estado == "Inactivo") {
+                    html_tabla_proveedores =
+                        html_tabla_proveedores +
+                        "<tr style='background-color: #ff22221f;'>" +
+                        "<th class='text-center' scope='row'>" +
+                        pro.IdProveedor +
+                        "</th>" +
+                        "<td>" +
+                        pro.Nombre +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        pro.Dni +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        pro.Ruc +
+                        "</td>" +
+                        "<td>" +
+                        pro.Direccion +
+                        "</td>" +
+                        "<td>" +
+                        pro.Email +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        pro.Telefono +
+                        "</td>" +
+                        "<td>" +
+                        pro.Banco +
+                        "</td>" +
+                        "<td>" +
+                        pro.Cuenta +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>"+ pro.Estado+"</button>"+
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-proveedor'" +
+                        " data-id='" +
+                        pro.IdProveedor +
+                        "' data-name='" +
+                        pro.Nombre +
+                        "' data-dni='" +
+                        pro.Dni +
+                        "' data-ruc='" +
+                        pro.Ruc +
+                        "' data-dir='" +
+                        pro.Direccion +
+                        "' data-email='" +
+                        pro.Email +
+                        "' data-tel='" +
+                        pro.Telefono +
+                        "' data-banco='" +
+                        pro.Banco +
+                        "' data-cuenta='" +
+                        pro.Cuenta +
+                        "' data-state='" +
+                        pro.Estado +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-success btn-sm btn-estado-proveedor'" +
+                        " data-id='" +
+                        pro.IdProveedor +
+                        "' data-name='" +
+                        pro.Nombre +
+                        "' data-active='1'><i class='fas fa-unlock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
+                    html_tabla_proveedores =
+                        html_tabla_proveedores +
+                        "<tr>" +
+                        "<th class='text-center' scope='row'>" +
+                        pro.IdProveedor +
+                        "</th>" +
+                        "<td>" +
+                        pro.Nombre +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        pro.Dni +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        pro.Ruc +
+                        "</td>" +
+                        "<td>" +
+                        pro.Direccion +
+                        "</td>" +
+                        "<td>" +
+                        pro.Email +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        pro.Telefono +
+                        "</td>" +
+                        "<td>" +
+                        pro.Banco +
+                        "</td>" +
+                        "<td>" +
+                        pro.Cuenta +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-success btn-sm btn-estado-size'>"+ pro.Estado+"</button>"+
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-proveedor'" +
+                        " data-id='" +
+                        pro.IdProveedor +
+                        "' data-name='" +
+                        pro.Nombre +
+                        "' data-dni='" +
+                        pro.Dni +
+                        "' data-ruc='" +
+                        pro.Ruc +
+                        "' data-dir='" +
+                        pro.Direccion +
+                        "' data-email='" +
+                        pro.Email +
+                        "' data-tel='" +
+                        pro.Telefono +
+                        "' data-banco='" +
+                        pro.Banco +
+                        "' data-cuenta='" +
+                        pro.Cuenta +
+                        "' data-state='" +
+                        pro.Estado +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-danger btn-sm btn-estado-proveedor'" +
+                        " data-id='" +
+                        pro.IdProveedor +
+                        "' data-name='" +
+                        pro.Nombre +
+                        "' data-active='0'><i class='fas fa-lock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                }
             });
 
             $("#tableListProveedores").html(html_tabla_proveedores);
@@ -336,10 +405,11 @@ function deleteProveedor(data) {
             console.log(response);
             let status = response.status;
             console.log("status > ", status);
+
             if (status) {
                 Swal.fire({
-                    title: "Desactivado!",
-                    text: "El proveedor fue desactivado con exito !",
+                    title: "Actualizado!",
+                    text: "El estado del proveedor fue actualizado con exito !",
                     icon: "success",
                     showConfirmButton: false,
                     timer: 1500,
@@ -347,7 +417,7 @@ function deleteProveedor(data) {
             } else {
                 Swal.fire({
                     title: "Upps!",
-                    text: "Algo paso, no se desactivo el proveedor !",
+                    text: "Algo paso, no se actualizo el estado del proveedor !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,
@@ -398,27 +468,41 @@ $(document).on("click", ".btn-edit-proveedor", function () {
     $("#mdEditProveedor").modal("show");
 });
 
-$(document).on("click", ".btn-delete-proveedor", function () {
+$(document).on("click", ".btn-estado-proveedor", function () {
     var provId = $(this).data("id");
     var provName = $(this).data("name");
+    var provActive = $(this).data("active");
+
+    console.log("provId > "+ provId+ " provName > "+ provName+ " provActive > "+provActive);
+
+    var message = "Desea desactivar el Proveedor: ";
+    var btnText = "Si, desactivar!";
+    var textTitle = "Desactivar!";
+
+    if (provActive == 1) {
+        message = "Desea activar el comprobante: ";
+        btnText = "Si, Activar!";
+        textTitle = "Activar!";
+    }
 
     Swal.fire({
-        title: "Desactivar",
+        title: textTitle,
         html:
-            "<p>Desea desactivar el Proveedor: <strong>" +
+            "<p>"+message+"<strong>" +
             provName +
             "</strong></p>",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Si, desactivar!",
+        confirmButtonText: btnText,
         cancelButtonText: "No, cancelar!",
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
                 _token: _globa_token_crf,
                 _proveedorId: provId,
+                _estado: provActive,
             };
 
             deleteProveedor(data);
