@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    _globa_token_crf = document.getElementById("_token").value;
-    console.log("_globa_token_crf > ", _globa_token_crf);
+    _global_token_crf = document.getElementById("_token").value;
+    console.log("_global_token_crf > ", _global_token_crf);
     $("#tableListProductos").html(
         "<tr><td colspan='12' class='text-center'>No hay productos disponibles.</td></tr>"
     );
@@ -25,7 +25,10 @@ $("#btnRegistrarProducto").click(function () {
     var prodPrecio = $("#txtProductoPrecio").val().trim();
     var prodIdPresentacion = $("#txtProductoIdPresentacion").val().trim();
     var prodIdLaboratorio = $("#txtProductoIdLaboratorio").val().trim();
-    var prodRegistroSanitario = $("#txtProductoRegistroSanitario").val().trim().toUpperCase();
+    var prodRegistroSanitario = $("#txtProductoRegistroSanitario")
+        .val()
+        .trim()
+        .toUpperCase();
     var prodVencimiento = $("#txtProductoVencimiento").val().trim();
 
     console.log(
@@ -56,7 +59,7 @@ $("#btnRegistrarProducto").click(function () {
         prodPrecio != ""
     ) {
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _prodNombre: prodNombre,
             _prodConcentacion: prodConcentacion,
             _prodStock: prodStock,
@@ -89,7 +92,10 @@ $("#btnActualizarProducto").click(function () {
     var prodPrecio = $("#txtEditProdVenta").val().trim();
     var prodIdPresentacion = $("#selectEditPresentacion").val().trim();
     var prodIdLaboratorio = $("#selectEditLaboratorio").val().trim();
-    var prodRegistroSanitario = $("#txtEditProdRegistroSanitario").val().trim().toUpperCase();
+    var prodRegistroSanitario = $("#txtEditProdRegistroSanitario")
+        .val()
+        .trim()
+        .toUpperCase();
     var prodVencimiento = $("#txtEditProdVencimiento").val().trim();
     var prodEstado = $("#selectEditEstadoProducto").val().trim();
 
@@ -125,7 +131,7 @@ $("#btnActualizarProducto").click(function () {
         prodPrecio != ""
     ) {
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _prodId: prodId,
             _prodNombre: prodNombre,
             _prodConcentacion: prodConcentacion,
@@ -156,7 +162,7 @@ function listVentasResumenDetalle() {
         type: "GET",
         url: "/list/productos",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function () {},
@@ -270,14 +276,15 @@ function listPresentacionesActivos() {
         type: "GET",
         url: "/list/activo/presentaciones",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function () {},
         success: function (response) {
             console.log("RDX> ", response);
             var html_tabla_presentaciones_activos = "";
-            var html_select_presentacion_options = "<select class='form-control' id='selectEditPresentacion'>";
+            var html_select_presentacion_options =
+                "<select class='form-control' id='selectEditPresentacion'>";
 
             response.data.forEach(function (presentacion) {
                 html_tabla_presentaciones_activos =
@@ -299,15 +306,25 @@ function listPresentacionesActivos() {
                     "    </center>" +
                     "</td>" +
                     "</tr>";
-                
-                html_select_presentacion_options = html_select_presentacion_options +
-                    "<option value='"+presentacion.idPresentacion+"'>"+presentacion.Descripcion+"</option>";
+
+                html_select_presentacion_options =
+                    html_select_presentacion_options +
+                    "<option value='" +
+                    presentacion.idPresentacion +
+                    "'>" +
+                    presentacion.Descripcion +
+                    "</option>";
             });
 
-            html_select_presentacion_options = html_select_presentacion_options + "</select>";
-            $("#selectEditHTMLPresentaciones").html(html_select_presentacion_options);
+            html_select_presentacion_options =
+                html_select_presentacion_options + "</select>";
+            $("#selectEditHTMLPresentaciones").html(
+                html_select_presentacion_options
+            );
 
-            $("#tbl_row_presentaciones").html(html_tabla_presentaciones_activos);
+            $("#tbl_row_presentaciones").html(
+                html_tabla_presentaciones_activos
+            );
             $("#tablePresentaciones").DataTable({
                 order: [[0, "desc"]],
                 language: {
@@ -327,15 +344,16 @@ function listLaboratoriosActivos() {
         type: "GET",
         url: "/list/activo/laboratorios",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function () {},
         success: function (response) {
             var html_tabla_laboratorios_activos = "";
-            var html_select_laboratorio_options = "<select class='form-control' id='selectEditLaboratorio'>";
+            var html_select_laboratorio_options =
+                "<select class='form-control' id='selectEditLaboratorio'>";
 
-            response.data.forEach(function (laboratorio) {                
+            response.data.forEach(function (laboratorio) {
                 html_tabla_laboratorios_activos =
                     html_tabla_laboratorios_activos +
                     "<tr data-id='" +
@@ -356,13 +374,20 @@ function listLaboratoriosActivos() {
                     "</td>" +
                     "</tr>";
 
-                    html_select_laboratorio_options = html_select_laboratorio_options +
-                    "<option value='"+laboratorio.idLaboratorio+"'>"+laboratorio.Nombre+"</option>";
-
+                html_select_laboratorio_options =
+                    html_select_laboratorio_options +
+                    "<option value='" +
+                    laboratorio.idLaboratorio +
+                    "'>" +
+                    laboratorio.Nombre +
+                    "</option>";
             });
-            html_select_laboratorio_options = html_select_laboratorio_options + "</select>";
-            $("#selectEditHTMLLaboratorio").html(html_select_laboratorio_options);
-            
+            html_select_laboratorio_options =
+                html_select_laboratorio_options + "</select>";
+            $("#selectEditHTMLLaboratorio").html(
+                html_select_laboratorio_options
+            );
+
             $("#tbl_row_laboratorios").html(html_tabla_laboratorios_activos);
             $("#tableLaboratorios").DataTable({
                 order: [[0, "desc"]],
@@ -576,7 +601,9 @@ $(document).on("click", ".btn-edit-producto", function () {
     $("#txtDescripcionPrecio").html(prodVenta);
 
     $("#txtTitleEditarProducto").html(
-        "<strong><i class='fas fa-fw fa-box-open '></i> " + prodName + "</strong>"
+        "<strong><i class='fas fa-fw fa-box-open '></i> " +
+            prodName +
+            "</strong>"
     );
 
     $("#mdEditProducto").modal("show");
@@ -601,11 +628,36 @@ $(document).on("click", ".btn-delete-producto", function () {
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
-                _token: _globa_token_crf,
+                _token: _global_token_crf,
                 _productoId: productoId,
             };
 
             deleteProducto(data);
         }
+    });
+});
+
+$("#btnExportarExcelProductos").click(function () {
+    $.ajax({
+        type: "GET",
+        url: "/exportar/excel/producto",
+        data: {
+            _token: _global_token_crf,
+        },
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+            console.log("RDX> ", response);
+            // Obtener el dominio base de la página actual
+            var dominioBase = window.location.origin;
+            // Obtener la ruta del archivo Excel desde la respuesta
+            var filePath = dominioBase + "/" + response.data;
+            // Redireccionar a la ruta del archivo Excel para descargarlo
+            window.location.href = filePath;
+        },
+        complete: function () {},
+        error: function (response) {
+            console.log("Error", response);
+        },
     });
 });

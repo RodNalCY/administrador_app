@@ -12,6 +12,11 @@ use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Exports\ProductoExport;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
+
 class MantenimientoController extends Controller
 {
     /**
@@ -754,5 +759,37 @@ class MantenimientoController extends Controller
                 'message' => $ex->getMessage(),
             ], 500);
         }
-    }   
+    }
+
+    public function exportar_excel_producto()
+    {
+        try {
+            // Obtener la fecha y hora actual
+            $fechaHoraActual = Carbon::now();
+            // Puedes formatear la fecha y hora según tus necesidades
+            $fechaHoraFormateada = $fechaHoraActual->format('Y-m-d H:i:s');
+            // Definir nombre del archivo
+            $replace_time = str_replace(["-", ":", " "], "_", $fechaHoraFormateada);
+            // Nombre del archivo
+            $fileName = 'excel_productos_' . $replace_time . '.xlsx';
+            // Ruta donde se guardará el archivo en el almacenamiento
+            $filePath = 'downloads/excel/' . $fileName;
+            // Instancia de la clase de exportación
+            $exportacion = new ProductoExport();
+            // Generar el archivo Excel y guardarlo en el almacenamiento
+            Excel::store($exportacion, $fileName, 'public3');
+
+            // Devolver la ruta del archivo guardado
+            return response()->json([
+                'message' => 'GET - Excel Producto',
+                'status' => true,
+                'data' => $filePath,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
 }

@@ -123,6 +123,9 @@ Route::controller(MantenimientoController::class)->group(function () {
     Route::get('/list/activo/empleados', 'list_activo_empleados')->name('/list/activo/empleados');
 
     Route::get('/session/activo/empleado', 'session_activo_empleado')->name('/session/activo/empleados');
+
+    // Exportar Excel
+    Route::get('/exportar/excel/producto', 'exportar_excel_producto')->name('/exportar/excel/producto');
 });
 
 Route::controller(AdministradorController::class)->group(function () {

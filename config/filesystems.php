@@ -51,6 +51,14 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        
+        'public3' => [
+            'driver' => 'local',
+            'root' => public_path('downloads/excel'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

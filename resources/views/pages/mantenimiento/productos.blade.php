@@ -89,6 +89,11 @@
 
 <div class="card">
     <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-md-12 d-flex justify-content-end">
+                <button type="button" class="btn btn-success" id="btnExportarExcelProductos"> <i class="fas fa-fw fa-table"></i> Exportar Excel</button>
+            </div>
+        </div>
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableProductos">
