@@ -638,26 +638,39 @@ $(document).on("click", ".btn-delete-producto", function () {
 });
 
 $("#btnExportarExcelProductos").click(function () {
-    $.ajax({
-        type: "GET",
-        url: "/exportar/excel/producto",
-        data: {
-            _token: _global_token_crf,
-        },
-        dataType: "json",
-        beforeSend: function () {},
-        success: function (response) {
-            console.log("RDX> ", response);
-            // Obtener el dominio base de la página actual
-            var dominioBase = window.location.origin;
-            // Obtener la ruta del archivo Excel desde la respuesta
-            var filePath = dominioBase + "/" + response.data;
-            // Redireccionar a la ruta del archivo Excel para descargarlo
-            window.location.href = filePath;
-        },
-        complete: function () {},
-        error: function (response) {
-            console.log("Error", response);
-        },
+    Swal.fire({
+        title: "Exportar (.xlsx)",
+        html: "<p>¿Desea exportar los productos en un archivo Excel?</p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#28a745",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, exportar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "GET",
+                url: "/exportar/excel/producto",
+                data: {
+                    _token: _global_token_crf,
+                },
+                dataType: "json",
+                beforeSend: function () {},
+                success: function (response) {
+                    console.log("RDX> ", response);
+                    // Obtener el dominio base de la página actual
+                    var dominioBase = window.location.origin;
+                    // Obtener la ruta del archivo Excel desde la respuesta
+                    var filePath = dominioBase + "/" + response.data;
+                    // Redireccionar a la ruta del archivo Excel para descargarlo
+                    window.location.href = filePath;
+                },
+                complete: function () {},
+                error: function (response) {
+                    console.log("Error", response);
+                },
+            });
+        }
     });
 });
