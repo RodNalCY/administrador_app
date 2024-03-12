@@ -44,6 +44,22 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
+            <div class="col-md-10">
+                <div class="input-group">
+                    <div class="input-group-text" style="background-color: #4a3fff; color:white; "> <i class="fas fa-fw fa-search"></i> </div>
+                    <input type="search" class="form-control" id="btnBuscarListLaboratorio" placeholder="Ingrese el nombre del laboratorio" style="background-color: azure;">
+                </div>
+            </div>
+            <div class="col-md-2 d-flex justify-content-end">
+                <button type="button" class="btn btn-success" id="btnExportarExcelLaboratorio"> <i class="fas fa-fw fa-table"></i> EXPORTAR EXCEL</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableLaboratorios">
                     <thead class="header-table text-center">

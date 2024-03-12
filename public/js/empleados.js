@@ -76,7 +76,7 @@ $("#btnRegistrarEmpleado").click(function () {
 $("#btnActualizarEmpleado").click(function () {
     var empId = $("#txtEditEmpId").val().trim();
     var empNombre = $("#txtEditEmpName").val().trim().toUpperCase();
-    var empApellidos = $("#txtEditEmpApellidos").val().trim().toUpperCase();;
+    var empApellidos = $("#txtEditEmpApellidos").val().trim().toUpperCase();
     var empDNI = $("#txtEditEmpDNI").val().trim();
     var empSexo = $("#selectEditSexoEmpleado").val().trim();
     var empEspecial = $("#selectEditEspecialidadEmpleado").val().trim();
@@ -88,12 +88,11 @@ $("#btnActualizarEmpleado").click(function () {
     var empSueldo = $("#txtEditEmpSueldo").val().trim();
     var empEstado = $("#selectEditEstadoEmpleado").val().trim();
 
-
     if (empNombre != "" && empApellidos != "" && empDNI != "") {
         console.log(
             "empId > " +
-            empId +
-            "empNombre > " +
+                empId +
+                "empNombre > " +
                 empNombre +
                 "empApellidos > " +
                 empApellidos +
@@ -148,7 +147,6 @@ $("#btnActualizarEmpleado").click(function () {
     }
 });
 
-
 function listaEmpleados() {
     $.ajax({
         type: "GET",
@@ -196,87 +194,179 @@ function listaEmpleados() {
                 "</select>";
 
             response.data.forEach(function (emp) {
-                html_tabla_empleados =
-                    html_tabla_empleados +
-                    "<tr>" +
-                    "<th class='text-center' scope='row'>" +
-                    emp.idEmpleado +
-                    "</th>" +
-                    "<td>" +
-                    emp.Nombres +
-                    "</td>" +
-                    "<td>" +
-                    emp.Apellidos +
-                    "</td>" +
-                    "<td>" +
-                    emp.Especialidad +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    emp.Sexo +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    emp.Dni +
-                    "</td>" +
-                    "<td>" +
-                    emp.Email +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    emp.Telefono +
-                    "</td>" +
-                    "<td>" +
-                    emp.Direccion +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    emp.HoraIngreso +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    emp.HoraSalida +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    emp.Sueldo +
-                    "</td>" +
-                    "<td class='text-center'>" +
-                    emp.Estado +
-                    "</td>" +
-                    "<td>" +
-                    "<center>" +
-                    " <button type='button' class='btn btn-warning btn-sm btn-edit-empleado'" +
-                    " data-id='" +
-                    emp.idEmpleado +
-                    "' data-name='" +
-                    emp.Nombres +
-                    "' data-apellidos='" +
-                    emp.Apellidos +
-                    "' data-especialidad='" +
-                    emp.Especialidad +
-                    "' data-sexo='" +
-                    emp.Sexo +
-                    "' data-dni='" +
-                    emp.Dni +
-                    "' data-email='" +
-                    emp.Email +
-                    "' data-telefono='" +
-                    emp.Telefono +
-                    "' data-direccion='" +
-                    emp.Direccion +
-                    "' data-hingreso='" +
-                    emp.HoraIngreso +
-                    "' data-hsalida='" +
-                    emp.HoraSalida +
-                    "' data-sueldo='" +
-                    emp.Sueldo +
-                    "' data-state='" +
-                    emp.Estado +
-                    "'><i class='fas fa-pen'></i></button>" +
-                    " <button type='button' class='btn btn-danger btn-sm btn-delete-empleado'" +
-                    " data-id='" +
-                    emp.idEmpleado +
-                    "' data-name='" +
-                    emp.Nombres +
-                    "'><i class='fas fa-trash'></i></button>" +
-                    "</center>" +
-                    "</td>" +
-                    "</tr>";
+                if (emp.Estado == "Inactivo") {
+                    html_tabla_empleados =
+                        html_tabla_empleados +
+                        "<tr style='background-color: #ff22221f;'>" +
+                        "<th class='text-center' scope='row'>" +
+                        emp.idEmpleado +
+                        "</th>" +
+                        "<td>" +
+                        emp.Nombres +
+                        "</td>" +
+                        "<td>" +
+                        emp.Apellidos +
+                        "</td>" +
+                        "<td>" +
+                        emp.Especialidad +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.Sexo +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.Dni +
+                        "</td>" +
+                        "<td>" +
+                        emp.Email +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.Telefono +
+                        "</td>" +
+                        "<td>" +
+                        emp.Direccion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.HoraIngreso +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.HoraSalida +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.Sueldo +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>" +
+                        emp.Estado +
+                        "</button>" +
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-empleado'" +
+                        " data-id='" +
+                        emp.idEmpleado +
+                        "' data-name='" +
+                        emp.Nombres +
+                        "' data-apellidos='" +
+                        emp.Apellidos +
+                        "' data-especialidad='" +
+                        emp.Especialidad +
+                        "' data-sexo='" +
+                        emp.Sexo +
+                        "' data-dni='" +
+                        emp.Dni +
+                        "' data-email='" +
+                        emp.Email +
+                        "' data-telefono='" +
+                        emp.Telefono +
+                        "' data-direccion='" +
+                        emp.Direccion +
+                        "' data-hingreso='" +
+                        emp.HoraIngreso +
+                        "' data-hsalida='" +
+                        emp.HoraSalida +
+                        "' data-sueldo='" +
+                        emp.Sueldo +
+                        "' data-state='" +
+                        emp.Estado +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-success btn-sm btn-estado-empleado'" +
+                        " data-id='" +
+                        emp.idEmpleado +
+                        "' data-name='" +
+                        emp.Nombres +
+                        "' data-idusuario='" +
+                        emp.idUsuario +
+                        "' data-active='1'><i class='fas fa-unlock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                } else {
+                    html_tabla_empleados =
+                        html_tabla_empleados +
+                        "<tr>" +
+                        "<th class='text-center' scope='row'>" +
+                        emp.idEmpleado +
+                        "</th>" +
+                        "<td>" +
+                        emp.Nombres +
+                        "</td>" +
+                        "<td>" +
+                        emp.Apellidos +
+                        "</td>" +
+                        "<td>" +
+                        emp.Especialidad +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.Sexo +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.Dni +
+                        "</td>" +
+                        "<td>" +
+                        emp.Email +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.Telefono +
+                        "</td>" +
+                        "<td>" +
+                        emp.Direccion +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.HoraIngreso +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.HoraSalida +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        emp.Sueldo +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<button type='button' class='btn btn-success btn-sm btn-estado-size'>" +
+                        emp.Estado +
+                        "</button>" +
+                        "</td>" +
+                        "<td>" +
+                        "<center>" +
+                        " <button type='button' class='btn btn-warning btn-sm btn-edit-empleado'" +
+                        " data-id='" +
+                        emp.idEmpleado +
+                        "' data-name='" +
+                        emp.Nombres +
+                        "' data-apellidos='" +
+                        emp.Apellidos +
+                        "' data-especialidad='" +
+                        emp.Especialidad +
+                        "' data-sexo='" +
+                        emp.Sexo +
+                        "' data-dni='" +
+                        emp.Dni +
+                        "' data-email='" +
+                        emp.Email +
+                        "' data-telefono='" +
+                        emp.Telefono +
+                        "' data-direccion='" +
+                        emp.Direccion +
+                        "' data-hingreso='" +
+                        emp.HoraIngreso +
+                        "' data-hsalida='" +
+                        emp.HoraSalida +
+                        "' data-sueldo='" +
+                        emp.Sueldo +
+                        "' data-state='" +
+                        emp.Estado +
+                        "'><i class='fas fa-pen'></i></button>" +
+                        " <button type='button' class='btn btn-danger btn-sm btn-estado-empleado'" +
+                        " data-id='" +
+                        emp.idEmpleado +
+                        "' data-name='" +
+                        emp.Nombres +
+                        "' data-idusuario='" +
+                        emp.idUsuario +
+                        "' data-active='0'><i class='fas fa-lock'></i></button>" +
+                        "</center>" +
+                        "</td>" +
+                        "</tr>";
+                }
             });
 
             $("#tableListEmpleados").html(html_tabla_empleados);
@@ -284,7 +374,9 @@ function listaEmpleados() {
             $("#selectHTMLEspecialidad").html(html_select_especialidad_options);
 
             $("#selectEditHTMLSexo").html(html_select_edit_sexo_options);
-            $("#selectEditHTMLEspecialidad").html(html_select_edit_especialidad_options); 
+            $("#selectEditHTMLEspecialidad").html(
+                html_select_edit_especialidad_options
+            );
             $("#selectEditHTMLEstado").html(html_select_edit_options);
             // Reinicializar DataTables
             $("#tableEmpleados").DataTable({
@@ -413,8 +505,8 @@ function deleteEmpleado(data) {
             console.log("status > ", status);
             if (status) {
                 Swal.fire({
-                    title: "Desactivado!",
-                    text: "El empleado fue desactivado con exito !",
+                    title: "Actualizado!",
+                    text: "El estado del empleado fue actualizado con exito !",
                     icon: "success",
                     showConfirmButton: false,
                     timer: 1500,
@@ -422,7 +514,7 @@ function deleteEmpleado(data) {
             } else {
                 Swal.fire({
                     title: "Upps!",
-                    text: "Algo paso, no se desactivo el empleado !",
+                    text: "Algo paso, no se actualizo el estado del empleado !",
                     icon: "error",
                     showConfirmButton: false,
                     timer: 1500,
@@ -440,7 +532,6 @@ function deleteEmpleado(data) {
         },
     });
 }
-
 
 $(document).on("click", ".btn-edit-empleado", function () {
     var empId = $(this).data("id");
@@ -480,33 +571,63 @@ $(document).on("click", ".btn-edit-empleado", function () {
     $("#mdEditEmpleado").modal("show");
 });
 
-$(document).on("click", ".btn-delete-empleado", function () {
+$(document).on("click", ".btn-estado-empleado", function () {
     var empleadoId = $(this).data("id");
     var empleadoName = $(this).data("name");
+    var empleadoActive = $(this).data("active");
+    var empleadoIdUsuario = $(this).data("idusuario");
 
-    Swal.fire({
-        title: "Desactivar",
-        html:
-            "<p>Desea desactivar el Empleado: <strong>" +
+    console.log(
+        "empleadoId > " +
+            empleadoId +
+            " empleadoName > " +
             empleadoName +
-            "</strong></p>",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, desactivar!",
-        cancelButtonText: "No, cancelar!",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            
-            var data = {
-                _token: _global_token_crf,
-                _empleadoId: empleadoId,
-            };
+            " empleadoActive > " +
+            empleadoActive +
+            " empleadoIdUsuario > " +
+            empleadoIdUsuario
+    );
 
-            deleteEmpleado(data);
+    if (empleadoIdUsuario != 0) {
+        Swal.fire({
+            title: "Atento!",
+            text: "Antes de desactivar a un empleado, asegúrate de desactivar su cuenta de usuario en el sistema!",
+            icon: "warning",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Entendido!",
+        });
+    } else {
+        var message = "Desea desactivar el Empleado: ";
+        var btnText = "Si, desactivar!";
+        var textTitle = "Desactivar!";
+
+        if (empleadoActive == 1) {
+            message = "Desea activar el Empleado: ";
+            btnText = "Si, Activar!";
+            textTitle = "Activar!";
         }
-    });
+
+        Swal.fire({
+            title: textTitle,
+            html: "<p>" + message + "<strong>" + empleadoName + "</strong></p>",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: btnText,
+            cancelButtonText: "No, cancelar!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var data = {
+                    _token: _global_token_crf,
+                    _empleadoId: empleadoId,
+                    _estado: empleadoActive,
+                };
+
+                deleteEmpleado(data);
+            }
+        });
+    }
 });
 
 $("#btnGetAPIDNI").click(function () {

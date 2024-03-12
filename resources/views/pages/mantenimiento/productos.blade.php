@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="col-md-2 d-flex justify-content-end">
-                <button type="button" class="btn btn-success" id="btnExportarExcelProductos"> <i class="fas fa-fw fa-table"></i> Exportar Excel</button>
+                <button type="button" class="btn btn-success" id="btnExportarExcelProductos"> <i class="fas fa-fw fa-table"></i> EXPORTAR EXCEL</button>
             </div>
         </div>
     </div>

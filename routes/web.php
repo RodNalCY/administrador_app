@@ -119,6 +119,10 @@ Route::controller(MantenimientoController::class)->group(function () {
 
     // Exportar Excel
     Route::get('/exportar/excel/producto', 'exportar_excel_producto')->name('/exportar/excel/producto');
+    Route::get('/exportar/excel/clientes', 'exportar_excel_clientes')->name('/exportar/excel/clientes');
+    Route::get('/exportar/excel/presentacion', 'exportar_excel_presentacion')->name('/exportar/excel/presentacion');
+    Route::get('/exportar/excel/laboratorios', 'exportar_excel_laboratorios')->name('/exportar/excel/laboratorios');
+    Route::get('/exportar/excel/proveedores', 'exportar_excel_proveedores')->name('/exportar/excel/proveedores');
 });
 
 Route::controller(AdministradorController::class)->group(function () {

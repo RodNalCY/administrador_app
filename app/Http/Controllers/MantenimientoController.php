@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ClienteExport;
+use App\Exports\PresentacionExport;
 use App\Models\Cliente;
 use App\Models\Comprobante;
 use App\Models\Empleado;
@@ -13,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Exports\ProductoExport;
+use App\Exports\ProveedorExport;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
@@ -700,6 +703,134 @@ class MantenimientoController extends Controller
             // Devolver la ruta del archivo guardado
             return response()->json([
                 'message' => 'GET - Excel Producto',
+                'status' => true,
+                'data' => $filePath,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function exportar_excel_clientes()
+    {
+        try {
+            // Obtener la fecha y hora actual
+            $fechaHoraActual = Carbon::now();
+            // Puedes formatear la fecha y hora según tus necesidades
+            $fechaHoraFormateada = $fechaHoraActual->format('Y-m-d H:i:s');
+            // Definir nombre del archivo
+            $replace_time = str_replace(["-", ":", " "], "_", $fechaHoraFormateada);
+            // Nombre del archivo
+            $fileName = 'excel_clientes_' . $replace_time . '.xlsx';
+            // Ruta donde se guardará el archivo en el almacenamiento
+            $filePath = 'downloads/excel/' . $fileName;
+            // Instancia de la clase de exportación
+            $exportacion = new ClienteExport();
+            // Generar el archivo Excel y guardarlo en el almacenamiento
+            Excel::store($exportacion, $fileName, 'public3');
+
+            // Devolver la ruta del archivo guardado
+            return response()->json([
+                'message' => 'GET - Excel Clientes',
+                'status' => true,
+                'data' => $filePath,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function exportar_excel_presentacion()
+    {
+        try {
+            // Obtener la fecha y hora actual
+            $fechaHoraActual = Carbon::now();
+            // Puedes formatear la fecha y hora según tus necesidades
+            $fechaHoraFormateada = $fechaHoraActual->format('Y-m-d H:i:s');
+            // Definir nombre del archivo
+            $replace_time = str_replace(["-", ":", " "], "_", $fechaHoraFormateada);
+            // Nombre del archivo
+            $fileName = 'excel_presentaciones_' . $replace_time . '.xlsx';
+            // Ruta donde se guardará el archivo en el almacenamiento
+            $filePath = 'downloads/excel/' . $fileName;
+            // Instancia de la clase de exportación
+            $exportacion = new PresentacionExport();
+            // Generar el archivo Excel y guardarlo en el almacenamiento
+            Excel::store($exportacion, $fileName, 'public3');
+
+            // Devolver la ruta del archivo guardado
+            return response()->json([
+                'message' => 'GET - Excel Presentacion',
+                'status' => true,
+                'data' => $filePath,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function exportar_excel_laboratorios()
+    {
+        try {
+            // Obtener la fecha y hora actual
+            $fechaHoraActual = Carbon::now();
+            // Puedes formatear la fecha y hora según tus necesidades
+            $fechaHoraFormateada = $fechaHoraActual->format('Y-m-d H:i:s');
+            // Definir nombre del archivo
+            $replace_time = str_replace(["-", ":", " "], "_", $fechaHoraFormateada);
+            // Nombre del archivo
+            $fileName = 'excel_laboratorios_' . $replace_time . '.xlsx';
+            // Ruta donde se guardará el archivo en el almacenamiento
+            $filePath = 'downloads/excel/' . $fileName;
+            // Instancia de la clase de exportación
+            $exportacion = new PresentacionExport();
+            // Generar el archivo Excel y guardarlo en el almacenamiento
+            Excel::store($exportacion, $fileName, 'public3');
+
+            // Devolver la ruta del archivo guardado
+            return response()->json([
+                'message' => 'GET - Excel Laboratorios',
+                'status' => true,
+                'data' => $filePath,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function exportar_excel_proveedores()
+    {
+        try {
+            // Obtener la fecha y hora actual
+            $fechaHoraActual = Carbon::now();
+            // Puedes formatear la fecha y hora según tus necesidades
+            $fechaHoraFormateada = $fechaHoraActual->format('Y-m-d H:i:s');
+            // Definir nombre del archivo
+            $replace_time = str_replace(["-", ":", " "], "_", $fechaHoraFormateada);
+            // Nombre del archivo
+            $fileName = 'excel_proveedores_' . $replace_time . '.xlsx';
+            // Ruta donde se guardará el archivo en el almacenamiento
+            $filePath = 'downloads/excel/' . $fileName;
+            // Instancia de la clase de exportación
+            $exportacion = new ProveedorExport();
+            // Generar el archivo Excel y guardarlo en el almacenamiento
+            Excel::store($exportacion, $fileName, 'public3');
+
+            // Devolver la ruta del archivo guardado
+            return response()->json([
+                'message' => 'GET - Excel Preveedores',
                 'status' => true,
                 'data' => $filePath,
             ]);

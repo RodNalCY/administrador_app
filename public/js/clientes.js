@@ -309,6 +309,14 @@ function listaClientes() {
                     url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
                 },
             });
+
+            $("#btnBuscarListCliente").on("input", function () {
+                var searchText = $(this).val().toLowerCase(); // Obtener el texto ingresado en minúsculas
+                // Obtener instancia de DataTables de la tabla
+                var table = $("#tableClientes").DataTable();
+                // Realizar la búsqueda en la tabla utilizando el texto ingresado
+                table.search(searchText).draw();
+            });
         },
         complete: function (response) {},
         error: function (response) {
@@ -600,3 +608,41 @@ function getDataAPIReniecDNI(data) {
         },
     });
 }
+
+$("#btnExportarExcelClientes").click(function () {
+    Swal.fire({
+        title: "Exportar (.xlsx)",
+        html: "<p>¿Desea exportar los clientes en un archivo Excel?</p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#28a745",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, exportar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "GET",
+                url: "/exportar/excel/clientes",
+                data: {
+                    _token: _global_token_crf,
+                },
+                dataType: "json",
+                beforeSend: function () {},
+                success: function (response) {
+                    console.log("RDX> ", response);
+                    // Obtener el dominio base de la página actual
+                    var dominioBase = window.location.origin;
+                    // Obtener la ruta del archivo Excel desde la respuesta
+                    var filePath = dominioBase + "/" + response.data;
+                    // Redireccionar a la ruta del archivo Excel para descargarlo
+                    window.location.href = filePath;
+                },
+                complete: function () {},
+                error: function (response) {
+                    console.log("Error", response);
+                },
+            });
+        }
+    });
+});

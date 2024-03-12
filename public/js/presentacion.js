@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    _globa_token_crf = document.getElementById("_token").value;
-    console.log("_globa_token_crf > ", _globa_token_crf);
+    _global_token_crf = document.getElementById("_token").value;
+    console.log("_global_token_crf > ", _global_token_crf);
     $("#tableListPresentacion").html(
         "<tr><td colspan='4' class='text-center'>No hay presentaciones disponibles.</td></tr>"
     );
@@ -13,7 +13,7 @@ $("#btnRegistrarPresentacion").click(function () {
     if (preNombre != "") {
         console.log("preNombre > " + preNombre);
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _preNombre: preNombre,
         };
 
@@ -37,7 +37,7 @@ $("#btnActualizarPresentacion").click(function () {
     if (preName != "") {
         console.log("preName > " + preName);
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _preId: preId,
             _preName: preName,
             _preState: preState,
@@ -60,7 +60,7 @@ function listaPresentaciones() {
         type: "GET",
         url: "/list/presentaciones",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function (response) {},
@@ -149,6 +149,14 @@ function listaPresentaciones() {
                 language: {
                     url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
                 },
+            });
+
+            $("#btnBuscarListPresentacion").on("input", function () {
+                var searchText = $(this).val().toLowerCase(); // Obtener el texto ingresado en minúsculas
+                // Obtener instancia de DataTables de la tabla
+                var table = $("#tablePresentacion").DataTable();
+                // Realizar la búsqueda en la tabla utilizando el texto ingresado
+                table.search(searchText).draw();
             });
         },
         complete: function (response) {},
@@ -334,12 +342,50 @@ $(document).on("click", ".btn-estado-presentacion", function () {
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
-                _token: _globa_token_crf,
+                _token: _global_token_crf,
                 _dataId: dataId,
                 _estado: dataActive,
             };
 
             deletePresentacion(data);
+        }
+    });
+});
+
+$("#btnExportarExcelPresentacion").click(function () {
+    Swal.fire({
+        title: "Exportar (.xlsx)",
+        html: "<p>¿Desea exportar las presentaciones en un archivo Excel?</p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#28a745",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, exportar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "GET",
+                url: "/exportar/excel/presentacion",
+                data: {
+                    _token: _global_token_crf,
+                },
+                dataType: "json",
+                beforeSend: function () {},
+                success: function (response) {
+                    console.log("RDX> ", response);
+                    // Obtener el dominio base de la página actual
+                    var dominioBase = window.location.origin;
+                    // Obtener la ruta del archivo Excel desde la respuesta
+                    var filePath = dominioBase + "/" + response.data;
+                    // Redireccionar a la ruta del archivo Excel para descargarlo
+                    window.location.href = filePath;
+                },
+                complete: function () {},
+                error: function (response) {
+                    console.log("Error", response);
+                },
+            });
         }
     });
 });

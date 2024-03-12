@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    _globa_token_crf = document.getElementById("_token").value;
-    console.log("_globa_token_crf > ", _globa_token_crf);
+    _global_token_crf = document.getElementById("_token").value;
+    console.log("_global_token_crf > ", _global_token_crf);
     $("#tableListProveedores").html(
         "<tr><td colspan='11' class='text-center'>No hay proveedores disponibles.</td></tr>"
     );
@@ -38,7 +38,7 @@ $("#btnRegistrarProveedor").click(function () {
                 provCuenta
         );
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _provNombre: provNombre,
             _provDNI: provDNI,
             _provRuc: provRuc,
@@ -97,7 +97,7 @@ $("#btnActualizarProveedor").click(function () {
                 provEstado
         );
         var data = {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             _provId: provId,
             _provNombre: provNombre,
             _provDNI: provDNI,
@@ -127,7 +127,7 @@ function listaProveedores() {
         type: "GET",
         url: "/list/proveedores",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
         },
         dataType: "json",
         beforeSend: function (response) {},
@@ -286,6 +286,14 @@ function listaProveedores() {
                 language: {
                     url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
                 },
+            });
+
+            $("#btnBuscarListProveedor").on("input", function () {
+                var searchText = $(this).val().toLowerCase(); // Obtener el texto ingresado en minúsculas
+                // Obtener instancia de DataTables de la tabla
+                var table = $("#tableProveedores").DataTable();
+                // Realizar la búsqueda en la tabla utilizando el texto ingresado
+                table.search(searchText).draw();
             });
         },
         complete: function (response) {},
@@ -480,7 +488,7 @@ $(document).on("click", ".btn-estado-proveedor", function () {
     var textTitle = "Desactivar!";
 
     if (provActive == 1) {
-        message = "Desea activar el comprobante: ";
+        message = "Desea activar el Proveedor: ";
         btnText = "Si, Activar!";
         textTitle = "Activar!";
     }
@@ -500,12 +508,51 @@ $(document).on("click", ".btn-estado-proveedor", function () {
     }).then((result) => {
         if (result.isConfirmed) {
             var data = {
-                _token: _globa_token_crf,
+                _token: _global_token_crf,
                 _proveedorId: provId,
                 _estado: provActive,
             };
 
             deleteProveedor(data);
+        }
+    });
+});
+
+
+$("#btnExportarExcelProveedor").click(function () {
+    Swal.fire({
+        title: "Exportar (.xlsx)",
+        html: "<p>¿Desea exportar los proveedores en un archivo Excel?</p>",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#28a745",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, exportar!",
+        cancelButtonText: "No, cancelar!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "GET",
+                url: "/exportar/excel/proveedores",
+                data: {
+                    _token: _global_token_crf,
+                },
+                dataType: "json",
+                beforeSend: function () {},
+                success: function (response) {
+                    console.log("RDX> ", response);
+                    // Obtener el dominio base de la página actual
+                    var dominioBase = window.location.origin;
+                    // Obtener la ruta del archivo Excel desde la respuesta
+                    var filePath = dominioBase + "/" + response.data;
+                    // Redireccionar a la ruta del archivo Excel para descargarlo
+                    window.location.href = filePath;
+                },
+                complete: function () {},
+                error: function (response) {
+                    console.log("Error", response);
+                },
+            });
         }
     });
 });

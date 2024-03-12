@@ -99,6 +99,22 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
+            <div class="col-md-10">
+                <div class="input-group">
+                    <div class="input-group-text" style="background-color: #4a3fff; color:white; "> <i class="fas fa-fw fa-search"></i> </div>
+                    <input type="search" class="form-control" id="btnBuscarListCliente" placeholder="Ingrese el nombre del cliente" style="background-color: azure;">
+                </div>
+            </div>
+            <div class="col-md-2 d-flex justify-content-end">
+                <button type="button" class="btn btn-success" id="btnExportarExcelClientes"> <i class="fas fa-fw fa-table"></i> EXPORTAR EXCEL</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered" id="tableClientes">
                     <thead class="header-table text-center">
