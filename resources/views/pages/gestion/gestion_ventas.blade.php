@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered" id="tableGestionVentas">
-                            <thead class="header-table">
+                            <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">NUMERO</th>                                    
@@ -28,7 +28,7 @@
                                     <th scope="col">VALOR TOTAL</th>
                                     <th scope="col">VALOR TOTAL TEXTO</th>
                                     <th scope="col">RUTA COMPROBANTE</th>
-                                    <th scope="col">FECHA</th>
+                                    <th scope="col" style="width: 120px;">FECHA</th>
                                     <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>

@@ -31,6 +31,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function index_perfil()
+    {
+        return view('pages.configuracion.perfil');
+    }
+
     private function get_semana()
     {
         try {

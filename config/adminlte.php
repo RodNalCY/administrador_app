@@ -318,28 +318,38 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-        // Aqui añadir tus rutas para tu navbar
+
+        // Aqui añadir tus rutas para tu navbar 
+        [
+            'icon' => 'far fa-fw fas fa-heartbeat',
+            'text' => "🥼 Mi Perfil 🧬",
+            'url' => 'dashboard/perfil',
+            'label' => 'Dev',
+            'label_color' => 'warning',
+            'can'  => 'dashboard',
+        ],
+
         [
             'icon' => 'far fa-fw fas fa-chart-pie',
             'text' => 'Dashboard',
-            'route' => 'dashboard',
+            'url' => 'dashboard',
             'label' => 'Nuevo',
             'label_color' => 'primary',
             'can'  => 'dashboard',
-
         ],
-        // ['header' => 'ADMINISTRADOR'],  
+
+        // ['header' => 'ADMINISTRADOR'],        
         [
-            'icon'=>'',
+            'icon' => '',
             'text' => 'ADMINISTRADOR',
             'url'  => '#',
             'can'  => 'administrador',
-        ],             
+        ],
         [
             'icon' => 'fas fa-fw fa-address-card',
             'text' => 'Empleados',
             'url'  => '/administrador/empleados',
-            'can'  => 'administrador.empleados',            
+            'can'  => 'administrador.empleados',
             'label' => 'OjO',
             'label_color' => 'info',
         ],
@@ -365,11 +375,11 @@ return [
         ],
         // ['header' => 'MOVIMIENTOS'],
         [
-            'icon'=>'',
+            'icon' => '',
             'text' => 'MOVIMIENTOS',
             'url'  => '#',
             'can'  => 'movimientos',
-        ], 
+        ],
         [
             'icon' => 'fas fa-fw fa-cart-plus',
             'text' => 'Compras',
@@ -392,11 +402,11 @@ return [
         ],
         // ['header' => 'MANTENIMIENTO'],
         [
-            'icon'=>'',
+            'icon' => '',
             'text' => 'MANTENIMIENTO',
             'url'  => '#',
             'can'  => 'mantenimiento',
-        ], 
+        ],
         [
             'icon' => 'fas fa-fw fa-box-open',
             'text' => 'Productos',
@@ -423,7 +433,7 @@ return [
             'icon' => 'fas fa-fw fa-capsules',
             'text' => 'Presentación',
             'url'  => 'mantenimiento/presentacion',
-            'can'  => 'mantenimiento.presentacion',            
+            'can'  => 'mantenimiento.presentacion',
             'label' => 'OjO',
             'label_color' => 'danger',
         ],
@@ -432,7 +442,7 @@ return [
             'text' => 'Laboratorios',
             'url'  => 'mantenimiento/laboratorios',
             'can'  => 'mantenimiento.laboratorios',
-            
+
             'label' => 'OjO',
             'label_color' => 'danger',
         ],
@@ -444,11 +454,11 @@ return [
         ],
         // ['header' => 'GESTIÓN'],
         [
-            'icon'=>'',
+            'icon' => '',
             'text' => 'CONSULTAS',
             'url'  => '#',
             'can'  => 'gestion',
-        ],  
+        ],
         [
             'icon_color' => 'cyan',
             'text' => 'Ventas',
@@ -456,7 +466,7 @@ return [
             'url'  => 'gestion/ventas',
             'label' => 'Nuevo',
             'label_color' => 'primary',
-        ],  
+        ],
         [
             'icon_color' => 'cyan',
             'text' => 'Compras',
@@ -464,7 +474,7 @@ return [
             'url'  => '#',
             'label' => 'Dev',
             'label_color' => 'warning',
-        ], 
+        ],
         [
             'icon_color' => 'cyan',
             'text' => 'Productos',
@@ -472,7 +482,7 @@ return [
             'url'  => '#',
             'label' => 'Dev',
             'label_color' => 'warning',
-        ], 
+        ],
         // [
         //     'text'    => 'Consultar',
         //     'icon'    => 'fas fa-fw fa-search',
@@ -652,12 +662,12 @@ return [
                     'type' => 'js',
                     'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
-                ],              
+                ],
                 [
                     'type' => 'js',
                     'asset' => true,
                     'location' => '//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js',
-                ],             
+                ],
             ],
         ],
         'Select2' => [
@@ -702,6 +712,16 @@ return [
                     'type' => 'js',
                     'asset' => true,
                     'location' => 'vendor/sweetalert2/sweetalert2.all.min.js',
+                ],
+            ],
+        ],
+        'ParticleJS' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/particles.min.js',
                 ],
             ],
         ],

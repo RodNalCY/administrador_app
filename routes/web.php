@@ -31,6 +31,8 @@ Auth::routes();
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/dashboard/perfil', 'index_perfil')->name('/dashboard/perfil');
+
     Route::get('/dashboard/resumen', 'dashboard_resumen')->name('/dashboard/resumen');
 
     Route::get('/dashboard/total/ventas/mensuales', 'dashboard_total_ventas_mensuales')->name('/dashboard/total/ventas/mensuales');

@@ -97,3 +97,44 @@
 /* div.dataTables_wrapper div.dataTables_filter {
     display: none !important;
 } */
+.card-user {
+    background-color: #343a40;
+    color: #fff;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+    /* Añadir sombra */
+}
+
+.card-header-user {
+    background-color: #212529;
+    border-bottom: none;
+    font-size: 24px;
+}
+
+.card-body-user {
+    padding: 40px;
+}
+
+.user-image-icon {
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+.user-info-details {
+    font-size: 18px;
+}
+
+.user-label {
+    font-weight: bold;
+}
+
+.card-footer-user {
+    background-color: #212529;
+    border-top: none;
+}
+
+.card-footer-user a {
+    color: #fff;
+}
