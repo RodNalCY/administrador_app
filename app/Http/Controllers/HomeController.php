@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Compras;
+use App\Models\Empleado;
 use App\Models\Producto;
+use App\Models\User;
 use App\Models\Ventas;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -36,11 +39,40 @@ class HomeController extends Controller
         return view('pages.configuracion.perfil');
     }
 
+    public function dashboard_user_details()
+    {
+        try {
+
+            $user = User::with('empleado')
+                ->where('id', Auth::user()->id)
+                ->first();
+
+            if ($user) {
+                return response()->json([
+                    'message' => 'GET - User',
+                    'status' => true,
+                    'data' => $user
+                ]);
+            } else {
+                // Usuario no encontrado
+                return response()->json([
+                    'message' => 'ERROR GET - User',
+                    'status' => false,
+                ], 404);
+            }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
     private function get_semana()
     {
         try {
             // Obtener la fecha actual
-            $currentDate = Carbon::now();            
+            $currentDate = Carbon::now();
             // Formatear la fecha en el formato deseado
             $formattedDate = $currentDate->format('Y-m-d');
             // Definir la fecha actual o cualquier otra fecha de referencia

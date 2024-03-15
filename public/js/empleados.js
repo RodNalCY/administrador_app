@@ -174,16 +174,16 @@ function listaEmpleados() {
             var html_select_especialidad_options =
                 "<select class='form-control' id='selectEspecialidadEmpleado'>" +
                 "<option value='Practicante'>Practicante</option>" +
-                "<option value='Enfermera'>Enfermera</option>" +
-                "<option value='Técnica Enfermera'>Técnica Enfermera</option>" +
+                "<option value='Enfermer@'>Enfermer@</option>" +
+                "<option value='Técnic@ Enfermer@'>Técnic@ Enfermer@</option>" +
                 "<option value='Otros'>Otros</option>" +
                 "</select>";
 
             var html_select_edit_especialidad_options =
                 "<select class='form-control' id='selectEditEspecialidadEmpleado'>" +
                 "<option value='Practicante'>Practicante</option>" +
-                "<option value='Enfermera'>Enfermera</option>" +
-                "<option value='Técnica Enfermera'>Técnica Enfermera</option>" +
+                "<option value='Enfermer@'>Enfermer@</option>" +
+                "<option value='Técnic@ Enfermer@'>Técnic@ Enfermer@</option>" +
                 "<option value='Otros'>Otros</option>" +
                 "</select>";
 

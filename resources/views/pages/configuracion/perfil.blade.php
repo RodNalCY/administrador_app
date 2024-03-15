@@ -19,65 +19,69 @@
                 <div class="card card-user bg-dark">
                     <div class="card-header card-header-user text-center">🥼 Mi Info 🧬</div>
                     <div class="card-body card-body-user">
-                        <img src="https://cdn-icons-png.freepik.com/256/1177/1177568.png" class="user-image-icon" alt="User Image">
-                        <div class="user-info-details">
-                            <div class="mb-3 row">
-                                <label class="col-sm-4 user-label">DNI/CARNET:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" value="75870489" style="color: #fff;">
-                                </div>
+
+                        <center id="http_loading">
+                            <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="visually-hidden"></span>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-4 user-label">NOMBRES:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" value="RODNAL" style="color: #fff;">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-4 user-label">APELLIDOS:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" value="CABELLO YACOLCA" style="color: #fff;">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-4 user-label">ESPECIALIDAD:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" value="TÉCNICO ENFERMER@" style="color: #fff;">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-4 user-label">EMAIL:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" value="rodnalcabello@gmail.com" style="color: #fff;">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-4 user-label">GÉNERO:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" value="Masculino" style="color: #fff;">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-4 user-label">TELÉFONO:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" value="912101970" style="color: #fff;">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-4 user-label">DIRECCIÓN:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" value="Sam Martin de Porras" style="color: #fff;">
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <center>
-                            <button type="button" class="btn btn-dark mt-2">Change my Password</button>
                         </center>
+                        <div id="http_content">
+                            <img src="" class="user-image-icon" alt="User Image" id="icon-logo">
+                            <div class="user-info-details">
+
+                                <div class="mb-2 row">
+                                    <label class="col-sm-4 user-label">NOMBRE(S) :</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext" style="color: #fff;" id="txtNombres">
+                                    </div>
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="col-sm-4 user-label">DNI/CARNET:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext" style="color: #fff;" id="txtDNI">
+                                    </div>
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="col-sm-4 user-label">EMAIL:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext" style="color: #fff;" id="txtEmail">
+                                    </div>
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="col-sm-4 user-label">ESPECIALIDAD:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext" style="color: #fff;" id="txtEspecialidad">
+                                    </div>
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="col-sm-4 user-label">GÉNERO:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext" style="color: #fff;" id="txtSexo">
+                                    </div>
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="col-sm-4 user-label">TELÉFONO:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext" style="color: #fff;" id="txtTelefono">
+                                    </div>
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="col-sm-4 user-label">DIRECCIÓN:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" readonly class="form-control-plaintext" style="color: #fff;" id="txtDireccion">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <center>
+                                <button type="button" class="btn btn-dark mt-2">🔐Actualizar Contraseña🔑</button>
+                            </center>
+                        </div>
+
 
                     </div>
                     <div class="card-footer card-footer-user text-center">
-                        My <a href="#" class="text-white"></a> user details, by <a href="#" class="text-white">DALIFHAR</a>.
+                        💊 My <a href="#" class="text-white"></a> user details, by <a href="#" class="text-white">DALIFHAR🏣</a>.
                     </div>
                 </div>
             </div>
@@ -93,12 +97,5 @@
 @stop
 
 @section('js')
-<script src="{{ asset('js/dashboard.js') }}"></script>
-<script>
-    if ($('#particlebackground').length != 0) {
-        var config = $('#particlebackground').data('config');
-        particlesJS.load('particlebackground', config);
-
-    }
-</script>
+<script src="{{ asset('js/perfil.js') }}"></script>
 @stop

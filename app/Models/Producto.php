@@ -30,6 +30,7 @@ class Producto extends Model
 
     public function presentacion()
     {
+        // belongsTo, se espera que esté en la tabla del modelo relacionado.
         return $this->belongsTo(Presentacion::class, 'idPresentacion', 'idPresentacion');
 
     }

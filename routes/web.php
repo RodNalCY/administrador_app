@@ -42,6 +42,9 @@ Route::controller(HomeController::class)->group(function () {
 
     Route::get('/dashboard/suma/ventas/semana', 'dashboard_suma_ventas_semana')->name('/dashboard/suma/ventas/semana');
     Route::get('/dashboard/total/ventas/semana', 'dashboard_total_ventas_semana')->name('/dashboard/total/ventas/semana');
+
+    // Usuario API's
+    Route::get('/dashboard/user/details', 'dashboard_user_details')->name('/dashboard/user/details');
 });
 
 

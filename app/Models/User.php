@@ -53,11 +53,12 @@ class User extends Authenticatable
             ->join('empleado', 'users.id', '=', 'empleado.idUsuario')
             ->where('users.id', $auth->id)
             ->first();
-        
+
+        $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
         if ($user->Sexo == "M") {
-            return 'https://cdn1.iconfinder.com/data/icons/avatar-3/512/Doctor-512.png';
+            return $base_url . "/img/icons/doctor.png";
         } else {
-            return 'https://cdn.icon-icons.com/icons2/582/PNG/512/asistante_icon-icons.com_55049.png';
+            return $base_url . "/img/icons/doctora.png";
         }
     }
 
@@ -73,5 +74,12 @@ class User extends Authenticatable
     public function adminlte_profile_url()
     {
         return 'profile/username';
+    }
+
+    // Relación uno a uno con el modelo Empleado
+    public function empleado()
+    {
+        //En hasOne, se espera que la clave foránea esté en la tabla del modelo actua
+        return $this->hasOne(Empleado::class, 'idUsuario', 'id');
     }
 }
