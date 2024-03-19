@@ -138,3 +138,21 @@
 .card-footer-user a {
     color: #fff;
 }
+
+.header-modal-color{
+    background-color: #212529;
+    border-bottom: 1px solid #212529 ! important;
+    color: white;
+}
+.footer-modal-color{
+    background-color: #212529;
+    border-top: 1px solid #212529 ! important;
+    color: white;
+}
+
+.login-logo a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

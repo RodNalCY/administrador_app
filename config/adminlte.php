@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => null,
+    'logo' => '<b>DALIFHAR 2.0<b>',
     'logo_img' => '/img/icons/logo-circular.png',
     'logo_img_class' => 'brand-image img-circle elevation-2',
     'logo_img_xl_class' => null,
@@ -87,8 +87,8 @@ return [
         'img' => [
             'path' => '/img/icons/logo-circular.png',
             'alt' => 'LOGO LOGIN',
-            'width' => 150,
-            'height' => 150,
+            'width' => 120,
+            'height' => 120,
         ],
     ],
 

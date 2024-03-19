@@ -45,6 +45,8 @@ Route::controller(HomeController::class)->group(function () {
 
     // Usuario API's
     Route::get('/dashboard/user/details', 'dashboard_user_details')->name('/dashboard/user/details');
+    Route::post('/dashboard/verificar/password', 'dashboard_verificar_password')->name('/dashboard/verificar/password');
+    Route::post('/dashboard/update/password', 'dashboard_update_password')->name('/dashboard/update/password');
 });
 
 

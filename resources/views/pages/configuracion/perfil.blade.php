@@ -74,7 +74,7 @@
                             </div>
                             <hr>
                             <center>
-                                <button type="button" class="btn btn-dark mt-2">🔐Actualizar Contraseña🔑</button>
+                                <button type="button" class="btn btn-dark mt-2" id="btnActualizarContraseña">🔐Actualizar Contraseña🔑</button>
                             </center>
                         </div>
 
@@ -90,6 +90,60 @@
     </div>
 </div>
 
+<div class="modal fade" id="mdActualizarContrasenia" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdListProveedoresLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header header-modal-color">
+                <h5 class="modal-title">🔐Actualizar Contraseña🔑</h5>
+            </div>
+            <div class="modal-body bg-dark">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-warning" role="alert">
+                            <sup style="top: 0;">Por motivos de seguridad, te recomendamos no compartir y actualizar tu contraseña periódicamente para proteger tu cuenta.</sup>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-2 row">
+                    <label class="col-sm-4 user-label">Contraseña Actual : </label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control form-control-sm" id="txtContraseniaActual" placeholder="Ingrese la contraseña actual">
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-info btn-sm" id="btnVerificarPassword"><i class="fa fa-lock"></i> Verificar</button>
+                    </div>
+                </div>
+                <div class="mb-2 row">
+                    <label class="col-sm-4 user-label">Nueva Contraseña : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control form-control-sm" id="txtNuevaContrasenia" placeholder="Ingrese la nueva contraseña" disabled style="background: slategray;">
+                    </div>
+                </div>
+                <div class="mb-2 row">
+                    <label class="col-sm-4 user-label">Repetir la Contraseña : <sup class="icon_obligatorio"><i class="fas fa-asterisk fa-xs"></i></sup></label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control form-control-sm" id="txtRepNuevaContrasenia" placeholder="Repetir la nueva contraseña" disabled style="background: slategray;">
+                    </div>
+                </div>
+                <!-- <div class="mb-2 row"> -->
+                <br>
+                <center id="http_loading_change">
+                    <div class="progress" style="border-radius: 7px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                    </div>
+                </center>
+                <!-- </div> -->
+
+
+            </div>
+            <div class="modal-footer footer-modal-color">
+                <button type="button" class="btn btn-primary" id="btnActualizarPassword" disabled><i class="fa fa-cloud"></i> Actualizar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('css')

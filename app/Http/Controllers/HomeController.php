@@ -11,6 +11,7 @@ use App\Models\Ventas;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -308,6 +309,52 @@ class HomeController extends Controller
                 'labels' => $labels,
                 'data' => $data,
                 'semana' => $this->get_semana()
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function dashboard_verificar_password(Request $request)
+    {
+        try {
+            $getEmail = Auth::user()->email;
+            $getPassw = $request->_password;
+            // Intentar autenticar al usuario con las credenciales proporcionadas
+            $status = false;
+            if (Auth::attempt(['email' => $getEmail, 'password' => $getPassw])) {
+                // Si la autenticación es exitosa, redirigir a la página de inicio o donde sea necesario
+                $status = true;
+            }
+
+            return response()->json([
+                'message' => 'Verificar Contraseña!',
+                'status' => $status,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function dashboard_update_password(Request $request)
+    {
+        try {
+            $user = User::find(Auth::user()->id);
+            $user->password = Hash::make($request->_neo_password);
+            $status = false;
+            if ($user->update()) {
+                $status = true;
+            }
+
+            return response()->json([
+                'message' => 'Actualizar Contraseña!',
+                'status' => $status,
             ]);
         } catch (\Exception $ex) {
             return response()->json([
