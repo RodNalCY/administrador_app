@@ -14,6 +14,7 @@ var global_valor_total = "";
 var globalListaDetails = {};
 var global_url_voucher_pdf = "";
 var global_dia_venta = "";
+var global_add_direccion = 0;
 
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
@@ -188,6 +189,14 @@ function listClientes() {
 
             response.data.forEach(function (cliente) {
                 // console.log(cliente.Email);
+                var direccion = "-";
+                if (cliente.Direccion != "-") {
+                    if (cliente.Direccion.length >= 15) {
+                        direccion = cliente.Direccion.slice(0, 13) + "...";
+                    } else {
+                        direccion = cliente.Direccion;
+                    }
+                }
                 html_tabla_clientes +=
                     "<tr " +
                     "data-id='" +
@@ -202,13 +211,12 @@ function listClientes() {
                     cliente.Ruc +
                     "' data-telefono='" +
                     cliente.Telefono +
+                    "' data-direccion='" +
+                    cliente.Direccion +
                     "'>" +
-                    "<th class='text-center' scope='row'>" +
-                    cliente.idCliente +
-                    "</th>" +
-                    "<td>" +
+                    "<th scope='row'>" +
                     cliente.Nombres +
-                    "</td>" +
+                    "</th>" +
                     "<td>" +
                     cliente.Apellidos +
                     "</td>" +
@@ -223,6 +231,9 @@ function listClientes() {
                     "</td>" +
                     "<td class='text-center'>" +
                     cliente.Telefono +
+                    "</td>" +
+                    "<td class='text-center'>" +
+                    direccion +
                     "</td>" +
                     "<td><center><button type='button' class='btn btn-info btn-sm'><i class='fas fa-check'></i></button></center></td>" +
                     "</tr>";
@@ -289,10 +300,14 @@ function listProductos() {
                         producto.Concentracion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        "<button type='button' class='btn btn-danger btn-sm btn-price-size'>"+  producto.Stock+"</button>"+
+                        "<button type='button' class='btn btn-danger btn-sm btn-price-size'>" +
+                        producto.Stock +
+                        "</button>" +
                         "</td>" +
                         "<td class='text-center' style='display:grid;'>" +
-                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ "+  producto.Precio_Venta+"</button>"+
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ " +
+                        producto.Precio_Venta +
+                        "</button>" +
                         "</td>" +
                         "<td>" +
                         "   <center>" +
@@ -335,10 +350,14 @@ function listProductos() {
                         producto.Concentracion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        "<button type='button' class='btn btn-warning btn-sm btn-price-size'>"+  producto.Stock+"</button>"+
+                        "<button type='button' class='btn btn-warning btn-sm btn-price-size'>" +
+                        producto.Stock +
+                        "</button>" +
                         "</td>" +
                         "<td class='text-center' style='display:grid;'>" +
-                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ "+  producto.Precio_Venta+"</button>"+
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ " +
+                        producto.Precio_Venta +
+                        "</button>" +
                         "</td>" +
                         "<td>" +
                         "   <center>" +
@@ -381,10 +400,14 @@ function listProductos() {
                         producto.Concentracion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        "<button type='button' class='btn btn-success btn-sm btn-price-size'>"+  producto.Stock+"</button>"+
+                        "<button type='button' class='btn btn-success btn-sm btn-price-size'>" +
+                        producto.Stock +
+                        "</button>" +
                         "</td>" +
                         "<td class='text-center' style='display:grid;'>" +
-                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ "+  producto.Precio_Venta+"</button>"+
+                        "<button type='button' class='btn btn-secondary btn-sm btn-price-size'>S/ " +
+                        producto.Precio_Venta +
+                        "</button>" +
                         "</td>" +
                         "<td>" +
                         "   <center>" +
@@ -571,6 +594,7 @@ $("#tableClientes tbody").on("click", "tr", function () {
     var dni = $(this).data("dni");
     var ruc = $(this).data("ruc");
     var tel = $(this).data("telefono") == "-" ? "" : $(this).data("telefono");
+    var dir = $(this).data("direccion");
     // Ver los detalles en consola
     console.log(
         "id > " +
@@ -584,7 +608,9 @@ $("#tableClientes tbody").on("click", "tr", function () {
             " ruc > " +
             ruc +
             " tel > " +
-            tel
+            tel +
+            " dir > " +
+            dir
     );
     // Pintar en los inputs
     var cliente = name + " " + apellidos;
@@ -593,6 +619,12 @@ $("#tableClientes tbody").on("click", "tr", function () {
     $("#txtDNI").val(dni);
     $("#txtClienteRUC").val(ruc);
     $("#txtTelefonoCliente").val(tel);
+    $("#txtDireccion").val(dir);
+    
+    // Restablecer el checkbox
+    $("#chbxAddDireccion").prop("checked", false);
+    global_add_direccion = 0;
+
     // Cerrar Modal
     $("#mdListClientes").modal("hide");
 });
@@ -850,6 +882,7 @@ $("#btnRegistrarVenta").on("click", function () {
     var valorIGV = $("#txtValorIGV").val().trim();
     var valorTotal = $("#txtTotalPagar").val().trim();
     var ticket = $("#txtNumComprobante").val().trim();
+    var direccionName = $("#txtDireccion").val().trim();
 
     var camposVacios = [];
     // Verificar si algún campo está vacío
@@ -926,6 +959,8 @@ $("#btnRegistrarVenta").on("click", function () {
                 globalListaDetails["valorIGV"] = valorIGV;
                 globalListaDetails["valorTotal"] = valorTotal;
                 globalListaDetails["estado"] = "EMITIDO";
+                globalListaDetails["keydireccion"] = global_add_direccion;
+                globalListaDetails["direccion"] = direccionName;
 
                 global_ventas_details_lista.push(globalListaDetails);
 
@@ -994,7 +1029,7 @@ function generaVoucherPDF(data) {
         beforeSend: function (response) {
             let timerInterval;
             Swal.fire({
-                title: "Generando: " + _numberComprobante + " DE VENTA",
+                title: "Generando: " + _numberComprobante,
                 html: "Procesando en : <b></b> segundos.",
                 timer: 20000,
                 timerProgressBar: true,
@@ -1333,4 +1368,24 @@ $("#btnTestingHora").click(function () {
     console.log("fecha2 > ", fecha2);
     console.log("obtenerDiaSemana() > ", obtenerDiaSemana());
     // console.log("fechaAndHora() > ",fechaAndHora());
+});
+
+$("#chbxAddDireccion").change(function () {
+    var txt_direccion = $("#txtDireccion").val();
+    if (txt_direccion !== "-" && txt_direccion !== "N/A") {
+        global_add_direccion = $(this).is(":checked") ? 1 : 0;
+    } else {
+        Swal.fire({
+            title: "¡Ups!",
+            text: "¡El cliente no ha registrado su dirección en el sistema!",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 3000,
+        });
+        // Desmarcar el checkbox
+        $(this).prop("checked", false);
+        global_add_direccion = 0;
+    }
+
+    console.log("global_add_direccion > ", global_add_direccion);
 });

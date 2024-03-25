@@ -37,6 +37,7 @@
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">CLIENTE: </label>
                         <input type="hidden" id="txtIdCliente" readonly>
+                        <input type="hidden" id="txtDireccion" readonly>
                         <input type="text" class="form-control form-control-sm" id="txtCliente" readonly>
                     </div>
 
@@ -50,11 +51,21 @@
                         <input type="text" class="form-control form-control-sm" id="txtClienteRUC" readonly>
                     </div>
 
+
                     <div class="col-sm-12 col-md-12">
                         <div class="d-flex">
                             <button type="button" class="btn btn-info mr-2 btn-sm" id="btnBuscarClientes"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
                     </div>
+
+                    <div class="col-sm-12 col-md-12 mt-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="chbxAddDireccion">
+                            <label class="form-check-label" for="addDirección">Incluir la dirección del cliente al comprobante.</label>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -82,6 +93,9 @@
                         <div class="d-flex">
                             <button type="button" class="btn btn-info btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
                         </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 mt-3">
+                        <br>
                     </div>
                 </div>
             </div>
@@ -232,7 +246,7 @@
                 <h5 class="modal-title" id="mdListClientesLabel">Mis de Clientes</h5>
             </div>
             <div class="modal-body">
-            <div class="row m-2 mb-4">
+                <div class="row m-2 mb-4">
                     <div class="input-group">
                         <div class="input-group-text" style="background-color: #4a3fff; color:white; "> <i class="fas fa-fw fa-search"></i> </div>
                         <input type="search" class="form-control" id="btnBuscarListCliente" placeholder="Ingrese el DNI o Nombre del cliente" style="background-color: lavender;">
@@ -243,13 +257,13 @@
                         <table class="table table-hover table-bordered table-sm" id="tableClientes">
                             <thead class="header-table text-center">
                                 <tr>
-                                    <th scope="col">ID</th>
                                     <th scope="col">NOMBRES</th>
                                     <th scope="col">APELLIDOS</th>
                                     <th scope="col">DNI/CARNET</th>
-                                    <th scope="col">RUC</th>                                
+                                    <th scope="col">RUC</th>
                                     <th scope="col">SEXO</th>
                                     <th scope="col">TELÉFONO</th>
+                                    <th scope="col">DIRECCIÓN</th>
                                     <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>
@@ -409,16 +423,16 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">DIRECCIÓN :</label>
+                        <input type="text" class="form-control" id="txtClienteDireccion">
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">TELÉFONO :</label>
                         <input type="number" class="form-control" id="txtClienteTelefono" min="0">
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">EMAIL :</label>
                         <input type="email" class="form-control" id="txtClienteEmail">
-                    </div>
-                    <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">DIRECCIÓN :</label>
-                        <input type="text" class="form-control" id="txtClienteDireccion">
                     </div>
                 </div>
             </div>

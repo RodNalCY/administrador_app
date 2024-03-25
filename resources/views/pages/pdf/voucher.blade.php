@@ -110,6 +110,14 @@
                     <td colspan="4"><span class="title-details">{{ $detalle['clienteName'] }}</span></td>
                 </tr>
                 @endif
+                @if($detalle['keydireccion'] == "1")
+                <tr>
+                    <td colspan="2"><span class="title">DIRECCIÓN: </span></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><span class="title-details">{{ $detalle['direccion'] }}</span></td>
+                </tr>
+                @endif
                 <tr style="background-color: grey; color: white;">
                     <td colspan="4">
                         <table style="width: 100%;">

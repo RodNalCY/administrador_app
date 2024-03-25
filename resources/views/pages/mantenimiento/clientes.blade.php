@@ -74,17 +74,17 @@
 
                 <div class="row mb-2">
                     <div class="col-sm-6 col-md-4 mb-2">
+                        <label class="col-form-label">DIRECCIÓN : </label>
+                        <input type="text" class="form-control" id="txtClienteDireccion">
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">TELÉFONO :</label>
                         <input type="number" class="form-control" id="txtClienteTelefono" min="0">
                     </div>
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">EMAIL : </label>
                         <input type="email" class="form-control" id="txtClienteEmail">
-                    </div>
-                    <div class="col-sm-6 col-md-4 mb-2">
-                        <label class="col-form-label">DIRECCIÓN : </label>
-                        <input type="text" class="form-control" id="txtClienteDireccion">
-                    </div>
+                    </div>                  
                 </div>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
@@ -171,6 +171,10 @@
                         <div id="selectEditHTMLSexo"></div>
                     </div>
                     <div class="col-sm-6 col-md-6 mb-2">
+                        <label class="col-form-label">DIRECCIÓN : </label>
+                        <input type="text" class="form-control" id="txtEditCliDireccion">
+                    </div>
+                    <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">TELÉFONO : </label>
                         <input type="number" class="form-control" id="txtEditCliTelef" min="0">
                     </div>
@@ -178,10 +182,7 @@
                         <label class="col-form-label">EMAIL : </label>
                         <input type="email" class="form-control" id="txtEditCliEmail">
                     </div>
-                    <div class="col-sm-6 col-md-6 mb-2">
-                        <label class="col-form-label">DIRECCIÓN : </label>
-                        <input type="text" class="form-control" id="txtEditCliDireccion">
-                    </div>
+                   
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">ESTADO : </label>
                         <div id="selectEditHTMLEstado"></div>

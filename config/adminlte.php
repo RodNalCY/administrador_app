@@ -324,8 +324,8 @@ return [
             'icon' => 'far fa-fw fas fa-heartbeat',
             'text' => "🥼 Mi Perfil 🧬",
             'url' => 'dashboard/perfil',
-            'label' => 'Dev',
-            'label_color' => 'warning',
+            'label' => 'Nuevo',
+            'label_color' => 'primary',
             'can'  => 'dashboard',
         ],
 
@@ -333,8 +333,6 @@ return [
             'icon' => 'far fa-fw fas fa-chart-pie',
             'text' => 'Dashboard',
             'url' => 'dashboard',
-            'label' => 'Nuevo',
-            'label_color' => 'primary',
             'can'  => 'dashboard',
         ],
 
@@ -350,7 +348,7 @@ return [
             'text' => 'Empleados',
             'url'  => '/administrador/empleados',
             'can'  => 'administrador.empleados',
-            'label' => 'OjO',
+            'label' => 'ver',
             'label_color' => 'info',
         ],
         [
@@ -358,7 +356,7 @@ return [
             'text' => 'Usuarios',
             'url'  => '/administrador/usuarios',
             'can'  => 'administrador.usuarios',
-            'label' => 'OjO',
+            'label' => 'ver',
             'label_color' => 'info',
         ],
         [
@@ -391,7 +389,7 @@ return [
             'text' => 'Ventas',
             'url'  => 'movimientos/ventas',
             'can' => 'movimientos.ventas',
-            'label' => 'OjO',
+            'label' => 'ver',
             'label_color' => 'danger',
         ],
         [
@@ -412,7 +410,7 @@ return [
             'text' => 'Productos',
             'url'  => 'mantenimiento/productos',
             'can'  => 'mantenimiento.productos',
-            'label' => 'OjO',
+            'label' => 'ver',
             'label_color' => 'danger',
         ],
         [
@@ -420,7 +418,7 @@ return [
             'text' => 'Clientes',
             'url'  => 'mantenimiento/clientes',
             'can'  => 'mantenimiento.clientes',
-            'label' => 'OjO',
+            'label' => 'ver',
             'label_color' => 'danger',
         ],
         [
@@ -434,7 +432,7 @@ return [
             'text' => 'Presentación',
             'url'  => 'mantenimiento/presentacion',
             'can'  => 'mantenimiento.presentacion',
-            'label' => 'OjO',
+            'label' => 'ver',
             'label_color' => 'danger',
         ],
         [
@@ -443,7 +441,7 @@ return [
             'url'  => 'mantenimiento/laboratorios',
             'can'  => 'mantenimiento.laboratorios',
 
-            'label' => 'OjO',
+            'label' => 'ver',
             'label_color' => 'danger',
         ],
         [
@@ -464,7 +462,7 @@ return [
             'text' => 'Ventas',
             'can'  => 'gestion.ventas',
             'url'  => 'gestion/ventas',
-            'label' => 'Nuevo',
+            'label' => 'ver',
             'label_color' => 'primary',
         ],
         [
