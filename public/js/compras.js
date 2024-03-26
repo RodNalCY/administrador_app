@@ -500,7 +500,7 @@ $("#tableProductos tbody").on("click", "tr", function () {
     $("#mdListProducto").modal("hide");
 });
 
-$("#txtCantidad").on("change", function () {
+$("#txtCantidad").on("input", function () {
     var cantidad = $("#txtCantidad").val();
     var costo = $("#txtCosto").val();
 
