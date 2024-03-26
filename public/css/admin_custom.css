@@ -156,3 +156,7 @@
     align-items: center;
     text-align: center;
 }
+
+.nav-sidebar>.nav-item {
+    font-weight: 500;
+}

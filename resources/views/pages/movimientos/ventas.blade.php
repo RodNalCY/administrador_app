@@ -21,7 +21,12 @@
     </div>
 </div>
 
-<div class="row">
+<div class="progress content-progress-actived">
+    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%; border-radius: 5px; background-color: #4a3fff !important;">Por favor espere, se esta cargando los datos.</div>
+</div>
+
+
+<div class="row content-actived" style="display: none;">
     <div class="col-md-12 d-flex justify-content-end">
         <p class="mr-2"> </i><strong> <span id="fechaHora"></span></strong> <i class="fas fa-fw fa-calendar"></i></p>
     </div>
@@ -80,8 +85,10 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-6 mb-2">
                         <label class="col-form-label">TIPO :</label>
+                        <div id="htmlListComprobantes"></div>
+
                         <input type="hidden" id="txtIdTipoComprobante" readonly>
-                        <input type="text" class="form-control form-control-sm" id="txtTipoComprobante" readonly>
+                        <input type="hidden" id="txtTipoComprobante" readonly>
                     </div>
 
                     <div class="col-sm-6 col-md-6 mb-2">
@@ -89,13 +96,15 @@
                         <input type="text" class="form-control form-control-sm" id="txtNumComprobante" readonly>
                     </div>
 
-                    <div class="col-sm-12 col-md-12">
+                    <!-- <div class="col-sm-12 col-md-12">
                         <div class="d-flex">
                             <button type="button" class="btn btn-info btn-sm mr-2" id="btnBuscarComprobante"><i class="fas fa-fw fa-search"></i> Buscar</button>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 mt-3">
                         <br>
+                        </div>
+                    </div>-->
+                    <div class="col-sm-12 col-md-12">
+                        <br>
+                        <br><br>
                     </div>
                 </div>
             </div>
@@ -104,7 +113,7 @@
 </div>
 
 
-<div class="row">
+<div class="row content-actived" style="display: none;">
     <div class="col-md-6">
         <div class="card">
             <div class="card-header bg-header-purple">
@@ -175,7 +184,7 @@
 </div>
 
 
-<div class="card mt-4">
+<div class="card mt-4 content-actived" style="display: none;">
     <div class="card-body">
         <div class="row">
             <div class="table-responsive">
@@ -199,7 +208,7 @@
     </div>
 </div>
 
-<div class="card">
+<div class="card content-actived" style="display: none;">
     <div class="card-body">
         <div class="row d-flex justify-content-end">
             <div class="col-sm-6 col-md-2 mb-2">
@@ -317,16 +326,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="mdListProductoLabel">Mis Productos</h5>
             </div>
-            <div class="modal-body">
-                <div class="col-md-12">
-                    <div class="alert alert-light" role="alert" style="padding: 15px 0px 0px 10px;">
-                        <sup style="top: 0;">
-                            <p><strong>NOTA:</strong> Los siguientes colores en la lista de productos tienen el siguiente significado:</p>
-                            <p style="color:#ff5454; font-weight: bold;">ROJO : El producto esta agotado y no puede ser seleccionado.</p>
-                            <p style="color:#cccc00; font-weight: bold;">AMARILLO : El producto esta por agotarse.</p>
-                        </sup>
-                    </div>
-                </div>
+            <div class="modal-body">                
                 <div class="row m-2 mb-4">
                     <div class="input-group">
                         <div class="input-group-text" style="background-color: #4a3fff; color:white; "> <i class="fas fa-fw fa-search"></i> </div>
@@ -339,7 +339,7 @@
                             <thead class="header-table text-center">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">DESCRIPCIÓN</th>
+                                    <th scope="col">NOMBRE</th>
                                     <th scope="col">LABORATORIO</th>
                                     <th scope="col">PRESENTACIÓN</th>
                                     <th scope="col">CONCENTRACIÓN</th>
@@ -351,6 +351,15 @@
                             <tbody id="tbl_row_productos">
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="alert alert-light" role="alert" style="padding: 15px 0px 0px 10px;">
+                        <sup style="top: 0;">
+                            <p><strong>NOTA:</strong> Los siguientes colores en la lista de productos tienen el siguiente significado:</p>
+                            <p style="color:#ff5454; font-weight: bold;">ROJO : El producto esta agotado y no puede ser seleccionado.</p>
+                            <p style="color:#cccc00; font-weight: bold;">AMARILLO : El producto esta por agotarse.</p>
+                        </sup>
                     </div>
                 </div>
             </div>

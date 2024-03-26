@@ -16,6 +16,12 @@ var global_url_voucher_pdf = "";
 var global_dia_venta = "";
 var global_add_direccion = 0;
 
+var global_content_actived1 = false;
+var global_content_actived2 = false;
+var global_content_actived3 = false;
+var global_content_actived4 = false;
+var global_content_actived5 = false;
+
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
     console.log("_global_token_crf > ", _global_token_crf);
@@ -35,7 +41,22 @@ $(document).ready(function () {
     // Ejemplo de uso
     global_dia_venta = obtenerDiaSemana();
     console.log("Hoy es: " + global_dia_venta);
+    activarAll();
 });
+
+function activarAll() {
+    if (
+        global_content_actived1 &&
+        global_content_actived2 &&
+        global_content_actived3 &&
+        global_content_actived4 &&
+        global_content_actived5
+    ) {
+        console.log("Componentes Cargados");
+        $('.content-actived').css('display', '');
+        $('.content-progress-actived').css('display', 'none');
+    } 
+}
 
 function obtenerDiaSemana() {
     // Crear una nueva instancia de Date
@@ -257,6 +278,9 @@ function listClientes() {
                 // Realizar la búsqueda en la tabla utilizando el texto ingresado
                 table.search(searchText).draw();
             });
+
+            global_content_actived4 = true;
+            activarAll();
         },
         complete: function () {},
         error: function (response) {
@@ -439,6 +463,9 @@ function listProductos() {
                 // Realizar la búsqueda en la tabla utilizando el texto ingresado
                 table.search(searchText).draw();
             });
+
+            global_content_actived5 = true;
+            activarAll();
         },
         complete: function (response) {},
         error: function (response) {
@@ -461,8 +488,18 @@ function listComprobantes() {
         success: function (response) {
             console.log("RDX> ", response);
             var html_tabla_comprobantes = "";
+            var html_select_comprobante =
+                "<select class='form-control form-control-sm txtComprobante' id='txtComprobante'>";
 
             response.data.forEach(function (comprobante) {
+                html_select_comprobante =
+                    html_select_comprobante +
+                    "<option value='" +
+                    comprobante.idTipoComprobante +
+                    "'>" +
+                    comprobante.Descripcion +
+                    "</option>";
+
                 html_tabla_comprobantes =
                     html_tabla_comprobantes +
                     "<tr data-id='" +
@@ -484,6 +521,9 @@ function listComprobantes() {
                     "</tr>";
             });
 
+            html_select_comprobante = html_select_comprobante + "</select>";
+            $("#htmlListComprobantes").html(html_select_comprobante);
+
             $("#tbl_row_comprobantes").html(html_tabla_comprobantes);
             // Reinicializar DataTables
             $("#tableComprobantes").DataTable({
@@ -492,6 +532,12 @@ function listComprobantes() {
                     url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
                 },
             });
+
+            $("#txtIdTipoComprobante").val(response.data[0].idTipoComprobante);
+            $("#txtTipoComprobante").val(response.data[0].Descripcion);
+
+            global_content_actived3 = true;
+            activarAll();
         },
         complete: function (response) {},
         error: function (response) {
@@ -512,6 +558,8 @@ function getIdEmpleado() {
         success: function (response) {
             console.log("RDX> ", response);
             _global_id_employed = response.data[0].idEmpleado;
+            global_content_actived1 = true;
+            activarAll();
         },
         complete: function (response) {},
         error: function (response) {
@@ -532,6 +580,8 @@ function getIdVoucher() {
         success: function (response) {
             console.log("RDX> ", response);
             $("#txtNumComprobante").val(response.data);
+            global_content_actived2 = true;
+            activarAll();
         },
         complete: function (response) {},
         error: function (response) {
@@ -587,6 +637,17 @@ $("#tableComprobantes tbody").on("click", "tr", function () {
     $("#mdListComprobante").modal("hide");
 });
 
+// Agregar un event listener al contenedor usando delegación de eventos
+$("#htmlListComprobantes").on("change", "#txtComprobante", function () {
+    let valorSeleccionado = $(this).val();
+    let textoSeleccionado = $(this).find("option:selected").text();
+
+    // Mostrar el valor y el texto capturados en la consola
+    console.log("Valor seleccionado:", valorSeleccionado);
+    console.log("Texto seleccionado:", textoSeleccionado);
+    $("#txtIdTipoComprobante").val(valorSeleccionado);
+    $("#txtTipoComprobante").val(textoSeleccionado);
+});
 $("#tableClientes tbody").on("click", "tr", function () {
     var id = $(this).data("id");
     var name = $(this).data("name");
@@ -620,7 +681,7 @@ $("#tableClientes tbody").on("click", "tr", function () {
     $("#txtClienteRUC").val(ruc);
     $("#txtTelefonoCliente").val(tel);
     $("#txtDireccion").val(dir);
-    
+
     // Restablecer el checkbox
     $("#chbxAddDireccion").prop("checked", false);
     global_add_direccion = 0;
