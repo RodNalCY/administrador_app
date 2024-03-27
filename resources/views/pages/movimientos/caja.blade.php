@@ -70,11 +70,11 @@
                         <div class="mb-3 row text-right">
 
                             <div class="col-sm-12 col-md-12">
-                                <button class="btn btn-primary btn-sm" type="button" id="btnCalcularIngresos"> <i class="fas fa-hand-holding-usd"></i> Calcular Ingresos</button>
+                                <button class="btn btn-primary btn-sm" type="button" id="btnCalcularIngresos"> <i class="fas fa-hand-holding-usd"></i> Generar Resumen de Ventas &nbsp;</button>
                             </div>
 
                             <div class="col-sm-12 col-md-12 mt-3">
-                                <button class="btn btn-secondary btn-sm" type="button" id="btnVisualizarVentas"> <i class="fas fa-fw fa-cash-register"></i> Visualizar Ventas </button>
+                                <button class="btn btn-secondary btn-sm" type="button" id="btnVisualizarVentas"><i class="fas fa-fw fa-cash-register"></i> Visualizar Historial de Ventas</button>
                             </div>
 
                         </div>
@@ -105,7 +105,7 @@
                         <tr>
                             <th scope="col">NOMBRE / CONCET. / PREST.</th>
                             <th scope="col">PRECIO</th>
-                            <th scope="col">CANTIDAD</th>                          
+                            <th scope="col">CANTIDAD</th>
                             <th scope="col">TOTAL</th>
                             <th scope="col">GANANCIA</th>
                             <th scope="col">FECHA - HORA</th>
@@ -128,6 +128,7 @@
             </div>
             <div class="modal-body">
                 <div class="row m-2">
+
                     <div class="col-sm-6 col-md-4 mb-2">
                         <label class="col-form-label">DESDE: </label>
                         <input type="date" class="form-control form-control-sm" id="txtFechaDesde">
@@ -140,6 +141,7 @@
                     <div class="col-sm-6 col-md-4">
                         <br>
                         <button type="button" class="btn btn-primary btn-sm" id="btnVentasDetalle" style="margin-top: 13px;"><i class="fas fa-fw fa-search"></i> Buscar </button>
+                        <button type="button" class="btn btn-success btn-sm" id="btnExportarExcelHistorial" style="margin-top: 13px; float: inline-end;"> <i class="fas fa-fw fa-table"></i> EXPORTAR EXCEL</button>
                     </div>
                 </div>
                 <div class="row m-2">

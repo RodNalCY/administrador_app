@@ -1,3 +1,8 @@
+var global_detalle_cantidad_producto = 0;
+var global_detalle_total = 0;
+var global_detalle_ganancias = 0;
+
+
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
     console.log("_global_token_crf > ", _global_token_crf);
@@ -122,9 +127,9 @@ function listVentasResumenDiario(fechita) {
 }
 
 function listVentasResumenDetalle(f_init, f_end) {
-    var local_detalle_cantidad_producto = 0;
-    var local_detalle_total = 0;
-    var local_detalle_ganancias = 0;
+    global_detalle_cantidad_producto = 0;
+    global_detalle_total = 0;
+    global_detalle_ganancias = 0;
 
     $.ajax({
         type: "POST",
@@ -141,9 +146,9 @@ function listVentasResumenDetalle(f_init, f_end) {
             var html_tabla_resumen_detallado = "";
 
             response.data.forEach(function (venta) {
-                local_detalle_cantidad_producto += parseInt(venta.cantidades);
-                local_detalle_total += parseFloat(venta.importe);
-                local_detalle_ganancias += parseFloat(venta.ganancias);
+                global_detalle_cantidad_producto += parseInt(venta.cantidades);
+                global_detalle_total += parseFloat(venta.importe);
+                global_detalle_ganancias += parseFloat(venta.ganancias);
 
                 html_tabla_resumen_detallado =
                     html_tabla_resumen_detallado +
@@ -176,13 +181,13 @@ function listVentasResumenDetalle(f_init, f_end) {
                 "<tr class='text-center' style='background-color: lightyellow; color: black; font-weight: bold; border-top: solid; border-color: gold; font-size: x-large;'>" +
                 "<td colspan='4'>TOTAL: </td>" +
                 "<td>" +
-                local_detalle_cantidad_producto +
+                global_detalle_cantidad_producto +
                 "</td>" +
                 "<td>" +
-                local_detalle_total.toFixed(2) +
+                global_detalle_total.toFixed(2) +
                 "</td>" +
                 "<td>" +
-                local_detalle_ganancias.toFixed(2) +
+                global_detalle_ganancias.toFixed(2) +
                 "</td>" +
                 "</tr>";
 
@@ -234,6 +239,70 @@ $("#btnExportarExcelResumenDiario").click(function () {
                     data: {
                         _token: _global_token_crf,
                         _fechita: fechita,
+                    },
+                    dataType: "json",
+                    beforeSend: function () {},
+                    success: function (response) {
+                        console.log("RDX> ", response);
+                        // Obtener el dominio base de la página actual
+                        var dominioBase = window.location.origin;
+                        // Obtener la ruta del archivo Excel desde la respuesta
+                        var filePath = dominioBase + "/" + response.data;
+                        // Redireccionar a la ruta del archivo Excel para descargarlo
+                        window.location.href = filePath;
+                    },
+                    complete: function () {},
+                    error: function (response) {
+                        console.log("Error", response);
+                    },
+                });
+            }
+        });
+    }
+});
+
+$("#btnExportarExcelHistorial").click(function () {
+    var fechitaInit = $("#txtFechaDesde").val().trim();
+    var fechitaEnd = $("#txtFechaHasta").val().trim();
+    console.log("fechitaInit > ", fechitaInit, " fechitaEnd > ", fechitaEnd);
+
+    if (fechitaInit == "" && fechitaEnd == "") {
+        Swal.fire({
+            icon: "warning",
+            title: "Upps!",
+            text: "Por favor, ingrese las fechas de consulta !.",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+    }
+    else if(global_detalle_cantidad_producto == 0){
+        Swal.fire({
+            icon: "warning",
+            title: "Upps!",
+            text: "No hay ventas registradas para exportar!.",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+    }
+    else {
+        Swal.fire({
+            title: "Exportar (.xlsx)",
+            html: "<p>¿Desea exportar el historial de ventas en un archivo Excel?</p>",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, exportar!",
+            cancelButtonText: "No, cancelar!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "/exportar/excel/historial",
+                    data: {
+                        _token: _global_token_crf,
+                        _fechitaInit: fechitaInit,
+                        _fechitaEnd: fechitaEnd,
                     },
                     dataType: "json",
                     beforeSend: function () {},

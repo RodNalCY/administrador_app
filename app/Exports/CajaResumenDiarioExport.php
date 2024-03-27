@@ -14,7 +14,7 @@ use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
 
-class CajaRDiarioExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+class CajaResumenDiarioExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -48,8 +48,7 @@ class CajaRDiarioExport implements FromCollection, WithHeadings, ShouldAutoSize,
     {
 
         return Ventas::selectRaw(
-            '
-        producto.idProducto, 
+        'producto.idProducto, 
         CONCAT(producto.Descripcion, " / ", producto.Concentracion, " / ", presentacion.Descripcion) as Descripcion,
         SUM( detalleventa.Cantidad ) AS cantidades, 
         detalleventa.Costo, 

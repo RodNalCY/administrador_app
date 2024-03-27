@@ -75,6 +75,7 @@ Route::controller(MovimientosController::class)->group(function () {
     
     // ROUTES EXCEL DE VENTAS
     Route::post('/exportar/excel/rdiario', 'exportar_excel_rdiario')->name('/exportar/excel/rdiario');
+    Route::post('/exportar/excel/historial', 'exportar_excel_historial')->name('/exportar/excel/historial');
 });
 
 Route::controller(MantenimientoController::class)->group(function () {

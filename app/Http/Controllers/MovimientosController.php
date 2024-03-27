@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\CajaRDiarioExport;
+use App\Exports\CajaHistorialVentasExport;
+use App\Exports\CajaResumenDiarioExport;
 use App\Models\Cliente;
 use App\Models\Compras;
 use App\Models\Comprobante;
@@ -397,7 +398,39 @@ class MovimientosController extends Controller
             // Ruta donde se guardará el archivo en el almacenamiento
             $filePath = 'downloads/excel/' . $fileName;
             // Instancia de la clase de exportación
-            $exportacion = new CajaRDiarioExport($request->_fechita);
+            $exportacion = new CajaResumenDiarioExport($request->_fechita);
+            // Generar el archivo Excel y guardarlo en el almacenamiento
+            Excel::store($exportacion, $fileName, 'public3');
+
+            // Devolver la ruta del archivo guardado
+            return response()->json([
+                'message' => 'GET - Excel Preveedores',
+                'status' => true,
+                'data' => $filePath,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function exportar_excel_historial(Request $request)
+    {
+        try {
+            // Obtener la fecha y hora actual
+            $fechaHoraActual = Carbon::now();
+            // Puedes formatear la fecha y hora según tus necesidades
+            $fechaHoraFormateada = $fechaHoraActual->format('Y-m-d H:i:s');
+            // Definir nombre del archivo
+            $replace_time = str_replace(["-", ":", " "], "_", $fechaHoraFormateada);
+            // Nombre del archivo
+            $fileName = 'excel_historial_ventas_' . $replace_time . '.xlsx';
+            // Ruta donde se guardará el archivo en el almacenamiento
+            $filePath = 'downloads/excel/' . $fileName;
+            // Instancia de la clase de exportación
+            $exportacion = new CajaHistorialVentasExport($request->_fechitaInit, $request->_fechitaEnd);
             // Generar el archivo Excel y guardarlo en el almacenamiento
             Excel::store($exportacion, $fileName, 'public3');
 
