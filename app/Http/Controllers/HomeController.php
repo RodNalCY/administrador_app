@@ -266,13 +266,22 @@ class HomeController extends Controller
                 $data[] = isset($sumaVentaDia[$day]) ? $sumaVentaDia[$day] : 0;
             }
 
+            $day = $this->get_semana();
+            $dayInit = strtotime($day[0]);
+            $dayInit = date("d-m-Y", $dayInit);
+
+            $dayEnd = strtotime($day[1]);
+            $dayEnd = date("d-m-Y", $dayEnd);
+
+            $info = $dayInit . " al ". $dayEnd;
 
             return response()->json([
                 'message' => 'dashboard Ingresos por Semana',
                 'status' => true,
                 'labels' => $labels,
                 'data' => $data,
-                'semana' => $this->get_semana()
+                'semana' => $this->get_semana(),
+                'info' =>   $info
             ]);
         } catch (\Exception $ex) {
             return response()->json([
@@ -302,13 +311,22 @@ class HomeController extends Controller
                 $data[] = isset($totalVentaDia[$day]) ? $totalVentaDia[$day] : 0;
             }
 
+            $day = $this->get_semana();
+            $dayInit = strtotime($day[0]);
+            $dayInit = date("d-m-Y", $dayInit);
+
+            $dayEnd = strtotime($day[1]);
+            $dayEnd = date("d-m-Y", $dayEnd);
+
+            $info = $dayInit . " al ". $dayEnd;
 
             return response()->json([
                 'message' => 'dashboard Total venta por Semana',
                 'status' => true,
                 'labels' => $labels,
                 'data' => $data,
-                'semana' => $this->get_semana()
+                'semana' => $this->get_semana(),
+                'info' =>   $info
             ]);
         } catch (\Exception $ex) {
             return response()->json([

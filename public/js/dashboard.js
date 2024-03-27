@@ -21,7 +21,7 @@ function dataTotalVentasMensuales() {
         beforeSend: function (response) {},
         success: function (response) {
             console.log("RDX> ", response);
-
+            $("#fechaInfoAnioOne").text("Año: "+"2024");
             var label_response = response.labels;
             var data_response = response.data;
 
@@ -70,7 +70,7 @@ function dataSumaVentasMensuales() {
         beforeSend: function (response) {},
         success: function (response) {
             console.log("RDX> ", response);
-
+            $("#fechaInfoAnioTwo").text("Año: "+"2024");
             var label_response = response.labels;
             var data_response = response.data;
 
@@ -228,6 +228,8 @@ function dataSumaVentasSemana() {
         beforeSend: function (response) {},
         success: function (response) {
             console.log("RDX> ", response);
+            $("#fechaInfoOne").text("Semana: "+response.info);
+            // console.log("RDX> ", response.semana[1]);
             var label_response = response.labels;
             var data_response = response.data;
 
@@ -276,6 +278,7 @@ function dataTotalVentasSemana() {
         beforeSend: function (response) {},
         success: function (response) {
             console.log("RDX> ", response);
+            $("#fechaInfoTwo").text("Semana: "+response.info);
             var label_response = response.labels;
             var data_response = response.data;
 

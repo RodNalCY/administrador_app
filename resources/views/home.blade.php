@@ -75,6 +75,7 @@
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">INGRESO POR SEMANA (S/.)</h3>
+                <sup><strong id="fechaInfoOne"></strong> </sup>
             </div>
             <div class="box-body">
                 <canvas id="barChartSumVentaSemana"></canvas>
@@ -85,6 +86,7 @@
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">VENTAS POR SEMANA</h3>
+                <sup><strong id="fechaInfoTwo"></strong> </sup>
             </div>
             <div class="box-body">
                 <canvas id="barChartTotalVentaSemana"></canvas>
@@ -99,6 +101,7 @@
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">INGRESO POR MES (S/.)</h3>
+                <sup><strong id="fechaInfoAnioOne"></strong> </sup>
             </div>
             <div class="box-body">
                 <canvas id="barChartSumVentaMensual"></canvas>
@@ -109,6 +112,7 @@
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">VENTAS POR MES</h3>
+                <sup><strong id="fechaInfoAnioTwo"></strong> </sup>
             </div>
             <div class="box-body">
                 <canvas id="barChartTotalVentaMensual"></canvas>
@@ -117,7 +121,8 @@
     </div>
 </div>
 
-
+<br>
+<br>
 
 <!-- <div class="row mt-4">
         <div class="col-md-6">
