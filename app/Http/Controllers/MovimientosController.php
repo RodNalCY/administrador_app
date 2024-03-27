@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CajaRDiarioExport;
 use App\Models\Cliente;
 use App\Models\Compras;
 use App\Models\Comprobante;
@@ -20,6 +21,7 @@ use Illuminate\Http\Request;
 // use Dompdf\Options;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MovimientosController extends Controller
 {
@@ -110,13 +112,14 @@ class MovimientosController extends Controller
     {
 
         try {
-            $ventas = Ventas::selectRaw('producto.idProducto, producto.Descripcion, detalleventa.Costo, detalleventa.Precio, SUM( detalleventa.Cantidad ) AS cantidades, SUM( detalleventa.Importe ) AS importe, SUM( detalleventa.Cantidad * detalleventa.Costo ) AS costo_total,
+            $ventas = Ventas::selectRaw('producto.idProducto, CONCAT(producto.Descripcion, " / ", producto.Concentracion, " / ", presentacion.Descripcion) as Descripcion, detalleventa.Costo, detalleventa.Precio, SUM( detalleventa.Cantidad ) AS cantidades, SUM( detalleventa.Importe ) AS importe, SUM( detalleventa.Cantidad * detalleventa.Costo ) AS costo_total,
             SUM( detalleventa.Importe ) - SUM( detalleventa.Cantidad * detalleventa.Costo ) AS ganancias, ventas.Fecha, ventas_log.fecha_venta')
                 ->join('detalleventa', 'ventas.IdVenta', '=', 'detalleventa.IdVenta')
                 ->join('producto', 'detalleventa.idProducto', '=', 'producto.idProducto')
+                ->join('presentacion', 'producto.idPresentacion', '=', 'presentacion.idPresentacion')
                 ->join('ventas_log', 'detalleventa.IdVenta', '=', 'ventas_log.venta_id')
                 ->where('ventas.Fecha', $request->fecha)
-                ->groupBy('producto.idProducto', 'producto.Descripcion', 'detalleventa.Costo', 'detalleventa.Precio', 'detalleventa.Importe', 'ventas.Fecha', 'ventas_log.fecha_venta')
+                ->groupBy('producto.idProducto', 'producto.Descripcion', 'detalleventa.Costo', 'detalleventa.Precio', 'detalleventa.Importe', 'ventas.Fecha', 'presentacion.Descripcion', 'ventas_log.fecha_venta')
                 ->orderBy('ventas_log.fecha_venta', 'DESC')
                 ->get();
 
@@ -372,6 +375,38 @@ class MovimientosController extends Controller
                     'ruta_pdf' => null,
                 ]);
             }
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function exportar_excel_rdiario(Request $request)
+    {
+        try {
+            // Obtener la fecha y hora actual
+            $fechaHoraActual = Carbon::now();
+            // Puedes formatear la fecha y hora según tus necesidades
+            $fechaHoraFormateada = $fechaHoraActual->format('Y-m-d H:i:s');
+            // Definir nombre del archivo
+            $replace_time = str_replace(["-", ":", " "], "_", $fechaHoraFormateada);
+            // Nombre del archivo
+            $fileName = 'excel_resumen_diario_' . $replace_time . '.xlsx';
+            // Ruta donde se guardará el archivo en el almacenamiento
+            $filePath = 'downloads/excel/' . $fileName;
+            // Instancia de la clase de exportación
+            $exportacion = new CajaRDiarioExport($request->_fechita);
+            // Generar el archivo Excel y guardarlo en el almacenamiento
+            Excel::store($exportacion, $fileName, 'public3');
+
+            // Devolver la ruta del archivo guardado
+            return response()->json([
+                'message' => 'GET - Excel Preveedores',
+                'status' => true,
+                'data' => $filePath,
+            ]);
         } catch (\Exception $ex) {
             return response()->json([
                 'status' => false,

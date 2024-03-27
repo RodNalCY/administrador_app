@@ -72,6 +72,9 @@ Route::controller(MovimientosController::class)->group(function () {
     // ROUTES COMPRAS
     Route::get('/number/ticket/compra', 'number_ticket_compra')->name('/number/ticket/compra');
     Route::post('/save/compra/productos', 'save_compra_productos')->name('/save/compra/productos');
+    
+    // ROUTES EXCEL DE VENTAS
+    Route::post('/exportar/excel/rdiario', 'exportar_excel_rdiario')->name('/exportar/excel/rdiario');
 });
 
 Route::controller(MantenimientoController::class)->group(function () {

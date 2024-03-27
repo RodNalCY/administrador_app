@@ -89,11 +89,21 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
+            <div class="col-md-12 d-flex justify-content-end">
+                <button type="button" class="btn btn-success" id="btnExportarExcelResumenDiario"> <i class="fas fa-fw fa-table"></i> EXPORTAR EXCEL</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead class="header-table text-center">
                         <tr>
-                            <th scope="col">NOMBRE PRODUCTO</th>
+                            <th scope="col">NOMBRE / CONCET. / PREST.</th>
                             <th scope="col">PRECIO</th>
                             <th scope="col">CANTIDAD</th>                          
                             <th scope="col">TOTAL</th>

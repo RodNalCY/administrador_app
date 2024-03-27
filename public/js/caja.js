@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    _globa_token_crf = document.getElementById("_token").value;
-    console.log("_globa_token_crf > ", _globa_token_crf);
+    _global_token_crf = document.getElementById("_token").value;
+    console.log("_global_token_crf > ", _global_token_crf);
     $("#tableResumenDiario").html(
         "<tr><td colspan='6' class='text-center'>Por favor, consulte el resumen diario </td></tr>"
     );
@@ -55,7 +55,7 @@ function listVentasResumenDiario(fechita) {
         type: "POST",
         url: "/list/resumen/diario",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             fecha: fechita,
         },
         dataType: "json",
@@ -79,7 +79,7 @@ function listVentasResumenDiario(fechita) {
                     "</td>" +
                     "<td style='text-align:center;'>" +
                     venta.cantidades +
-                    "</td>" +                   
+                    "</td>" +
                     "<th style='text-align:center;'>" +
                     venta.importe +
                     "</th>" +
@@ -92,14 +92,20 @@ function listVentasResumenDiario(fechita) {
                     "</tr>";
             });
 
-            html_tabla_resumen_diario +=  
-            "<tr class='text-center' style='background-color: lightyellow; color: black; font-weight: bold; border-top: solid; border-color: gold; font-size: x-large;'>"+
-            "<td colspan='2'>TOTAL: </td>"+
-            "<td>"+local_cantidad_producto+"</td>"+
-            "<td>"+local_ingreso_venta.toFixed(2)+"</td>"+
-            "<td>"+local_ganancias.toFixed(2)+"</td>"+
-            "<td>&nbsp;</td>"+
-            "</tr>";
+            html_tabla_resumen_diario +=
+                "<tr class='text-center' style='background-color: lightyellow; color: black; font-weight: bold; border-top: solid; border-color: gold; font-size: x-large;'>" +
+                "<td colspan='2'>TOTAL: </td>" +
+                "<td>" +
+                local_cantidad_producto +
+                "</td>" +
+                "<td>" +
+                local_ingreso_venta.toFixed(2) +
+                "</td>" +
+                "<td>" +
+                local_ganancias.toFixed(2) +
+                "</td>" +
+                "<td>&nbsp;</td>" +
+                "</tr>";
 
             $("#txtIngresoVenta").val(local_ingreso_venta.toFixed(2));
             $("#txtCantProducto").val(local_cantidad_producto);
@@ -117,14 +123,14 @@ function listVentasResumenDiario(fechita) {
 
 function listVentasResumenDetalle(f_init, f_end) {
     var local_detalle_cantidad_producto = 0;
-    var local_detalle_total= 0;
+    var local_detalle_total = 0;
     var local_detalle_ganancias = 0;
 
     $.ajax({
         type: "POST",
         url: "/list/resumen/detalle",
         data: {
-            _token: _globa_token_crf,
+            _token: _global_token_crf,
             fecha_init: f_init,
             fecha_end: f_end,
         },
@@ -166,13 +172,19 @@ function listVentasResumenDetalle(f_init, f_end) {
                     "</tr>";
             });
 
-            html_tabla_resumen_detallado +=  
-            "<tr class='text-center' style='background-color: lightyellow; color: black; font-weight: bold; border-top: solid; border-color: gold; font-size: x-large;'>"+
-            "<td colspan='4'>TOTAL: </td>"+
-            "<td>"+local_detalle_cantidad_producto+"</td>"+
-            "<td>"+local_detalle_total.toFixed(2)+"</td>"+
-            "<td>"+local_detalle_ganancias.toFixed(2)+"</td>"+
-            "</tr>";
+            html_tabla_resumen_detallado +=
+                "<tr class='text-center' style='background-color: lightyellow; color: black; font-weight: bold; border-top: solid; border-color: gold; font-size: x-large;'>" +
+                "<td colspan='4'>TOTAL: </td>" +
+                "<td>" +
+                local_detalle_cantidad_producto +
+                "</td>" +
+                "<td>" +
+                local_detalle_total.toFixed(2) +
+                "</td>" +
+                "<td>" +
+                local_detalle_ganancias.toFixed(2) +
+                "</td>" +
+                "</tr>";
 
             $("#tbl_row_ventas_detalle").html(html_tabla_resumen_detallado);
         },
@@ -182,3 +194,64 @@ function listVentasResumenDetalle(f_init, f_end) {
         },
     });
 }
+
+$("#btnExportarExcelResumenDiario").click(function () {
+    var fechita = $("#txtFechaDiario").val().trim();
+    var totalCantidad = $("#txtCantProducto").val().trim();
+    console.log("fechita > ", fechita);
+
+    if (fechita == "") {
+        Swal.fire({
+            icon: "warning",
+            title: "Upps!",
+            text: "Por favor, ingrese la fecha de consulta !.",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+    } else if (totalCantidad == 0) {
+        Swal.fire({
+            icon: "warning",
+            title: "Upps!",
+            text: "No hay ventas registradas para exportar!.",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+    } else {
+        Swal.fire({
+            title: "Exportar (.xlsx)",
+            html: "<p>¿Desea exportar el resumen de ventas en un archivo Excel?</p>",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, exportar!",
+            cancelButtonText: "No, cancelar!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "/exportar/excel/rdiario",
+                    data: {
+                        _token: _global_token_crf,
+                        _fechita: fechita,
+                    },
+                    dataType: "json",
+                    beforeSend: function () {},
+                    success: function (response) {
+                        console.log("RDX> ", response);
+                        // Obtener el dominio base de la página actual
+                        var dominioBase = window.location.origin;
+                        // Obtener la ruta del archivo Excel desde la respuesta
+                        var filePath = dominioBase + "/" + response.data;
+                        // Redireccionar a la ruta del archivo Excel para descargarlo
+                        window.location.href = filePath;
+                    },
+                    complete: function () {},
+                    error: function (response) {
+                        console.log("Error", response);
+                    },
+                });
+            }
+        });
+    }
+});
