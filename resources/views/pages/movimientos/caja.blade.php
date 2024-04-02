@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="text-center">
-                            <img src="https://www.controligestio-tpv.com/wp-content/uploads/2017/11/CASIO-SE-C3500-500.jpg" class="img-fluid" alt="..." width="100%">
+                            <img src="{{ asset('img/icons/caja-icono.jpg') }}" class="img-fluid" alt="..." width="100%">
                         </div>
                     </div>
                     <div class="col-md-7">

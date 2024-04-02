@@ -13,7 +13,7 @@
 
 <div class="row ">
     <div class="col-md-12">
-        <div class="background-particle w-100 position-absolute top-0 left-0" id="particlebackground" data-config="{{ asset('js/pj-config.json') }}"></div>
+        <div class="background-particle w-100 position-absolute top-0 left-0" id="particlebackground" data-config="{{ asset('js/local/pj-config.json') }}"></div>
         <div class="d-flex justify-content-center">
             <div class="col-lg-5 col-md-12 mt-3">
                 <div class="card card-user bg-dark">

@@ -1,10 +1,15 @@
+var globalDominioBase = "";
+
 $(document).ready(function () {
     _globa_token_crf = document.getElementById("_token").value;
+    globalDominioBase = window.location.origin;
+    console.log("globalDominioBase > ", globalDominioBase);
     console.log("_globa_token_crf > ", _globa_token_crf);
     $("#tableListComprobantes").html(
         "<tr><td colspan='4' class='text-center'>No hay comprobantes disponibles.</td></tr>"
     );
     listaComprobantes();
+    
 });
 
 $("#btnActualizarComprobante").click(function () {
@@ -130,7 +135,7 @@ function listaComprobantes() {
             $("#tableComprobantes").DataTable({
                 order: [[0, "desc"]],
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                 },
             });
         },

@@ -1,6 +1,10 @@
+var globalDominioBase = "";
+
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
     console.log("_global_token_crf > ", _global_token_crf);
+    globalDominioBase = window.location.origin;
+    console.log("globalDominioBase > ", globalDominioBase);
     $("#tableListProductos").html(
         "<tr><td colspan='12' class='text-center'>No hay productos disponibles.</td></tr>"
     );
@@ -338,7 +342,7 @@ function listProductos() {
             $("#tableProductos").DataTable({
                 order: [[0, "desc"]],
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                 },
             });
 
@@ -414,7 +418,7 @@ function listPresentacionesActivos() {
             $("#tablePresentaciones").DataTable({
                 order: [[0, "desc"]],
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                 },
             });
         },
@@ -478,7 +482,7 @@ function listLaboratoriosActivos() {
             $("#tableLaboratorios").DataTable({
                 order: [[0, "desc"]],
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                 },
             });
         },

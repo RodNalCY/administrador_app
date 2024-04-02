@@ -1,5 +1,9 @@
+var globalDominioBase = "";
+
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
+    globalDominioBase = window.location.origin;
+    console.log("globalDominioBase > ", globalDominioBase);
     console.log("_global_token_crf > ", _global_token_crf);
     $("#tableListClientes").html(
         "<tr><td colspan='11' class='text-center'>No hay empleados disponibles.</td></tr>"
@@ -187,7 +191,9 @@ function listaClientes() {
                         cli.Direccion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>"+ cli.Estado+"</button>"+
+                        "<button type='button' class='btn btn-danger btn-sm btn-estado-size'>" +
+                        cli.Estado +
+                        "</button>" +
                         "</td>" +
                         "<td>" +
                         "<center>" +
@@ -256,7 +262,9 @@ function listaClientes() {
                         cli.Direccion +
                         "</td>" +
                         "<td class='text-center'>" +
-                        "<button type='button' class='btn btn-success btn-sm btn-estado-size'>"+ cli.Estado+"</button>"+
+                        "<button type='button' class='btn btn-success btn-sm btn-estado-size'>" +
+                        cli.Estado +
+                        "</button>" +
                         "</td>" +
                         "<td>" +
                         "<center>" +
@@ -306,7 +314,7 @@ function listaClientes() {
             $("#tableClientes").DataTable({
                 order: [[0, "desc"]],
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                 },
             });
 
@@ -500,7 +508,14 @@ $(document).on("click", ".btn-estado-cliente", function () {
     var clienteName = $(this).data("name");
     var clienteEstado = $(this).data("active");
 
-    console.log("clienteId > "+ clienteId+ " clienteName > "+ clienteName+ " clienteEstado > "+clienteEstado);
+    console.log(
+        "clienteId > " +
+            clienteId +
+            " clienteName > " +
+            clienteName +
+            " clienteEstado > " +
+            clienteEstado
+    );
 
     var message = "Desea desactivar el cliente: ";
     var btnText = "Si, desactivar!";
@@ -514,10 +529,7 @@ $(document).on("click", ".btn-estado-cliente", function () {
 
     Swal.fire({
         title: btnTitle,
-        html:
-            "<p>"+message+"<strong>" +
-            clienteName +
-            "</strong></p>",
+        html: "<p>" + message + "<strong>" + clienteName + "</strong></p>",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",

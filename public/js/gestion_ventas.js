@@ -1,6 +1,10 @@
+var globalDominioBase = "";
+
 $(document).ready(function () {
     _globa_token_crf = document.getElementById("_token").value;
     console.log("_globa_token_crf > ", _globa_token_crf);
+    globalDominioBase = window.location.origin;
+    console.log("globalDominioBase > ", globalDominioBase);
     $("#tableListGestionVentas").html(
         "<tr><td colspan='10' class='text-center'>No hay registros de ventas </td></tr>"
     );
@@ -70,7 +74,7 @@ function listGestionVentas() {
             $("#tableGestionVentas").DataTable({
                 order: [[0, "desc"]],
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                 },
             });
         },

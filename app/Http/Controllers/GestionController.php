@@ -25,6 +25,12 @@ class GestionController extends Controller
         return view('pages.gestion.gestion_ventas');
     }
 
+    public function index_gestion_compras()
+    {
+        return view('pages.gestion.gestion_compras');
+    }
+
+
     public function list_gestion_ventas()
     {
         try {

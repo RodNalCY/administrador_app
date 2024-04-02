@@ -170,6 +170,7 @@ Route::controller(AdministradorController::class)->group(function () {
 
 Route::controller(GestionController::class)->group(function () {
     Route::get('/gestion/ventas', 'index_gestion_ventas')->name('/gestion/ventas');
+    Route::get('/gestion/conpras', 'index_gestion_compras')->name('/gestion/compras');
     // ROUTES CONSULTAR VENTAS
     Route::get('/list/gestion/ventas', 'list_gestion_ventas')->name('/list/gestion/ventas');
 });

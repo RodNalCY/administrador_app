@@ -21,10 +21,14 @@ var global_content_actived2 = false;
 var global_content_actived3 = false;
 var global_content_actived4 = false;
 var global_content_actived5 = false;
+var globalDominioBase = "";
 
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
     console.log("_global_token_crf > ", _global_token_crf);
+    globalDominioBase = window.location.origin;
+    console.log("globalDominioBase > ", globalDominioBase);
+    
     setInterval(fechaAndHora, 1000);
 
     getIdEmpleado();
@@ -267,7 +271,7 @@ function listClientes() {
             $("#tableClientes").DataTable({
                 order: [[1, "desc"]],
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                 },
             });
 
@@ -451,7 +455,7 @@ function listProductos() {
                 // searching: false,
                 search: "Buscar productos:",
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                     search: "Buscar productos:",
                 },
             });
@@ -529,7 +533,7 @@ function listComprobantes() {
             $("#tableComprobantes").DataTable({
                 order: [[0, "desc"]],
                 language: {
-                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                    url: globalDominioBase+"/js/local/Spanish.json",
                 },
             });
 
