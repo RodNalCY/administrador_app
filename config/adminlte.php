@@ -468,8 +468,8 @@ return [
         [
             'icon_color' => 'cyan',
             'text' => 'Compras',
-            'can'  => '',
-            'url'  => '#',
+            'can'  => 'gestion.compras',
+            'url'  => 'gestion/compras',
             'label' => 'Dev',
             'label_color' => 'warning',
         ],

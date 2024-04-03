@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compras;
+use App\Models\DetalleCompra;
 use App\Models\Ventas;
 use Illuminate\Http\Request;
 
@@ -48,6 +50,88 @@ class GestionController extends Controller
                 'message' => 'lista de gestión de ventas',
                 'status' => true,
                 'data' => $ventas_log
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function list_gestion_compras()
+    {
+        try {
+
+            $compras_log = Compras::selectRaw('
+            compra.idCompra,
+            compras_log.id, 
+            compra.Numero, CONCAT( empleado.Nombres, " ", empleado.Apellidos ) AS empleado,
+            proveedor.Nombre as proveedor_name, 
+            compras_log.comp_name, 
+            compras_log.valor_total, 
+            compras_log.texto_valor_total, 
+            compras_log.fecha_compra,
+            DATE_FORMAT(compras_log.fecha_compra, "%H:%i:%s %d-%m-%Y") AS fecha_compra_formateada
+            ')
+                ->join('empleado', 'compra.idEmpleado', '=', 'empleado.idEmpleado')
+                ->join('proveedor', 'compra.idProveedor', '=', 'proveedor.idProveedor')
+                ->join('compras_log', 'compra.idCompra', '=', 'compras_log.compra_id')
+                ->orderBy('compras_log.id', 'DESC')
+                ->get();
+
+            return response()->json([
+                'message' => 'lista de gestión de compras',
+                'status' => true,
+                'data' => $compras_log
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function list_gestion_details_compras(Request $request)
+    {
+        try {
+
+            $compras_log = Compras::selectRaw('
+            compra.idCompra,
+            compras_log.id, 
+            compra.Numero, 
+            CONCAT( empleado.Nombres, " ", empleado.Apellidos ) AS empleado,
+            proveedor.Nombre as proveedor_name, 
+            compras_log.comp_name, 
+            compras_log.valor_total, 
+            compras_log.texto_valor_total, 
+            compras_log.fecha_compra,
+            DATE_FORMAT(compras_log.fecha_compra, "%H:%i:%s %d-%m-%Y") AS fecha_compra_formateada
+            ')
+                ->join('empleado', 'compra.idEmpleado', '=', 'empleado.idEmpleado')
+                ->join('proveedor', 'compra.idProveedor', '=', 'proveedor.idProveedor')
+                ->join('compras_log', 'compra.idCompra', '=', 'compras_log.compra_id')
+                ->where('compra.idCompra', $request->_id)
+                ->orderBy('compras_log.id', 'DESC')
+                ->get();
+
+            $compras_detalle = DetalleCompra::selectRaw('
+            detallecompra.idCompra, 
+            detallecompra.idProducto, 
+            detallecompra.Cantidad, 
+            detallecompra.Costo, 
+            detallecompra.Importe,
+            CONCAT(producto.Descripcion, " ", producto.Concentracion) AS producto_name')
+            ->join('producto', 'detallecompra.idProducto', '=', 'producto.idProducto')
+            ->where('detallecompra.idCompra', $request->_id)
+            ->get();;
+
+            return response()->json([
+                'message' => 'lista de gestión de compras detalle',
+                'status' => true,
+                'data_detalle' => $compras_detalle,
+                'data_compra' => $compras_log,
             ]);
         } catch (\Exception $ex) {
             return response()->json([
