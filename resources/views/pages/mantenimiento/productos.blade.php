@@ -111,7 +111,7 @@
                     <thead class="header-table text-center">
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">DESCRIPCIÓN</th>
+                            <th scope="col">NOMBRE</th>
                             <th scope="col">LABORATORIO</th>
                             <th scope="col">PRESENTACIÓN</th>
                             <th scope="col">CONCENTRACIÓN</th>

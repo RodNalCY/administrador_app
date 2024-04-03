@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Compras;
 use App\Models\DetalleCompra;
+use App\Models\Producto;
 use App\Models\Ventas;
+use DateTime;
 use Illuminate\Http\Request;
 
 class GestionController extends Controller
@@ -32,6 +34,10 @@ class GestionController extends Controller
         return view('pages.gestion.gestion_compras');
     }
 
+    public function index_gestion_productos()
+    {
+        return view('pages.gestion.gestion_productos');
+    }
 
     public function list_gestion_ventas()
     {
@@ -123,15 +129,41 @@ class GestionController extends Controller
             detallecompra.Costo, 
             detallecompra.Importe,
             CONCAT(producto.Descripcion, " ", producto.Concentracion) AS producto_name')
-            ->join('producto', 'detallecompra.idProducto', '=', 'producto.idProducto')
-            ->where('detallecompra.idCompra', $request->_id)
-            ->get();;
+                ->join('producto', 'detallecompra.idProducto', '=', 'producto.idProducto')
+                ->where('detallecompra.idCompra', $request->_id)
+                ->get();;
 
             return response()->json([
                 'message' => 'lista de gestión de compras detalle',
                 'status' => true,
                 'data_detalle' => $compras_detalle,
                 'data_compra' => $compras_log,
+            ]);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function list_gestion_productos()
+    {
+        try {
+
+            $productos = Producto::with(['presentacion', 'laboratorio'])->limit(10)->get();
+            foreach ($productos as $key) {
+                $fechaOriginal = $key->updated_at;
+                $fecha = new DateTime($fechaOriginal);
+                $fechaFormateada = $fecha->format('H:i:s d/m/Y');
+                $key->fechita = $fechaFormateada; 
+            }
+
+
+            return response()->json([
+                'message' => 'lista de productos gestion',
+                'status' => true,
+                'data' => $productos
             ]);
         } catch (\Exception $ex) {
             return response()->json([

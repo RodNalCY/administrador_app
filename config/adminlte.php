@@ -476,10 +476,15 @@ return [
         [
             'icon_color' => 'cyan',
             'text' => 'Productos',
-            'can'  => '',
+            'can'  => 'gestion.productos',
+            'url'  => 'gestion/productos',
+            'label' => 'ver',
+            'label_color' => 'primary',
+        ],
+        [
+            'icon' => '',
+            'text' => '2024 © DALIFHAR ™ SYSTEM',
             'url'  => '#',
-            'label' => 'Dev',
-            'label_color' => 'warning',
         ],
         // [
         //     'text'    => 'Consultar',

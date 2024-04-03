@@ -171,11 +171,15 @@ Route::controller(AdministradorController::class)->group(function () {
 Route::controller(GestionController::class)->group(function () {
     Route::get('/gestion/ventas', 'index_gestion_ventas')->name('/gestion/ventas');
     Route::get('/gestion/compras', 'index_gestion_compras')->name('/gestion/compras');
+    Route::get('/gestion/productos', 'index_gestion_productos')->name('/gestion/productos');
+
     // ROUTES CONSULTAR VENTAS
     Route::get('/list/gestion/ventas', 'list_gestion_ventas')->name('/list/gestion/ventas');
-       // ROUTES CONSULTAR COMPRAS
+    // ROUTES CONSULTAR COMPRAS
     Route::get('/list/gestion/compras', 'list_gestion_compras')->name('/list/gestion/compras');
     Route::get('/list/gestion/details/compras', 'list_gestion_details_compras')->name('/list/gestion/details/compras');
+    // ROUTES CONSULTAR PRODUCTOS
+    Route::get('/list/gestion/productos', 'list_gestion_productos')->name('/list/gestion/productos');
 });
 
 Route::controller(APIExternoController::class)->group(function () {
