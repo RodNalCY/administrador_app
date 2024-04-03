@@ -27,8 +27,7 @@
                                     <th scope="col">CLIENTE</th>
                                     <th scope="col">VALOR TOTAL</th>
                                     <th scope="col">VALOR TOTAL TEXTO</th>
-                                    <th scope="col">RUTA COMPROBANTE</th>
-                                    <th scope="col" style="width: 120px;">FECHA</th>
+                                    <th scope="col" style="width: 150px;">FECHA</th>
                                     <th scope="col">OPCIONES</th>
                                 </tr>
                             </thead>

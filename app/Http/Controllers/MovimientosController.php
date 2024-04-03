@@ -6,6 +6,7 @@ use App\Exports\CajaHistorialVentasExport;
 use App\Exports\CajaResumenDiarioExport;
 use App\Models\Cliente;
 use App\Models\Compras;
+use App\Models\ComprasLog;
 use App\Models\Comprobante;
 use App\Models\DetalleCompra;
 use App\Models\DetalleVenta;
@@ -305,8 +306,20 @@ class MovimientosController extends Controller
                         $producto->update();
                     }
                 }
-                $status = true;
-                $message = "Se registro correctamente las ventas";
+
+                $clogs = new ComprasLog;
+                $clogs->compra_id         = $createCompra->idCompra;
+                $clogs->comp_id           = $request->_compras_details_lista[0]['comprobanteId'];
+                $clogs->comp_name         = $request->_compras_details_lista[0]['comprobanteName'];
+                $clogs->fecha_compra      = Carbon::now();
+                $clogs->dia_compra        = $request->_compras_details_lista[0]['diaCompra'];
+                $clogs->valor_total       = $request->_compras_details_lista[0]['valorTotal'];
+                $clogs->texto_valor_total = $request->_compras_details_lista[0]['valorTotalTexto'];
+
+                if ($clogs->save()) {
+                    $status = true;
+                    $message = "Se registro correctamente las ventas";
+                }
             }
 
             return response()->json([

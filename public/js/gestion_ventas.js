@@ -49,11 +49,7 @@ function listGestionVentas() {
                     "<td>" +
                     gv.texto_valor_total +
                     "</td>" +
-                    "<td>"+
-                    "<a href='#'>" +
-                    "../"+gv.ruta_comprobante +
-                    "</a>"+
-                    "</td>" +
+                    
                     "<td>" +
                     gv.fecha_venta +
                     "</td>" +

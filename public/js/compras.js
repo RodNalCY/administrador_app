@@ -5,6 +5,7 @@ var global_index_compras = 0;
 var _global_id_employed = "";
 var global_sumatoria_total = 0;
 var globalDominioBase = "";
+var global_dia_compra = "";
 
 $(document).ready(function () {
     _global_token_crf = document.getElementById("_token").value;
@@ -18,11 +19,36 @@ $(document).ready(function () {
     listProveedores();
     listComprobantes();
     listProductos();
+    global_dia_compra = obtenerDiaSemana();
 
     $("#tableListCompras").html(
         "<tr><td colspan='7' class='text-center'>Por favor, ingrese las compras</td></tr>"
     );
 });
+
+function obtenerDiaSemana() {
+    // Crear una nueva instancia de Date
+    const fechaActual = new Date();
+
+    // Obtener el número del día de la semana (0 para Domingo, 1 para Lunes, ..., 6 para Sábado)
+    const diaDeLaSemana = fechaActual.getDay();
+    // Crear un array con los nombres de los días de la semana
+    const diasSemana = [
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+    ];
+
+    // Obtener el nombre del día de la semana utilizando el número obtenido anteriormente
+    const nombreDia = diasSemana[diaDeLaSemana];
+
+    // Retornar el nombre del día de la semana
+    return nombreDia;
+}
 
 function fechaAndHora() {
     // Obtener la fecha y hora actual
@@ -681,6 +707,7 @@ $("#btnRegistrarCompra").click(function () {
 
     var provedorId = $("#txtIdProveedor").val().trim();
     var comprobanteId = $("#txtIdTipoComprobante").val().trim();
+    var comprobanteName = $("#txtTipoComprobante").val().trim();
     var ticket = $("#txtNumCompra").val().trim();
     var subtotal = $("#txtValorSubtotal").val().trim();
     var valorTotal = $("#txtTotalPagar").val().trim();
@@ -733,10 +760,12 @@ $("#btnRegistrarCompra").click(function () {
             cancelButtonColor: "#d33",
             confirmButtonText: "Si, comprar",
             cancelButtonText: "No, cancelar",
+            allowOutsideClick: false,
         }).then((result) => {
             if (result.isConfirmed) {
                 var miListaDetails = {};
                 const fechaFormateada = obtenerFechaHoraFormateada(1);
+                var total_pagar_texto = convertirNumeroATexto(valorTotal);
 
                 miListaDetails["provedorId"] = provedorId;
                 miListaDetails["empleadoId"] = _global_id_employed;
@@ -746,7 +775,10 @@ $("#btnRegistrarCompra").click(function () {
                 miListaDetails["subtotal"] = subtotal;
                 miListaDetails["valorTotal"] = valorTotal;
                 miListaDetails["valorIGV"] = valorIGV;
-                miListaDetails["estado"] = "NORMAL";
+                miListaDetails["estado"] = "NORMAL"; 
+                miListaDetails["comprobanteName"] = comprobanteName;
+                miListaDetails["diaCompra"] = global_dia_compra;
+                miListaDetails["valorTotalTexto"] = total_pagar_texto;
 
                 global_compras_details_lista.push(miListaDetails);
 
@@ -790,9 +822,129 @@ function obtenerFechaHoraFormateada(option) {
             fechaHoraFormateada = `${anio}-${mes}-${dia}`;
             break;
         case 2:
-            fechaHoraFormateada = `${dia}/${mes}/${anio} ${horas}:${minutos}:${segundos}`;
+            fechaHoraFormateada = `${anio}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
             break;
     }
 
     return fechaHoraFormateada;
+}
+
+function convertirNumeroATexto(numero) {
+    var unidades = [
+        "CERO",
+        "UNO",
+        "DOS",
+        "TRES",
+        "CUATRO",
+        "CINCO",
+        "SEIS",
+        "SIETE",
+        "OCHO",
+        "NUEVE",
+    ];
+    var decenas = [
+        "DIEZ",
+        "ONCE",
+        "DOCE",
+        "TRECE",
+        "CATORCE",
+        "QUINCE",
+        "DIECISÉIS",
+        "DIECISIETE",
+        "DIECIOCHO",
+        "DIECINUEVE",
+    ];
+    var decenasX = [
+        "VEINTE",
+        "TREINTA",
+        "CUARENTA",
+        "CINCUENTA",
+        "SESENTA",
+        "SETENTA",
+        "OCHENTA",
+        "NOVENTA",
+    ];
+    var centenas = [
+        "CIENTO",
+        "DOSCIENTOS",
+        "TRESCIENTOS",
+        "CUATROCIENTOS",
+        "QUINIENTOS",
+        "SEISCIENTOS",
+        "SETECIENTOS",
+        "OCHOCIENTOS",
+        "NOVECIENTOS",
+    ];
+    var miles = ["MIL", "MILLÓN", "MILLONES"];
+
+    function convertirNumeroMenorCien(numero) {
+        if (numero < 10) return unidades[numero];
+        else if (numero < 20) return decenas[numero - 10];
+        else {
+            var decena = Math.floor(numero / 10);
+            var unidad = numero % 10;
+            return (
+                decenasX[decena - 2] +
+                (unidad > 0 ? " Y " + unidades[unidad] : "")
+            );
+        }
+    }
+
+    function convertirNumero(numero) {
+        if (numero === 0) return "";
+        if (numero < 10) return unidades[numero];
+        if (numero < 100) return convertirNumeroMenorCien(numero);
+
+        var resultado = "";
+        if (numero >= 100) {
+            var centena = Math.floor(numero / 100);
+            numero %= 100;
+            if (centena === 1 && numero === 0) resultado = "CIEN";
+            else resultado = centenas[centena - 1];
+        }
+
+        if (numero > 0) {
+            if (resultado !== "") resultado += " ";
+            resultado += convertirNumeroMenorCien(numero);
+        }
+
+        return resultado;
+    }
+
+    function convertirNumeroEntero(numero) {
+        if (numero === 0) return "CERO";
+
+        var resultado = "";
+        var contador = 0;
+
+        while (numero > 0) {
+            var fragmento = numero % 1000;
+            if (fragmento > 0) {
+                var textoFragmento = convertirNumero(fragmento);
+                resultado =
+                    textoFragmento +
+                    (contador > 0 ? " " + miles[contador - 1] : "") +
+                    (resultado ? " " + resultado : "");
+            }
+            numero = Math.floor(numero / 1000);
+            contador++;
+        }
+
+        return resultado;
+    }
+
+    function convertirDecimales(numero) {
+        var centavo = Math.round(numero * 100);
+        if (centavo === 0) return "";
+        return centavo + "/100";
+    }
+
+    var parteEntera = Math.floor(numero);
+    var parteDecimal = numero - parteEntera;
+
+    var textoEntero = convertirNumeroEntero(parteEntera);
+    var textoDecimal = convertirDecimales(parteDecimal);
+
+    var resultado = textoEntero + (textoDecimal ? " CON " + textoDecimal : "");
+    return resultado.toUpperCase();
 }

@@ -470,8 +470,8 @@ return [
             'text' => 'Compras',
             'can'  => 'gestion.compras',
             'url'  => 'gestion/compras',
-            'label' => 'Dev',
-            'label_color' => 'warning',
+            'label' => 'ver',
+            'label_color' => 'primary',
         ],
         [
             'icon_color' => 'cyan',
